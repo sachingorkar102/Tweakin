@@ -1,0 +1,2 @@
+execute positioned ~ ~-1 ~ if block ~ ~ ~ #custom_nether_portals:air if entity @e[type=minecraft:area_effect_cloud,tag=cusNetPor.marker,distance=..0.1] positioned ~ ~1 ~ run function custom_nether_portals:check_x_sides
+execute if score #success cusNetPor.dummy matches 0 positioned ~ ~1 ~ if block ~ ~ ~ #custom_nether_portals:air if entity @e[type=minecraft:area_effect_cloud,tag=cusNetPor.marker,distance=..0.1] positioned ~ ~-1 ~ run function custom_nether_portals:check_x_sides

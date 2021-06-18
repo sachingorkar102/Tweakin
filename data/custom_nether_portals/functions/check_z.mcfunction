@@ -1,0 +1,4 @@
+execute if score #success cusNetPor.dummy matches 0 positioned ~ ~-1 ~ unless entity @e[type=minecraft:area_effect_cloud,tag=cusNetPor.marker,distance=..0.1] run function custom_nether_portals:try_to_iterate_z
+execute if score #success cusNetPor.dummy matches 0 positioned ~ ~ ~-1 unless entity @e[type=minecraft:area_effect_cloud,tag=cusNetPor.marker,distance=..0.1] run function custom_nether_portals:try_to_iterate_z
+execute if score #success cusNetPor.dummy matches 0 positioned ~ ~ ~1 unless entity @e[type=minecraft:area_effect_cloud,tag=cusNetPor.marker,distance=..0.1] run function custom_nether_portals:try_to_iterate_z
+execute if score #success cusNetPor.dummy matches 0 positioned ~ ~1 ~ unless entity @e[type=minecraft:area_effect_cloud,tag=cusNetPor.marker,distance=..0.1] run function custom_nether_portals:try_to_iterate_z

@@ -1,0 +1,17 @@
+{
+	"display": {
+		"icon": {
+			"item": "minecraft:obsidian"
+		},
+		"title": "Custom Nether Portals   ",
+		"description": ["",{"text":"Ignite nether portals of any shape or size you like, or use crying obsidian in the portal frame. All features are configurable.\n","color":"gold"},{"text":"Enter","color":"green"},{"text":" ","color":"gold"},{"text":"/trigger cusNetPor","color":"yellow"},{"text":" for details.\n","color":"gold"},{"text":"Enter","color":"green"},{"text":" ","color":"gold"},{"text":"/function custom_nether_portals:config","color":"yellow"},{"text":" for config options.","color":"gold"}],
+		"show_toast": false,
+		"announce_to_chat": false
+	},
+    "parent": "vanillatweaks:root",
+	"criteria": {
+		"tick": {
+			"trigger": "minecraft:tick"
+		}
+	}
+}

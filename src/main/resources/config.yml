@@ -1,0 +1,48 @@
+armor-right-click:
+  enabled: true
+
+right-click-shulker-box:
+  enabled: true  
+
+custom-portal:
+  enabled: true
+  black-list-worlds: []
+  valid-portal-blocks:
+    - OBSIDIAN
+    - CRYING_OBSIDIAN
+
+noteblock-mob-sounds:
+  enabled: true
+  black-list-heads: [CREEPER_WALL_HEAD]
+  black-list-worlds: []
+
+reach-around:
+  enabled: true
+  show-highlight: true
+  color: "#e0e0d1"
+  transparency: 190
+  black-list-worlds: []
+
+fast-leaf-decay:
+  enabled: true
+  black-list-worlds: []  
+
+better-ladder:
+  enabled: true
+  black-list-worlds: []
+
+lapis-in-table:
+  enabled: true 
+  black-list-worlds: []
+
+auto-recipe-unlock:
+  enabled: true
+
+nether-portal-coords:
+  enabled: true
+  world-pairs:
+    world: world_nether
+
+swing-through-grass:
+  enabled: true    
+  
