@@ -13,6 +13,7 @@ import com.github.sachin.tweakin.noteblock.NoteBlockHeadsTweak;
 import com.github.sachin.tweakin.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
+import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
 
 import org.bukkit.Bukkit;
 
@@ -67,6 +68,7 @@ public class TweakManager {
             tweakList.add(new ControlledBurnTweak(plugin));
             tweakList.add(new AutoRecipeUnlockTweak(plugin));
             tweakList.add(new NetherPortalCoordsTweak(plugin));
+            tweakList.add(new SwingThroughGrassTweak(plugin));
         }
         return tweakList;
     }

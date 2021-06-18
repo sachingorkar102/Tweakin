@@ -46,4 +46,7 @@ auto-recipe-unlock:
 nether-portal-coords:
   enabled: true
   world-pairs:
-    world: world_nether      
+    world: world_nether
+
+swing-through-grass:
+  enabled: true        

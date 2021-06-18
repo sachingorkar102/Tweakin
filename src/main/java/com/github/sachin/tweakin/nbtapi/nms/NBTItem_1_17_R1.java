@@ -1,24 +1,19 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-
-import net.minecraft.server.v1_16_R2.*;
-
 import org.bukkit.inventory.ItemStack;
 
+import net.minecraft.nbt.NBTTagCompound;
 
-
-public class NBTItem_1_16_R2 extends NMSHelper{
-
-    
-    private net.minecraft.server.v1_16_R2.ItemStack nmsItem;
+public class NBTItem_1_17_R1 extends NMSHelper{
+    private net.minecraft.world.item.ItemStack nmsItem;
     private NBTTagCompound compound;
 
-    public NBTItem_1_16_R2(ItemStack item){
+    public NBTItem_1_17_R1(ItemStack item){
         if(item == null) return;
         ItemStack bukkitItem = item.clone();
         this.nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
@@ -28,7 +23,7 @@ public class NBTItem_1_16_R2 extends NMSHelper{
 
     @Override
     public NMSHelper newItem(ItemStack item) {
-        NMSHelper nbti = new NBTItem_1_16_R2(item);
+        NMSHelper nbti = new NBTItem_1_17_R1(item);
         return nbti;
     }
     
@@ -107,5 +102,5 @@ public class NBTItem_1_16_R2 extends NMSHelper{
         
     }
 
-    
+
 }

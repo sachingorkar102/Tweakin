@@ -1,7 +1,12 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
 
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R1.inventory.CraftItemStack;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+
 import net.minecraft.server.v1_16_R1.*;
 
 import org.bukkit.inventory.ItemStack;
@@ -93,6 +98,13 @@ public class NBTItem_1_16_R1 extends NMSHelper{
     @Override
     public double getDouble(String key) {
         return compound.getDouble(key);
+    }
+
+    @Override
+    public void attack(Player player, Entity target) {
+        ((CraftPlayer)player).getHandle().attack(((CraftEntity)target).getHandle());
+        ((CraftPlayer)player).getHandle().resetAttackCooldown();
+        
     }
 
     

@@ -26,6 +26,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
+// Permission: tweakin.netherportalcoords
 public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
 
     private Map<String,String> worldPairs = new HashMap<>();
@@ -71,7 +72,7 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
         ItemStack item = e.getItem().clone();
         ItemMeta meta = item.getItemMeta();
         Player player = e.getPlayer();
-
+        if(!player.hasPermission("tweakin.netherportalcoords")) return;
         if(isUntrackedCompass(item) && e.getAction() == Action.RIGHT_CLICK_AIR){
             if(player.isSneaking()){
                 player.getInventory().setItemInMainHand(new ItemStack(Material.COMPASS));
@@ -113,7 +114,6 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
             }
             else if(worldName.equals(worldPairs.get(overworld))){
                 World world = Bukkit.getWorld(overworld);
-                System.out.println(world);
                 if(world != null){
                     Location newTrackLocation = new Location(world,clickedBlock.getLocation().getBlockX()*8,clickedBlock.getLocation().getBlockY(),clickedBlock.getLocation().getBlockZ()*8);
                     meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aNether Portal Syncing Compass"));

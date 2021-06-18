@@ -113,6 +113,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.16.3.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>Spigot-1.17</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1.17</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/spigot-1.17.jar</systemPath>
+        </dependency>
 
         <!-- Protocol lib -->
         <dependency>

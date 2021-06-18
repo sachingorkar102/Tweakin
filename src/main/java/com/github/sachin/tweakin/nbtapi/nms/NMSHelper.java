@@ -1,5 +1,7 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class NMSHelper {
@@ -28,6 +30,8 @@ public abstract class NMSHelper {
     public abstract ItemStack getItem();
     
     public abstract void removeKey(String key);
+
+    public abstract void attack(Player player,Entity target);
 
 
     

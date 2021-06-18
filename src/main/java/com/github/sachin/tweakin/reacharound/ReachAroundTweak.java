@@ -205,12 +205,12 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         BlockFace facing = player.getFacing();
         Vector direction = player.getEyeLocation().getDirection();
         Vector vec = new Vector(0.5*facing.getModX(),0,0.5*facing.getModZ());
-        RayTraceResult rayTrace = player.getWorld().rayTraceBlocks(player.getEyeLocation(), direction.clone().subtract(vec), 5);
+        RayTraceResult rayTrace = player.getWorld().rayTraceBlocks(player.getEyeLocation(), direction.clone().subtract(vec), 4);
         if(rayTrace != null){
             if(rayTrace.getHitBlock() != null){
                 Location loc = rayTrace.getHitBlock().getLocation();
                 double distance = (playerLoc.getX() - loc.getX()) + (playerLoc.getY() - loc.getY()) + (playerLoc.getZ() - loc.getZ()) / 3;
-                if(distance < 1.7 && distance > 1.4){
+                if(distance < 1.9 && distance > 1.3){
                     Block target = loc.getBlock().getRelative(player.getFacing());
                     if(target.getType() == Material.AIR){
                         return target.getLocation();

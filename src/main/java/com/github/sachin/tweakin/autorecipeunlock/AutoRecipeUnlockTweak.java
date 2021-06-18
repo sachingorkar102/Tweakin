@@ -16,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Recipe;
 
+// Permission: tweakin.autorecipeunlock
 public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
 
     private List<NamespacedKey> recipes = new ArrayList<>();
@@ -55,9 +56,11 @@ public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
     }
 
     public void discoverRecipes(Player player){
-        for (NamespacedKey namespacedKey : recipes) {
-            player.discoverRecipe(namespacedKey);
-            
+        if(player.hasPermission("tweakin.autorecipeunlock")){
+            for (NamespacedKey namespacedKey : recipes) {
+                player.discoverRecipe(namespacedKey);
+                
+            }
         }
     }
     

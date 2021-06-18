@@ -13,7 +13,9 @@ public class NBTItem {
         if(item == null){
             return;
         }
-        this.helper = NBTAPI.NMSHelper.newItem(item);
+        if(NBTAPI.getInstance() != null){
+            this.helper = NBTAPI.getInstance().getNMSHelper().newItem(item);
+        }
     }
 
     public void setString(String key,String value){

@@ -5,6 +5,7 @@ import com.github.sachin.tweakin.lapisintable.LapisData;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.manager.TweakManager;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
+import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,12 +17,24 @@ public final class Tweakin extends JavaPlugin {
     private static Tweakin plugin;
     private PaperCommandManager commandManager;
     private TweakManager tweakManager;
+    private NMSHelper nmsHelper;
+    private boolean isEnabled;
+
+
 
     @Override
     public void onEnable() {
         plugin = this;
+        this.isEnabled = true;
         NBTAPI nbtapi = new NBTAPI();
-        nbtapi.loadVersions(this);
+        if(!nbtapi.loadVersions(this)){
+            getLogger().warning("Running incompataible version, stopping twekin");
+            this.isEnabled = false;
+            this.getServer().getPluginManager().disablePlugin(this);
+            return;
+
+        }
+        this.nmsHelper = nbtapi.getNMSHelper();
         ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
         this.commandManager = new PaperCommandManager(this);
         commandManager.registerCommand(new ReloadCommand(this));
@@ -34,10 +47,15 @@ public final class Tweakin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if(!isEnabled) return;
         LapisInTableTweak tweak = (LapisInTableTweak) getTweakManager().getTweakList().get(6);
         if(tweak.registered){
             tweak.saveLapisData();
         }
+    }
+
+    public NMSHelper getNmsHelper() {
+        return nmsHelper;
     }
 
     public static Tweakin getPlugin() {
