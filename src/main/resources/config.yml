@@ -55,9 +55,9 @@ reach-around:
   # weather or not to show future position of block as transperent highlight
   show-highlight: true
   # what should be the color of highlight
-  color: "#e0e0d1"
+  color: "#bfbfbf"
   # transparency of highlight
-  transparency: 190
+  transparency: 60
 
 # Leaves decay much faster when no logs are nearby, or when the leaves are not player placed  
 fast-leaf-decay:

@@ -65,7 +65,7 @@ public class TweakManager {
             tweakList.add(new BetterLadderTweak(plugin));
             tweakList.add(new LapisInTableTweak(plugin));
             tweakList.add(new CustomPortalTweak(plugin));
-            tweakList.add(new ControlledBurnTweak(plugin));
+            // tweakList.add(new ControlledBurnTweak(plugin)); work in progress
             tweakList.add(new AutoRecipeUnlockTweak(plugin));
             tweakList.add(new NetherPortalCoordsTweak(plugin));
             tweakList.add(new SwingThroughGrassTweak(plugin));
