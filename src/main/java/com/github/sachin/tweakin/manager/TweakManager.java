@@ -55,6 +55,8 @@ public class TweakManager {
         Bukkit.getOnlinePlayers().forEach(p -> p.updateCommands());
     }
 
+
+    
     public List<BaseTweak> getTweakList() {
         if(tweakList.isEmpty()){
             tweakList.add(new RightClickArmor(plugin));
