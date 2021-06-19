@@ -98,6 +98,8 @@ $RECYCLE.BIN/
 target/
 lib/
 plugins
+.factorypath
+.classpath
 
 pom.xml.tag
 pom.xml.releaseBackup
