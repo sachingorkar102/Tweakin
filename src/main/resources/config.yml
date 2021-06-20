@@ -9,6 +9,7 @@
 # Read the text above each module for more info that module like commands and permissions(if any)
 # if you found any issue/bug, join me up on discord: https://discord.gg/tTHs4jKu6f
 
+# its bstats
 metrics: true
 
 # Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
