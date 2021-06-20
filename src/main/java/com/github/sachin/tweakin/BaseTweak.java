@@ -3,13 +3,18 @@ package com.github.sachin.tweakin;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.sachin.tweakin.manager.TweakManager;
+
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
+import co.aikar.commands.BaseCommand;
+
 public abstract class BaseTweak {
 
     private final Tweakin plugin;
+    private final TweakManager tweakManager;
     private boolean shouldEnable;
     private ConfigurationSection config;
     private String configKey;
@@ -18,6 +23,7 @@ public abstract class BaseTweak {
     public BaseTweak(Tweakin plugin,String configKey){
         this.plugin = plugin;
         this.configKey = configKey;
+        this.tweakManager = plugin.getTweakManager();
         this.config = plugin.getConfig().getConfigurationSection(configKey);
         if(config == null){
             plugin.getLogger().info("Could not found config section for "+configKey+", ignoring the tweak module..");
@@ -27,6 +33,10 @@ public abstract class BaseTweak {
         this.shouldEnable = config.getBoolean("enabled",true);
     }
 
+
+    public TweakManager getTweakManager() {
+        return tweakManager;
+    }
     
     public boolean shouldEnable() {
         return shouldEnable;
@@ -53,6 +63,14 @@ public abstract class BaseTweak {
 
     protected void unregisterEvents(Listener listener) {
         HandlerList.unregisterAll(listener);
+    }
+
+    protected void registerCommands(BaseCommand command){
+        plugin.getCommandManager().registerCommand(command);
+    }
+
+    protected void unregisterCommands(BaseCommand command){
+        plugin.getCommandManager().unregisterCommand(command);
     }
 
     public Tweakin getPlugin() {

@@ -140,16 +140,17 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
         if(e.getItem() == null) return;
         ItemStack item = e.getItem();
-        if(item.getType().name().endsWith("SHULKER_BOX") || item.getType().name().endsWith("BANNER") || item.getType().name().endsWith("PLAYER_HEAD")) return;
-        if(!item.getType().isBlock() && !item.getType().isSolid()) return;
+        // if(!e.getItem().getType().isBlock()) return;
+        // if(item.getType().name().endsWith("SHULKER_BOX") || item.getType().name().endsWith("BANNER") || item.getType().name().endsWith("PLAYER_HEAD")) return;
+        // if(!item.getType().isBlock() && !item.getType().isSolid()) return;
         Player player = e.getPlayer();
         Location loc = getPlayerReachAroundTarget(player);
         if(loc != null){
-            player.swingMainHand();
-            loc.getBlock().setType(item.getType());
-            if(player.getGameMode() == GameMode.SURVIVAL){
-                player.getInventory().getItemInMainHand().setAmount(item.getAmount()-1);
-            }
+            getPlugin().getNmsHelper().placeItem(player, loc);
+            // loc.getBlock().setType(item.getType());
+            // if(player.getGameMode() == GameMode.SURVIVAL){
+            //     player.getInventory().getItemInMainHand().setAmount(item.getAmount()-1);
+            // }
         }
     }
 
@@ -210,7 +211,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             if(rayTrace.getHitBlock() != null){
                 Location loc = rayTrace.getHitBlock().getLocation();
                 double distance = (playerLoc.getX() - loc.getX()) + (playerLoc.getY() - loc.getY()) + (playerLoc.getZ() - loc.getZ()) / 3;
-                if(distance < 1.9 && distance > 1.3){
+                if(distance < 1.85 && distance > 1.3){
                     Block target = loc.getBlock().getRelative(player.getFacing());
                     if(target.getType() == Material.AIR){
                         return target.getLocation();

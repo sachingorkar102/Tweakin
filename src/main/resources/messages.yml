@@ -1,1 +1,3 @@
-permission-deny: "&cYou dont have permission to perform the task"
+
+hud-enabled: "&6Coordinate Hud Enabled"
+hud-disabled: "&6Coordinate Hud Disabled"

@@ -1,5 +1,11 @@
 package com.github.sachin.tweakin;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
+
+import com.github.sachin.tweakin.bstats.Metrics;
+import com.github.sachin.tweakin.bstats.Metrics.MultiLineChart;
 import com.github.sachin.tweakin.commands.ReloadCommand;
 import com.github.sachin.tweakin.lapisintable.LapisData;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
@@ -7,6 +13,7 @@ import com.github.sachin.tweakin.manager.TweakManager;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,6 +49,7 @@ public final class Tweakin extends JavaPlugin {
         this.reloadConfig();
         this.tweakManager = new TweakManager(this);
         tweakManager.load();
+        enabledBstats();
         getLogger().info("Tweakin loaded successfully");
     }
 
@@ -51,6 +59,23 @@ public final class Tweakin extends JavaPlugin {
         LapisInTableTweak tweak = (LapisInTableTweak) getTweakManager().getTweakList().get(6);
         if(tweak.registered){
             tweak.saveLapisData();
+        }
+    }
+
+    private void enabledBstats(){
+        if(getConfig().getBoolean("metrics",true)){
+            Metrics metrics = new Metrics(this,93444);
+            
+            metrics.addCustomChart(new MultiLineChart("players_and_servers", new Callable<Map<String,Integer>>(){
+                @Override
+                public Map<String, Integer> call() throws Exception {
+                    Map<String, Integer> valueMap = new HashMap<>();
+                    valueMap.put("servers", 1);
+                    valueMap.put("players", Bukkit.getOnlinePlayers().size());
+                    return valueMap;
+                }
+            }));
+                
         }
     }
 

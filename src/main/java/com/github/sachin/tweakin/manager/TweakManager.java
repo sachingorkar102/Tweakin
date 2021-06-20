@@ -1,10 +1,12 @@
 package com.github.sachin.tweakin.manager;
 
 import com.github.sachin.tweakin.BaseTweak;
+import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
 import com.github.sachin.tweakin.controlledburn.ControlledBurnTweak;
+import com.github.sachin.tweakin.coordinatehud.CoordinateHUDTweak;
 import com.github.sachin.tweakin.customportals.CustomPortalTweak;
 import com.github.sachin.tweakin.fastleafdecay.FastLeafDecayTweak;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
@@ -23,6 +25,7 @@ import java.util.List;
 public class TweakManager {
 
     private final Tweakin plugin;
+    private Message messageManager;
     private List<BaseTweak> tweakList = new ArrayList<>();
 
 
@@ -41,6 +44,8 @@ public class TweakManager {
     private void reload(boolean unregister){
         plugin.saveDefaultConfig();
         plugin.reloadConfig();
+        this.messageManager = new Message(plugin);
+        messageManager.reload();
         getTweakList().forEach(t -> {
             if(unregister){
                 t.reload();
@@ -68,8 +73,13 @@ public class TweakManager {
             tweakList.add(new AutoRecipeUnlockTweak(plugin));
             tweakList.add(new NetherPortalCoordsTweak(plugin));
             tweakList.add(new SwingThroughGrassTweak(plugin));
+            tweakList.add(new CoordinateHUDTweak(plugin));
         }
         return tweakList;
+    }
+
+    public Message getMessageManager() {
+        return messageManager;
     }
 }
 
