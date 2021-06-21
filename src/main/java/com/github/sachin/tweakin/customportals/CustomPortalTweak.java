@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import com.github.sachin.tweakin.BaseTweak;
@@ -16,10 +17,9 @@ import com.github.sachin.tweakin.Tweakin;
 import org.bukkit.Axis;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.PortalType;
+import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Orientable;
 import org.bukkit.entity.Player;
@@ -28,14 +28,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.scheduler.BukkitRunnable;
+
 
 // permission: tweakin.customportal.use
 public class CustomPortalTweak extends BaseTweak implements Listener{
 
+    private List<Biome> endBiomes = new ArrayList<>();
 
     public CustomPortalTweak(Tweakin plugin) {
         super(plugin, "custom-portal");
+        this.endBiomes = Arrays.asList(Biome.END_BARRENS,Biome.END_HIGHLANDS,Biome.END_MIDLANDS,Biome.THE_END,Biome.SMALL_END_ISLANDS);
     }
 
     @Override
@@ -64,14 +66,16 @@ public class CustomPortalTweak extends BaseTweak implements Listener{
     @EventHandler
     public void netherPortalLitEvent(PlayerInteractEvent e){
         if(getBlackListWorlds().contains(e.getPlayer().getWorld().getName())) return;
+        
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;
         if(e.getClickedBlock() == null) return;
+        Block clickedBlock = e.getClickedBlock();
+        if(endBiomes.contains(clickedBlock.getBiome())) return;
         if(e.getItem().getType() != Material.FLINT_AND_STEEL) return;
         if(!getValidPortalBlocks().contains(e.getClickedBlock().getType())) return;
         if(e.getBlockFace() != BlockFace.UP) return;
-        Block clickedBlock = e.getClickedBlock();
         Player player = e.getPlayer();
         boolean facingEast = player.getFacing() == BlockFace.EAST || player.getFacing() == BlockFace.WEST;
         if(!player.hasPermission("tweakin.customportal.use")) return;
@@ -208,6 +212,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener{
         return blocks;
     }
 
+    
 }
 
 enum BlockSides{

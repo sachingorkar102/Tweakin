@@ -36,6 +36,8 @@ public abstract class NMSHelper {
 
     public abstract void placeItem(Player player,Location location);
 
+    public abstract int getColor(String str,int transparency);
+
 
     
 }

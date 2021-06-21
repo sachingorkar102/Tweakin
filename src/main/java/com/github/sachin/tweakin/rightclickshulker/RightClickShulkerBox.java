@@ -47,13 +47,17 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
         if(e.getItem() == null) return;
         if(!e.getItem().getType().name().endsWith("SHULKER_BOX")) return;
         Player player = e.getPlayer();
+        if(!player.hasPermission("tweakin.shulkerboxclick")) return;
+        e.setCancelled(true);
         ItemStack item = e.getItem().clone();
         BlockStateMeta im = (BlockStateMeta) item.getItemMeta();
         ShulkerBox shulker = (ShulkerBox) im.getBlockState();
         ShulkerGui gui = new ShulkerGui(player, shulker,player.getInventory().getHeldItemSlot(),item);
         String displayName = "Shulker Box";
         if(item.getItemMeta() != null){
-            displayName = item.getItemMeta().getDisplayName();
+            if(item.getItemMeta().getDisplayName() != null || item.getItemMeta().getDisplayName() != " "){
+                displayName = item.getItemMeta().getDisplayName();
+            }
         }
         Inventory inv = Bukkit.createInventory(gui, 27, displayName);
         gui.setInventory(inv);

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.awt.Color;
 import java.util.UUID;
 
 import com.github.sachin.tweakin.BaseTweak;
@@ -35,14 +34,12 @@ import org.bukkit.util.Vector;
 public class ReachAroundTweak extends BaseTweak implements Listener{
 
     private Map<UUID,BukkitTask> currentTasks = new HashMap<>();
-    private Color color;
+    private int color;
     private List<String> blackListWorlds = new ArrayList<>();
 
 
     public ReachAroundTweak(Tweakin plugin) {
         super(plugin, "reach-around");
-        this.color = hex2Rgb(getConfig().getString("color","#14141f"), getConfig().getInt("transparency",100));
-        this.blackListWorlds = getConfig().getStringList("black-list-worlds");
     }
 
     public List<String> getBlackListWorlds() {
@@ -66,7 +63,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     @Override
     public void reload() {
         super.reload();
-        this.color = hex2Rgb(getConfig().getString("color","#14141f"), getConfig().getInt("transparency",100));
+        this.color = getPlugin().getNmsHelper().getColor(getConfig().getString("color","255,255,255"), getConfig().getInt("transparency",100));
         this.blackListWorlds = getConfig().getStringList("black-list-worlds");
         
     }
@@ -82,7 +79,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         }
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
@@ -224,12 +221,6 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         return null;
     }
 
-    private Color hex2Rgb(String colorStr, int transparency) {
-        return new Color(
-                Integer.valueOf(colorStr.substring(1, 3), 16),
-                Integer.valueOf(colorStr.substring(3, 5), 16),
-                Integer.valueOf(colorStr.substring(5, 7), 16), transparency);
-    }
 
     public Map<UUID, BukkitTask> getCurrentTasks() {
         return currentTasks;

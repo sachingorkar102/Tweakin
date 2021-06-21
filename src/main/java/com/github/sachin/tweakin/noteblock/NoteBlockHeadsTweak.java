@@ -21,13 +21,13 @@ import org.bukkit.event.block.NotePlayEvent;
 public class NoteBlockHeadsTweak extends BaseTweak implements Listener{
 
     private List<BlockFace> validFaces = new ArrayList<>();
-    private Map<String,Sound> allowedHeads = new HashMap<>();
+    private Map<String,Sound> allowedHeads;
 
     public NoteBlockHeadsTweak(Tweakin plugin) {
         super(plugin, "noteblock-mob-sounds");
         validFaces = Arrays.asList(BlockFace.DOWN,BlockFace.UP,BlockFace.EAST,BlockFace.WEST,BlockFace.NORTH,BlockFace.SOUTH);
         // allowedHeads = Arrays.asList("CREEPER_WALL_HEAD","SKELETON_WALL_SKULL","ZOMBIE_WALL_HEAD","DRAGON_WALL_HEAD","WITHER_SKELETON_WALL_SKULL");
-        createAllowedHeads();
+        // createAllowedHeads();
     }
 
     @Override
@@ -72,7 +72,9 @@ public class NoteBlockHeadsTweak extends BaseTweak implements Listener{
     }
 
     private void createAllowedHeads(){
-        allowedHeads.clear();
+        allowedHeads = new HashMap<>();
+        // if()
+        // allowedHeads.clear();
         allowedHeads.put("CREEPER_WALL_HEAD", Sound.ENTITY_CREEPER_PRIMED);
         allowedHeads.put("SKELETON_WALL_SKULL", Sound.ENTITY_SKELETON_AMBIENT);
         allowedHeads.put("ZOMBIE_WALL_HEAD", Sound.ENTITY_ZOMBIE_AMBIENT);

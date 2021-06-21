@@ -29,7 +29,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 // Permission: tweakin.netherportalcoords
 public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
 
-    private Map<String,String> worldPairs = new HashMap<>();
+    private Map<String,String> worldPairs;
 
     public Map<String, String> getWorldPairs() {
         return worldPairs;
@@ -38,7 +38,6 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
 
     public NetherPortalCoordsTweak(Tweakin plugin) {
         super(plugin, "nether-portal-coords");
-        this.reload();
     }
 
     @Override
@@ -56,7 +55,7 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
     @Override
     public void reload() {
         super.reload();
-        this.worldPairs.clear();
+        this.worldPairs = new HashMap<>();
         for(String key : getConfig().getConfigurationSection("world-pairs").getKeys(false)){
             this.worldPairs.put(key, getConfig().getString("world-pairs."+key));
         }

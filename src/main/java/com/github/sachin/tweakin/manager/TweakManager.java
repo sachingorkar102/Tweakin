@@ -12,14 +12,19 @@ import com.github.sachin.tweakin.fastleafdecay.FastLeafDecayTweak;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.netherportalcoords.NetherPortalCoordsTweak;
 import com.github.sachin.tweakin.noteblock.NoteBlockHeadsTweak;
+import com.github.sachin.tweakin.poisonpotatousage.PoisonPotatoUsageTweak;
 import com.github.sachin.tweakin.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
+import com.github.sachin.tweakin.utils.ConfigUpdater;
 
 import org.bukkit.Bukkit;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TweakManager {
@@ -43,6 +48,12 @@ public class TweakManager {
 
     private void reload(boolean unregister){
         plugin.saveDefaultConfig();
+        File configFile = new File(plugin.getDataFolder(),"config.yml");
+        try {
+            ConfigUpdater.update(plugin, "config.yml", configFile, Arrays.asList("nether-portal-coords.world-pairs"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         plugin.reloadConfig();
         this.messageManager = new Message(plugin);
         messageManager.reload();
@@ -74,6 +85,7 @@ public class TweakManager {
             tweakList.add(new NetherPortalCoordsTweak(plugin));
             tweakList.add(new SwingThroughGrassTweak(plugin));
             tweakList.add(new CoordinateHUDTweak(plugin));
+            tweakList.add(new PoisonPotatoUsageTweak(plugin));
         }
         return tweakList;
     }

@@ -1,5 +1,6 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
+import java.awt.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
@@ -14,8 +15,10 @@ import net.minecraft.core.BlockPosition;
 import net.minecraft.core.EnumDirection;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.util.ColorUtil;
 import net.minecraft.world.EnumHand;
 import net.minecraft.world.EnumInteractionResult;
+import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import net.minecraft.world.item.context.ItemActionContext;
 import net.minecraft.world.phys.MovingObjectPositionBlock;
 import net.minecraft.world.phys.Vec3D;
@@ -114,6 +117,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
     }
 
     public void placeItem(Player player, Location location){
+        
         net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(player.getInventory().getItemInMainHand());
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
@@ -124,6 +128,19 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         }
         
         
+    }
+
+
+    public int getColor(String str,int transparency){
+        String[] array = str.replace(" ", "").split(",");
+        if(array == null || array.length == 0){
+            return 100;
+        }
+        if(array.length != 3) return 100;
+        int red = Integer.parseInt(array[0]);
+        int green = Integer.parseInt(array[1]);
+        int blue = Integer.parseInt(array[2]);
+        return ColorUtil.a.a(transparency, red, green, blue);
     }
 
 

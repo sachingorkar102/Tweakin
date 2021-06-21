@@ -31,7 +31,6 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     public CoordinateHUDTweak(Tweakin plugin) {
         super(plugin, "coordinate-hud");
-        reload();
     }
 
     @Override

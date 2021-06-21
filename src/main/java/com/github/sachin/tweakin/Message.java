@@ -17,7 +17,7 @@ public class Message {
     }
 
     public void reload(){
-        File file = new File(plugin.getDataFolder().getPath()+"/messages.yml");
+        File file = new File(plugin.getDataFolder(),"messages.yml");
         if(!file.exists()){
             plugin.saveResource("messages.yml", false);
         }

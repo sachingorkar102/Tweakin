@@ -1,6 +1,6 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
-
+import java.awt.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
@@ -118,6 +118,18 @@ public class NBTItem_1_16_R1 extends NMSHelper{
             player.swingMainHand();
         }
         nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.MAIN_HAND,mop), EnumHand.MAIN_HAND);
+    }
+
+    public int getColor(String str,int transparency){
+        String[] array = str.replace(" ", "").split(",");
+        if(array == null || array.length == 0){
+            return 100;
+        }
+        if(array.length != 3) return 100;
+        int red = Integer.parseInt(array[0]);
+        int green = Integer.parseInt(array[1]);
+        int blue = Integer.parseInt(array[2]);
+        return new Color(red,green,blue,transparency).getRGB();
     }
 
     

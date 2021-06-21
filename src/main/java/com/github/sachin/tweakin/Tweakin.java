@@ -65,16 +65,7 @@ public final class Tweakin extends JavaPlugin {
     private void enabledBstats(){
         if(getConfig().getBoolean("metrics",true)){
             Metrics metrics = new Metrics(this,93444);
-            
-            metrics.addCustomChart(new MultiLineChart("players_and_servers", new Callable<Map<String,Integer>>(){
-                @Override
-                public Map<String, Integer> call() throws Exception {
-                    Map<String, Integer> valueMap = new HashMap<>();
-                    valueMap.put("servers", 1);
-                    valueMap.put("players", Bukkit.getOnlinePlayers().size());
-                    return valueMap;
-                }
-            }));
+            getLogger().info("Enabling bstats...");
                 
         }
     }
