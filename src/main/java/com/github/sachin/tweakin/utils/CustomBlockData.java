@@ -36,12 +36,16 @@ public class CustomBlockData implements PersistentDataContainer{
         return chunkPDC;
     }
 
+    private void save() {
+        Chunk chunk = location.getBlock().getChunk();
+        chunk.getPersistentDataContainer().set(key, PersistentDataType.TAG_CONTAINER, pdc);
+    }
+
 
     @Override
     public <T, Z> void set(@Nonnull NamespacedKey namespacedKey, @Nonnull PersistentDataType<T, Z> persistentDataType, @Nonnull Z z) {
         pdc.set(namespacedKey, persistentDataType, z);
-        Chunk chunk = location.getBlock().getChunk();
-        chunk.getPersistentDataContainer().set(key, PersistentDataType.TAG_CONTAINER, pdc);
+        save();
     }
 
     @Override
@@ -67,6 +71,7 @@ public class CustomBlockData implements PersistentDataContainer{
     @Override
     public void remove(@Nonnull NamespacedKey namespacedKey) {
         pdc.remove(namespacedKey);
+        save();
     }
 
     @Override

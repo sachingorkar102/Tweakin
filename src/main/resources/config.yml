@@ -120,4 +120,12 @@ poison-potato-usage:
   chance: 0.1
   # list of animals that will not be affected by this
   black-list-animals: []
+
+
+# The tip of a vine can now be burnt with a Flint and Steel.
+# When you do so, the vine will no longer be able to grow.
+# Permission: tweakin.burnvinetip.use
+burn-vine-tip:
+  enabled: true
+  black-list-worlds: []
   
