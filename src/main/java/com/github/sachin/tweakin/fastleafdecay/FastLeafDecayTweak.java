@@ -7,6 +7,7 @@ import java.util.Random;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -19,9 +20,17 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class FastLeafDecayTweak extends BaseTweak implements Listener{
 
+    private int duration;
+
 
     public FastLeafDecayTweak(Tweakin plugin) {
         super(plugin, "fast-leaf-decay");
+    }
+
+    @Override
+    public void reload() {
+        super.reload();
+        this.duration = getConfig().getInt("duration",10) * 20;
     }
 
 
@@ -42,20 +51,27 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
         if(getBlackListWorlds().contains(e.getBlock().getWorld().getName())) return;
         e.setCancelled(true);
         Block block = e.getBlock();
-        List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
         ItemStack hoe = new ItemStack(Material.WOODEN_HOE);
-        for (Location location : locs) {
-            new BukkitRunnable(){
-                @Override
-                public void run() {
-                    Block block = location.getBlock();
-                    if(block.getType().name().endsWith("LEAVES")){
-                        block.breakNaturally(hoe);
-                        locs.remove(location);
-                    }
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
+                for (Location location : locs) {
+
+
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(getPlugin(), () -> {
+                        Block block = location.getBlock();
+                        if(block.getType().name().endsWith("LEAVES")){
+                            block.breakNaturally(hoe);
+                            locs.remove(location);
+                        }
+                    },new Random().nextInt(duration));
+
+
                 }
-            }.runTaskLater(getPlugin(), new Random().nextInt(80));
-        }
+            }
+        }.runTaskAsynchronously(getPlugin());
+        
     }
 
     public List<Location> getNearbyBlocks(Location location, int radius) {

@@ -66,7 +66,9 @@ reach-around:
 # Leaves decay much faster when no logs are nearby, or when the leaves are not player placed  
 fast-leaf-decay:
   enabled: true
-  black-list-worlds: []  
+  black-list-worlds: []
+  # maximum duration leaves will stay (in seconds)
+  duration: 10
 
 # Ladders are slightly tweaked to improve your laddering experience:
   # Right clicking a ladder with another one will place it, allowing you to drop ladders down without risking falling to your death.
