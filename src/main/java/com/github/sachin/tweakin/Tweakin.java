@@ -14,6 +14,7 @@ import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -84,5 +85,9 @@ public final class Tweakin extends JavaPlugin {
 
     public TweakManager getTweakManager() {
         return tweakManager;
+    }
+
+    public static NamespacedKey getKey(String key){
+        return new NamespacedKey(plugin, key);
     }
 }

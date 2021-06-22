@@ -14,11 +14,13 @@ import org.bukkit.inventory.ItemStack;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.core.EnumDirection;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.chat.IChatBaseComponent;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.util.ColorUtil;
 import net.minecraft.world.EnumHand;
 import net.minecraft.world.EnumInteractionResult;
 import net.minecraft.world.inventory.tooltip.BundleTooltip;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.ItemActionContext;
 import net.minecraft.world.phys.MovingObjectPositionBlock;
 import net.minecraft.world.phys.Vec3D;
@@ -82,6 +84,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         compound.setInt(key, value);
     }
 
+    
     @Override
     public void setLong(String key, long value) {
         compound.setLong(key, value);
@@ -123,6 +126,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),EnumDirection.a,pos,false);
         EnumInteractionResult result = nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.a,mop), EnumHand.a);
+        // nmsItem.a(nmsPlayer, TooltipFlag.a.a).;
         if(result.toString() == "CONSUME"){
             player.swingMainHand();
         }

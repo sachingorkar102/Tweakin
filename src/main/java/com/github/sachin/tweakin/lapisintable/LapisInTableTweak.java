@@ -10,9 +10,12 @@ import java.util.Set;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.CustomBlockData;
 
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -32,16 +35,19 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 public class LapisInTableTweak extends BaseTweak implements Listener{
 
     private Map<Location,LapisData> data = new HashMap<>();
+    private NamespacedKey key;
     private File lapisFile;
     private Map<Player,Location> invMap = new HashMap<>();
 
 	public LapisInTableTweak(Tweakin plugin) {
 		super(plugin, "lapis-in-table");
         this.lapisFile = new File(getPlugin().getDataFolder().getAbsolutePath()+"/"+"data/lapis-data.yml");
+        this.key = new NamespacedKey(plugin, "lapiscount");
         
         loadLapisData();
         
@@ -61,6 +67,7 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
 	}
 
     public void saveLapisData(){
+        if(!this.lapisFile.exists()) return;
         FileConfiguration yml = new YamlConfiguration();
         int i =0;
         for(Location loc :data.keySet()){
@@ -76,13 +83,23 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
 
     public void loadLapisData(){
         data.clear();
-        if(!this.lapisFile.exists()){
-            this.lapisFile.mkdir();
-        }
-        FileConfiguration yml = YamlConfiguration.loadConfiguration(this.lapisFile);
-        for(String config : yml.getKeys(false)){
-            LapisData d = (LapisData) yml.get(config);
-            data.put(d.getLocation(),d);
+        if(this.lapisFile.exists()){
+            FileConfiguration yml = YamlConfiguration.loadConfiguration(this.lapisFile);
+            for(String config : yml.getKeys(false)){
+                LapisData d = (LapisData) yml.get(config);
+                data.put(d.getLocation(),d);
+                Chunk chunk = d.getLocation().getChunk();
+                boolean loadedChunk = true;
+                if(!chunk.isLoaded()){
+                    loadedChunk = chunk.load();
+                } 
+                if(loadedChunk){
+                    CustomBlockData blockData = new CustomBlockData(d.getLocation());
+                    blockData.set(key, PersistentDataType.INTEGER ,d.getCount());
+                }
+
+            }
+            this.lapisFile.delete();
         }
     }
 
@@ -96,7 +113,11 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         Player player = e.getPlayer();
         Location blockLocation = e.getClickedBlock().getLocation();
         if(getBlackListWorlds().contains(blockLocation.getWorld().getName())) return;
-        int count = data.keySet().contains(blockLocation) ? data.get(blockLocation).getCount() : 0;
+        CustomBlockData data = new CustomBlockData(blockLocation);
+        int count = 0;
+        if(data.has(key, PersistentDataType.INTEGER)){
+            count = data.get(key, PersistentDataType.INTEGER);
+        }
         InventoryView view = player.openEnchanting(blockLocation, true);
         view.getTopInventory().setItem(1, new ItemStack(Material.LAPIS_LAZULI, count));
         invMap.put(player, blockLocation);
@@ -114,7 +135,9 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
                 count = enchantInv.getItem(1).clone().getAmount();
                 enchantInv.getItem(1).setAmount(0);
             }
-            data.put(invMap.get(player),new LapisData(count, invMap.get(player)));
+            CustomBlockData data = new CustomBlockData(invMap.get(player));
+            data.set(key, PersistentDataType.INTEGER, count);
+            // data.put(invMap.get(player),new LapisData(count, invMap.get(player)));
             invMap.remove(player);
         }
     }
@@ -122,10 +145,11 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
     @EventHandler(priority = EventPriority.LOWEST)
     public void blockBreakEvent(BlockBreakEvent e){
         Location loc = e.getBlock().getLocation();
-        if(data.keySet().contains(loc)){
-            ItemStack lapis = new ItemStack(Material.LAPIS_LAZULI,data.get(loc).getCount());
+        CustomBlockData data = new CustomBlockData(loc);
+        if(data.has(key, PersistentDataType.INTEGER)){
+            ItemStack lapis = new ItemStack(Material.LAPIS_LAZULI,data.get(key, PersistentDataType.INTEGER));
             loc.getWorld().dropItemNaturally(loc, lapis);
-            data.remove(loc);
+            data.remove(key);
 
         }
     }
