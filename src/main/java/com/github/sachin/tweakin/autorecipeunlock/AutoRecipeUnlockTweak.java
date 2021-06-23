@@ -28,18 +28,11 @@ public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
 
     @Override
     public void register() {
-        registerEvents(this);
+        super.register();
         loadRecipes();
         Bukkit.getOnlinePlayers().forEach(p -> discoverRecipes(p));
-        registered = true;
     }
 
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-        
-    }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){

@@ -41,18 +41,6 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
     }
 
     @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-    }
-
-    @Override
     public void reload() {
         super.reload();
         this.worldPairs = new HashMap<>();

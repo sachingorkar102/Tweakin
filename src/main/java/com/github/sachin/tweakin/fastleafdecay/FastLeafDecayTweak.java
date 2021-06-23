@@ -33,19 +33,6 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
         this.duration = getConfig().getInt("duration",10) * 20;
     }
 
-
-    @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-    }
-
     @EventHandler
     public void onLeafDecay(LeavesDecayEvent e){
         if(getBlackListWorlds().contains(e.getBlock().getWorld().getName())) return;

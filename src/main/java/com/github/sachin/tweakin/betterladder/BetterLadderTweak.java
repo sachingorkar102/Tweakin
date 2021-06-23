@@ -29,18 +29,6 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
         super(plugin, "better-ladder");
     }
 
-    @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-        
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-    }
 
     @EventHandler
     public void ladderClickEvent(PlayerInteractEvent e){

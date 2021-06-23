@@ -8,7 +8,9 @@ import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.Effect;
 import org.bukkit.EntityEffect;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Ageable;
@@ -22,6 +24,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+// Permission: tweakin.posionpotato.use
 public class PoisonPotatoUsageTweak extends BaseTweak implements Listener{
 
     private double chance;
@@ -42,26 +45,12 @@ public class PoisonPotatoUsageTweak extends BaseTweak implements Listener{
             }
         });
     }
-
-    @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-        
-    }
     
-
     @EventHandler
     public void onPotatoFeed(PlayerInteractEntityEvent e){
-        if(!(e.getRightClicked() instanceof Breedable)) return;
-        if(e.getHand() != EquipmentSlot.HAND) return;
+        if(!(e.getRightClicked() instanceof Breedable) || e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
+        if(!player.hasPermission("tweakin.posionpotato.use")) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(blackListAnimals.contains(e.getRightClicked().getType())) return;
         if(player.getInventory().getItemInMainHand() == null) return;
@@ -76,10 +65,14 @@ public class PoisonPotatoUsageTweak extends BaseTweak implements Listener{
             entity.addPotionEffect(effect);
         }
         else{
-            world.playEffect(entity.getEyeLocation(), Effect.SMOKE, 0, 1);
+            world.playEffect(entity.getEyeLocation(), Effect.SMOKE, 12);
         }
         e.setCancelled(true);
         world.playSound(entity.getLocation(), Sound.ENTITY_GENERIC_EAT, 0.2f, 0.8f);
-        player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount()-1);
+
+        player.swingMainHand();
+        if(player.getGameMode() == GameMode.SURVIVAL){
+            player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount()-1);
+        }
     }
 }

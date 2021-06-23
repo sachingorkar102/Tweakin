@@ -113,6 +113,7 @@ coordinate-hud:
 
 # Feeding a baby animal a Poisonous Potato has a chance to poison it for a few seconds.
 # A baby animal that has been poisoned by this method will never grow into an adult.
+# Permission: tweakin.posionpotato.use
 poison-potato-usage:
   enabled: true
   black-list-worlds: []

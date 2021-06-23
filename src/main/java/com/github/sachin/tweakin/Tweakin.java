@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import com.github.sachin.tweakin.bstats.Metrics;
+import com.github.sachin.tweakin.bstats.Metrics.DrilldownPie;
 import com.github.sachin.tweakin.bstats.Metrics.MultiLineChart;
 import com.github.sachin.tweakin.commands.ReloadCommand;
 import com.github.sachin.tweakin.lapisintable.LapisData;
@@ -65,9 +66,21 @@ public final class Tweakin extends JavaPlugin {
 
     private void enabledBstats(){
         if(getConfig().getBoolean("metrics",true)){
-            Metrics metrics = new Metrics(this,93444);
+            Metrics metrics = new Metrics(this,11786);
             getLogger().info("Enabling bstats...");
-                
+            
+            metrics.addCustomChart(new DrilldownPie("enabled_tweaks", ()->{
+                Map<String,Map<String,Integer>> map = new HashMap<>();
+                for(BaseTweak tweak : getTweakManager().getTweakList()){
+                    Map<String,Integer> entry = new HashMap<>();
+                    entry.put("tweak", 1);
+                    if(tweak.shouldEnable()){
+                        map.put(tweak.getName(), entry);
+                    }
+                    
+                }
+                return map;
+            }));
         }
     }
 

@@ -52,14 +52,10 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             registerEvents(this);
             registered = true;
         }
+        else{
+            getPlugin().getLogger().info("ProtocolLib not found,ignoring reach-around");
+        }
     }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-    }
-
     @Override
     public void reload() {
         super.reload();
@@ -136,7 +132,6 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
         if(e.getItem() == null) return;
-        ItemStack item = e.getItem();
         // if(!e.getItem().getType().isBlock()) return;
         // if(item.getType().name().endsWith("SHULKER_BOX") || item.getType().name().endsWith("BANNER") || item.getType().name().endsWith("PLAYER_HEAD")) return;
         // if(!item.getType().isBlock() && !item.getType().isSolid()) return;
@@ -155,7 +150,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
 
     public Location getPlayerReachAroundTarget(Player player){
         ItemStack item = player.getInventory().getItemInMainHand();
-        if(item.getType().name().endsWith("SHULKER_BOX") || !item.getType().isBlock()){
+        if(!item.getType().isBlock()){
             return null;
         }
         RayTraceResult rayTraceResult = player.getWorld().rayTraceBlocks(player.getEyeLocation(), player.getEyeLocation().getDirection(), 5);

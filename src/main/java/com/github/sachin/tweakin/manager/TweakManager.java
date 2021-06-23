@@ -40,15 +40,18 @@ public class TweakManager {
     }
 
     public void load(){
+        plugin.getLogger().info("Loading tweakin...");
         reload(false);
     }
 
     public void reload(){
+        plugin.getLogger().info("Reloading tweakin...");
         reload(true);
     }
 
     private void reload(boolean unregister){
         plugin.saveDefaultConfig();
+        int registered = 0;
         File configFile = new File(plugin.getDataFolder(),"config.yml");
         try {
             ConfigUpdater.update(plugin, "config.yml", configFile, Arrays.asList("nether-portal-coords.world-pairs"));
@@ -58,7 +61,7 @@ public class TweakManager {
         plugin.reloadConfig();
         this.messageManager = new Message(plugin);
         messageManager.reload();
-        getTweakList().forEach(t -> {
+        for (BaseTweak t : getTweakList()) {
             if(unregister){
                 t.reload();
                 if(t.registered){
@@ -67,8 +70,10 @@ public class TweakManager {
             }
             if(t.shouldEnable()){
                 t.register();
+                registered++;
             }
-        });
+        }
+        plugin.getLogger().info("Registered "+registered+" tweaks successfully");
         Bukkit.getOnlinePlayers().forEach(p -> p.updateCommands());
     }
     public List<BaseTweak> getTweakList() {

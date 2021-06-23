@@ -22,7 +22,7 @@ public class BlockHighLight {
         ByteBuf packet = Unpooled.buffer();
         packet.writeLong(blockPosToLong(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
         packet.writeInt(color);
-        writeString(packet, " ");
+        writeString(packet, "");
         packet.writeInt(200);
         sendPayload(pl, "debug/game_test_add_marker", packet);
     }

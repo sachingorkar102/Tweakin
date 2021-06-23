@@ -53,19 +53,17 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     @Override
     public void register() {
+        super.register();
         this.command = new ToggleCommand(this);
         registerCommands(command);
-        registerEvents(this);
-        registered = true;
         this.runnable = new HUDRunnable();
         runnable.runTaskTimer(getPlugin(), 1L, intervalTicks);
     }
 
     @Override
     public void unregister() {
+        super.unregister();
         unregisterCommands(command);
-        unregisterEvents(this);
-        registered = false;
     }
     
     /**

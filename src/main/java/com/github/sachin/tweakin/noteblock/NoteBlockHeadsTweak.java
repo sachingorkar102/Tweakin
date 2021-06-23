@@ -30,16 +30,6 @@ public class NoteBlockHeadsTweak extends BaseTweak implements Listener{
         // createAllowedHeads();
     }
 
-    @Override
-    public void register() {
-        registerEvents(this);
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-    }
-
     @EventHandler
     @SuppressWarnings("deprecation")
     public void noteBlockPlay(NotePlayEvent e){

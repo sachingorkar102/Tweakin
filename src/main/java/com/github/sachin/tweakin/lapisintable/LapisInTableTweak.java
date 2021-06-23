@@ -53,19 +53,6 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         
 	}
 
-	@Override
-	public void register() {
-		registerEvents(this);
-        
-        registered = true;
-	}
-
-	@Override
-	public void unregister() {
-		unregisterEvents(this);
-        registered = false;
-	}
-
     public void saveLapisData(){
         if(!this.lapisFile.exists()) return;
         FileConfiguration yml = new YamlConfiguration();

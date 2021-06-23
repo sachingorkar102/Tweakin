@@ -28,18 +28,6 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
         super(plugin, "right-click-shulker-box");
     }
 
-    @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-    }
-
     @EventHandler
     public void shulkerBoxClickEvent(PlayerInteractEvent e){
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;

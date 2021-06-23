@@ -40,17 +40,6 @@ public class CustomPortalTweak extends BaseTweak implements Listener{
         this.endBiomes = Arrays.asList(Biome.END_BARRENS,Biome.END_HIGHLANDS,Biome.END_MIDLANDS,Biome.THE_END,Biome.SMALL_END_ISLANDS);
     }
 
-    @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-    }
 
     private List<Material> getValidPortalBlocks(){
         List<String> names = getConfig().getStringList("valid-portal-blocks");

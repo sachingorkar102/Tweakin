@@ -39,18 +39,6 @@ public class BurnVineTipTweak extends BaseTweak implements Listener{
         this.key = new NamespacedKey(plugin,"stop-vine-growth");
     }
 
-    @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false; 
-    }
-    
 
     @EventHandler
     public void vineGrowEvent(BlockSpreadEvent e){

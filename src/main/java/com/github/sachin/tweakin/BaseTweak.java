@@ -48,6 +48,10 @@ public abstract class BaseTweak {
         return config;
     }
 
+    public String getName() {
+        return configKey;
+    }
+
     public List<String> getBlackListWorlds(){
         if(config.contains("black-list-worlds")){
             List<String> list = config.getStringList("black-list-worlds");
@@ -78,9 +82,19 @@ public abstract class BaseTweak {
         return plugin;
     }
 
-    abstract public void register();
+    public void register(){
+        if(this instanceof Listener){
+            registerEvents((Listener)this);
+        }
+        registered = true;
+    }
 
-    abstract public void unregister();
+    public void unregister(){
+        if(this instanceof Listener){
+            unregisterEvents((Listener)this);
+        }
+        registered = false;
+    }
 
     public void reload() {
         this.config = plugin.getConfig().getConfigurationSection(configKey);

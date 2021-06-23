@@ -22,18 +22,6 @@ public class RightClickArmor extends BaseTweak implements Listener {
         super(plugin,"armor-right-click");
     }
 
-    @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-    }
-
     @EventHandler
     public void armorClickEvent(InventoryClickEvent e){
         if(e.getClick() != ClickType.RIGHT) return;
