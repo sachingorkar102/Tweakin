@@ -1,6 +1,10 @@
 package com.github.sachin.tweakin;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.github.sachin.tweakin.utils.ConfigUpdater;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -22,6 +26,11 @@ public class Message {
             plugin.saveResource("messages.yml", false);
         }
         this.messages = YamlConfiguration.loadConfiguration(file); 
+        try {
+            ConfigUpdater.update(plugin, "messages.yml", file, new ArrayList<>());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getMessage(String key){

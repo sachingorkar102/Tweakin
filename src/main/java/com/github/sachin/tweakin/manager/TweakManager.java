@@ -17,6 +17,7 @@ import com.github.sachin.tweakin.poisonpotatousage.PoisonPotatoUsageTweak;
 import com.github.sachin.tweakin.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
+import com.github.sachin.tweakin.silencemobs.SilenceMobsTweak;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 
@@ -62,8 +63,9 @@ public class TweakManager {
         this.messageManager = new Message(plugin);
         messageManager.reload();
         for (BaseTweak t : getTweakList()) {
+            t.reload();
             if(unregister){
-                t.reload();
+
                 if(t.registered){
                     t.unregister();
                 }
@@ -93,6 +95,7 @@ public class TweakManager {
             tweakList.add(new CoordinateHUDTweak(plugin));
             tweakList.add(new PoisonPotatoUsageTweak(plugin));
             tweakList.add(new BurnVineTipTweak(plugin));
+            tweakList.add(new SilenceMobsTweak(plugin));
         }
         return tweakList;
     }

@@ -22,6 +22,10 @@ import java.util.stream.Collectors;
  */
 public class ConfigUpdater {
 
+    private ConfigUpdater(){
+        
+    }
+
     /**
      * Update a yaml file from a resource inside your plugin jar
      * @param plugin You plugin

@@ -62,6 +62,7 @@ public abstract class BaseTweak {
         return new ArrayList<>();
     }
 
+
     protected void registerEvents(Listener listener) {
         this.plugin.getServer().getPluginManager().registerEvents(listener, plugin);
     }

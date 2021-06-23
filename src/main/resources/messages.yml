@@ -1,3 +1,6 @@
 
 hud-enabled: "&6Coordinate Hud Enabled"
 hud-disabled: "&6Coordinate Hud Disabled"
+
+mob-silenced: "&6%name% &7Was Muted"
+mob-unsilenced: "&6%name% &7Was UnMuted"

@@ -129,4 +129,31 @@ poison-potato-usage:
 burn-vine-tip:
   enabled: true
   black-list-worlds: []
+
+# silence mobs using a name tag
+# Permission: tweakin.silencemobs.silence, tweakin.silencemobs.unsilence
+silence-mobs:
+  enabled: true
+  black-list-worlds: []
+  # list of mobs that will not be affected by this tweak
+  black-list-mobs:
+    - WITHER
+    - ENDER_DRAGON
+  # weather or not to consume tag after silencing the mob
+  consume-tag: false
+  # weather or not to actually rename mob after right clicking with name tag
+  rename-mob: false
+  # list of valid names that can be used on name tag to silence the mob (case sensetive)
+  silence-names:
+    - "Silence me"
+    - "silence me"
+    - "Silence plz"
+    - "Silence"
+    - "silence"
+  # list of valid names that can be used on name tag to unsilence the mob (case sensetive)
+  unsilence-names:
+    - "Unsilence"
+    - "unsilence"
+    - "Unmute me"
+    - "unmute me"
   
