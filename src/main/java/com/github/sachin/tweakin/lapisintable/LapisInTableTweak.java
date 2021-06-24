@@ -134,8 +134,11 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         Location loc = e.getBlock().getLocation();
         CustomBlockData data = new CustomBlockData(loc);
         if(data.has(key, PersistentDataType.INTEGER)){
-            ItemStack lapis = new ItemStack(Material.LAPIS_LAZULI,data.get(key, PersistentDataType.INTEGER));
-            loc.getWorld().dropItemNaturally(loc, lapis);
+            if(data.get(key,PersistentDataType.INTEGER) > 0){
+                ItemStack lapis = new ItemStack(Material.LAPIS_LAZULI,data.get(key, PersistentDataType.INTEGER));
+    
+                loc.getWorld().dropItemNaturally(loc, lapis);
+            }
             data.remove(key);
 
         }

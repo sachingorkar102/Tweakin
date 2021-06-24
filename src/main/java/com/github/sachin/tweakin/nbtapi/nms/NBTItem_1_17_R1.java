@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.nbtapi.nms;
 import java.awt.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftItem;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
@@ -19,6 +20,7 @@ import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.util.ColorUtil;
 import net.minecraft.world.EnumHand;
 import net.minecraft.world.EnumInteractionResult;
+import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.ItemActionContext;
@@ -124,6 +126,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(player.getInventory().getItemInMainHand());
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
+        
         MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),EnumDirection.a,pos,false);
         EnumInteractionResult result = nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.a,mop), EnumHand.a);
         // nmsItem.a(nmsPlayer, TooltipFlag.a.a).;

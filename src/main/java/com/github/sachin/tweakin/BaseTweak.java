@@ -25,12 +25,12 @@ public abstract class BaseTweak {
         this.configKey = configKey;
         this.tweakManager = plugin.getTweakManager();
         this.config = plugin.getConfig().getConfigurationSection(configKey);
-        this.reload();
-        if(config == null){
+        if(config == null || !config.contains("enabled")){
             plugin.getLogger().info("Could not found config section for "+configKey+", ignoring the tweak module..");
             this.shouldEnable = false;
             return;
         }
+        this.reload();
         this.shouldEnable = config.getBoolean("enabled",true);
     }
 

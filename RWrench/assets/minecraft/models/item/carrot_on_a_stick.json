@@ -1,0 +1,9 @@
+{
+	"parent": "item/handheld_rod",
+	"textures": {
+		"layer0": "item/stick"
+	},
+	"overrides": [
+		{ "predicate": {"custom_model_data": 100}, "model": "item/rotation_wrench" }
+	]
+}

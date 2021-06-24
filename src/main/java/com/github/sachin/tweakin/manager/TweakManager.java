@@ -17,11 +17,14 @@ import com.github.sachin.tweakin.poisonpotatousage.PoisonPotatoUsageTweak;
 import com.github.sachin.tweakin.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
+import com.github.sachin.tweakin.rotationwrench.RotationWrenchItem;
 import com.github.sachin.tweakin.silencemobs.SilenceMobsTweak;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +37,7 @@ public class TweakManager {
     private final Tweakin plugin;
     private Message messageManager;
     private List<BaseTweak> tweakList = new ArrayList<>();
+    private FileConfiguration recipeConfig;
 
 
     public TweakManager(Tweakin plugin){
@@ -54,8 +58,13 @@ public class TweakManager {
         plugin.saveDefaultConfig();
         int registered = 0;
         File configFile = new File(plugin.getDataFolder(),"config.yml");
+        File recipeFile = new File(plugin.getDataFolder(),"recipes.yml");
+        if(!recipeFile.exists()){
+            plugin.saveResource("recipes.yml", false);
+        }
+        this.recipeConfig = YamlConfiguration.loadConfiguration(recipeFile);
         try {
-            ConfigUpdater.update(plugin, "config.yml", configFile, Arrays.asList("nether-portal-coords.world-pairs"));
+            ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -96,12 +105,17 @@ public class TweakManager {
             tweakList.add(new PoisonPotatoUsageTweak(plugin));
             tweakList.add(new BurnVineTipTweak(plugin));
             tweakList.add(new SilenceMobsTweak(plugin));
+            tweakList.add(new RotationWrenchItem(plugin));
         }
         return tweakList;
     }
 
     public Message getMessageManager() {
         return messageManager;
+    }
+
+    public FileConfiguration getRecipeFile(){
+        return recipeConfig;
     }
 }
 

@@ -38,11 +38,19 @@ public class ConfigUpdater {
         BufferedReader newReader = new BufferedReader(new InputStreamReader(plugin.getResource(resourceName), StandardCharsets.UTF_8));
         List<String> newLines = newReader.lines().collect(Collectors.toList());
         newReader.close();
-
+        
         FileConfiguration oldConfig = YamlConfiguration.loadConfiguration(toUpdate);
         FileConfiguration newConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource(resourceName)));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(toUpdate), StandardCharsets.UTF_8));
-
+        ignoredSections = oldConfig.getStringList("ignored-sections");
+        if(ignoredSections == null){
+            ignoredSections = new ArrayList<>();
+        }
+        for(String key : oldConfig.getKeys(true)){
+            if(!newConfig.contains(key)){
+                ignoredSections.add(key);
+            }
+        }
         List<String> ignoredSectionsArrayList = new ArrayList<>(ignoredSections);
         //ignoredSections can ONLY contain configurations sections
         ignoredSectionsArrayList.removeIf(ignoredSection -> !newConfig.isConfigurationSection(ignoredSection));
@@ -55,6 +63,7 @@ public class ConfigUpdater {
     //Write method doing the work.
     //It checks if key has a comment associated with it and writes comment then the key and value
     private static void write(FileConfiguration newConfig, FileConfiguration oldConfig, Map<String, String> comments, List<String> ignoredSections, BufferedWriter writer, Yaml yaml) throws IOException {
+        
         outer: for (String key : newConfig.getKeys(true)) {
             String[] keys = key.split("\\.");
             String actualKey = keys[keys.length - 1];
@@ -68,17 +77,15 @@ public class ConfigUpdater {
             if (comment != null) {
                 writer.write(comment);//No \n character necessary, new line is automatically at end of comment
             }
-
             for (String ignoredSection : ignoredSections) {
                 if (key.startsWith(ignoredSection)) {
                     continue outer;
                 }
             }
-
             Object newObj = newConfig.get(key);
             Object oldObj = oldConfig.get(key);
 
-            if (newObj instanceof ConfigurationSection && oldObj instanceof ConfigurationSection) {
+            if (oldObj instanceof ConfigurationSection) {
                 //write the old section
                 writeSection(writer, actualKey, prefixSpaces, (ConfigurationSection) oldObj);
             } else if (newObj instanceof ConfigurationSection) {
