@@ -17,6 +17,7 @@ import com.github.sachin.tweakin.Tweakin;
 import org.bukkit.Axis;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World.Environment;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -60,12 +61,12 @@ public class CustomPortalTweak extends BaseTweak implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;
         if(e.getClickedBlock() == null) return;
+        Player player = e.getPlayer();
         Block clickedBlock = e.getClickedBlock();
-        if(endBiomes.contains(clickedBlock.getBiome())) return;
+        if(player.getWorld().getEnvironment() == Environment.THE_END) return;
         if(e.getItem().getType() != Material.FLINT_AND_STEEL) return;
         if(!getValidPortalBlocks().contains(e.getClickedBlock().getType())) return;
         if(e.getBlockFace() != BlockFace.UP) return;
-        Player player = e.getPlayer();
         boolean facingEast = player.getFacing() == BlockFace.EAST || player.getFacing() == BlockFace.WEST;
         if(!player.hasPermission("tweakin.customportal.use")) return;
         

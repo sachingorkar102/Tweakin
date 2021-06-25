@@ -68,10 +68,13 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
             for(int y = location.getBlockY() - radius; y <= location.getBlockY() + radius; y++) {
                 for(int z = location.getBlockZ() - radius; z <= location.getBlockZ() + radius; z++) {
                     Block block = location.getWorld().getBlockAt(x, y, z);
-                    if(block.getType().name().endsWith("LEAVES")){
-                        Leaves leaves = (Leaves) block.getBlockData();
-                        if(!leaves.isPersistent() && leaves.getDistance() > 6 && !locs.contains(block.getLocation())){
-                            locs.add(block.getLocation());
+                    if(!block.getType().isAir()){
+                        if(block.getBlockData() instanceof Leaves){
+                            
+                            Leaves leaves = (Leaves) block.getBlockData();
+                            if(!leaves.isPersistent() && leaves.getDistance() > 6 && !locs.contains(block.getLocation())){
+                                locs.add(block.getLocation());
+                            }
                         }
                     }
                 }
