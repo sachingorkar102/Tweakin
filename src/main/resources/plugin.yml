@@ -30,6 +30,20 @@ permissions:
   tweakin.autorecipeunlock:
     default: true
   tweakin.netherportalcoords:
-    default: true   
-
+    default: true 
+  tweakin.swingthroughgrass:
+    default: true
+  tweakin.coordinatehud:
+    default: true
+  tweakin.posionpotato.use:
+    default: true    
+  tweakin.burnvinetip.use:
+    default: true
+  tweakin.silencemobs.*:
+    default: true
+    children:
+      tweakin.silencemobs.silence: true
+      tweakin.silencemobs.unsilence: true
+  tweakin.rotationwrench.use:
+    default: true    
 
