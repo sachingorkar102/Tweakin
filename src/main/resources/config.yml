@@ -55,6 +55,7 @@ noteblock-mob-sounds:
 # This can be done either vertically or horizontally, 
 # provided you wouldn't be placing a block given normal rules.
 # Permissions:
+  # tweakin.reacharound.*: grants all permissions given below for reacharound
   # tweakin.reacharound.vertical: permission to place vertically
   # tweakin.reacharound.horizontal: permission to place horizontally
   # tweakin.reacharound.highlight: permission to show highlight
@@ -79,7 +80,7 @@ fast-leaf-decay:
 # Ladders are slightly tweaked to improve your laddering experience:
   # Right clicking a ladder with another one will place it, allowing you to drop ladders down without risking falling to your death.
   # Shift+right clicking any end of ladder will allow you to reach the another end, resulting in quick climb
-# Permission: tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
+# Permission: tweakin.betterladder.* tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
 better-ladder:
   enabled: true
   black-list-worlds: []
@@ -168,6 +169,8 @@ silence-mobs:
 # Permission: tweakin.rotationwrench.use
 rotation-wrench:
   enabled: true
+  # weather or not item is craftable, if set to false recipes regarding this item will not register
+  craftable: true
   # list of valid rotatable blocks
   rotatable-materials:
     - ^_PISTON

@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.manager;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
+import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
@@ -37,6 +38,7 @@ public class TweakManager {
     private final Tweakin plugin;
     private Message messageManager;
     private List<BaseTweak> tweakList = new ArrayList<>();
+    private List<TweakItem> registeredItems = new ArrayList<>();
     private FileConfiguration recipeConfig;
 
 
@@ -56,6 +58,9 @@ public class TweakManager {
 
     private void reload(boolean unregister){
         plugin.saveDefaultConfig();
+        if(!registeredItems.isEmpty()){
+            registeredItems.clear();
+        }
         int registered = 0;
         File configFile = new File(plugin.getDataFolder(),"config.yml");
         File recipeFile = new File(plugin.getDataFolder(),"recipes.yml");
@@ -81,6 +86,9 @@ public class TweakManager {
             }
             if(t.shouldEnable()){
                 t.register();
+                if(t instanceof TweakItem){
+                    registeredItems.add((TweakItem)t);
+                }
                 registered++;
             }
         }
@@ -112,6 +120,27 @@ public class TweakManager {
 
     public Message getMessageManager() {
         return messageManager;
+    }
+
+    public List<TweakItem> getRegisteredItems() {
+        return registeredItems;
+    }
+
+    public List<String> getRegisteredItemNames(){
+        List<String> list = new ArrayList<>();
+        for (TweakItem i : registeredItems) {
+            list.add(i.getName());
+        }
+        return list;
+    }
+
+    public TweakItem getTweakItem(String name){
+        for (TweakItem tweakItem : registeredItems) {
+            if(tweakItem.getName().equals(name)){
+                return tweakItem;
+            }
+        }
+        return null;
     }
 
     public FileConfiguration getRecipeFile(){

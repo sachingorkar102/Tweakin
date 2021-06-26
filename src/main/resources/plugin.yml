@@ -7,3 +7,29 @@ authors: [ sachingorkar ]
 softdepend: [ProtocolLib]
 description: A modular plugin with the objective of improving the vanilla gameplay experience
 
+
+
+permissions:
+  tweakin.armorclick:
+    default: true
+  tweakin.shulkerboxclick:
+    default: true
+  tweakin.customportal.use:
+    default: true
+  tweakin.reacharound.*:
+    default: true
+    children:
+      tweakin.reacharound.vertical: true
+      tweakin.reacharound.horizontal: true
+      tweakin.reacharound.highlight: true
+  tweakin.betterladder.*:
+    default: true
+    children:
+      tweakin.betterladder.dropdown: true
+      tweakin.betterladder.quickclimb: true
+  tweakin.autorecipeunlock:
+    default: true
+  tweakin.netherportalcoords:
+    default: true   
+
+

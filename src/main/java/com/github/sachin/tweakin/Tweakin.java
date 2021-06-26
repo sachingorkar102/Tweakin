@@ -1,5 +1,6 @@
 package com.github.sachin.tweakin;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -7,7 +8,7 @@ import java.util.concurrent.Callable;
 import com.github.sachin.tweakin.bstats.Metrics;
 import com.github.sachin.tweakin.bstats.Metrics.DrilldownPie;
 import com.github.sachin.tweakin.bstats.Metrics.MultiLineChart;
-import com.github.sachin.tweakin.commands.ReloadCommand;
+import com.github.sachin.tweakin.commands.CoreCommand;
 import com.github.sachin.tweakin.lapisintable.LapisData;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.manager.TweakManager;
@@ -44,13 +45,14 @@ public final class Tweakin extends JavaPlugin {
 
         }
         this.nmsHelper = nbtapi.getNMSHelper();
-        ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
-        this.commandManager = new PaperCommandManager(this);
-        commandManager.registerCommand(new ReloadCommand(this));
         this.saveDefaultConfig();
         this.reloadConfig();
+        this.commandManager = new PaperCommandManager(this);
         this.tweakManager = new TweakManager(this);
         tweakManager.load();
+        ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
+        commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
+        commandManager.registerCommand(new CoreCommand(this));
         enabledBstats();
         getLogger().info("Tweakin loaded successfully");
     }

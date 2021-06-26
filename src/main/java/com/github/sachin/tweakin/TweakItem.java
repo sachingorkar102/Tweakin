@@ -45,6 +45,7 @@ public abstract class TweakItem extends BaseTweak {
     }
 
     public void registerRecipe(){
+        if(!getConfig().getBoolean("craftable",true)) return;
         ConfigurationSection recipes = recipeConfig.getConfigurationSection(getName());
         outer: for(String key : recipes.getKeys(false)){
             List<String> ingredients = recipes.getStringList(key);
@@ -67,6 +68,7 @@ public abstract class TweakItem extends BaseTweak {
     }
 
     public void unregisterRecipe(){
+        if(registeredRecipes.isEmpty()) return;
         for (NamespacedKey namespacedKey : registeredRecipes) {
             Bukkit.removeRecipe(namespacedKey);
         }
