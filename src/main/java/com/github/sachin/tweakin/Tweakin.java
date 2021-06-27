@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
+import com.github.sachin.tweakin.bottledcloud.BottledCloudItem.CloudEntity;
 import com.github.sachin.tweakin.bstats.Metrics;
 import com.github.sachin.tweakin.bstats.Metrics.DrilldownPie;
 import com.github.sachin.tweakin.bstats.Metrics.MultiLineChart;
@@ -16,6 +18,7 @@ import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -61,6 +64,14 @@ public final class Tweakin extends JavaPlugin {
     public void onDisable() {
         if(!isEnabled) return;
         LapisInTableTweak tweak = (LapisInTableTweak) getTweakManager().getTweakList().get(6);
+        for(TweakItem i: tweakManager.getRegisteredItems()){
+            if(i instanceof BottledCloudItem && i.registered){
+                BottledCloudItem instance = (BottledCloudItem) i;
+                for(CloudEntity entity : instance.clouds.values()){
+                    entity.ticker.removeAll();
+                }
+            }
+        }
         if(tweak.registered){
             tweak.saveLapisData();
         }

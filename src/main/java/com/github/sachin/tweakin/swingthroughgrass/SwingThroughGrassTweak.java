@@ -60,9 +60,3 @@ public class SwingThroughGrassTweak extends BaseTweak implements Listener{
     
 }
 
-class EntityTest<E> implements Predicate<Entity> {
-    @Override
-    public boolean test(Entity e) {
-        return !(e instanceof Player);
-    }
-}

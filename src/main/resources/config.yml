@@ -138,7 +138,7 @@ burn-vine-tip:
   black-list-worlds: []
 
 # silence mobs using a name tag
-# Permission: tweakin.silencemobs.silence, tweakin.silencemobs.unsilence
+# Permission: tweakin.silencemobs.*, tweakin.silencemobs.silence, tweakin.silencemobs.unsilence
 silence-mobs:
   enabled: true
   black-list-worlds: []
@@ -190,4 +190,25 @@ rotation-wrench:
     lore:
       - "&6Right click a block to rotate"
     options.model: 100
+
+# Using a Glass Bottle at the cloud levels (126-132 by default) will get you a Bottled Cloud.
+# The Bottled Cloud can be right clicked to produce a block floating in midair in front of you.
+# The cloud block disappears after a few seconds, but you can right click it with any other block to replace the two.
+# The cloud will go back in the bottle when you do this.
+# Permission: 
+  # tweakin.bottledcloud.*: provides all permissions related to this tweak
+  # tweakin.bottledcloud.pickup: provides permission to pickup cloud with glass bottle at given heights
+  # tweakin.bottledcloud.use: provides permission to use the bottled cloud
+bottled-cloud:
+  enabled: true
+  # minimium height for glass bottle to pickup cloud
+  minimum-height: 126
+  # maximum height for glass bottle to pickup cloud
+  maximum-height: 132
+  # configuration of item
+  item:
+    id: GLASS_BOTTLE
+    display: "Bottled Cloud"
+    options.model: 101
+
   

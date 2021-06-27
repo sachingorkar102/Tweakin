@@ -112,6 +112,7 @@ public class ItemBuilder {
             else if ((meta instanceof PotionMeta) && options.contains("color")){
                 PotionMeta potion = (PotionMeta) meta;
                 potion.setColor(Color.fromRGB(options.getInt("color",0)));
+                
             }
             else if((meta instanceof SkullMeta) && options.contains("texture")){
                 SkullMeta skullMeta = (SkullMeta) meta;
@@ -229,7 +230,7 @@ public class ItemBuilder {
         return list;
     }
 
-    private static void mutateItemMeta(SkullMeta meta, String b64) {
+    public static void mutateItemMeta(SkullMeta meta, String b64) {
         Field metaProfileField ;
         Method metaSetProfileMethod;
 		try {

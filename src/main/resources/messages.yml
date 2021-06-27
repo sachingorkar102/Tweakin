@@ -1,3 +1,4 @@
+prefix: "&e[&6Tweakin&e] "
 
 hud-enabled: "&6Coordinate Hud Enabled"
 hud-disabled: "&6Coordinate Hud Disabled"
@@ -6,6 +7,7 @@ mob-silenced: "&6%name% &7Was Muted"
 mob-unsilenced: "&6%name% &7Was UnMuted"
 
 no-permission: "&cYou don't have permission to run the command"
+reloaded: "&6Config files reloaded successfully"
 
 invalid-player: "&cSpecify a valid player"
 invalid-item: "&cSpecify a valid item"

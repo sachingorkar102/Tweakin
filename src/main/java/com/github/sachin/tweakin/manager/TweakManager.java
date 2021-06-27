@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
+import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.burnvinetip.BurnVineTipTweak;
 import com.github.sachin.tweakin.controlledburn.ControlledBurnTweak;
 import com.github.sachin.tweakin.coordinatehud.CoordinateHUDTweak;
@@ -67,13 +68,13 @@ public class TweakManager {
         if(!recipeFile.exists()){
             plugin.saveResource("recipes.yml", false);
         }
+        plugin.reloadConfig();
         this.recipeConfig = YamlConfiguration.loadConfiguration(recipeFile);
         try {
             ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        plugin.reloadConfig();
         this.messageManager = new Message(plugin);
         messageManager.reload();
         for (BaseTweak t : getTweakList()) {
@@ -114,6 +115,7 @@ public class TweakManager {
             tweakList.add(new BurnVineTipTweak(plugin));
             tweakList.add(new SilenceMobsTweak(plugin));
             tweakList.add(new RotationWrenchItem(plugin));
+            tweakList.add(new BottledCloudItem(plugin));
         }
         return tweakList;
     }

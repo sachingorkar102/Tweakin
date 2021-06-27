@@ -18,7 +18,7 @@ import co.aikar.commands.annotation.Dependency;
 import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
 
-@Description("reloads config files from tweakin")
+@Description("core command for tweakin")
 @CommandAlias("tw|tweakin")
 public class CoreCommand extends BaseCommand{
  
@@ -34,16 +34,22 @@ public class CoreCommand extends BaseCommand{
     }
 
     @Subcommand("reload")
-    @CommandPermission("tweakin.command.reload")
     public void onReloadCommand(CommandSender sender){
+        if(!sender.hasPermission("tweakin.command.reload")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
         plugin.getTweakManager().reload();
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aConfig files successfully loaded"));
+        sender.sendMessage(messageManager.getMessage("reloaded"));
     }
 
     @Subcommand("give")
-    @CommandPermission("tweakin.command.reload")
     @CommandCompletion("@players @tweakitems @nothing")
     public void onGiveCommand(CommandSender sender,String[] args){
+        if(!sender.hasPermission("tweakin.command.give")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
         if(args.length < 2) return;
         Player player = Bukkit.getPlayer(args[0]);
         TweakItem tItem = plugin.getTweakManager().getTweakItem(args[1]);

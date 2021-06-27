@@ -45,5 +45,10 @@ permissions:
       tweakin.silencemobs.silence: true
       tweakin.silencemobs.unsilence: true
   tweakin.rotationwrench.use:
-    default: true    
+    default: true
+  tweakin.bottledcloud.*:
+    default: true
+    children:
+      tweakin.bottledcloud.pickup: true   
+      tweakin.bottledcloud.use: true   
 

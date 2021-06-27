@@ -121,7 +121,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         
     }
 
-    public void placeItem(Player player, Location location){
+    public boolean placeItem(Player player, Location location){
         
         net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(player.getInventory().getItemInMainHand());
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
@@ -132,6 +132,11 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         // nmsItem.a(nmsPlayer, TooltipFlag.a.a).;
         if(result.toString() == "CONSUME"){
             player.swingMainHand();
+
+            return true;
+        }
+        else{
+            return false;
         }
         
         

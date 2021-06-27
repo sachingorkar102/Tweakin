@@ -27,12 +27,12 @@ public abstract class TweakItem extends BaseTweak {
 
     public TweakItem(Tweakin plugin, String configKey) {
         super(plugin, configKey);
-        buildItem();
     }
 
     @Override
     public void reload() {
         super.reload();
+        buildItem(); 
         this.recipeConfig = getTweakManager().getRecipeFile();
     }
 

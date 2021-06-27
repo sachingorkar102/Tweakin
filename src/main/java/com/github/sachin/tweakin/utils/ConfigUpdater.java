@@ -9,6 +9,8 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,8 @@ public class ConfigUpdater {
     private ConfigUpdater(){
         
     }
+
+
 
     /**
      * Update a yaml file from a resource inside your plugin jar
@@ -79,6 +83,7 @@ public class ConfigUpdater {
             }
             for (String ignoredSection : ignoredSections) {
                 if (key.startsWith(ignoredSection)) {
+                    
                     continue outer;
                 }
             }

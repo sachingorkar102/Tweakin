@@ -110,7 +110,7 @@ public class NBTItem_1_16_R2 extends NMSHelper{
         
     }
 
-    public void placeItem(Player player, Location location){
+    public boolean placeItem(Player player, Location location){
         net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(player.getInventory().getItemInMainHand());
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
@@ -118,7 +118,14 @@ public class NBTItem_1_16_R2 extends NMSHelper{
         if(player.getGameMode() !=GameMode.SURVIVAL){
             player.swingMainHand();
         }
-        nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.MAIN_HAND,mop), EnumHand.MAIN_HAND);
+        EnumInteractionResult result = nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.MAIN_HAND,mop), EnumHand.MAIN_HAND);
+        if(result == EnumInteractionResult.CONSUME){
+            player.swingMainHand();
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public int getColor(String str,int transparency){
