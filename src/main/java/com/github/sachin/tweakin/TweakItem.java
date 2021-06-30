@@ -1,9 +1,12 @@
 package com.github.sachin.tweakin;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.github.sachin.tweakin.nbtapi.NBTAPI;
+import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.ItemBuilder;
 import com.google.common.base.Enums;
 import com.google.common.base.Optional;
@@ -17,12 +20,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class TweakItem extends BaseTweak {
 
     private ItemStack item;
     private Set<NamespacedKey> registeredRecipes = new HashSet<>();
     private FileConfiguration recipeConfig;
+
     
 
     public TweakItem(Tweakin plugin, String configKey) {
@@ -38,6 +44,7 @@ public abstract class TweakItem extends BaseTweak {
 
     public void buildItem(){
         this.item = ItemBuilder.itemFromFile(getConfig().getConfigurationSection("item"), getName());
+        
     }
 
     public ItemStack getItem() {
@@ -77,7 +84,49 @@ public abstract class TweakItem extends BaseTweak {
     public boolean hasItem(Player player, EquipmentSlot slot){
         ItemStack item = player.getInventory().getItem(slot);
         if(item == null) return false;
-        return item.isSimilar(getItem());
+        NBTItem nbtItem = new NBTItem(item);
+        
+        return nbtItem.hasKey(getName());
+    }
+
+    protected class UsedItem{
+
+        private ItemStack item;
+        private ItemMeta meta;
+
+        public UsedItem(ItemStack item){
+            this.item = item;
+            this.meta = item.getItemMeta();
+        }
+
+        public int getUses(){
+            if(meta instanceof Damageable){
+                Damageable damageable = (Damageable) meta;
+                return damageable.getDamage();
+            }
+            return -1;
+        }
+
+        public void setUses(int value){
+            if(meta instanceof Damageable){
+                Damageable damageable = (Damageable) meta;
+                damageable.setDamage(value);
+            }
+        }
+
+        public void use(){
+            if(meta instanceof Damageable){
+                Damageable damageable = (Damageable) meta;
+                damageable.setDamage(damageable.getDamage()+1);
+            }
+        }
+
+
+        public ItemStack getItem() {
+            item.setItemMeta(meta);
+            return item;
+        }
+
     }
 
 

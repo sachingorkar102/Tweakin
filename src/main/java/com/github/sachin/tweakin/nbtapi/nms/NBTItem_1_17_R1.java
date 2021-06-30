@@ -1,9 +1,13 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
 import java.awt.Color;
+
+import com.google.common.base.Enums;
+
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftItem;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
@@ -121,14 +125,14 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         
     }
 
-    public boolean placeItem(Player player, Location location){
+    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace){
         
-        net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(player.getInventory().getItemInMainHand());
+        net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         
-        MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),EnumDirection.a,pos,false);
-        EnumInteractionResult result = nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.a,mop), EnumHand.a);
+        MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),Enums.getIfPresent(EnumDirection.class, hitFace.toString()).or(EnumDirection.c),pos,false);
+        EnumInteractionResult result = nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.valueOf("MAIN_HAND"),mop), EnumHand.valueOf("MAIN_HAND"));
         // nmsItem.a(nmsPlayer, TooltipFlag.a.a).;
         if(result.toString() == "CONSUME"){
             player.swingMainHand();

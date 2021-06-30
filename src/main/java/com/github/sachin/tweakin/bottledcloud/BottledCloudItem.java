@@ -9,10 +9,13 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.ItemBuilder;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.MagmaCube;
 import org.bukkit.entity.Player;
@@ -61,6 +64,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
     public void onRightClick(PlayerInteractEvent e){
         Player player = e.getPlayer();
         if(!player.hasPermission("tweakin.bottledcloud.use")) return;
+        if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(!hasItem(player, EquipmentSlot.HAND)) return;
         if(e.getAction() == Action.RIGHT_CLICK_BLOCK) e.setCancelled(true);
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
@@ -91,6 +95,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
     @EventHandler
     public void onGlassBottleClick(PlayerInteractEvent e){
         Player player = e.getPlayer();
+        if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(!player.hasPermission("tweakin.bottledcloud.pickup")) return;
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
@@ -98,10 +103,17 @@ public class BottledCloudItem extends TweakItem implements Listener{
         ItemStack item = e.getItem();
         if(e.getItem().getType() != Material.GLASS_BOTTLE) return;
         if(player.getLocation().getBlockY() > miniHeight && player.getLocation().getBlockY() < maxHeight){
-            player.swingMainHand();
-            player.getInventory().addItem(getItem());
-            item.setAmount(item.getAmount()-1);
+            giveCloudItem(player, item);
             e.setCancelled(true);
+        }
+    }
+
+    public void giveCloudItem(Player player,ItemStack item){
+        player.swingMainHand();
+        player.getInventory().addItem(getItem());
+        
+        if(player.getGameMode() != GameMode.CREATIVE){
+            item.setAmount(item.getAmount()-1);
         }
     }
 
@@ -125,7 +137,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
         if(hasItem(player, EquipmentSlot.HAND)) return;
         ItemStack item = player.getInventory().getItemInMainHand();
         if(item == null) return;
-        if(!item.getType().isBlock()) return;
+        // if(!item.getType().isBlock()) return;
         MagmaCube cube = (MagmaCube) e.getRightClicked();
         CloudEntity entity = null;
         for(Location loc : clouds.keySet()){
@@ -136,9 +148,15 @@ public class BottledCloudItem extends TweakItem implements Listener{
             }
         }
         if(entity != null){
+            if(item.getType() == Material.GLASS_BOTTLE){
+                giveCloudItem(player, item);
+                entity.ticker.removeAll();
+                clouds.remove(entity.loc);
+                return;
+            }
             entity.ticker.removeAll();
             clouds.remove(entity.loc);
-            getPlugin().getNmsHelper().placeItem(player, entity.loc);
+            getPlugin().getNmsHelper().placeItem(player, entity.loc,item,BlockFace.DOWN);
         }
 
     }
@@ -166,7 +184,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
             cube.setInvisible(true);
             cube.setAI(false);
             cube.setInvulnerable(true);
-            cube.setHealth(200);
+            cube.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(200);
             cube.setSilent(true);
             this.ticker = new CloudTicker(this);
             this.data = new CustomBlockData(loc);

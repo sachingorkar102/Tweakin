@@ -165,7 +165,7 @@ public class ItemBuilder {
         item.setItemMeta(meta);
         if(itemType != null){
             NBTItem nbtItem = new NBTItem(item);
-            nbtItem.setString("tweak-item", itemType);
+            nbtItem.setString(itemType, " ");
             item = nbtItem.getItem();
 
         }

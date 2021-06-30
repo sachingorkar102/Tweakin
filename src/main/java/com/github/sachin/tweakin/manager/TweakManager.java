@@ -22,6 +22,7 @@ import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
 import com.github.sachin.tweakin.rotationwrench.RotationWrenchItem;
 import com.github.sachin.tweakin.silencemobs.SilenceMobsTweak;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
+import com.github.sachin.tweakin.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 
 import org.bukkit.Bukkit;
@@ -116,6 +117,7 @@ public class TweakManager {
             tweakList.add(new SilenceMobsTweak(plugin));
             tweakList.add(new RotationWrenchItem(plugin));
             tweakList.add(new BottledCloudItem(plugin));
+            tweakList.add(new TrowelItem(plugin));
         }
         return tweakList;
     }

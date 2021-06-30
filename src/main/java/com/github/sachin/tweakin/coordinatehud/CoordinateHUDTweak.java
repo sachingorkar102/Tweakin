@@ -25,6 +25,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     final List<Player> enabled = new ArrayList<>();
     final NamespacedKey key = new NamespacedKey(getPlugin(), "coordinatehud");
+    final NamespacedKey firstKey = new NamespacedKey(getPlugin(),"coordinatehud-firstJoin");
     private BaseCommand command;
     private HUDRunnable runnable;
     private Long intervalTicks;
@@ -41,8 +42,13 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
-        if(e.getPlayer().getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
-            enabled.add(e.getPlayer());
+        Player player = e.getPlayer();
+        if(!player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER) && getConfig().getBoolean("enable-first-join",true)){
+            enabled.add(player);
+            player.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
+        }
+        else if(player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
+            enabled.add(player);
         }
     }
 
@@ -106,4 +112,5 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
         return "S";
     }
 }
+
 

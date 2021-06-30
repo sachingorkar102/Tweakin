@@ -11,7 +11,7 @@ public class RayTrace {
     //direction = direction in which the raytrace will go
     Vector origin, direction;
 
-    RayTrace(Vector origin, Vector direction) {
+    public RayTrace(Vector origin, Vector direction) {
         this.origin = origin;
         this.direction = direction;
     }

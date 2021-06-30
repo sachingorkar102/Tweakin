@@ -2,8 +2,12 @@ package com.github.sachin.tweakin.nbtapi.nms;
 
 import java.awt.Color;
 
+import com.google.common.base.Enums;
+
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
@@ -112,12 +116,14 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         
     }
 
-    public boolean placeItem(Player player, Location location){
-        net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(player.getInventory().getItemInMainHand());
+    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace){
+        net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
+        
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
-        MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),EnumDirection.DOWN,pos,true);
-        EnumInteractionResult result = nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.MAIN_HAND,mop), EnumHand.MAIN_HAND);
+        MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),Enums.getIfPresent(EnumDirection.class, hitFace.toString()).or(EnumDirection.DOWN),pos,false);
+        EnumInteractionResult result = nmsItem.placeItem(new ItemActionContext(nmsPlayer, EnumHand.MAIN_HAND, mop), EnumHand.MAIN_HAND);
+        
         if(result == EnumInteractionResult.CONSUME){
             player.swingMainHand();
             return true;
@@ -125,6 +131,9 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         else{
             return false;
         }
+    }
+
+    public void placeBlock(Player player){
     }
 
     public int getColor(String str,int transparency){
@@ -139,5 +148,6 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         return new Color(red,green,blue,transparency).getRGB();
     }
 
+ 
     
 }

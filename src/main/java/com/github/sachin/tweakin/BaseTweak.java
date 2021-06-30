@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.github.sachin.tweakin.manager.TweakManager;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -61,6 +62,8 @@ public abstract class BaseTweak {
         }
         return new ArrayList<>();
     }
+
+    
 
 
     protected void registerEvents(Listener listener) {

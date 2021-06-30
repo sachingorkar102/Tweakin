@@ -7,7 +7,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.github.sachin.tweakin.BaseTweak;
+import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.trowel.TrowelItem;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -132,27 +134,47 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
         if(e.getItem() == null) return;
-        // if(!e.getItem().getType().isBlock()) return;
-        // if(item.getType().name().endsWith("SHULKER_BOX") || item.getType().name().endsWith("BANNER") || item.getType().name().endsWith("PLAYER_HEAD")) return;
-        // if(!item.getType().isBlock() && !item.getType().isSolid()) return;
         Player player = e.getPlayer();
+        ItemStack item = e.getItem();
+        for(TweakItem tItem: getTweakManager().getRegisteredItems()){
+            if(tItem instanceof TrowelItem){
+                TrowelItem trowelItem = (TrowelItem) tItem;
+                if(trowelItem.hasItem(player, EquipmentSlot.HAND)){
+                    Location loc = getPlayerReachAroundTarget(player);
+                    if(loc != null){
+                        trowelItem.placeBlock(loc, player, BlockFace.UP);
+                        return;
+                    }
+                }
+            }
+        }
+        if(isValidMaterial(item.getType())) return;
+        if(!item.getType().isBlock()) return;
         Location loc = getPlayerReachAroundTarget(player);
         if(loc != null){
-            getPlugin().getNmsHelper().placeItem(player, loc);
-            // loc.getBlock().setType(item.getType());
-            // if(player.getGameMode() == GameMode.SURVIVAL){
-            //     player.getInventory().getItemInMainHand().setAmount(item.getAmount()-1);
-            // }
+            getPlugin().getNmsHelper().placeItem(player, loc,e.getItem(),BlockFace.UP);
         }
+    }
+
+    public boolean isValidMaterial(Material type){
+        String blockName = type.toString();
+        for (String string : getConfig().getStringList("black-list-materials")) {
+            if(string.startsWith("^")){
+                if(blockName.endsWith(string.replace("^", ""))){
+                    return true;
+                }
+            }
+            if(blockName.equals(string)){
+                return true;
+            }
+        }
+        return false;
     }
 
     
 
     public Location getPlayerReachAroundTarget(Player player){
-        ItemStack item = player.getInventory().getItemInMainHand();
-        if(!item.getType().isBlock()){
-            return null;
-        }
+       
         RayTraceResult rayTraceResult = player.getWorld().rayTraceBlocks(player.getEyeLocation(), player.getEyeLocation().getDirection(), 5);
         if(rayTraceResult == null){
             Location target = getPlayerVerticalReachAround(player);

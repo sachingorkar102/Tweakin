@@ -51,4 +51,7 @@ permissions:
     children:
       tweakin.bottledcloud.pickup: true   
       tweakin.bottledcloud.use: true   
+  tweakin.trowel.use:
+    default: true
+
 

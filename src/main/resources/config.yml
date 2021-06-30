@@ -62,6 +62,10 @@ noteblock-mob-sounds:
 reach-around:
   enabled: true
   black-list-worlds: []
+  # list of materials that cant be placed with reacharound
+  # use ^NAME to allow a list of blocks that end with NAME, eg. ^SHULKER_BOX 
+  black-list-materials:
+  - ^SHULKER_BOX
   # weather or not to show future position of block as transperent highlight
   show-highlight: true
   # what should be the color of highlight
@@ -115,6 +119,8 @@ swing-through-grass:
 # Command: /togglehud,/thud
 coordinate-hud:
   enabled: true
+  # weather or not to enable hud when player first joins the server
+  enable-on-first-join: true
   # intervals in ticks at which hud will update
   interval-ticks: 2 
 
@@ -165,13 +171,13 @@ silence-mobs:
     - "unmute me"
 
 # Adds a wrench which allows to rotate any rotatable block listed in rotatable-materials.
-# use ^NAME to allow a list of blocks that end with NAME, eg. ^_STAIRS
 # Permission: tweakin.rotationwrench.use
 rotation-wrench:
   enabled: true
   # weather or not item is craftable, if set to false recipes regarding this item will not register
   craftable: true
   # list of valid rotatable blocks
+  # use ^NAME to allow a list of blocks that end with NAME, eg. ^_STAIRS  
   rotatable-materials:
     - ^_PISTON
     - OBSERVER
@@ -201,6 +207,7 @@ rotation-wrench:
   # tweakin.bottledcloud.use: provides permission to use the bottled cloud
 bottled-cloud:
   enabled: true
+  black-list-worlds: []
   # minimium height for glass bottle to pickup cloud
   minimum-height: 126
   # maximum height for glass bottle to pickup cloud
@@ -209,6 +216,30 @@ bottled-cloud:
   item:
     id: GLASS_BOTTLE
     display: "Bottled Cloud"
+    lore:
+      - "&7Right-Click in air to place cloud"
     options.model: 101
+
+# A Trowel tool can be crafted with Iron and Sticks.
+# The Trowel, when right clicked, will place a random block from your hotbar, making it useful for ruins or paths.
+# Permission: 
+  # tweakin.trowel.use: provides permission to use the trowel
+trowel:
+  enabled: true
+  # weather or not item is craftable, if set to false recipes(from recipes.yml) regarding this item will not register 
+  craftable: true
+  # weather or not item should take damage on use, only use for damagable items like iron_hoe
+  # Note: max uses of the item depends on what base material you are using example iron_hoe has 250 max durability meaning trowel will have 250 max uses
+  take-damage: true
+  # configuration for item
+  item:
+    id: IRON_HOE
+    display: "&7Trowel"
+    flags:
+      - HIDE_ATTRIBUTES
+    options.model: 102
+    lore:
+      - "&7Right-Click to place random blocks from hotbar"
+
 
   

@@ -3,25 +3,25 @@ package com.github.sachin.tweakin.nbtapi.nms;
 import java.awt.Color;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_16_R2.*;
+import net.minecraft.server.v1_16_R1.*;
 
 import org.bukkit.inventory.ItemStack;
 
 
 
-public class NBTItem_1_16_R2 extends NMSHelper{
+public class NBTItem_1_16_R1 extends NMSHelper{
 
     
-    private net.minecraft.server.v1_16_R2.ItemStack nmsItem;
+    private net.minecraft.server.v1_16_R1.ItemStack nmsItem;
     private NBTTagCompound compound;
 
-    public NBTItem_1_16_R2(ItemStack item){
+    public NBTItem_1_16_R1(ItemStack item){
         if(item == null) return;
         ItemStack bukkitItem = item.clone();
         this.nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
@@ -31,7 +31,7 @@ public class NBTItem_1_16_R2 extends NMSHelper{
 
     @Override
     public NMSHelper newItem(ItemStack item) {
-        NMSHelper nbti = new NBTItem_1_16_R2(item);
+        NMSHelper nbti = new NBTItem_1_16_R1(item);
         return nbti;
     }
     
@@ -104,14 +104,13 @@ public class NBTItem_1_16_R2 extends NMSHelper{
 
     @Override
     public void attack(Player player, Entity target) {
-        
         ((CraftPlayer)player).getHandle().attack(((CraftEntity)target).getHandle());
         ((CraftPlayer)player).getHandle().resetAttackCooldown();
         
     }
 
-    public boolean placeItem(Player player, Location location){
-        net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(player.getInventory().getItemInMainHand());
+    public boolean placeItem(Player player, Location location,ItemStack item){
+        net.minecraft.server.v1_16_R1.ItemStack nmsItem = CraftItemStack.asNMSCopy(player.getInventory().getItemInMainHand());
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),EnumDirection.DOWN,pos,false);
