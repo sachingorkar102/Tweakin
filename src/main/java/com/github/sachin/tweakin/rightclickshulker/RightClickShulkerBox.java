@@ -52,7 +52,11 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
         Inventory inv = Bukkit.createInventory(gui, 27, displayName);
         gui.setInventory(inv);
         inv.setContents(shulker.getInventory().getContents());
-        player.openInventory(inv);
+        if(player.getInventory().getItemInMainHand() != null){
+            if(player.getInventory().getItemInMainHand().getType().name().endsWith("SHULKER_BOX")){
+                player.openInventory(inv);
+            }
+        }
     }
 
     @EventHandler
