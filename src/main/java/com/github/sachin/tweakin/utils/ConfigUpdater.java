@@ -90,7 +90,7 @@ public class ConfigUpdater {
             Object newObj = newConfig.get(key);
             Object oldObj = oldConfig.get(key);
 
-            if (oldObj instanceof ConfigurationSection) {
+            if (oldObj instanceof ConfigurationSection && newObj instanceof ConfigurationSection) {
                 //write the old section
                 writeSection(writer, actualKey, prefixSpaces, (ConfigurationSection) oldObj);
             } else if (newObj instanceof ConfigurationSection) {

@@ -199,7 +199,8 @@ rotation-wrench:
     display: "&aRotation Wrench"
     lore:
       - "&6Right click a block to rotate"
-    options.model: 100
+    options:
+      model: 100
 
 # Using a Glass Bottle at the cloud levels (126-132 by default) will get you a Bottled Cloud.
 # The Bottled Cloud can be right clicked to produce a block floating in midair in front of you.
@@ -222,7 +223,10 @@ bottled-cloud:
     display: "Bottled Cloud"
     lore:
       - "&7Right-Click in air to place cloud"
-    options.model: 101
+    options: 
+      model: 101
+
+
 
 # A Trowel tool can be crafted with Iron and Sticks.
 # The Trowel, when right clicked, will place a random block from your hotbar, making it useful for ruins or paths.
@@ -241,9 +245,20 @@ trowel:
     display: "&7Trowel"
     flags:
       - HIDE_ATTRIBUTES
-    options.model: 102
+    options:
+      model: 102
     lore:
       - "&7Right-Click to place random blocks from hotbar"
+
+# Creepers will no longer explode, instead they will turn into twinkling fireworks
+confetti-creepers:
+  enabled: true
+  black-list-worlds: []
+  # The chance that creeper will explode as confetti(0.0-1.0, 1 being 100%)
+  chance: 1
+  # list of colors that will be included in fire work
+  # visit https://www.shodor.org/stella2java/rgbint.html to convert your rgb colors to integers
+  colors: [11743532,15435844,14602026,4312372,6719955,8073150,14188952]      
 
 
   

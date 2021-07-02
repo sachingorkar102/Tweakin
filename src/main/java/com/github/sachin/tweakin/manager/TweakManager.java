@@ -8,6 +8,7 @@ import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.burnvinetip.BurnVineTipTweak;
+import com.github.sachin.tweakin.confetticreepers.ConfettiCreepers;
 import com.github.sachin.tweakin.controlledburn.ControlledBurnTweak;
 import com.github.sachin.tweakin.coordinatehud.CoordinateHUDTweak;
 import com.github.sachin.tweakin.customportals.CustomPortalTweak;
@@ -118,6 +119,7 @@ public class TweakManager {
             tweakList.add(new RotationWrenchItem(plugin));
             tweakList.add(new BottledCloudItem(plugin));
             tweakList.add(new TrowelItem(plugin));
+            tweakList.add(new ConfettiCreepers(plugin));
         }
         return tweakList;
     }
