@@ -36,7 +36,6 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
         if(e.getItem() == null) return;
         if(!e.getItem().getType().toString().endsWith("SHULKER_BOX")) return;
         Player player = e.getPlayer();
-        if(!player.isSneaking()) return;
         if(!player.hasPermission("tweakin.shulkerboxclick")) return;
         e.setCancelled(true);
         ItemStack item = e.getItem().clone();
