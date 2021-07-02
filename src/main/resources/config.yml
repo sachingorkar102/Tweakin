@@ -115,12 +115,16 @@ swing-through-grass:
   enabled: true
 
 # displays coordinate hud,direction and ingame time at actionbar
-# Permission: tweakin.coordinatehud
+# Permission: 
+  # tweakin.coordinatehud: permission to use /togglerhud command
+  # tweakin.coordniatehud.compassbypass: players having this permission do not require compass to be in inventory (have-compass option should be enabled)
 # Command: /togglehud,/thud
 coordinate-hud:
   enabled: true
   # weather or not to enable hud when player first joins the server
   enable-on-first-join: true
+  # if set to true the hud will only display if player has a compass in there inventory
+  have-compass: false
   # intervals in ticks at which hud will update
   interval-ticks: 2 
 

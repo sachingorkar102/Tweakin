@@ -18,6 +18,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 
 // permission: tweakin.shulkerboxclick
 public class RightClickShulkerBox extends BaseTweak implements Listener{
@@ -30,11 +31,12 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
 
     @EventHandler
     public void shulkerBoxClickEvent(PlayerInteractEvent e){
-        if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
+        if(e.getAction() != Action.LEFT_CLICK_AIR) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;
-        if(!e.getItem().getType().name().endsWith("SHULKER_BOX")) return;
+        if(!e.getItem().getType().toString().endsWith("SHULKER_BOX")) return;
         Player player = e.getPlayer();
+        if(!player.isSneaking()) return;
         if(!player.hasPermission("tweakin.shulkerboxclick")) return;
         e.setCancelled(true);
         ItemStack item = e.getItem().clone();
@@ -43,7 +45,8 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
         ShulkerGui gui = new ShulkerGui(player, shulker,player.getInventory().getHeldItemSlot(),item);
         String displayName = "Shulker Box";
         if(item.getItemMeta() != null){
-            if(item.getItemMeta().getDisplayName() != null || item.getItemMeta().getDisplayName() != " "){
+            ItemMeta meta = item.getItemMeta();
+            if(meta.hasDisplayName()){
                 displayName = item.getItemMeta().getDisplayName();
             }
         }

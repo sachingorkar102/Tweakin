@@ -7,6 +7,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,8 +44,9 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
-        if(!player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER) && getConfig().getBoolean("enable-first-join",true)){
+        if(!player.getPersistentDataContainer().has(firstKey, PersistentDataType.INTEGER) && getConfig().getBoolean("enable-on-first-join",true)){
             enabled.add(player);
+            player.getPersistentDataContainer().set(firstKey, PersistentDataType.INTEGER, 1);
             player.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
         }
         else if(player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
@@ -80,6 +82,9 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
         @Override
         public void run() {
             CoordinateHUDTweak.this.enabled.forEach(player -> {
+                if(!player.getInventory().contains(Material.COMPASS) && getConfig().getBoolean("have-compass",false) && !player.hasPermission("tweakin.coordniatehud.compassbypass")){
+                    return;
+                }
                 long time = (player.getWorld().getTime() + 6000) % 24000;
                 long hours = time / 1000;
                 Long extra = (time - (hours * 1000)) * 60 / 1000;
