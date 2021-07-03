@@ -31,6 +31,7 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
 
     @EventHandler
     public void shulkerBoxClickEvent(PlayerInteractEvent e){
+
         if(e.getAction() != Action.LEFT_CLICK_AIR) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;
@@ -38,6 +39,7 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
         Player player = e.getPlayer();
         if(!player.hasPermission("tweakin.shulkerboxclick")) return;
         e.setCancelled(true);
+        if(!player.isSneaking()) return;
         ItemStack item = e.getItem().clone();
         BlockStateMeta im = (BlockStateMeta) item.getItemMeta();
         ShulkerBox shulker = (ShulkerBox) im.getBlockState();

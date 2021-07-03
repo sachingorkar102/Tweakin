@@ -54,6 +54,10 @@ public abstract class TweakItem extends BaseTweak {
     public void registerRecipe(){
         if(!getConfig().getBoolean("craftable",true)) return;
         ConfigurationSection recipes = recipeConfig.getConfigurationSection(getName());
+        if(recipes == null){
+            getPlugin().getLogger().info("Could not find recipes for "+getName()+" in recipes.yml");
+            return;
+        }
         if(recipes.getKeys(false) == null){
             getPlugin().getLogger().info("Could not find recipes for "+getName()+" in recipes.yml");
             return;

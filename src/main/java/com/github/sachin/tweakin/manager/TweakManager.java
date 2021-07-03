@@ -80,19 +80,25 @@ public class TweakManager {
         this.messageManager = new Message(plugin);
         messageManager.reload();
         for (BaseTweak t : getTweakList()) {
-            t.reload();
-            if(unregister){
-
-                if(t.registered){
-                    t.unregister();
+            try {
+                t.reload();
+                if(unregister){
+    
+                    if(t.registered){
+                        t.unregister();
+                    }
                 }
-            }
-            if(t.shouldEnable()){
-                t.register();
-                if(t instanceof TweakItem){
-                    registeredItems.add((TweakItem)t);
+                if(t.shouldEnable()){
+                    t.register();
+                    if(t instanceof TweakItem){
+                        registeredItems.add((TweakItem)t);
+                    }
+                    registered++;
                 }
-                registered++;
+            } catch (Exception e) {
+                plugin.getLogger().info("Error occured while registering "+t.getName()+" tweak..");
+                plugin.getLogger().info("Report this error on discord or at spigot page in discussion section.");
+                e.printStackTrace();
             }
         }
         plugin.getLogger().info("Registered "+registered+" tweaks successfully");
