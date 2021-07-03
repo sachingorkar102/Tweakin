@@ -73,6 +73,11 @@ public class TweakManager {
         plugin.reloadConfig();
         this.recipeConfig = YamlConfiguration.loadConfiguration(recipeFile);
         try {
+            ConfigUpdater.update(plugin, "recipes.yml", recipeFile, new ArrayList<>());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        try {
             ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>());
         } catch (IOException e) {
             e.printStackTrace();
