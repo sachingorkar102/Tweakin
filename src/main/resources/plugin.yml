@@ -22,6 +22,7 @@ permissions:
       tweakin.reacharound.vertical: true
       tweakin.reacharound.horizontal: true
       tweakin.reacharound.highlight: true
+      tweakin.reacharound.togglecommand: true
   tweakin.betterladder.*:
     default: true
     children:

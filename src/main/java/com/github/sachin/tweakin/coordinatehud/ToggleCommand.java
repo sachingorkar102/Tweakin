@@ -1,6 +1,5 @@
 package com.github.sachin.tweakin.coordinatehud;
 
-import com.github.sachin.tweakin.BaseTweak;
 
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
@@ -19,8 +18,11 @@ public class ToggleCommand extends BaseCommand{
     }
 
     @CommandAlias("togglehud|thud")
-    @CommandPermission("tweakin.coordinatehud")
     public void onCommand(Player player){
+        if(!player.hasPermission("tweakin.coordinatehud")){
+            player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("no-permission"));
+            return;
+        }
         if(instance.enabled.remove(player)){
             player.getPersistentDataContainer().remove(instance.key);
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("hud-disabled"));

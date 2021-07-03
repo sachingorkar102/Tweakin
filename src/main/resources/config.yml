@@ -54,14 +54,18 @@ noteblock-mob-sounds:
 # Reacharound Placing allows you to place blocks behind the block you're looking at.
 # This can be done either vertically or horizontally, 
 # provided you wouldn't be placing a block given normal rules.
+# Can be toggled by individual player by running /togglereacharound command
 # Permissions:
   # tweakin.reacharound.*: grants all permissions given below for reacharound
   # tweakin.reacharound.vertical: permission to place vertically
   # tweakin.reacharound.horizontal: permission to place horizontally
   # tweakin.reacharound.highlight: permission to show highlight
+  # tweakin.reacharound.togglecommand: permission to use /togglereacharound|/treacharound
 reach-around:
   enabled: true
   black-list-worlds: []
+  # if set to true reacharound will be enabled by default when player first joins the server
+  enabled-on-first-join: true
   # list of materials that cant be placed with reacharound
   # use ^NAME to allow a list of blocks that end with NAME, eg. ^SHULKER_BOX 
   black-list-materials:

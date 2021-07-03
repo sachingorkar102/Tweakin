@@ -3,6 +3,9 @@ prefix: "&e[&6Tweakin&e] "
 hud-enabled: "&6Coordinate Hud Enabled"
 hud-disabled: "&6Coordinate Hud Disabled"
 
+reacharound-enabled: "&6Reach-Around enabled"
+reacharound-disabled: "&6Reach-Around disabled"
+
 mob-silenced: "&6%name% &7Was Muted"
 mob-unsilenced: "&6%name% &7Was UnMuted"
 

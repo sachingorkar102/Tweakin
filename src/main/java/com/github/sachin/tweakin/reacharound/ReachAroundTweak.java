@@ -12,9 +12,9 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.trowel.TrowelItem;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -28,6 +28,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
@@ -37,11 +38,15 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
 
     private Map<UUID,BukkitTask> currentTasks = new HashMap<>();
     private int color;
+    final NamespacedKey key = new NamespacedKey(getPlugin(), "reacharound");
+    final NamespacedKey firstKey = new NamespacedKey(getPlugin(), "reacharound-firstjoin");
     private List<String> blackListWorlds = new ArrayList<>();
+    private ToggleCommand command;
 
 
     public ReachAroundTweak(Tweakin plugin) {
         super(plugin, "reach-around");
+        this.command = new ToggleCommand(this);
     }
 
     public List<String> getBlackListWorlds() {
@@ -51,13 +56,25 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     @Override
     public void register() {
         if(getPlugin().getServer().getPluginManager().isPluginEnabled("ProtocolLib")){
+            registerCommands(command);
             registerEvents(this);
             registered = true;
         }
         else{
-            getPlugin().getLogger().info("ProtocolLib not found,ignoring reach-around");
+            getPlugin().getLogger().info("ProtocolLib not found, ignoring reach-around...");
+            registered = false;
         }
     }
+
+    @Override
+    public void unregister() {
+        if(registered){
+            unregisterCommands(command);
+            unregisterEvents(this);
+            registered = false;
+        }
+    }
+
     @Override
     public void reload() {
         super.reload();
@@ -85,10 +102,14 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
-        if(!getCurrentTasks().containsKey(player.getUniqueId())){
-            if(!blackListWorlds.contains(player.getWorld().getName())){
-                creatPlayerTask(e.getPlayer());
-            }
+        if(blackListWorlds.contains(player.getWorld().getName())) return;
+        if(!player.getPersistentDataContainer().has(firstKey, PersistentDataType.INTEGER) && getConfig().getBoolean("enabled-on-first-join",true)){
+            creatPlayerTask(player);
+            player.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
+            player.getPersistentDataContainer().set(firstKey, PersistentDataType.INTEGER, 1);
+        }
+        else if(!getCurrentTasks().containsKey(player.getUniqueId())){
+            creatPlayerTask(e.getPlayer());
            
         }
     }
@@ -104,14 +125,14 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         }
         else{
             if(blackListWorlds.contains(player.getWorld().getName())){
-                BukkitTask task = getCurrentTasks().get(player.getUniqueId());
+                BukkitTask task = getCurrentTasks().remove(player.getUniqueId());
                 task.cancel();
-                getCurrentTasks().remove(player.getUniqueId());
+                
             }
         }
     }
 
-    private void creatPlayerTask(Player player){
+    public void creatPlayerTask(Player player){
         if(getConfig().getBoolean("show-highlight",true) && player.hasPermission("tweakin.reacharound.highlight")){
             ReachAroundRunnable runnable = new ReachAroundRunnable(this, player);
             BukkitTask task = runnable.runTaskTimer(getPlugin(), 60, 2);
