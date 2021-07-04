@@ -12,6 +12,7 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.trowel.TrowelItem;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -21,6 +22,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -108,7 +110,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             player.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
             player.getPersistentDataContainer().set(firstKey, PersistentDataType.INTEGER, 1);
         }
-        else if(!getCurrentTasks().containsKey(player.getUniqueId())){
+        else if(!getCurrentTasks().containsKey(player.getUniqueId()) && player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
             creatPlayerTask(e.getPlayer());
            
         }
@@ -139,7 +141,6 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             this.currentTasks.put(player.getUniqueId(), task);
         }
     }
-
     @EventHandler
     public void onLeave(PlayerQuitEvent e){
         UUID player = e.getPlayer().getUniqueId();
@@ -156,6 +157,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
         if(e.getItem() == null) return;
         Player player = e.getPlayer();
+        if(!player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) return;
         ItemStack item = e.getItem();
         for(TweakItem tItem: getTweakManager().getRegisteredItems()){
             if(tItem instanceof TrowelItem){
@@ -163,7 +165,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
                 if(trowelItem.hasItem(player, EquipmentSlot.HAND)){
                     Location loc = getPlayerReachAroundTarget(player);
                     if(loc != null){
-                        trowelItem.placeBlock(loc, player, BlockFace.UP);
+                        trowelItem.placeBlock(loc, player, BlockFace.UP,true,this);
                         return;
                     }
                 }
@@ -173,7 +175,11 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         if(!item.getType().isBlock()) return;
         Location loc = getPlayerReachAroundTarget(player);
         if(loc != null){
-            getPlugin().getNmsHelper().placeItem(player, loc,e.getItem(),BlockFace.UP);
+            // BlockPlaceEvent event = new BlockPlaceEvent(loc.getBlock(), loc.getBlock().getState(), placedAgainst, itemInHand, thePlayer, canBuild, hand)
+            boolean placed = getPlugin().getNmsHelper().placeItem(player, loc,e.getItem(),BlockFace.UP);
+            if(placed && player.getGameMode() != GameMode.CREATIVE){
+                item.setAmount(item.getAmount()-1);
+            }
         }
     }
 

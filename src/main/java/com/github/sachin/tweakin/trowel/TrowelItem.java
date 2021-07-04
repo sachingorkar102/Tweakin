@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.bottledcloud.RayTrace;
+import com.github.sachin.tweakin.reacharound.ReachAroundTweak;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -70,7 +71,7 @@ public class TrowelItem extends TweakItem implements Listener{
         if(clickedBlock.isPassable()){
             block = clickedBlock;
         }
-        placeBlock(block.getLocation(), player, e.getBlockFace());
+        placeBlock(block.getLocation(), player, e.getBlockFace(),false,null);
         
 
         
@@ -78,12 +79,17 @@ public class TrowelItem extends TweakItem implements Listener{
         
     }
 
-    public void placeBlock(Location loc,Player player,BlockFace hitFace){
+    public void placeBlock(Location loc,Player player,BlockFace hitFace,boolean isReacharound,ReachAroundTweak instance){
         List<ItemStack> hotBar = getHotBarContents(player);
         ItemStack iteminHand = player.getInventory().getItemInMainHand().clone();
         UsedItem usedItem = new UsedItem(iteminHand);
         if(!hotBar.isEmpty()){
             ItemStack item = hotBar.get(new Random().nextInt(hotBar.size()));
+            if(isReacharound){
+                if(instance.isValidMaterial(item.getType())){
+                    return;
+                }
+            }
             player.getInventory().setItemInMainHand(item);
             boolean placed = getPlugin().getNmsHelper().placeItem(player, loc, player.getInventory().getItemInMainHand(),hitFace);
             player.getInventory().setItemInMainHand(iteminHand);

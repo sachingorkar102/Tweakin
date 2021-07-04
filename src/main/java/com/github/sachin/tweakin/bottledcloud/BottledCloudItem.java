@@ -156,7 +156,10 @@ public class BottledCloudItem extends TweakItem implements Listener{
             }
             entity.ticker.removeAll();
             clouds.remove(entity.loc);
-            getPlugin().getNmsHelper().placeItem(player, entity.loc,item,BlockFace.DOWN);
+            boolean placed = getPlugin().getNmsHelper().placeItem(player, entity.loc,item,BlockFace.DOWN);
+            if(placed && player.getGameMode() != GameMode.CREATIVE){
+                item.setAmount(item.getAmount()-1);
+            }
         }
 
     }

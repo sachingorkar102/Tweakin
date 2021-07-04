@@ -3,7 +3,9 @@ package com.github.sachin.tweakin.reacharound;
 import java.awt.Color;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import net.minecraft.util.ColorUtil;
@@ -24,6 +26,9 @@ public class ReachAroundRunnable extends BukkitRunnable{
             this.cancel();
             return;
         }
+        ItemStack item = player.getInventory().getItemInMainHand();
+        if(item == null) return;
+        if(item.getType() == Material.AIR) return;
         Location target = instance.getPlayerReachAroundTarget(player);
         if(target != null){
             // System.out.println(ColorUtil.a.a(,300,300,100));
