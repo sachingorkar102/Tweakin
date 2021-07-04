@@ -98,7 +98,12 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         if(e.getClickedBlock().getType() != Material.ENCHANTING_TABLE) return;
         e.setCancelled(true);
         Player player = e.getPlayer();
+        
         Location blockLocation = e.getClickedBlock().getLocation();
+        if(invMap.values().contains(blockLocation)){
+            e.setCancelled(true);
+            return;
+        }
         if(getBlackListWorlds().contains(blockLocation.getWorld().getName())) return;
         CustomBlockData data = new CustomBlockData(blockLocation);
         int count = 0;
@@ -132,6 +137,10 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
     @EventHandler(priority = EventPriority.LOWEST)
     public void blockBreakEvent(BlockBreakEvent e){
         Location loc = e.getBlock().getLocation();
+        if(invMap.values().contains(loc)){
+            e.setCancelled(true);
+            return;
+        }
         CustomBlockData data = new CustomBlockData(loc);
         if(data.has(key, PersistentDataType.INTEGER)){
             if(data.get(key,PersistentDataType.INTEGER) > 0){
