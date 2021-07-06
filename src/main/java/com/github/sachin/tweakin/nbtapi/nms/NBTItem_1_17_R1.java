@@ -27,6 +27,7 @@ import net.minecraft.world.EnumInteractionResult;
 import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.inventory.tooltip.BundleTooltip;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockActionContext;
 import net.minecraft.world.item.context.ItemActionContext;
 import net.minecraft.world.phys.MovingObjectPositionBlock;
 import net.minecraft.world.phys.Vec3D;
@@ -132,7 +133,8 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         
         MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),Enums.getIfPresent(EnumDirection.class, hitFace.toString()).or(EnumDirection.c),pos,false);
-        EnumInteractionResult result = nmsItem.placeItem(new ItemActionContext(nmsPlayer,EnumHand.valueOf("MAIN_HAND"),mop), EnumHand.valueOf("MAIN_HAND"));
+        
+        EnumInteractionResult result = nmsItem.placeItem(new BlockActionContext(nmsPlayer,EnumHand.valueOf("MAIN_HAND"),nmsItem,mop), EnumHand.valueOf("MAIN_HAND"));
         // nmsItem.a(nmsPlayer, TooltipFlag.a.a).;
         if(result.toString() == "CONSUME"){
             player.swingMainHand();

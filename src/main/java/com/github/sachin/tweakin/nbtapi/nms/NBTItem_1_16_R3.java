@@ -122,6 +122,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),Enums.getIfPresent(EnumDirection.class, hitFace.toString()).or(EnumDirection.DOWN),pos,false);
+
         EnumInteractionResult result = nmsItem.placeItem( new BlockActionContext(nmsPlayer, EnumHand.MAIN_HAND, nmsItem, mop), EnumHand.MAIN_HAND);
         
         if(result == EnumInteractionResult.CONSUME){
