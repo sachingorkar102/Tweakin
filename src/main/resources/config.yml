@@ -23,7 +23,7 @@ ignored-sections: []
 armor-right-click:
   enabled: true
 
-# Shift+Left Clicking shulker box in air will show its contents
+# Shift+Left Clicking shulker box or ender-chest in air will show its contents
 # Permission: 
   # tweakin.shulkerboxclick: permission to allow opening of shulker box
   # tweakin.enderchestclick: permission to allow opening of enderchest
@@ -264,10 +264,46 @@ confetti-creepers:
   enabled: true
   black-list-worlds: []
   # The chance that creeper will explode as confetti(0.0-1.0, 1 being 100%)
-  chance: 1
+  chance: 0.1
   # list of colors that will be included in fire work
   # visit https://www.shodor.org/stella2java/rgbint.html to convert your rgb colors to integers
-  colors: [11743532,15435844,14602026,4312372,6719955,8073150,14188952]      
+  colors: [11743532,15435844,14602026,4312372,6719955,8073150,14188952]     
+  
+# Items can now be right clicked onto a Lava Bucket to destroy them forever.
+# Shulker Boxes and items that are immune to fire (eg. Netherite) can not be destroyed this way.
+# Items can only be destroyed if the lava bucket is in player's inventory
+lava-bucket-trash-can:
+  enabled: true
+  # item lore that will be shown when player fills up a lava bucket (keep empty to disable it)
+  help-lore:
+    - "&eRight Click a item onto bucket to destroy it."
+  # List of materials that cant be destroyed with this method,
+  # use ^NAME to allow a list of items that end with NAME, eg. ^_STAIRS  
+  # use *NAME to allow a list of items that start with NAME eg. *NETHERITE
+  black-list-materials:
+    - "^SHULKER_BOX"
+    - "*NETHERITE"
+
+
+# Requires Resource pack,disable this if you dont use resource packs on server.
+# Right clicking a tiny(size 1) slime with a bucket puts it in there.
+# It remains quiet, but will start jumping inside the bucket if you find yourself in a slime chunk.
+# The slime can also be deployed back into the world by right clicking on a block.
+# Permission:
+  # tweakin.slimebucket.pickup: permission to pickup slime when right clicked with empty bucket
+slime-in-bucket:
+  enabled: false
+  black-list-worlds: []
+  # Custom Model data that will be used when the item is not in slime chunk
+  model-undetected: 103
+  # Custom Model data that will be used when the item is in a slime chunk
+  model-detected: 104
+  item:
+    id: SLIME_BALL
+    display: "Slime In A Bucket"
+    lore:
+      - "&eSlime will start jumping once inside a slime chunk"
+      - "&eLeft click on block to release the slime"
 
 
   

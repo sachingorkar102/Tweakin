@@ -28,10 +28,9 @@ public class ReachAroundRunnable extends BukkitRunnable{
         }
         ItemStack item = player.getInventory().getItemInMainHand();
         if(item == null) return;
-        if(item.getType() == Material.AIR) return;
+        if(!item.getType().isSolid()) return;
         Location target = instance.getPlayerReachAroundTarget(player);
         if(target != null){
-            // System.out.println(ColorUtil.a.a(,300,300,100));
             BlockHighLight.sendBlockHighlight(player, target, instance.getColor());
         }
     }

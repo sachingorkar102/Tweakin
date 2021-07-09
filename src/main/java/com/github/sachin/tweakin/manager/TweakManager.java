@@ -14,6 +14,7 @@ import com.github.sachin.tweakin.coordinatehud.CoordinateHUDTweak;
 import com.github.sachin.tweakin.customportals.CustomPortalTweak;
 import com.github.sachin.tweakin.fastleafdecay.FastLeafDecayTweak;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
+import com.github.sachin.tweakin.lavabucketcan.LavaBucketTrashCan;
 import com.github.sachin.tweakin.netherportalcoords.NetherPortalCoordsTweak;
 import com.github.sachin.tweakin.noteblock.NoteBlockHeadsTweak;
 import com.github.sachin.tweakin.poisonpotatousage.PoisonPotatoUsageTweak;
@@ -22,6 +23,7 @@ import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
 import com.github.sachin.tweakin.rotationwrench.RotationWrenchItem;
 import com.github.sachin.tweakin.silencemobs.SilenceMobsTweak;
+import com.github.sachin.tweakin.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
@@ -131,6 +133,8 @@ public class TweakManager {
             tweakList.add(new BottledCloudItem(plugin));
             tweakList.add(new TrowelItem(plugin));
             tweakList.add(new ConfettiCreepers(plugin));
+            tweakList.add(new LavaBucketTrashCan(plugin));
+            tweakList.add(new SlimeInBucket(plugin));
         }
         return tweakList;
     }

@@ -25,7 +25,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class TweakItem extends BaseTweak {
 
-    private ItemStack item;
+    protected ItemStack item;
     private Set<NamespacedKey> registeredRecipes = new HashSet<>();
     private FileConfiguration recipeConfig;
 
