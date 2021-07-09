@@ -14,6 +14,8 @@ permissions:
     default: true
   tweakin.shulkerboxclick:
     default: true
+  tweakin.enderchestclick:
+    default: true  
   tweakin.customportal.use:
     default: true
   tweakin.reacharound.*:

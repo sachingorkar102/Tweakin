@@ -23,10 +23,15 @@ ignored-sections: []
 armor-right-click:
   enabled: true
 
-# Right Clicking shulker box in air will show its contents
-# Permission: tweakin.shulkerboxclick
-right-click-shulker-box:
-  enabled: true  
+# Shift+Left Clicking shulker box in air will show its contents
+# Permission: 
+  # tweakin.shulkerboxclick: permission to allow opening of shulker box
+  # tweakin.enderchestclick: permission to allow opening of enderchest
+left-click-shulker-box:
+  enabled: true
+  black-list-worlds: []
+  # if set to true players will able to open the enderchest just like shulker-box
+  enderchest: true  
 
 # Create nether portals with any shape,size and with any blocks, remember this only applies to nether portals
 # Permission: tweakin.customportal.use

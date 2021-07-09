@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,13 +21,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
-// permission: tweakin.shulkerboxclick
+// permission: tweakin.shulkerboxclick,tweakin.enderchestclick
 public class RightClickShulkerBox extends BaseTweak implements Listener{
 
 
 
     public RightClickShulkerBox(Tweakin plugin) {
-        super(plugin, "right-click-shulker-box");
+        super(plugin, "left-click-shulker-box");
     }
 
     @EventHandler
@@ -35,29 +36,36 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
         if(e.getAction() != Action.LEFT_CLICK_AIR) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;
-        if(!e.getItem().getType().toString().endsWith("SHULKER_BOX")) return;
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.shulkerboxclick")) return;
-        e.setCancelled(true);
         if(!player.isSneaking()) return;
-        ItemStack item = e.getItem().clone();
-        BlockStateMeta im = (BlockStateMeta) item.getItemMeta();
-        ShulkerBox shulker = (ShulkerBox) im.getBlockState();
-        ShulkerGui gui = new ShulkerGui(player, shulker,player.getInventory().getHeldItemSlot(),item);
-        String displayName = "Shulker Box";
-        if(item.getItemMeta() != null){
-            ItemMeta meta = item.getItemMeta();
-            if(meta.hasDisplayName()){
-                displayName = item.getItemMeta().getDisplayName();
+        if(getBlackListWorlds().contains(player.getWorld().getName())) return;
+        if(e.getItem().getType().toString().endsWith("SHULKER_BOX")){
+            if(!player.hasPermission("tweakin.shulkerboxclick")) return;
+            e.setCancelled(true);
+            ItemStack item = e.getItem().clone();
+            BlockStateMeta im = (BlockStateMeta) item.getItemMeta();
+            ShulkerBox shulker = (ShulkerBox) im.getBlockState();
+            ShulkerGui gui = new ShulkerGui(player, shulker,player.getInventory().getHeldItemSlot(),item);
+            String displayName = "Shulker Box";
+            if(item.getItemMeta() != null){
+                ItemMeta meta = item.getItemMeta();
+                if(meta.hasDisplayName()){
+                    displayName = item.getItemMeta().getDisplayName();
+                }
+            }
+            Inventory inv = Bukkit.createInventory(gui, 27, displayName);
+            gui.setInventory(inv);
+            inv.setContents(shulker.getInventory().getContents());
+            if(player.getInventory().getItemInMainHand() != null){
+                if(player.getInventory().getItemInMainHand().getType().name().endsWith("SHULKER_BOX")){
+                    player.openInventory(inv);
+                }
             }
         }
-        Inventory inv = Bukkit.createInventory(gui, 27, displayName);
-        gui.setInventory(inv);
-        inv.setContents(shulker.getInventory().getContents());
-        if(player.getInventory().getItemInMainHand() != null){
-            if(player.getInventory().getItemInMainHand().getType().name().endsWith("SHULKER_BOX")){
-                player.openInventory(inv);
-            }
+        else if(e.getItem().getType() == Material.ENDER_CHEST && getConfig().getBoolean("enderchest")){
+            if(!player.hasPermission("tweakin.enderchestclick")) return;
+            e.setCancelled(true);
+            player.openInventory(player.getEnderChest());
         }
     }
 
