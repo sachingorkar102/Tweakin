@@ -15,3 +15,5 @@ reloaded: "&6Config files reloaded successfully"
 invalid-player: "&cSpecify a valid player"
 invalid-item: "&cSpecify a valid item"
 gave-item: "&7Gave &6%item% &7to &6%player% &7successfully"
+
+cant-drop-box: "&cCant drop shulker box while sneaking."

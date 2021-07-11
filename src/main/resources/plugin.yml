@@ -58,5 +58,7 @@ permissions:
       tweakin.bottledcloud.use: true   
   tweakin.trowel.use:
     default: true
+  tweakin.patdog:
+    default: true  
 
 

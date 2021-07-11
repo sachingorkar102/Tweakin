@@ -4,11 +4,8 @@ import java.awt.Color;
 
 import com.google.common.base.Enums;
 
-import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
@@ -18,6 +15,7 @@ import org.bukkit.entity.Player;
 import net.minecraft.server.v1_16_R3.*;
 
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 
 
@@ -122,7 +120,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),Enums.getIfPresent(EnumDirection.class, hitFace.toString()).or(EnumDirection.DOWN),pos,false);
-
+        
         EnumInteractionResult result = nmsItem.placeItem( new BlockActionContext(nmsPlayer, EnumHand.MAIN_HAND, nmsItem, mop), EnumHand.MAIN_HAND);
         
         if(result == EnumInteractionResult.CONSUME){
@@ -133,9 +131,6 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         else{
             return false;
         }
-    }
-
-    public void placeBlock(Player player){
     }
 
     public int getColor(String str,int transparency){

@@ -14,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
@@ -28,6 +29,14 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
 
     public RightClickShulkerBox(Tweakin plugin) {
         super(plugin, "left-click-shulker-box");
+    }
+
+    @EventHandler
+    public void shulkerBoXDropEvent(PlayerDropItemEvent e){
+        if(e.getItemDrop().getItemStack().getType().toString().endsWith("SHULKER_BOX") && e.getPlayer().isSneaking()){
+            e.setCancelled(true);
+            e.getPlayer().sendMessage(getTweakManager().getMessageManager().getMessage("cant-drop-box"));
+        }
     }
 
     @EventHandler

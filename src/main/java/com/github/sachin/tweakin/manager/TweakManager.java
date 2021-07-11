@@ -5,6 +5,7 @@ import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
+import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.burnvinetip.BurnVineTipTweak;
@@ -17,6 +18,7 @@ import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.lavabucketcan.LavaBucketTrashCan;
 import com.github.sachin.tweakin.netherportalcoords.NetherPortalCoordsTweak;
 import com.github.sachin.tweakin.noteblock.NoteBlockHeadsTweak;
+import com.github.sachin.tweakin.patdogs.PatDogTweak;
 import com.github.sachin.tweakin.poisonpotatousage.PoisonPotatoUsageTweak;
 import com.github.sachin.tweakin.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
@@ -135,6 +137,9 @@ public class TweakManager {
             tweakList.add(new ConfettiCreepers(plugin));
             tweakList.add(new LavaBucketTrashCan(plugin));
             tweakList.add(new SlimeInBucket(plugin));
+            // tweakList.add(new BetterElytraRocketTweak(plugin)); could not done
+            tweakList.add(new PatDogTweak(plugin));
+            
         }
         return tweakList;
     }

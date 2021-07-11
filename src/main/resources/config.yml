@@ -183,6 +183,7 @@ silence-mobs:
     - "Unmute me"
     - "unmute me"
 
+# Optionally use Resource pack to change the sprite of item [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # Adds a wrench which allows to rotate any rotatable block listed in rotatable-materials.
 # Permission: tweakin.rotationwrench.use
 rotation-wrench:
@@ -211,6 +212,7 @@ rotation-wrench:
     options:
       model: 100
 
+# Optionally use Resource pack to change the sprite of item [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # Using a Glass Bottle at the cloud levels (126-132 by default) will get you a Bottled Cloud.
 # The Bottled Cloud can be right clicked to produce a block floating in midair in front of you.
 # The cloud block disappears after a few seconds, but you can right click it with any other block to replace the two.
@@ -236,7 +238,7 @@ bottled-cloud:
       model: 101
 
 
-
+# Optionally use resource pack to change the item sprite [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # A Trowel tool can be crafted with Iron and Sticks.
 # The Trowel, when right clicked, will place a random block from your hotbar, making it useful for ruins or paths.
 # Permission: 
@@ -285,7 +287,8 @@ lava-bucket-trash-can:
     - "*NETHERITE"
 
 
-# Requires Resource pack,disable this if you dont use resource packs on server.
+# Use of Resource pack is important [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
+# disable this if you dont use resource packs on server.
 # Right clicking a tiny(size 1) slime with a bucket puts it in there.
 # It remains quiet, but will start jumping inside the bucket if you find yourself in a slime chunk.
 # The slime can also be deployed back into the world by right clicking on a block.
@@ -305,5 +308,13 @@ slime-in-bucket:
       - "&eSlime will start jumping once inside a slime chunk"
       - "&eLeft click on block to release the slime"
 
-
+# You can pat the dogs. Sneak-Right click them with an empty hand to perform this glorious act.
+# this will also heal the dog betweed 1-3 hearts
+# Permission: tweakin.patdog
+pat-dogs:
+  enabled: true
+  # cooldown in ticks to pat a dog, set to 0 to disable it
+  cooldown: 60
+  # weather or not to heal the dog after patting
+  heal: true
   
