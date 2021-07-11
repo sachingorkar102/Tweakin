@@ -59,6 +59,8 @@ permissions:
   tweakin.trowel.use:
     default: true
   tweakin.patdog:
+    default: true
+  tweakin.compasstrack:
     default: true  
 
 

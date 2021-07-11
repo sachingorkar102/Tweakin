@@ -317,4 +317,15 @@ pat-dogs:
   cooldown: 60
   # weather or not to heal the dog after patting
   heal: true
-  
+
+# compass can now work in nether and end too,
+# pointing towards the portal you entered from, this will only work if you have a compass in main_hand
+# right clicking the bed with compass in main_hand will start pointing towards bed location
+# Permission: tweakin.compasstrack
+compass-work-everywhere:
+  enabled: true
+  black-list-worlds: []
+  # weather or not compass will work in nether
+  nether: true
+  # weather or not compass will work in end
+  end: true

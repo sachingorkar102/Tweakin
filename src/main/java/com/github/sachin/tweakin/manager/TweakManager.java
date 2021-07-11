@@ -7,8 +7,10 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
+import com.github.sachin.tweakin.bossspawnsounds.BossSpawnSoundTweak;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.burnvinetip.BurnVineTipTweak;
+import com.github.sachin.tweakin.compassworkeverywhere.CompassEveryWhereTweak;
 import com.github.sachin.tweakin.confetticreepers.ConfettiCreepers;
 import com.github.sachin.tweakin.controlledburn.ControlledBurnTweak;
 import com.github.sachin.tweakin.coordinatehud.CoordinateHUDTweak;
@@ -139,6 +141,8 @@ public class TweakManager {
             tweakList.add(new SlimeInBucket(plugin));
             // tweakList.add(new BetterElytraRocketTweak(plugin)); could not done
             tweakList.add(new PatDogTweak(plugin));
+            tweakList.add(new CompassEveryWhereTweak(plugin));
+            tweakList.add(new BossSpawnSoundTweak(plugin));
             
         }
         return tweakList;
