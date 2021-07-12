@@ -56,7 +56,7 @@ public class LavaBucketTrashCan extends BaseTweak implements Listener{
         e.setCancelled(true);
         Player player = (Player) e.getWhoClicked();
         player.setItemOnCursor(null);
-        player.getWorld().playSound(player.getLocation(), Sound.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
+        player.getWorld().playSound(player.getLocation(), Sound.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 0.25F, 2F + (float)Math.random());
 
     }
 

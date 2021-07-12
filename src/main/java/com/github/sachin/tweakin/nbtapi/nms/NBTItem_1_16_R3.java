@@ -125,7 +125,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         
         if(result == EnumInteractionResult.CONSUME){
             player.swingMainHand();
-            
+            player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
             return true;
         }
         else{

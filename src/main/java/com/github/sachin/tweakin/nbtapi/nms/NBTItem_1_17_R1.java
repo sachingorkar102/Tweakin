@@ -129,7 +129,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         // nmsItem.a(nmsPlayer, TooltipFlag.a.a).;
         if(result.toString() == "CONSUME"){
             player.swingMainHand();
-
+            player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
             return true;
         }
         else{
