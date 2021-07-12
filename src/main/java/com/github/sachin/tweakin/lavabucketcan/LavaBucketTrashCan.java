@@ -8,6 +8,8 @@ import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -54,6 +56,7 @@ public class LavaBucketTrashCan extends BaseTweak implements Listener{
         e.setCancelled(true);
         Player player = (Player) e.getWhoClicked();
         player.setItemOnCursor(null);
+        player.getWorld().playSound(player.getLocation(), Sound.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1, 1);
 
     }
 

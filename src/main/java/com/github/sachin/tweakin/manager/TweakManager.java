@@ -142,7 +142,7 @@ public class TweakManager {
             // tweakList.add(new BetterElytraRocketTweak(plugin)); could not done
             tweakList.add(new PatDogTweak(plugin));
             tweakList.add(new CompassEveryWhereTweak(plugin));
-            tweakList.add(new BossSpawnSoundTweak(plugin));
+            // tweakList.add(new BossSpawnSoundTweak(plugin));
             
         }
         return tweakList;

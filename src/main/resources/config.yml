@@ -308,6 +308,7 @@ slime-in-bucket:
       - "&eSlime will start jumping once inside a slime chunk"
       - "&eLeft click on block to release the slime"
 
+
 # You can pat the dogs. Sneak-Right click them with an empty hand to perform this glorious act.
 # this will also heal the dog betweed 1-3 hearts
 # Permission: tweakin.patdog

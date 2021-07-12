@@ -13,7 +13,7 @@ public class BossSpawnSoundTweak extends BaseTweak {
     private SoundPacketListener listener;
 
     public BossSpawnSoundTweak(Tweakin plugin) {
-        super(plugin, "boss-spawn-sounds");
+        super(plugin, "boss-spawn-sound");
         this.manager = ProtocolLibrary.getProtocolManager();
         this.listener = new SoundPacketListener(plugin);
     }

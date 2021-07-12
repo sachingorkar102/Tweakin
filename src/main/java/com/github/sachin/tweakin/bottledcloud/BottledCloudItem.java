@@ -101,7 +101,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;
         ItemStack item = e.getItem();
-        if(e.getItem().getType() != Material.GLASS_BOTTLE) return;
+        if(!e.getItem().isSimilar(new ItemStack(Material.GLASS_BOTTLE))) return;
         if(player.getLocation().getBlockY() > miniHeight && player.getLocation().getBlockY() < maxHeight){
             giveCloudItem(player, item);
             e.setCancelled(true);
