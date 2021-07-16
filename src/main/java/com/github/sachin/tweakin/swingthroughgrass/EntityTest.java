@@ -6,9 +6,15 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 public class EntityTest<E> implements Predicate<Entity> {
+
+    private Player owner;
+
+    public EntityTest(Player owner){
+        this.owner = owner;
+    }
     @Override
     public boolean test(Entity e) {
-        return !(e instanceof Player);
+        return owner.getUniqueId() != e.getUniqueId();
     }
 
     @Override

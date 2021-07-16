@@ -14,6 +14,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.ArmorStand;
@@ -111,7 +113,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
     public void giveCloudItem(Player player,ItemStack item){
         player.swingMainHand();
         player.getInventory().addItem(getItem());
-        
+        player.getWorld().playSound(player.getLocation(),Sound.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.PLAYERS, 0.3F, 0.3F);
         if(player.getGameMode() != GameMode.CREATIVE){
             item.setAmount(item.getAmount()-1);
         }
