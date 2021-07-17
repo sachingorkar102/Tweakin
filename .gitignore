@@ -105,6 +105,7 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
+.vscode
 
 release.properties
 dependency-reduced-pom.xml
@@ -115,5 +116,4 @@ buildNumber.properties
 
 # Common working directory
 run/
-.vscode/settings.json
-.vscode/settings.json
+.vscode/sftp.json
