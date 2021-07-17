@@ -14,7 +14,7 @@ import co.aikar.commands.BaseCommand;
 
 public abstract class BaseTweak {
 
-    private final Tweakin plugin;
+    protected final Tweakin plugin;
     private final TweakManager tweakManager;
     private boolean shouldEnable;
     private ConfigurationSection config;
@@ -34,6 +34,7 @@ public abstract class BaseTweak {
         this.reload();
         this.shouldEnable = config.getBoolean("enabled",true);
     }
+
 
 
     public TweakManager getTweakManager() {

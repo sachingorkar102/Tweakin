@@ -76,7 +76,7 @@ public class SlimeInBucket extends TweakItem implements Listener{
         Location l2 = e.getTo();
         if(l1.getBlockX() != l2.getBlockX() || l1.getBlockZ() != l2.getBlockZ()){
             Player player = e.getPlayer();
-            if(getBlackListWorlds().contains(player.getWorld().getName())) return;
+            if(getBlackListWorlds().contains(player.getWorld().getName()) || !player.hasPermission("tweakin.slimebucket.detect")) return;
             int model = 0;
             if(l2.getChunk().isSlimeChunk()){
                 model = getConfig().getInt("model-detected",104);

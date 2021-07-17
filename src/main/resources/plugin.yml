@@ -62,6 +62,10 @@ permissions:
     default: true
   tweakin.compasstrack:
     default: true  
-    
+  tweakin.slimebucket.*:
+    default: true
+    children:
+      tweakin.slimebucket.detect: true
+      tweakin.slimebucket.pickup: true  
 
 

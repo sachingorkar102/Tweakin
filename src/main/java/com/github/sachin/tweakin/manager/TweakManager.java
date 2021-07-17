@@ -7,7 +7,7 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
-import com.github.sachin.tweakin.bossspawnsounds.BossSpawnSoundTweak;
+import com.github.sachin.tweakin.bossspawnsounds.BroadCastSoundTweak;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.burnvinetip.BurnVineTipTweak;
 import com.github.sachin.tweakin.compassworkeverywhere.CompassEveryWhereTweak;
@@ -120,6 +120,7 @@ public class TweakManager {
             tweakList.add(new RightClickArmor(plugin));
             tweakList.add(new RightClickShulkerBox(plugin));
             tweakList.add(new NoteBlockHeadsTweak(plugin));
+
             tweakList.add(new ReachAroundTweak(plugin));
             tweakList.add(new FastLeafDecayTweak(plugin));
             tweakList.add(new BetterLadderTweak(plugin));
@@ -142,7 +143,12 @@ public class TweakManager {
             // tweakList.add(new BetterElytraRocketTweak(plugin)); could not done
             tweakList.add(new PatDogTweak(plugin));
             tweakList.add(new CompassEveryWhereTweak(plugin));
-            // tweakList.add(new BossSpawnSoundTweak(plugin));
+            if(plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib")){
+                tweakList.add(new BroadCastSoundTweak(plugin));
+            }
+            else{
+                plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds...");
+            }
             
         }
         return tweakList;

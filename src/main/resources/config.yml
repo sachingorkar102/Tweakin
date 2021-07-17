@@ -330,3 +330,9 @@ compass-work-everywhere:
   nether: true
   # weather or not compass will work in end
   end: true
+
+# A tweak to silence these nasty server wide broadcast sounds:
+# Wither spawn,end portal create event and ender dragon death
+# only players within 40 block radius of the sound source can hear them, not sure why its not in vanilla already...
+broadcast-sound-nerf:
+  enabled: true
