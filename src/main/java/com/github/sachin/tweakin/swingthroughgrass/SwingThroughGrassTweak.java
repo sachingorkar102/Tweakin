@@ -46,7 +46,7 @@ public class SwingThroughGrassTweak extends BaseTweak implements Listener{
         Player player = e.getPlayer();
         if(!player.hasPermission("tweakin.swingthroughgrass")) return;
         Predicate<Entity> p = new EntityTest<>(player);
-        RayTraceResult raytrace = player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 5,0,p);
+        RayTraceResult raytrace = player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 3.5,0,p);
         if(raytrace != null){
             if(raytrace.getHitEntity() != null){
                 
