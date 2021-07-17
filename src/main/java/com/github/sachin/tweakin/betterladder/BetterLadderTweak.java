@@ -40,7 +40,7 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
         Player player = e.getPlayer();
         Block clickedLadder = e.getClickedBlock(); 
         if(e.getItem() == null){
-            if(!player.hasPermission("tweakin.betterladder.quickclimb")) return;
+            if(!player.hasPermission("tweakin.betterladder.quickclimb") || !getConfig().getBoolean("quickclimb",true)) return;
             if(!player.isSneaking()) return;
             Vector face = player.getEyeLocation().getDirection().clone();
             if(clickedLadder.getRelative(BlockFace.DOWN).getType() != Material.LADDER){
@@ -61,7 +61,7 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
             }
         }
         else if(e.getItem().getType() == Material.LADDER){
-            if(!player.hasPermission("tweakin.betterladder.dropdown")) return;
+            if(!player.hasPermission("tweakin.betterladder.dropdown") || !getConfig().getBoolean("dropdown",true)) return;
             Block downLadder = getLadderBlock(clickedLadder);
             
             if(downLadder == null) return;

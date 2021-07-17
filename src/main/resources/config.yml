@@ -92,11 +92,15 @@ fast-leaf-decay:
 
 # Ladders are slightly tweaked to improve your laddering experience:
   # Right clicking a ladder with another one will place it, allowing you to drop ladders down without risking falling to your death.
-  # Shift+right clicking any end of ladder will allow you to reach the another end, resulting in quick climb
+  # Shift+right clicking any end of ladder will allow you to reach the another end, resulting in quick climb (may or may not work with anti cheats)
 # Permission: tweakin.betterladder.* tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
 better-ladder:
   enabled: true
   black-list-worlds: []
+  # Universal toggle for dropdown ladder feature
+  dropdown: true
+  # Universal toggle for quickclimb ladder feature
+  quickclimb: true
 
 # Lapis placed in enchanting table will stay there
 lapis-in-table:
