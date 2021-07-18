@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -96,6 +97,11 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
     @EventHandler
     public void shulkerGuiClickEvent(InventoryClickEvent e){
         if(e.getInventory().getHolder() instanceof ShulkerGui){
+            ShulkerGui gui = (ShulkerGui) e.getInventory().getHolder();
+            
+            if(e.getClick() == ClickType.NUMBER_KEY && gui.getSlot() == e.getHotbarButton()){
+                e.setCancelled(true);
+            }
             if(e.getCurrentItem() == null) return;
             if(e.getCurrentItem().getType().name().endsWith("SHULKER_BOX")){
                 e.setCancelled(true);
