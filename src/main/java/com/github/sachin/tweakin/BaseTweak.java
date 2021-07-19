@@ -45,6 +45,10 @@ public abstract class BaseTweak {
         return shouldEnable;
     }
 
+    public boolean isPluginEnabled(String name){
+        return plugin.getServer().getPluginManager().isPluginEnabled(name);
+    }
+
 
     public ConfigurationSection getConfig() {
         return config;

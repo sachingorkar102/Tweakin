@@ -1,7 +1,9 @@
 package com.github.sachin.tweakin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -21,6 +23,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import co.aikar.commands.PaperCommandManager;
@@ -33,6 +36,7 @@ public final class Tweakin extends JavaPlugin {
     private NMSHelper nmsHelper;
     private boolean isEnabled;
     public boolean isProtocolLibEnabled;
+    private List<Player> placedPlayers = new ArrayList<>();
 
 
 
@@ -97,6 +101,15 @@ public final class Tweakin extends JavaPlugin {
                 return map;
             }));
         }
+    }
+
+    public void addPlacedPlayer(Player player){
+        placedPlayers.add(player);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,() -> {placedPlayers.remove(player);}, 5);
+    }
+
+    public List<Player> getPlacedPlayers() {
+        return placedPlayers;
     }
 
     public NMSHelper getNmsHelper() {

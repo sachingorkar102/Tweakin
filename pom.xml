@@ -132,6 +132,14 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.17.jar</systemPath>
         </dependency>
+
+        <dependency>
+            <groupId>SpartanAPI</groupId>
+            <artifactId>spartan</artifactId>
+            <version>1.17</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/SpartanAPI.jar</systemPath>
+        </dependency>
        
         <!-- Protocol lib -->
         <dependency>
@@ -147,6 +155,8 @@
             <version>4.1.65.Final</version>
             <scope>provided</scope>
         </dependency>
+
+
 
         <dependency>
             <groupId>co.aikar</groupId>

@@ -324,7 +324,7 @@ pat-dogs:
   # weather or not to heal the dog after patting
   heal: true
   # weather or not cats can be patted too.
-  pat-cats: true
+  pat-cats: false
 
 # compass can now work in nether and end too,
 # pointing towards the portal you entered from, this will only work if you have a compass in main_hand

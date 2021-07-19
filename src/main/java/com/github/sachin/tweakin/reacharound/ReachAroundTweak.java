@@ -20,9 +20,9 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -35,6 +35,7 @@ import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
+
 // permissions tweakin.reacharound.vertical, tweakin.reacharound.horizontal, tweakin.reacharound.highlight
 public class ReachAroundTweak extends BaseTweak implements Listener{
 
@@ -44,20 +45,30 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     final NamespacedKey firstKey = new NamespacedKey(getPlugin(), "reacharound-firstjoin");
     private List<String> blackListWorlds = new ArrayList<>();
     private ToggleCommand command;
+    private SpartanIntegration spartanListener;
+    private boolean isSpartanEnabled;
 
 
     public ReachAroundTweak(Tweakin plugin) {
         super(plugin, "reach-around");
         this.command = new ToggleCommand(this);
+        this.isSpartanEnabled = isPluginEnabled("Spartan");
+        this.spartanListener = new SpartanIntegration(this);
+        
     }
+
+    
 
     public List<String> getBlackListWorlds() {
         return blackListWorlds;
     }
 
+
+    
+
     @Override
     public void register() {
-        if(getPlugin().getServer().getPluginManager().isPluginEnabled("ProtocolLib")){
+        if(isPluginEnabled("ProtocolLib")){
             registerCommands(command);
             registerEvents(this);
             registered = true;
@@ -65,6 +76,10 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         else{
             getPlugin().getLogger().info("ProtocolLib not found, ignoring reach-around...");
             registered = false;
+        }
+        if(isSpartanEnabled){
+            plugin.getLogger().info("Found Spartan,registering check listerners for reacharound..");
+            plugin.getServer().getPluginManager().registerEvents(spartanListener, plugin);
         }
     }
 
@@ -74,6 +89,9 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             unregisterCommands(command);
             unregisterEvents(this);
             registered = false;
+            if(isSpartanEnabled){
+                HandlerList.unregisterAll(spartanListener);
+            }
         }
     }
 
@@ -166,6 +184,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
                     Location loc = getPlayerReachAroundTarget(player);
                     if(loc != null){
                         trowelItem.placeBlock(loc, player, BlockFace.UP,true,this);
+                        plugin.addPlacedPlayer(player);
                         return;
                     }
                 }
@@ -178,6 +197,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             // BlockPlaceEvent event = new BlockPlaceEvent(loc.getBlock(), loc.getBlock().getState(), placedAgainst, itemInHand, thePlayer, canBuild, hand)
             boolean placed = getPlugin().getNmsHelper().placeItem(player, loc,e.getItem(),BlockFace.UP);
             if(placed && player.getGameMode() != GameMode.CREATIVE){
+                plugin.addPlacedPlayer(player);
                 item.setAmount(item.getAmount()-1);
             }
         }
