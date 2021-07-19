@@ -1,11 +1,14 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
 import java.awt.Color;
+import java.util.concurrent.locks.Lock;
 
 import com.google.common.base.Enums;
 
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
@@ -131,6 +134,18 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         else{
             return false;
         }
+    }
+
+    public void harvestBlock(Player player,Location location,ItemStack tool){
+        net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(tool);
+        EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
+        
+        BlockPosition pos = new BlockPosition(location.getX(),location.getY(),location.getZ());
+        World world = ((CraftWorld)player.getWorld()).getHandle();
+        IBlockData blockData = world.getType(pos);
+        Block nmsBlock = blockData.getBlock();
+        nmsBlock.a(world, nmsPlayer, pos, blockData, world.getTileEntity(pos), nmsItem);
+        
     }
 
     public int getColor(String str,int transparency){

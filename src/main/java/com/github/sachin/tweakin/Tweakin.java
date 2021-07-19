@@ -37,6 +37,7 @@ public final class Tweakin extends JavaPlugin {
     private NMSHelper nmsHelper;
     private boolean isEnabled;
     public boolean isProtocolLibEnabled;
+    public boolean isFirstInstall;
     private List<Player> placedPlayers = new ArrayList<>();
 
 
@@ -45,6 +46,7 @@ public final class Tweakin extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         this.isEnabled = true;
+        this.isFirstInstall = false;
         this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
         NBTAPI nbtapi = new NBTAPI();
         if(!nbtapi.loadVersions(this,version)){

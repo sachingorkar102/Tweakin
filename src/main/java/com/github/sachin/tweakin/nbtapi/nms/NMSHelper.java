@@ -39,6 +39,8 @@ public abstract class NMSHelper {
 
     public abstract int getColor(String str,int transparency);
 
+    public abstract void harvestBlock(Player player,Location location,ItemStack tool);
+
 
 
     

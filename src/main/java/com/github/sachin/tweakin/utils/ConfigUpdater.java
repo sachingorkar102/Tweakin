@@ -100,7 +100,13 @@ public class ConfigUpdater {
                 //write the new section, old value is no more
                 writeSection(writer, actualKey, prefixSpaces, (ConfigurationSection) newObj);
             } else if (oldObj != null) {
-                write(oldObj, actualKey, prefixSpaces, yaml, writer);
+                if(key.equals("first-install") && oldConfig.getBoolean("first-install",false)){
+                    writer.write(prefixSpaces + actualKey + ": false\n");
+                    plugin.isFirstInstall = true;
+                }
+                else{
+                    write(oldObj, actualKey, prefixSpaces, yaml, writer);
+                }
             } else {
                 //write new object
                 write(newObj, actualKey, prefixSpaces, yaml, writer);

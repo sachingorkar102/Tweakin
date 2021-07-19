@@ -9,6 +9,8 @@
 # Read the text above each module for more info that module like commands and permissions(if any)
 # if you found any issue/bug, join me up on discord: https://discord.gg/tTHs4jKu6f
 
+# dont touch this one
+first-install: true
 
 # its bstats
 metrics: true
@@ -345,6 +347,7 @@ compass-work-everywhere:
 broadcast-sound-nerf:
   enabled: true
 
+# Requires ProtocolLib
 # Right clicking a sign now lets you edit it even after it's been placed.
 # Respects grief plugins
 # Permisssion: tweakin.bettersignedit.use

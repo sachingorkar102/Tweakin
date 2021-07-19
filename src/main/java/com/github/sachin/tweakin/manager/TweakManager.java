@@ -17,6 +17,7 @@ import com.github.sachin.tweakin.controlledburn.ControlledBurnTweak;
 import com.github.sachin.tweakin.coordinatehud.CoordinateHUDTweak;
 import com.github.sachin.tweakin.customportals.CustomPortalTweak;
 import com.github.sachin.tweakin.fastleafdecay.FastLeafDecayTweak;
+import com.github.sachin.tweakin.hoeharvesting.HoeHarvestingTweak;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.lavabucketcan.LavaBucketTrashCan;
 import com.github.sachin.tweakin.netherportalcoords.NetherPortalCoordsTweak;
@@ -34,6 +35,7 @@ import com.github.sachin.tweakin.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -88,6 +90,13 @@ public class TweakManager {
             ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if(plugin.isFirstInstall){
+            sendConsoleMessage("&a-----------Tweakin------------");
+            sendConsoleMessage("&eThank you for installing &6Tweakin!!");
+            sendConsoleMessage("&eTweakin is installed for the first time on server..");
+            sendConsoleMessage("&n&eAll tweaks are disabled by default, they can be enabled in &n&6config.yml");
+            sendConsoleMessage("&a------------------------------");
         }
         this.messageManager = new Message(plugin);
         messageManager.reload();
@@ -151,9 +160,13 @@ public class TweakManager {
             else{
                 plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds and better-sign-edit...");
             }
-            tweakList.add(new BetterSignEditTweak(plugin));
+            // tweakList.add(new HoeHarvestingTweak(plugin));
         }
         return tweakList;
+    }
+
+    private void sendConsoleMessage(String message){
+        plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', message));
     }
 
     public Message getMessageManager() {
