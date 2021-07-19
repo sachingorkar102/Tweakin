@@ -4,6 +4,7 @@
 # Some common options are:
 
 # enabled: true # weather or not module should be enabled
+# enabled: true # weather or not module should be enabled
 # black-list-worlds: [world] # list of worlds where module will not function
 
 # Read the text above each module for more info that module like commands and permissions(if any)
@@ -23,14 +24,14 @@ ignored-sections: []
 # Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
 # Permission: tweakin.armorclick
 armor-right-click:
-  enabled: true
+  enabled: false
 
 # Shift+Left Clicking shulker box or ender-chest in air will show its contents
 # Permission: 
   # tweakin.shulkerboxclick: permission to allow opening of shulker box
   # tweakin.enderchestclick: permission to allow opening of enderchest
 left-click-shulker-box:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # if set to true players will able to open the enderchest just like shulker-box
   enderchest: true  
@@ -38,7 +39,7 @@ left-click-shulker-box:
 # Create nether portals with any shape,size and with any blocks, remember this only applies to nether portals
 # Permission: tweakin.customportal.use
 custom-portal:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # max radius of portal
   radius: 20
@@ -51,7 +52,7 @@ custom-portal:
 # The mob sound's pitch is based on the note block pitch.
 # only vanilla mob heads will work
 noteblock-mob-sounds:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # list of heads which will be ignored
   # DRAGON_WALL_HEAD,ZOMBIE_WALL_HEAD,WITHER_SKELETON_WALL_SKULL,SKELETON_WALL_SKULL
@@ -69,7 +70,7 @@ noteblock-mob-sounds:
   # tweakin.reacharound.highlight: permission to show highlight
   # tweakin.reacharound.togglecommand: permission to use /togglereacharound|/treacharound
 reach-around:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # if set to true reacharound will be enabled by default when player first joins the server
   enabled-on-first-join: true
@@ -87,7 +88,7 @@ reach-around:
 
 # Leaves decay much faster when no logs are nearby, or when the leaves are not player placed  
 fast-leaf-decay:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # maximum duration leaves will stay (in seconds)
   duration: 10
@@ -97,7 +98,7 @@ fast-leaf-decay:
   # Shift+right clicking any end of ladder will allow you to reach the another end, resulting in quick climb (may or may not work with anti cheats)
 # Permission: tweakin.betterladder.* tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
 better-ladder:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # Universal toggle for dropdown ladder feature
   dropdown: true
@@ -106,20 +107,20 @@ better-ladder:
 
 # Lapis placed in enchanting table will stay there
 lapis-in-table:
-  enabled: true 
+  enabled: false 
   black-list-worlds: []
 
 # All recipes will be unlocked when player joins server
 # Permission: tweakin.autorecipeunlock
 auto-recipe-unlock:
-  enabled: true
+  enabled: false
 
 # Helps to sync nether portals between overworld and nether
 # right clicking a nether portal block while holding compass will display the calculated coordinates in compass
 # these coordinates will direct where the other portal should be created in the opposite dimension.
 # Permission: tweakin.netherportalcoords
 nether-portal-coords:
-  enabled: true
+  enabled: false
   # pairs of valid overworld|nether
   world-pairs:
     world: world_nether
@@ -127,7 +128,7 @@ nether-portal-coords:
 # Does what it says, allows player to attack mobs through grass or any other passable block
 # Permission: tweakin.swingthroughgrass
 swing-through-grass:
-  enabled: true
+  enabled: false
 
 # displays coordinate hud,direction and ingame time at actionbar
 # Permission: 
@@ -135,7 +136,7 @@ swing-through-grass:
   # tweakin.coordniatehud.compassbypass: players having this permission do not require compass to be in inventory (have-compass option should be enabled)
 # Command: /togglehud,/thud
 coordinate-hud:
-  enabled: true
+  enabled: false
   # weather or not to enable hud when player first joins the server
   enable-on-first-join: true
   # if set to true the hud will only display if player has a compass in there inventory
@@ -147,7 +148,7 @@ coordinate-hud:
 # A baby animal that has been poisoned by this method will never grow into an adult.
 # Permission: tweakin.posionpotato.use
 poison-potato-usage:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # chance at which the baby will be poisoned bettween (0-1)
   chance: 0.1
@@ -159,13 +160,13 @@ poison-potato-usage:
 # When you do so, the vine will no longer be able to grow.
 # Permission: tweakin.burnvinetip.use
 burn-vine-tip:
-  enabled: true
+  enabled: false
   black-list-worlds: []
 
 # silence mobs using a name tag
 # Permission: tweakin.silencemobs.*, tweakin.silencemobs.silence, tweakin.silencemobs.unsilence
 silence-mobs:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # list of mobs that will not be affected by this tweak
   black-list-mobs:
@@ -193,7 +194,7 @@ silence-mobs:
 # Adds a wrench which allows to rotate any rotatable block listed in rotatable-materials.
 # Permission: tweakin.rotationwrench.use
 rotation-wrench:
-  enabled: true
+  enabled: false
   # weather or not item is craftable, if set to false recipes regarding this item will not register
   craftable: true
   # list of valid rotatable blocks
@@ -228,7 +229,7 @@ rotation-wrench:
   # tweakin.bottledcloud.pickup: provides permission to pickup cloud with glass bottle at given heights
   # tweakin.bottledcloud.use: provides permission to use the bottled cloud
 bottled-cloud:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # minimium height for glass bottle to pickup cloud
   minimum-height: 126
@@ -250,7 +251,7 @@ bottled-cloud:
 # Permission: 
   # tweakin.trowel.use: provides permission to use the trowel
 trowel:
-  enabled: true
+  enabled: false
   # weather or not item is craftable, if set to false recipes(from recipes.yml) regarding this item will not register 
   craftable: true
   # weather or not item should take damage on use, only use for damagable items like iron_hoe
@@ -269,7 +270,7 @@ trowel:
 
 # Creepers will no longer explode, instead they will turn into twinkling fireworks
 confetti-creepers:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # The chance that creeper will explode as confetti(0.0-1.0, 1 being 100%)
   chance: 0.1
@@ -281,7 +282,7 @@ confetti-creepers:
 # Shulker Boxes and items that are immune to fire (eg. Netherite) can not be destroyed this way.
 # Items can only be destroyed if the lava bucket is in player's inventory
 lava-bucket-trash-can:
-  enabled: true
+  enabled: false
   # item lore that will be shown when player fills up a lava bucket (keep empty to disable it)
   help-lore:
     - "&eRight Click a item onto bucket to destroy it."
@@ -320,7 +321,7 @@ slime-in-bucket:
 # this will also heal the dog betweed 1-3 hearts
 # Permission: tweakin.patdog,tweakin.patcat
 pat-dogs:
-  enabled: true
+  enabled: false
   # cooldown in ticks to pat a dog, set to 0 to disable it
   cooldown: 60
   # weather or not to heal the dog after patting
@@ -333,7 +334,7 @@ pat-dogs:
 # right clicking the bed with compass in main_hand will start pointing towards bed location
 # Permission: tweakin.compasstrack
 compass-work-everywhere:
-  enabled: true
+  enabled: false
   black-list-worlds: []
   # weather or not compass will work in nether
   nether: true
@@ -345,12 +346,12 @@ compass-work-everywhere:
 # Wither spawn,end portal create event and ender dragon death
 # only players within 40 block radius of the sound source can hear them, not sure why its not in vanilla already...
 broadcast-sound-nerf:
-  enabled: true
+  enabled: false
 
 # Requires ProtocolLib
 # Right clicking a sign now lets you edit it even after it's been placed.
 # Respects grief plugins
 # Permisssion: tweakin.bettersignedit.use
 better-sign-edit:
-  enabled: true
+  enabled: false
   black-list-worlds: []

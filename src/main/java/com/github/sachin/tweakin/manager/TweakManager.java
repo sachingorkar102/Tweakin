@@ -38,6 +38,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class TweakManager {
     private List<BaseTweak> tweakList = new ArrayList<>();
     private List<TweakItem> registeredItems = new ArrayList<>();
     private FileConfiguration recipeConfig;
+    
 
 
     public TweakManager(Tweakin plugin){
@@ -94,9 +96,20 @@ public class TweakManager {
         if(plugin.isFirstInstall){
             sendConsoleMessage("&a-----------Tweakin------------");
             sendConsoleMessage("&eThank you for installing &6Tweakin!!");
-            sendConsoleMessage("&eTweakin is installed for the first time on server..");
-            sendConsoleMessage("&n&eAll tweaks are disabled by default, they can be enabled in &n&6config.yml");
+            sendConsoleMessage("&eTweakin is installed on server for the first time..");
+            sendConsoleMessage("&e&lAll tweaks are disabled by default, they can be enabled in &6&lplugins/Tweakin/config.yml");
             sendConsoleMessage("&a------------------------------");
+            if(!unregister){
+                FirstInstallListener listener = new FirstInstallListener();
+                plugin.getServer().getPluginManager().registerEvents(listener, plugin);
+                Bukkit.getOnlinePlayers().forEach(p -> {
+                    if(p.isOp()){
+                        sendFirstInstallMessage(p);
+                        listener.flaggedPlayers.add(p.getUniqueId());
+                    }
+                });
+            }
+
         }
         this.messageManager = new Message(plugin);
         messageManager.reload();
@@ -169,6 +182,14 @@ public class TweakManager {
         plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', message));
     }
 
+    public void sendFirstInstallMessage(Player player){
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eThank you for installing &6Tweakin!!"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eTweakin is installed on server for the first time.."));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e&lAll tweaks are disabled by default, they can be enabled in &6&lplugins/Tweakin/config.yml"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a------------------------------"));
+    }
+
     public Message getMessageManager() {
         return messageManager;
     }
@@ -176,6 +197,8 @@ public class TweakManager {
     public List<TweakItem> getRegisteredItems() {
         return registeredItems;
     }
+
+
 
     public List<String> getRegisteredItemNames(){
         List<String> list = new ArrayList<>();
