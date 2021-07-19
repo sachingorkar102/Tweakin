@@ -12,7 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class NBTAPI {
 
-    private String version;
     private static NBTAPI instance;
     private NMSHelper NMSHelper;
 
@@ -20,9 +19,8 @@ public class NBTAPI {
         instance = this;
     }
 
-    public boolean loadVersions(@Nonnull JavaPlugin plugin){
+    public boolean loadVersions(@Nonnull JavaPlugin plugin,String version){
 
-        this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
         
         if(version.equals("v1_16_R3")){
             NMSHelper = new NBTItem_1_16_R3(null);
@@ -51,5 +49,5 @@ public class NBTAPI {
     public static NBTAPI getInstance() {
         return instance;
     }
-    
+
 }

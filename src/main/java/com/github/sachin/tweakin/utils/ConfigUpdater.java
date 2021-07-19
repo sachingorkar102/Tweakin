@@ -1,5 +1,6 @@
 package com.github.sachin.tweakin.utils;
 
+import org.apache.logging.log4j.core.layout.SyslogLayout;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -13,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.github.sachin.tweakin.Tweakin;
 
 /**
  * A class to update/add new sections/keys to your config while keeping your current values and keeping your comments
@@ -38,7 +41,7 @@ public class ConfigUpdater {
      * @param ignoredSections List of sections to ignore and copy from the current config
      * @throws IOException If an IOException occurs
      */
-    public static void update(Plugin plugin, String resourceName, File toUpdate, List<String> ignoredSections) throws IOException {
+    public static void update(Tweakin plugin, String resourceName, File toUpdate, List<String> ignoredSections) throws IOException {
         BufferedReader newReader = new BufferedReader(new InputStreamReader(plugin.getResource(resourceName), StandardCharsets.UTF_8));
         List<String> newLines = newReader.lines().collect(Collectors.toList());
         newReader.close();
@@ -61,12 +64,12 @@ public class ConfigUpdater {
 
         Yaml yaml = new Yaml();
         Map<String, String> comments = parseComments(newLines, ignoredSectionsArrayList, oldConfig, yaml);
-        write(newConfig, oldConfig, comments, ignoredSectionsArrayList, writer, yaml);
+        write(newConfig, oldConfig, comments, ignoredSectionsArrayList, writer, yaml,plugin);
     }
 
     //Write method doing the work.
     //It checks if key has a comment associated with it and writes comment then the key and value
-    private static void write(FileConfiguration newConfig, FileConfiguration oldConfig, Map<String, String> comments, List<String> ignoredSections, BufferedWriter writer, Yaml yaml) throws IOException {
+    private static void write(FileConfiguration newConfig, FileConfiguration oldConfig, Map<String, String> comments, List<String> ignoredSections, BufferedWriter writer, Yaml yaml,Tweakin plugin) throws IOException {
         
         outer: for (String key : newConfig.getKeys(true)) {
             String[] keys = key.split("\\.");
@@ -89,7 +92,7 @@ public class ConfigUpdater {
             }
             Object newObj = newConfig.get(key);
             Object oldObj = oldConfig.get(key);
-
+            
             if (oldObj instanceof ConfigurationSection && newObj instanceof ConfigurationSection) {
                 //write the old section
                 writeSection(writer, actualKey, prefixSpaces, (ConfigurationSection) oldObj);
@@ -97,7 +100,6 @@ public class ConfigUpdater {
                 //write the new section, old value is no more
                 writeSection(writer, actualKey, prefixSpaces, (ConfigurationSection) newObj);
             } else if (oldObj != null) {
-                //write the old object
                 write(oldObj, actualKey, prefixSpaces, yaml, writer);
             } else {
                 //write new object

@@ -31,6 +31,7 @@ import co.aikar.commands.PaperCommandManager;
 public final class Tweakin extends JavaPlugin {
 
     private static Tweakin plugin;
+    private String version;
     private PaperCommandManager commandManager;
     private TweakManager tweakManager;
     private NMSHelper nmsHelper;
@@ -44,8 +45,9 @@ public final class Tweakin extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         this.isEnabled = true;
+        this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
         NBTAPI nbtapi = new NBTAPI();
-        if(!nbtapi.loadVersions(this)){
+        if(!nbtapi.loadVersions(this,version)){
             getLogger().warning("Running incompataible version, stopping twekin");
             this.isEnabled = false;
             this.getServer().getPluginManager().disablePlugin(this);
@@ -81,6 +83,10 @@ public final class Tweakin extends JavaPlugin {
         if(tweak.registered){
             tweak.saveLapisData();
         }
+    }
+
+    public String getVersion() {
+        return version;
     }
 
     private void enabledBstats(){
@@ -131,4 +137,6 @@ public final class Tweakin extends JavaPlugin {
     public static NamespacedKey getKey(String key){
         return new NamespacedKey(plugin, key);
     }
+
+    
 }

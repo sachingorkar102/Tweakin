@@ -53,7 +53,9 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         super(plugin, "reach-around");
         this.command = new ToggleCommand(this);
         this.isSpartanEnabled = isPluginEnabled("Spartan");
-        this.spartanListener = new SpartanIntegration(this);
+        if(isSpartanEnabled){
+            this.spartanListener = new SpartanIntegration(this);
+        }
         
     }
 
@@ -98,7 +100,13 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     @Override
     public void reload() {
         super.reload();
-        this.color = getPlugin().getNmsHelper().getColor(getConfig().getString("color","255,255,255"), getConfig().getInt("transparency",100));
+        if(plugin.getVersion().equals("v1_17_R1")){
+            this.color = plugin.getNmsHelper().getColor("0,16,0", getConfig().getInt("transparency",100));
+            plugin.getLogger().info("Using 0,16,0 as color for reach-around, due to 1.17 green channel bug");
+        }
+        else{
+            this.color = getPlugin().getNmsHelper().getColor(getConfig().getString("color","255,255,255"), getConfig().getInt("transparency",100));
+        }
         this.blackListWorlds = getConfig().getStringList("black-list-worlds");
         
     }
