@@ -60,12 +60,16 @@ permissions:
     default: true
   tweakin.patdog:
     default: true
+  tweakin.patcat:
+    default: true  
   tweakin.compasstrack:
     default: true  
   tweakin.slimebucket.*:
     default: true
     children:
       tweakin.slimebucket.detect: true
-      tweakin.slimebucket.pickup: true  
+      tweakin.slimebucket.pickup: true
+  tweakin.bettersignedit.use:
+    default: true    
 
 

@@ -32,6 +32,7 @@ public final class Tweakin extends JavaPlugin {
     private TweakManager tweakManager;
     private NMSHelper nmsHelper;
     private boolean isEnabled;
+    public boolean isProtocolLibEnabled;
 
 
 
@@ -47,6 +48,7 @@ public final class Tweakin extends JavaPlugin {
             return;
 
         }
+        this.isProtocolLibEnabled = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
         this.nmsHelper = nbtapi.getNMSHelper();
         this.saveDefaultConfig();
         this.reloadConfig();

@@ -28,6 +28,7 @@ public abstract class TweakItem extends BaseTweak {
     protected ItemStack item;
     private Set<NamespacedKey> registeredRecipes = new HashSet<>();
     private FileConfiguration recipeConfig;
+    
 
     
 

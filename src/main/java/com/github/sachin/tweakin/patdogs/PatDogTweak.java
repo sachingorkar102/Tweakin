@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Cat;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
@@ -23,9 +24,10 @@ public class PatDogTweak extends BaseTweak implements Listener{
 
     @EventHandler
     public void onPat(PlayerInteractEntityEvent e){
-        if(!(e.getRightClicked() instanceof Wolf) || e.getHand() != EquipmentSlot.HAND) return;
+        if(e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
-        if(player.getInventory().getItemInMainHand().getType() == Material.AIR && player.isSneaking() && player.hasPermission("tweakin.patdog")){
+        if(player.getInventory().getItemInMainHand().getType() != Material.AIR || !player.isSneaking()) return;
+        if(e.getRightClicked() instanceof Wolf && player.hasPermission("tweakin.patdog")){
             Wolf wolf = (Wolf) e.getRightClicked();
             PatTime time = new PatTime(wolf);
             if(!time.canPet(getConfig().getLong("cooldown",20)) || !wolf.isSitting()) return;
@@ -36,6 +38,21 @@ public class PatDogTweak extends BaseTweak implements Listener{
             time.setPetTime();
             if(getConfig().getBoolean("heal") && wolf.getHealth() < wolf.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() ){
                 wolf.setHealth(wolf.getHealth()+Math.random());
+            }
+
+            e.setCancelled(true);
+        }
+        else if(e.getRightClicked() instanceof Cat && player.hasPermission("tweakin.patcat") && getConfig().getBoolean("pat-cats",false)){
+            Cat cat = (Cat) e.getRightClicked();
+            PatTime time = new PatTime(cat);
+            if(!time.canPet(getConfig().getLong("cooldown",20)) || !cat.isSitting()) return;
+            Location loc = cat.getLocation();
+            player.getWorld().spawnParticle(Particle.HEART, loc.add(0, 0.5, 0), 1, 0, 0, 0, 0.1);
+            player.getWorld().playSound(cat.getLocation(), Sound.ENTITY_CAT_PURREOW, 1F, 0.5F + (float) Math.random() * 0.5F);
+            player.swingMainHand();
+            time.setPetTime();
+            if(getConfig().getBoolean("heal") && cat.getHealth() < cat.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() ){
+                cat.setHealth(cat.getHealth()+Math.random());
             }
 
             e.setCancelled(true);

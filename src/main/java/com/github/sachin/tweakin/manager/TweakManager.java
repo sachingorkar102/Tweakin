@@ -7,6 +7,7 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
+import com.github.sachin.tweakin.bettersignedit.BetterSignEditTweak;
 import com.github.sachin.tweakin.bossspawnsounds.BroadCastSoundTweak;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.burnvinetip.BurnVineTipTweak;
@@ -143,13 +144,14 @@ public class TweakManager {
             // tweakList.add(new BetterElytraRocketTweak(plugin)); could not done
             tweakList.add(new PatDogTweak(plugin));
             tweakList.add(new CompassEveryWhereTweak(plugin));
-            if(plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib")){
+            if(plugin.isProtocolLibEnabled){
                 tweakList.add(new BroadCastSoundTweak(plugin));
+                tweakList.add(new BetterSignEditTweak(plugin));
             }
             else{
-                plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds...");
+                plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds and better-sign-edit...");
             }
-            
+            tweakList.add(new BetterSignEditTweak(plugin));
         }
         return tweakList;
     }

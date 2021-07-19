@@ -316,13 +316,15 @@ slime-in-bucket:
 
 # You can pat the dogs. Sneak-Right click them with an empty hand to perform this glorious act.
 # this will also heal the dog betweed 1-3 hearts
-# Permission: tweakin.patdog
+# Permission: tweakin.patdog,tweakin.patcat
 pat-dogs:
   enabled: true
   # cooldown in ticks to pat a dog, set to 0 to disable it
   cooldown: 60
   # weather or not to heal the dog after patting
   heal: true
+  # weather or not cats can be patted too.
+  pat-cats: true
 
 # compass can now work in nether and end too,
 # pointing towards the portal you entered from, this will only work if you have a compass in main_hand
@@ -342,3 +344,10 @@ compass-work-everywhere:
 # only players within 40 block radius of the sound source can hear them, not sure why its not in vanilla already...
 broadcast-sound-nerf:
   enabled: true
+
+# Right clicking a sign now lets you edit it even after it's been placed.
+# Respects grief plugins
+# Permisssion: tweakin.bettersignedit.use
+better-sign-edit:
+  enabled: true
+  black-list-worlds: []
