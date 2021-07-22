@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
+import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
 import com.github.sachin.tweakin.bettersignedit.BetterSignEditTweak;
 import com.github.sachin.tweakin.bossspawnsounds.BroadCastSoundTweak;
@@ -176,6 +177,7 @@ public class TweakManager {
             }
             tweakList.add(new HoeHarvestingTweak(plugin));
             tweakList.add(new VillagerFollowEmraldTweak(plugin));
+            tweakList.add(new AnimalFleeTweak(plugin));
         }
         return tweakList;
     }

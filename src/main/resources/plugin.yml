@@ -71,5 +71,7 @@ permissions:
       tweakin.slimebucket.pickup: true
   tweakin.bettersignedit.use:
     default: true    
+  tweakin.fleemobs.bypass:
+    default: op  
 
 

@@ -14,6 +14,7 @@ import com.github.sachin.tweakin.bstats.Metrics.AdvancedPie;
 import com.github.sachin.tweakin.bstats.Metrics.DrilldownPie;
 import com.github.sachin.tweakin.bstats.Metrics.MultiLineChart;
 import com.github.sachin.tweakin.bstats.Metrics.SimpleBarChart;
+import com.github.sachin.tweakin.bstats.Metrics.SimplePie;
 import com.github.sachin.tweakin.commands.CoreCommand;
 import com.github.sachin.tweakin.lapisintable.LapisData;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
@@ -98,12 +99,12 @@ public final class Tweakin extends JavaPlugin {
             Metrics metrics = new Metrics(this,11786);
             getLogger().info("Enabling bstats...");
             
-            metrics.addCustomChart(new SimpleBarChart("Enabled-Tweaks", new Callable<Map<String, Integer>>() {
+            metrics.addCustomChart(new AdvancedPie("Enabled-Tweaks", new Callable<Map<String, Integer>>() {
                 @Override
                 public Map<String, Integer> call() throws Exception {
                     Map<String, Integer> map = new HashMap<>();
                     for(BaseTweak tweak : getTweakManager().getTweakList()){
-                        if(tweak.registered){
+                        if(tweak.shouldEnable()){
                             map.put(tweak.getName(), 1);
                         }
                     }

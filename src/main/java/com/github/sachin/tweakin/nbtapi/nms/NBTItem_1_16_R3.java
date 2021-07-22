@@ -15,6 +15,7 @@ import org.bukkit.craftbukkit.v1_16_R3.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -167,25 +168,25 @@ public class NBTItem_1_16_R3 extends NMSHelper{
 
     public void spawnVillager(Villager villager){
         EntityVillager vil = (EntityVillager) ((CraftEntity)villager).getHandle();
-        vil.goalSelector.a(1,new FollowPathFinder(vil));
-    }
-
-    private class TweakinVillager extends EntityVillager{
-
-        public TweakinVillager(Location loc) {
-            super(EntityTypes.VILLAGER,((CraftWorld)loc.getWorld()).getHandle());
-            this.setPosition(loc.getX(), loc.getY(), loc.getZ());
-            initPathfinder();
-        }
-
-        @Override
-        protected void initPathfinder() {
-            super.initPathfinder();
-            
-            this.goalSelector.a(1,new FollowPathFinder(this));
-        }
+        vil.goalSelector.a(2,new FollowPathFinder(vil));
         
     }
+
+    @Override
+    public void avoidPlayer(Entity entity,Player player) {
+        
+        EntityAnimal animal = (EntityAnimal) ((CraftEntity)entity).getHandle();
+        List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
+        if(!list.isEmpty()){
+            for (EntityAnimal en : list) {
+                if(en.getBukkitEntity().getType() == entity.getType()){
+                    
+                    en.goalSelector.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
+                }
+            }
+        }
+    }
+
 
     private class FollowPathFinder extends PathfinderGoal{
 

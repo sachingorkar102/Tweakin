@@ -13,6 +13,7 @@ import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -27,7 +28,10 @@ import net.minecraft.world.EnumHand;
 import net.minecraft.world.EnumInteractionResult;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
+import net.minecraft.world.entity.ai.attributes.GenericAttributes;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalAvoidTarget;
+import net.minecraft.world.entity.animal.EntityAnimal;
 import net.minecraft.world.entity.npc.EntityVillager;
 import net.minecraft.world.item.context.BlockActionContext;
 import net.minecraft.world.level.World;
@@ -155,8 +159,23 @@ public class NBTItem_1_17_R1 extends NMSHelper{
     @Override
     public void spawnVillager(Villager villager) {
         EntityVillager vil = (EntityVillager) ((CraftEntity)villager).getHandle();
-        vil.bP.a(1, new FollowPathFinder(vil));
+        vil.bP.a(2, new FollowPathFinder(vil));
         
+    }
+
+    @Override
+    public void avoidPlayer(Entity entity,Player player) {
+        
+        EntityAnimal animal = (EntityAnimal) ((CraftEntity)entity).getHandle();
+        List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
+        if(!list.isEmpty()){
+            for (EntityAnimal en : list) {
+                if(en.getBukkitEntity().getType() == entity.getType()){
+                    
+                    en.bP.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.5D, 1.5D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
+                }
+            }
+        }
     }
 
     public void harvestBlock(Player player,Location location,ItemStack tool){
@@ -171,12 +190,6 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         Block nmsBlock = blockData.getBlock();
         nmsBlock.a(world, nmsPlayer, pos, blockData, world.getTileEntity(pos), nmsItem);
         world.a(pos,false);
-    }
-
-    @Override
-    public double getSpeed(Entity entity) {
-        // TODO Auto-generated method stub
-        return 0;
     }
 
 

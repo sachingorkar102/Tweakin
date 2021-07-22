@@ -9,7 +9,9 @@ import com.github.sachin.tweakin.Tweakin;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Vehicle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -99,7 +101,9 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
                 if(getConfig().getBoolean("show-speed",true)){
                     if(player.isInsideVehicle()){
-                        message = message + ChatColor.GOLD+"Speed: "+ChatColor.RESET+plugin.getNmsHelper().getSpeed(player.getVehicle());
+                        Vehicle vh = (Vehicle) player.getVehicle();
+                        
+                        message = message + ChatColor.GOLD+" Speed: "+ChatColor.RESET+Math.round(vh.getVelocity().length() * 100.0) / 100.0;
                     }
                 }
 

@@ -376,5 +376,13 @@ hoe-harvesting:
     - GRASS
     - TALL_GRASS
 
+# Holding an Emerald Block causes nearby villagers to follow the player, much like animals do for food items. 
 villager-follow-emerald:
-  enabled: true    
+  enabled: false
+  black-list-worlds: []
+
+# Animals will flee in groups on melee attacks, adding some stratagy to killing them 
+animal-flee:
+  enabled: true
+  black-list-worlds: []
+  fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
