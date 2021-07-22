@@ -141,6 +141,8 @@ coordinate-hud:
   enable-on-first-join: true
   # if set to true the hud will only display if player has a compass in there inventory
   have-compass: false
+  # will show a speed value too if player is on passenger like boat,minecart,horse etc.
+  show-speed: true
   # intervals in ticks at which hud will update
   interval-ticks: 2 
 
@@ -355,3 +357,24 @@ broadcast-sound-nerf:
 better-sign-edit:
   enabled: false
   black-list-worlds: []
+
+
+hoe-harvesting:
+  enabled: true 
+  black-list-worlds: []
+  # range at which area will be cleared. 
+  # eg, if range is set to 1, a 3x3 area will be cleared
+  # if set to 2, a 5x5 area will be cleared
+  range:
+    wooden: 1
+    stone: 1
+    iron: 1
+    diamond: 2
+    netherite: 2
+  # list of materials that can be harvested within range
+  harvestable-materials:
+    - GRASS
+    - TALL_GRASS
+
+villager-follow-emerald:
+  enabled: true    

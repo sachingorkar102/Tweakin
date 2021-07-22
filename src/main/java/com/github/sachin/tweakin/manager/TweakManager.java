@@ -33,6 +33,7 @@ import com.github.sachin.tweakin.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
+import com.github.sachin.tweakin.villagerfollowemerald.VillagerFollowEmraldTweak;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -173,7 +174,8 @@ public class TweakManager {
             else{
                 plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds and better-sign-edit...");
             }
-            // tweakList.add(new HoeHarvestingTweak(plugin));
+            tweakList.add(new HoeHarvestingTweak(plugin));
+            tweakList.add(new VillagerFollowEmraldTweak(plugin));
         }
         return tweakList;
     }

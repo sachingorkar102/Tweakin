@@ -10,8 +10,10 @@ import java.util.concurrent.Callable;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem.CloudEntity;
 import com.github.sachin.tweakin.bstats.Metrics;
+import com.github.sachin.tweakin.bstats.Metrics.AdvancedPie;
 import com.github.sachin.tweakin.bstats.Metrics.DrilldownPie;
 import com.github.sachin.tweakin.bstats.Metrics.MultiLineChart;
+import com.github.sachin.tweakin.bstats.Metrics.SimpleBarChart;
 import com.github.sachin.tweakin.commands.CoreCommand;
 import com.github.sachin.tweakin.lapisintable.LapisData;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
@@ -96,24 +98,24 @@ public final class Tweakin extends JavaPlugin {
             Metrics metrics = new Metrics(this,11786);
             getLogger().info("Enabling bstats...");
             
-            metrics.addCustomChart(new DrilldownPie("enabled_tweaks", ()->{
-                Map<String,Map<String,Integer>> map = new HashMap<>();
-                for(BaseTweak tweak : getTweakManager().getTweakList()){
-                    Map<String,Integer> entry = new HashMap<>();
-                    entry.put("tweak", 1);
-                    if(tweak.shouldEnable()){
-                        map.put(tweak.getName(), entry);
+            metrics.addCustomChart(new SimpleBarChart("Enabled-Tweaks", new Callable<Map<String, Integer>>() {
+                @Override
+                public Map<String, Integer> call() throws Exception {
+                    Map<String, Integer> map = new HashMap<>();
+                    for(BaseTweak tweak : getTweakManager().getTweakList()){
+                        if(tweak.registered){
+                            map.put(tweak.getName(), 1);
+                        }
                     }
-                    
+                    return map;
                 }
-                return map;
             }));
         }
     }
 
     public void addPlacedPlayer(Player player){
         placedPlayers.add(player);
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,() -> {placedPlayers.remove(player);}, 5);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,() -> {placedPlayers.remove(player);}, 3);
     }
 
     public List<Player> getPlacedPlayers() {

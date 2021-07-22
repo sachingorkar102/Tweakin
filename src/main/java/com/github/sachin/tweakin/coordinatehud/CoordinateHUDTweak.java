@@ -88,15 +88,22 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                 long time = (player.getWorld().getTime() + 6000) % 24000;
                 long hours = time / 1000;
                 Long extra = (time - (hours * 1000)) * 60 / 1000;
+                String message = String.format(ChatColor.GOLD + "XYZ: "+ ChatColor.RESET + "%d %d %d  " + ChatColor.GOLD + "%2s      %02d:%02d",
+                player.getLocation().getBlockX(),
+                player.getLocation().getBlockY(),
+                player.getLocation().getBlockZ(),
+                getDirection(player.getLocation().getYaw()),
+                hours,
+                extra
+                );
 
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(String.format(ChatColor.GOLD + "XYZ: "+ ChatColor.RESET + "%d %d %d  " + ChatColor.GOLD + "%2s      %02d:%02d",
-                        player.getLocation().getBlockX(),
-                        player.getLocation().getBlockY(),
-                        player.getLocation().getBlockZ(),
-                        getDirection(player.getLocation().getYaw()),
-                        hours,
-                        extra
-                )));
+                if(getConfig().getBoolean("show-speed",true)){
+                    if(player.isInsideVehicle()){
+                        message = message + ChatColor.GOLD+"Speed: "+ChatColor.RESET+plugin.getNmsHelper().getSpeed(player.getVehicle());
+                    }
+                }
+
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
             });
         }
     }
