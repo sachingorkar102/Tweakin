@@ -1,5 +1,6 @@
 package com.github.sachin.tweakin.commands;
 
+import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
@@ -44,14 +45,34 @@ public class CoreCommand extends BaseCommand{
         sender.sendMessage(messageManager.getMessage("reloaded"));
     }
 
-    @Subcommand("configure")
-    public void onConfigureCommand(Player player){
-        if(!player.hasPermission("tweakin.command.configure")){
-            player.sendMessage(messageManager.getMessage("no-permission"));
+    @Subcommand("toggle")
+    @CommandCompletion("@tweaklist")
+    public void onConfigureCommand(CommandSender sender,String[] args){
+        if(!sender.hasPermission("tweakin.command.configure")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
-        PagedGuiHolder gui = new PagedGuiHolder(plugin, player);
-        gui.openPage();
+        if(args.length == 0 && sender instanceof Player){
+            PagedGuiHolder gui = new PagedGuiHolder(plugin,(Player) sender);
+            gui.openPage();
+        }
+        else if(args.length == 1){
+            BaseTweak t = plugin.getTweakManager().getTweakFromName(args[0]);
+            if(t != null){
+                if(t.shouldEnable()){
+                    plugin.getTweakManager().getGuiMap().put(t, false);
+                    sender.sendMessage(messageManager.getMessage("tweak-disabled").replace("%tweak%", args[0]));
+                }
+                else{
+                    plugin.getTweakManager().getGuiMap().put(t, true);
+                    sender.sendMessage(messageManager.getMessage("tweak-enabled").replace("%tweak%", args[0]));
+                }
+                plugin.getTweakManager().reload();
+            }
+            else{
+                sender.sendMessage(messageManager.getMessage("invalid-tweak"));
+            }
+        }
     }
 
     @Subcommand("give")

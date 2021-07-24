@@ -29,6 +29,7 @@ import com.github.sachin.tweakin.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
 import com.github.sachin.tweakin.rotationwrench.RotationWrenchItem;
+import com.github.sachin.tweakin.shearitemframe.ShearItemFrameTweak;
 import com.github.sachin.tweakin.silencemobs.SilenceMobsTweak;
 import com.github.sachin.tweakin.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
@@ -103,7 +104,7 @@ public class TweakManager {
             sendConsoleMessage("&a-----------Tweakin------------");
             sendConsoleMessage("&eThank you for installing &6Tweakin!!");
             sendConsoleMessage("&eTweakin is installed on server for the first time..");
-            sendConsoleMessage("&e&lAll tweaks are disabled by default, they can be enabled in &6&lplugins/Tweakin/config.yml");
+            sendConsoleMessage("&e&lAll tweaks are disabled by default, they can be enabled by using &6&l/tweakin toggle &e&lingame or &6&l/tweakin toggle [tweak-name] &e&lin console");
             sendConsoleMessage("&a------------------------------");
             if(!unregister){
                 FirstInstallListener listener = new FirstInstallListener();
@@ -183,6 +184,7 @@ public class TweakManager {
             tweakList.add(new HoeHarvestingTweak(plugin));
             tweakList.add(new VillagerFollowEmraldTweak(plugin));
             tweakList.add(new AnimalFleeTweak(plugin));
+            tweakList.add(new ShearItemFrameTweak(plugin));
         }
         return tweakList;
     }
@@ -195,7 +197,7 @@ public class TweakManager {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------"));
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eThank you for installing &6Tweakin!!"));
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eTweakin is installed on server for the first time.."));
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e&lAll tweaks are disabled by default, they can be enabled in &6&lplugins/Tweakin/config.yml"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e&lAll tweaks are disabled by default, they can be enabled by using &6&l/tweakin toggle &e&lingame or &6&l/tweakin toggle [tweak-name] &e&lin console"));
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a------------------------------"));
     }
 
@@ -209,6 +211,14 @@ public class TweakManager {
 
     public Map<BaseTweak, Boolean> getGuiMap() {
         return guiMap;
+    }
+
+    public List<String> getTweakNames(){
+        List<String> list = new ArrayList<>();
+        for(BaseTweak t : getTweakList()){
+            list.add(t.getName());
+        }
+        return list;
     }
 
 

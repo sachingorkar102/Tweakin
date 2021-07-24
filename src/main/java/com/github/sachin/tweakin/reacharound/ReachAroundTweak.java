@@ -117,7 +117,9 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             currentTasks.values().forEach(t -> t.cancel());
             currentTasks.clear();
             Bukkit.getOnlinePlayers().forEach(p -> {
-                creatPlayerTask(p);
+                if( p.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
+                    creatPlayerTask(p);
+                }
             });
         }
     }

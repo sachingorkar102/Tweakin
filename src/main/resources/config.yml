@@ -3,7 +3,7 @@
 # changes can be reloaded with /tweakin reload command [Permission: tweakin.command.reload]
 # Some common options are:
 
-# enabled: true # weather or not module should be enabled
+# enabled: true # weather or not module should be enabled [Please use /tw toggle command instead of changing this value from here]
 # black-list-worlds: [world] # list of worlds where module will not function
 
 # Read the text above each module for more info that module like commands and permissions(if any)
@@ -357,9 +357,10 @@ better-sign-edit:
   enabled: false
   black-list-worlds: []
 
-
+# Breaking grass or crops with a hoe will break a 3x3 of them. A Diamond & Netherite Hoe will break a 5x5 instead.
+# If you put Fortune on the hoe, it'll also apply that effect to everything it breaks.
 hoe-harvesting:
-  enabled: true 
+  enabled: false
   black-list-worlds: []
   # range at which area will be cleared. 
   # eg, if range is set to 1, a 3x3 area will be cleared
@@ -382,6 +383,12 @@ villager-follow-emerald:
 
 # Animals will flee in groups on melee attacks, adding some stratagy to killing them 
 animal-flee:
-  enabled: true
+  enabled: false
   black-list-worlds: []
+  # list of animals that will flee on hit
   fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
+
+# Item frame containing item in them can be made invisible if right clicked with shears 
+shear-item-frame:
+  enabled: false
+  black-list-worlds: []  

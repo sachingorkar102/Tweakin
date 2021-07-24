@@ -19,6 +19,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import net.md_5.bungee.api.ChatColor;
 import net.minecraft.server.v1_16_R1.ItemBucket;
 
 public class PagedGuiHolder implements InventoryHolder{
@@ -50,7 +51,7 @@ public class PagedGuiHolder implements InventoryHolder{
     public ItemStack getModifiedDisplay(String display,ItemStack item){
         ItemStack cloned = item.clone();
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(display);
+        meta.setDisplayName(ChatColor.YELLOW+display);
         cloned.setItemMeta(meta);
         return cloned;
     }
@@ -58,7 +59,7 @@ public class PagedGuiHolder implements InventoryHolder{
     public BaseTweak getTweakName(ItemStack item){
         ItemMeta meta = item.getItemMeta();
         String name = meta.getDisplayName();
-        return plugin.getTweakManager().getTweakFromName(name);
+        return plugin.getTweakManager().getTweakFromName(name.replace(ChatColor.YELLOW.toString(), ""));
     }
 
 
@@ -89,21 +90,23 @@ public class PagedGuiHolder implements InventoryHolder{
         if(e.getCurrentItem() == null) return;
         handleMiscClicks(e);
         if(ItemBuilder.hasKey(e.getCurrentItem(), "enabled-button")){
-            e.setCurrentItem(getModifiedDisplay(e.getCurrentItem().getItemMeta().getDisplayName(), miscItems.DISABLED_BUTTON));
+            ItemStack newItem = getModifiedDisplay(e.getCurrentItem().getItemMeta().getDisplayName(), miscItems.DISABLED_BUTTON);
+            items.set(items.indexOf(e.getCurrentItem()), newItem);
+            e.setCurrentItem(newItem);
             BaseTweak t = getTweakName(e.getCurrentItem());
             if(t != null){
                 plugin.getTweakManager().getGuiMap().put(t, false);
             }
         }
         else if(ItemBuilder.hasKey(e.getCurrentItem(), "disabled-button")){
-            e.setCurrentItem(getModifiedDisplay(e.getCurrentItem().getItemMeta().getDisplayName(), miscItems.ENABLED_BUTTON));
+            ItemStack newItem = getModifiedDisplay(e.getCurrentItem().getItemMeta().getDisplayName(), miscItems.ENABLED_BUTTON);
+            items.set(items.indexOf(e.getCurrentItem()), newItem);
+            e.setCurrentItem(newItem);
             BaseTweak t = getTweakName(e.getCurrentItem());
             if(t != null){
                 plugin.getTweakManager().getGuiMap().put(t, true);
             }
         }
-        
-        
     }
 
     public void handleMiscClicks(InventoryClickEvent e){

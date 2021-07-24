@@ -62,6 +62,7 @@ public final class Tweakin extends JavaPlugin {
             return;
 
         }
+
         reloadMiscItems();
         this.getServer().getPluginManager().registerEvents(new GuiListener(plugin), plugin);
         this.isProtocolLibEnabled = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
@@ -73,6 +74,7 @@ public final class Tweakin extends JavaPlugin {
         tweakManager.load();
         ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
         commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
+        commandManager.getCommandCompletions().registerCompletion("tweaklist", c -> tweakManager.getTweakNames());
         commandManager.registerCommand(new CoreCommand(this));
         enabledBstats();
         getLogger().info("Tweakin loaded successfully");
