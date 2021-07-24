@@ -27,7 +27,7 @@ public class Message {
         }
         this.messages = YamlConfiguration.loadConfiguration(file); 
         try {
-            ConfigUpdater.update(plugin, "messages.yml", file, new ArrayList<>());
+            ConfigUpdater.update(plugin, "messages.yml", file, new ArrayList<>(),true);
         } catch (IOException e) {
             e.printStackTrace();
         }

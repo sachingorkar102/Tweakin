@@ -16,11 +16,13 @@ import com.github.sachin.tweakin.bstats.Metrics.MultiLineChart;
 import com.github.sachin.tweakin.bstats.Metrics.SimpleBarChart;
 import com.github.sachin.tweakin.bstats.Metrics.SimplePie;
 import com.github.sachin.tweakin.commands.CoreCommand;
+import com.github.sachin.tweakin.gui.GuiListener;
 import com.github.sachin.tweakin.lapisintable.LapisData;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.manager.TweakManager;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
+import com.github.sachin.tweakin.utils.MiscItems;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -41,6 +43,7 @@ public final class Tweakin extends JavaPlugin {
     private boolean isEnabled;
     public boolean isProtocolLibEnabled;
     public boolean isFirstInstall;
+    private MiscItems miscItems;
     private List<Player> placedPlayers = new ArrayList<>();
 
 
@@ -59,6 +62,8 @@ public final class Tweakin extends JavaPlugin {
             return;
 
         }
+        reloadMiscItems();
+        this.getServer().getPluginManager().registerEvents(new GuiListener(plugin), plugin);
         this.isProtocolLibEnabled = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
         this.nmsHelper = nbtapi.getNMSHelper();
         this.saveDefaultConfig();
@@ -71,6 +76,14 @@ public final class Tweakin extends JavaPlugin {
         commandManager.registerCommand(new CoreCommand(this));
         enabledBstats();
         getLogger().info("Tweakin loaded successfully");
+    }
+
+    public MiscItems getMiscItems() {
+        return miscItems;
+    }
+
+    public void reloadMiscItems(){
+        this.miscItems = new MiscItems(this);
     }
 
     @Override

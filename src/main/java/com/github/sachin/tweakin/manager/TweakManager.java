@@ -46,7 +46,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TweakManager {
 
@@ -54,6 +56,7 @@ public class TweakManager {
     private Message messageManager;
     private List<BaseTweak> tweakList = new ArrayList<>();
     private List<TweakItem> registeredItems = new ArrayList<>();
+    private Map<BaseTweak,Boolean> guiMap = new HashMap<>();
     private FileConfiguration recipeConfig;
     
 
@@ -80,21 +83,22 @@ public class TweakManager {
         int registered = 0;
         File configFile = new File(plugin.getDataFolder(),"config.yml");
         File recipeFile = new File(plugin.getDataFolder(),"recipes.yml");
+        plugin.reloadMiscItems();
         if(!recipeFile.exists()){
             plugin.saveResource("recipes.yml", false);
         }
-        plugin.reloadConfig();
         this.recipeConfig = YamlConfiguration.loadConfiguration(recipeFile);
         try {
-            ConfigUpdater.update(plugin, "recipes.yml", recipeFile, new ArrayList<>());
+            ConfigUpdater.update(plugin, "recipes.yml", recipeFile, new ArrayList<>(),unregister);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
         try {
-            ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>());
+            ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>(),unregister);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        plugin.reloadConfig();
         if(plugin.isFirstInstall){
             sendConsoleMessage("&a-----------Tweakin------------");
             sendConsoleMessage("&eThank you for installing &6Tweakin!!");
@@ -131,6 +135,7 @@ public class TweakManager {
                     }
                     registered++;
                 }
+                guiMap.put(t, t.shouldEnable());
             } catch (Exception e) {
                 plugin.getLogger().info("Error occured while registering "+t.getName()+" tweak..");
                 plugin.getLogger().info("Report this error on discord or at spigot page in discussion section.");
@@ -202,6 +207,10 @@ public class TweakManager {
         return registeredItems;
     }
 
+    public Map<BaseTweak, Boolean> getGuiMap() {
+        return guiMap;
+    }
+
 
 
     public List<String> getRegisteredItemNames(){
@@ -216,6 +225,15 @@ public class TweakManager {
         for (TweakItem tweakItem : registeredItems) {
             if(tweakItem.getName().equals(name)){
                 return tweakItem;
+            }
+        }
+        return null;
+    }
+
+    public BaseTweak getTweakFromName(String name){
+        for(BaseTweak tweak : getTweakList()){
+            if(tweak.getName().equals(name)){
+                return tweak;
             }
         }
         return null;

@@ -132,6 +132,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         
         if(result == EnumInteractionResult.CONSUME){
             player.swingMainHand();
+            System.out.println("hi");
             player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
             return true;
         }
@@ -180,7 +181,6 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         if(!list.isEmpty()){
             for (EntityAnimal en : list) {
                 if(en.getBukkitEntity().getType() == entity.getType()){
-                    
                     en.goalSelector.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
                 }
             }

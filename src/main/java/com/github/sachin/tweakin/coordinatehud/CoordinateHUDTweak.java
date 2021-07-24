@@ -1,12 +1,15 @@
 package com.github.sachin.tweakin.coordinatehud;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Horse;
@@ -27,6 +30,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     final List<Player> enabled = new ArrayList<>();
+    final Map<Vehicle,SpeedData> speedDataMap = new HashMap<>();
     final NamespacedKey key = new NamespacedKey(getPlugin(), "coordinatehud");
     final NamespacedKey firstKey = new NamespacedKey(getPlugin(),"coordinatehud-firstJoin");
     private BaseCommand command;
@@ -103,13 +107,24 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                     if(player.isInsideVehicle()){
                         Vehicle vh = (Vehicle) player.getVehicle();
                         
-                        message = message + ChatColor.GOLD+" Speed: "+ChatColor.RESET+Math.round(vh.getVelocity().length() * 100.0) / 100.0;
+                        message = message + ChatColor.GOLD+" Speed: "+ChatColor.RESET+Math.round(getSpeed(vh) * 100.0) / 100.0;
                     }
                 }
 
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
             });
         }
+    }
+
+    private double getSpeed(Vehicle vh){
+        SpeedData data = speedDataMap.get(vh);
+        speedDataMap.put(vh, new SpeedData(vh.getLocation()));
+        if(data == null) return 0;
+        long timeDifference = System.currentTimeMillis() - data.getTime();
+        double distance = data.getLocation().distance(vh.getLocation());
+        double speed = distance / timeDifference * 1000;
+        return speed;
+
     }
 
     /**
@@ -126,6 +141,25 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
         if (degrees <= 292.5) return "E";
         if (degrees <= 337.5) return "SE";
         return "S";
+    }
+
+
+    private class SpeedData {
+
+        private Location loc;
+        private final long time = System.currentTimeMillis();
+
+        public SpeedData(Location loc){
+            this.loc = loc.clone();
+        }
+
+        public long getTime() {
+            return time;
+        }
+
+        public Location getLocation() {
+            return loc;
+        }
     }
 }
 

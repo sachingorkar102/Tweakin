@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.commands;
 import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.gui.PagedGuiHolder;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -41,6 +42,16 @@ public class CoreCommand extends BaseCommand{
         }
         plugin.getTweakManager().reload();
         sender.sendMessage(messageManager.getMessage("reloaded"));
+    }
+
+    @Subcommand("configure")
+    public void onConfigureCommand(Player player){
+        if(!player.hasPermission("tweakin.command.configure")){
+            player.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
+        PagedGuiHolder gui = new PagedGuiHolder(plugin, player);
+        gui.openPage();
     }
 
     @Subcommand("give")

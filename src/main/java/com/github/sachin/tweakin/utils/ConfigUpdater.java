@@ -15,6 +15,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 
 /**
@@ -41,7 +42,7 @@ public class ConfigUpdater {
      * @param ignoredSections List of sections to ignore and copy from the current config
      * @throws IOException If an IOException occurs
      */
-    public static void update(Tweakin plugin, String resourceName, File toUpdate, List<String> ignoredSections) throws IOException {
+    public static void update(Tweakin plugin, String resourceName, File toUpdate, List<String> ignoredSections,boolean unregister) throws IOException {
         BufferedReader newReader = new BufferedReader(new InputStreamReader(plugin.getResource(resourceName), StandardCharsets.UTF_8));
         List<String> newLines = newReader.lines().collect(Collectors.toList());
         newReader.close();
@@ -64,12 +65,12 @@ public class ConfigUpdater {
 
         Yaml yaml = new Yaml();
         Map<String, String> comments = parseComments(newLines, ignoredSectionsArrayList, oldConfig, yaml);
-        write(newConfig, oldConfig, comments, ignoredSectionsArrayList, writer, yaml,plugin);
+        write(newConfig, oldConfig, comments, ignoredSectionsArrayList, writer, yaml,plugin,unregister);
     }
 
     //Write method doing the work.
     //It checks if key has a comment associated with it and writes comment then the key and value
-    private static void write(FileConfiguration newConfig, FileConfiguration oldConfig, Map<String, String> comments, List<String> ignoredSections, BufferedWriter writer, Yaml yaml,Tweakin plugin) throws IOException {
+    private static void write(FileConfiguration newConfig, FileConfiguration oldConfig, Map<String, String> comments, List<String> ignoredSections, BufferedWriter writer, Yaml yaml,Tweakin plugin,boolean unregister) throws IOException {
         
         outer: for (String key : newConfig.getKeys(true)) {
             String[] keys = key.split("\\.");
@@ -103,6 +104,12 @@ public class ConfigUpdater {
                 if(key.equals("first-install") && oldConfig.getBoolean("first-install",false)){
                     writer.write(prefixSpaces + actualKey + ": false\n");
                     plugin.isFirstInstall = true;
+                }
+                else if(key.endsWith(".enabled") && unregister){
+                    BaseTweak t = plugin.getTweakManager().getTweakFromName(key.replace(".enabled", ""));
+                    if(t != null){
+                        writer.write(prefixSpaces+actualKey+": "+plugin.getTweakManager().getGuiMap().getOrDefault(t, false)+"\n");
+                    }
                 }
                 else{
                     write(oldObj, actualKey, prefixSpaces, yaml, writer);

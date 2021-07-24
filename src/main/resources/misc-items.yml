@@ -1,0 +1,28 @@
+enabled-button:
+  id: GREEN_STAINED_GLASS_PANE
+  lore:
+  - "&aEnabled"
+
+disabled-button:
+  id: RED_STAINED_GLASS_PANE
+  lore:
+  - "&cDisabled"
+
+fillar-glass:
+  id: GRAY_STAINED_GLASS_PANE
+  display: " "  
+
+
+info-paper:
+  id: PAPER
+  display: "Info"
+  lore:
+  - "&6A gui to enable and disable tweaks"
+
+next-button:
+  id: ARROW
+  display: "Next Page"
+
+previous-button:
+  id: ARROW
+  display: "Previous Page"    
