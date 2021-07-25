@@ -66,11 +66,17 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
             
             if(downLadder == null) return;
             if(downLadder.getType() == Material.AIR){
-                ItemStack ladder = player.getInventory().getItemInMainHand();
-                boolean placed = getPlugin().getNmsHelper().placeItem(player, downLadder.getLocation(), ladder, e.getBlockFace());
-                if(placed && player.getGameMode() != GameMode.CREATIVE){
-                    ladder.setAmount(ladder.getAmount()-1);
+                boolean fakePlaced = plugin.getNmsHelper().placeItem(player, downLadder.getLocation(), new ItemStack(Material.DIRT), e.getBlockFace());
+                if(fakePlaced){
+                    downLadder.getLocation().getBlock().setType(Material.LADDER);
+                    downLadder.getLocation().getBlock().setBlockData(e.getClickedBlock().getBlockData());
+                    ItemStack ladder = player.getInventory().getItemInMainHand();
+
+                    if(player.getGameMode() != GameMode.CREATIVE){
+                        ladder.setAmount(ladder.getAmount()-1);
+                    }
                 }
+                // boolean placed = getPlugin().getNmsHelper().placeItem(player, downLadder.getLocation(), ladder, e.getBlockFace());
                 // downLadder.setType(Material.LADDER);
                 // downLadder.setBlockData(clickedLadder.getBlockData());
                 // if(player.getGameMode() == GameMode.SURVIVAL){
