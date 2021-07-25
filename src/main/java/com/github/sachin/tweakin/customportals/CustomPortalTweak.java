@@ -34,11 +34,9 @@ import org.bukkit.inventory.EquipmentSlot;
 // permission: tweakin.customportal.use
 public class CustomPortalTweak extends BaseTweak implements Listener{
 
-    private List<Biome> endBiomes = new ArrayList<>();
 
     public CustomPortalTweak(Tweakin plugin) {
         super(plugin, "custom-portal");
-        this.endBiomes = Arrays.asList(Biome.END_BARRENS,Biome.END_HIGHLANDS,Biome.END_MIDLANDS,Biome.THE_END,Biome.SMALL_END_ISLANDS);
     }
 
 
@@ -69,8 +67,8 @@ public class CustomPortalTweak extends BaseTweak implements Listener{
         if(e.getBlockFace() != BlockFace.UP) return;
         boolean facingEast = player.getFacing() == BlockFace.EAST || player.getFacing() == BlockFace.WEST;
         if(!player.hasPermission("tweakin.customportal.use")) return;
-        
-        List<Block> bs = getFrame(clickedBlock, clickedBlock, new ArrayList<>(),facingEast,0); 
+        Set<Block> bs = getValidPortal(clickedBlock, clickedBlock, facingEast ? Axis.Z : Axis.X , new HashSet<>(), true);
+        // List<Block> bs = getFrame(clickedBlock, clickedBlock, new ArrayList<>(),facingEast,0); 
         
         if(bs != null){
             e.setCancelled(true);
@@ -126,59 +124,59 @@ public class CustomPortalTweak extends BaseTweak implements Listener{
     }
 
 
-    private boolean hasFutureBlock(Block block,List<Block> orignalList,boolean facingEast){
-        List<BlockSides> sides = Arrays.asList(BlockSides.values());
-        // Collections.shuffle(sides);
-        for(BlockSides side: sides){
-            Block sideBlock = block.getLocation().add(facingEast ? 0 : side.getX(), side.getY(), facingEast ? side.getX() : 0).getBlock();
-            if(getValidPortalBlocks().contains(block.getType()) && !orignalList.contains(sideBlock)){
-                return true;
-            }
-        }
-        return false;
-    }
+    // private boolean hasFutureBlock(Block block,List<Block> orignalList,boolean facingEast){
+    //     List<BlockSides> sides = Arrays.asList(BlockSides.values());
+    //     // Collections.shuffle(sides);
+    //     for(BlockSides side: sides){
+    //         Block sideBlock = block.getLocation().add(facingEast ? 0 : side.getX(), side.getY(), facingEast ? side.getX() : 0).getBlock();
+    //         if(getValidPortalBlocks().contains(block.getType()) && !orignalList.contains(sideBlock)){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    private List<Block> getFrame(Block clickedBlock,Block starterBlock,List<Block> orignalList,boolean facingEast,int rCount){
-        if(rCount > 200){
-            return null;
-        }
-        List<Material> validBlocks = getValidPortalBlocks();
-        Block sideBlock = null;
-        List<BlockSides> sides = Arrays.asList(BlockSides.values());
-        // Collections.shuffle(sides);
-        for(BlockSides side: sides){
-            Block b = starterBlock.getLocation().add(facingEast ? 0 : side.getX(), side.getY(), facingEast ? side.getX() : 0).getBlock();
-            if(!validBlocks.contains(b.getType())) continue;
-            if(orignalList.contains(b)) continue;
-            if(hasFutureBlock(b, orignalList, facingEast)){
-                sideBlock = b;
-                break;
-            }
-        }
-        if(sideBlock != null){
-            if(sideBlock.getLocation().getBlockY()-clickedBlock.getLocation().getBlockY() > getConfig().getInt("radius",10)){
-                return null;
-            }
-            boolean equalX = facingEast ? sideBlock.getLocation().getBlockZ() == clickedBlock.getLocation().getBlockZ() : sideBlock.getLocation().getBlockX() == clickedBlock.getLocation().getBlockX();
-            if(equalX && sideBlock.getLocation().getBlockY() == clickedBlock.getLocation().getBlockY() && rCount>5){
-                orignalList.add(sideBlock);
-                return orignalList;
-            }
-            if(!orignalList.contains(sideBlock)){
-                rCount++;
-                orignalList.add(sideBlock);
-                return getFrame(clickedBlock, sideBlock, orignalList, facingEast, rCount);
-            }
+    // Legacy method
+    // private List<Block> getFrame(Block clickedBlock,Block starterBlock,List<Block> orignalList,boolean facingEast,int rCount){
+    //     if(rCount > 200){
+    //         return null;
+    //     }
+    //     List<Material> validBlocks = getValidPortalBlocks();
+    //     Block sideBlock = null;
+    //     List<BlockSides> sides = Arrays.asList(BlockSides.values());
+    //     // Collections.shuffle(sides);
+    //     for(BlockSides side: sides){
+    //         Block b = starterBlock.getLocation().add(facingEast ? 0 : side.getX(), side.getY(), facingEast ? side.getX() : 0).getBlock();
+    //         if(!validBlocks.contains(b.getType())) continue;
+    //         if(orignalList.contains(b)) continue;
+    //         if(hasFutureBlock(b, orignalList, facingEast)){
+    //             sideBlock = b;
+    //             break;
+    //         }
+    //     }
+    //     if(sideBlock != null){
+    //         if(sideBlock.getLocation().getBlockY()-clickedBlock.getLocation().getBlockY() > getConfig().getInt("radius",10)){
+    //             return null;
+    //         }
+    //         boolean equalX = facingEast ? sideBlock.getLocation().getBlockZ() == clickedBlock.getLocation().getBlockZ() : sideBlock.getLocation().getBlockX() == clickedBlock.getLocation().getBlockX();
+    //         if(equalX && sideBlock.getLocation().getBlockY() == clickedBlock.getLocation().getBlockY() && rCount>5){
+    //             orignalList.add(sideBlock);
+    //             return orignalList;
+    //         }
+    //         if(!orignalList.contains(sideBlock)){
+    //             rCount++;
+    //             orignalList.add(sideBlock);
+    //             return getFrame(clickedBlock, sideBlock, orignalList, facingEast, rCount);
+    //         }
             
         
-        }
-        return null;
-    }
+    //     }
+    //     return null;
+    // }
 
     public static List<Block> getNearbyBlocks(Location location, int radius,boolean facingEast) {
         List<Block> blocks = new ArrayList<Block>();
         int sx = location.getBlockX();
-        int sy = location.getBlockY();
         int sz =location.getBlockZ();
         for(int y = location.getBlockY() - radius; y <= location.getBlockY() + radius; y++) {
             // if(y<sy+1) continue;
@@ -200,6 +198,28 @@ public class CustomPortalTweak extends BaseTweak implements Listener{
             }
         }
         return blocks;
+    }
+
+    public Set<Block> getValidPortal(Block block, Block starting, Axis axis, Set<Block> alreadyFound, boolean isFirst) {
+        if(alreadyFound == null) alreadyFound = new HashSet<>();
+        List<Material> validPortalBlocks = getValidPortalBlocks();
+        if(block.getLocation().equals(starting.getLocation()) && !isFirst) return alreadyFound;
+        final Set<Block> checked = alreadyFound;
+        Block[] nearbyBlocks = null;
+        if(axis == Axis.X) {
+            nearbyBlocks = Arrays.stream(new Block[]{block.getLocation().add(1,0,0).getBlock(), block.getLocation().add(1,1,0).getBlock(), block.getLocation().add(1,-1,0).getBlock(), block.getLocation().add(0,1,0).getBlock(), block.getLocation().add(0,-1,0).getBlock(), block.getLocation().add(-1,0,0).getBlock(), block.getLocation().add(-1,1,0).getBlock(), block.getLocation().add(-1,-1,0).getBlock()}).filter(b -> !checked.contains(b)).toArray(Block[]::new);
+        } else if(axis == Axis.Z) {
+            nearbyBlocks = Arrays.stream(new Block[]{block.getLocation().add(0,0,1).getBlock(), block.getLocation().add(0,1,1).getBlock(), block.getLocation().add(0,-1,1).getBlock(), block.getLocation().add(0,1,0).getBlock(), block.getLocation().add(0,-1,0).getBlock(), block.getLocation().add(0,0,-1).getBlock(), block.getLocation().add(0,1,-1).getBlock(), block.getLocation().add(0,-1,-1).getBlock()}).filter(b -> !checked.contains(b)).toArray(Block[]::new);
+        }
+        if(axis != null){
+            for(Block nearbyBlock : nearbyBlocks) {
+                if(validPortalBlocks.contains(nearbyBlock.getType()) && !alreadyFound.contains(nearbyBlock)) {
+                    alreadyFound.add(nearbyBlock);
+                    return getValidPortal(nearbyBlock, starting, axis, alreadyFound,false);
+                }
+            }
+        }
+        return null;
     }
 
     
