@@ -141,7 +141,7 @@ coordinate-hud:
   # if set to true the hud will only display if player has a compass in there inventory
   have-compass: false
   # will show a speed value too if player is on passenger like boat,minecart,horse etc.
-  show-speed: true
+  show-speed: false
   # intervals in ticks at which hud will update
   interval-ticks: 2 
 
@@ -382,13 +382,16 @@ villager-follow-emerald:
   black-list-worlds: []
 
 # Animals will flee in groups on melee attacks, adding some stratagy to killing them 
+# Permission: 
+  # tweakin.fleemobs.bypass: mobs will not flee if player has this permission
 animal-flee:
   enabled: false
   black-list-worlds: []
   # list of animals that will flee on hit
   fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
 
-# Item frame containing item in them can be made invisible if right clicked with shears 
+# Item frame containing item in them can be made invisible if right clicked with shears
+# Permission: tweakin.shearitemframe.use
 shear-item-frame:
   enabled: false
   black-list-worlds: []  

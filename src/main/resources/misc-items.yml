@@ -1,10 +1,10 @@
 enabled-button:
-  id: GREEN_STAINED_GLASS_PANE
+  id: GREEN_WOOL
   lore:
   - "&aEnabled"
 
 disabled-button:
-  id: RED_STAINED_GLASS_PANE
+  id: RED_WOOL
   lore:
   - "&cDisabled"
 
@@ -15,9 +15,13 @@ fillar-glass:
 
 info-paper:
   id: PAPER
-  display: "Info"
+  display: "&eInfo"
   lore:
   - "&6A gui to enable and disable tweaks"
+  - "&6Close the gui to save changes"
+  - "&cto configure each tweak's option like black-list-worlds use config.yml"
+  - "&cdo not use &6config.yml &cto toggle tweaks, instead"
+  - "&cuse &e/tw toggle &ccommand ingame or &e/tw toggle [tweak-name] &cthrough console"
 
 next-button:
   id: ARROW

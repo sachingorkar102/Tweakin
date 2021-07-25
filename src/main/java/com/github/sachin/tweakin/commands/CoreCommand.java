@@ -48,7 +48,7 @@ public class CoreCommand extends BaseCommand{
     @Subcommand("toggle")
     @CommandCompletion("@tweaklist")
     public void onConfigureCommand(CommandSender sender,String[] args){
-        if(!sender.hasPermission("tweakin.command.configure")){
+        if(!sender.hasPermission("tweakin.command.toggle")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
