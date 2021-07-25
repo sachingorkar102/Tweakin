@@ -143,7 +143,18 @@ coordinate-hud:
   # will show a speed value too if player is on passenger like boat,minecart,horse etc.
   show-speed: false
   # intervals in ticks at which hud will update
-  interval-ticks: 2 
+  interval-ticks: 2
+  # the text that will be displayed on hud
+  text: "&eXYZ: &f%x%,%y%,%z%  &e%direction%     %time%"
+  # at which position the hud should display, valid vaules: ACTIONBAR,BOSSBAR
+  hud-type: ACTIONBAR
+  # Only works if hud-type is set to BOSSBAR
+  boss-bar:
+    # Valid colors: PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
+    color: YELLOW
+    # Valid styles: SOLID,SEGMENTED_6,SEGMENTED_10,SEGMENTED_12,SEGMENTED_20
+    style: SOLID
+
 
 # Feeding a baby animal a Poisonous Potato has a chance to poison it for a few seconds.
 # A baby animal that has been poisoned by this method will never grow into an adult.

@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.google.common.base.Enums;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Vehicle;
@@ -30,12 +36,14 @@ import net.md_5.bungee.api.chat.TextComponent;
 public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     final List<Player> enabled = new ArrayList<>();
+    final Map<UUID,BossBar> bars = new HashMap<>();
     final Map<Vehicle,SpeedData> speedDataMap = new HashMap<>();
     final NamespacedKey key = new NamespacedKey(getPlugin(), "coordinatehud");
     final NamespacedKey firstKey = new NamespacedKey(getPlugin(),"coordinatehud-firstJoin");
     private BaseCommand command;
     private HUDRunnable runnable;
     private Long intervalTicks;
+    public boolean isBossBar = false;
 
     public CoordinateHUDTweak(Tweakin plugin) {
         super(plugin, "coordinate-hud");
@@ -45,18 +53,49 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
     public void reload() {
         super.reload();
         this.intervalTicks = getConfig().getLong("interval-ticks",2L);
+        this.isBossBar = getConfig().getString("hud-type","ACTIONBAR").equals("BOSSBAR");
+
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
+        addPlayerToHud(player);
+    }
+    
+    public void addPlayerToHud(Player player){
         if(!player.getPersistentDataContainer().has(firstKey, PersistentDataType.INTEGER) && getConfig().getBoolean("enable-on-first-join",true)){
             enabled.add(player);
             player.getPersistentDataContainer().set(firstKey, PersistentDataType.INTEGER, 1);
             player.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
+            if(isBossBar){
+                createBossBar(player);
+            }
         }
         else if(player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
             enabled.add(player);
+            if(isBossBar){
+                createBossBar(player);
+            }
+    
+        }
+        
+    }
+
+    public void createBossBar(Player player){
+        BossBar bar = Bukkit.createBossBar("", Enums.getIfPresent(BarColor.class, getConfig().getString("boss-bar.color")).or(BarColor.YELLOW), Enums.getIfPresent(BarStyle.class, getConfig().getString("boss-bar.style")).or(BarStyle.SEGMENTED_6));
+        bar.addPlayer(player);
+        
+        bars.put(player.getUniqueId(), bar);
+        
+    }
+
+    public void removeBossBar(Player player){
+        if(bars.containsKey(player.getUniqueId())){
+            BossBar bar = bars.remove(player.getUniqueId());
+            
+            bar.removeAll();
+            
         }
     }
 
@@ -72,12 +111,24 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
         registerCommands(command);
         this.runnable = new HUDRunnable();
         runnable.runTaskTimer(getPlugin(), 1L, intervalTicks);
+        enabled.clear();
+        Bukkit.getOnlinePlayers().forEach(player -> addPlayerToHud(player));
     }
 
     @Override
     public void unregister() {
         super.unregister();
         unregisterCommands(command);
+        if(!bars.isEmpty()){
+            for(UUID id : bars.keySet()){
+                bars.get(id).removeAll();
+            }
+            bars.clear();
+        }
+        if(runnable != null){
+            runnable.cancel();
+            enabled.clear();
+        }
     }
     
     /**
@@ -94,14 +145,21 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                 long time = (player.getWorld().getTime() + 6000) % 24000;
                 long hours = time / 1000;
                 Long extra = (time - (hours * 1000)) * 60 / 1000;
-                String message = String.format(ChatColor.GOLD + "XYZ: "+ ChatColor.RESET + "%d %d %d  " + ChatColor.GOLD + "%2s      %02d:%02d",
-                player.getLocation().getBlockX(),
-                player.getLocation().getBlockY(),
-                player.getLocation().getBlockZ(),
-                getDirection(player.getLocation().getYaw()),
-                hours,
-                extra
-                );
+                // String message = String.format(ChatColor.GOLD + "XYZ: "+ ChatColor.RESET + "%d %d %d  " + ChatColor.GOLD + "%2s      %02d:%02d",
+                // player.getLocation().getBlockX(),
+                // player.getLocation().getBlockY(),
+                // player.getLocation().getBlockZ(),
+                // getDirection(player.getLocation().getYaw()),
+                // hours,
+                // extra
+                // );
+                String message = getConfig().getString("text").replace("%x%", String.valueOf(player.getLocation().getBlockX()))
+                .replace("%y%", String.valueOf(player.getLocation().getBlockY()))
+                .replace("%z%", String.valueOf(player.getLocation().getBlockZ()))
+                .replace("%direction%", getDirection(player.getLocation().getYaw()))
+                .replace("%time%", hours+":"+extra)
+                ;
+
 
                 if(getConfig().getBoolean("show-speed",true)){
                     if(player.isInsideVehicle()){
@@ -110,8 +168,15 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                         message = message + ChatColor.GOLD+" Speed: "+ChatColor.RESET+Math.round(getSpeed(vh) * 100.0) / 100.0;
                     }
                 }
-
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
+                message = ChatColor.translateAlternateColorCodes('&', message);
+                if(getConfig().getString("hud-type","ACTIONBAR").equals("BOSSBAR")){
+                    if(bars.containsKey(player.getUniqueId())){
+                        bars.get(player.getUniqueId()).setTitle(message);
+                    }
+                }
+                else{
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
+                }
             });
         }
     }
