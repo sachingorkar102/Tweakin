@@ -120,7 +120,7 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.16.5.jar</systemPath>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>Spigot-1.16.1</groupId>
             <artifactId>spigot</artifactId>
             <version>1.16.1</version>
@@ -133,7 +133,7 @@
             <version>1.16.3</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.16.3.jar</systemPath>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>Spigot-1.17</groupId>
             <artifactId>spigot</artifactId>
