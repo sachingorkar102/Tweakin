@@ -25,15 +25,6 @@ import org.bukkit.inventory.EquipmentSlot;
 
 
 // permission: tweakin.customportal.use
-public class CustomPortalTweak extends BaseTweak implements Listener {
-    private final Tweakin plugin;
-    private final List<Biome> endBiomes;
-
-    public CustomPortalTweak(Tweakin plugin) {
-        super(plugin, "custom-portal");
-        this.plugin = plugin;
-        this.endBiomes = Arrays.asList(Biome.END_BARRENS,Biome.END_HIGHLANDS,Biome.END_MIDLANDS,Biome.THE_END,Biome.SMALL_END_ISLANDS);
-    }
 
     // A little helper class which contains info about portal boundaries and does all the work to check if we exceed these.
     private class PortalBounds {
@@ -115,63 +106,17 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
         Player player = e.getPlayer();
         if(player.getWorld().getEnvironment() == Environment.THE_END) return;
         if(!player.hasPermission("tweakin.customportal.use")) return;
-        Block clickedBlock = e.getClickedBlock();
-        List<Material> validPortalMaterials = getValidPortalMaterials();
-        if(!validPortalMaterials.contains(e.getClickedBlock().getType())) return;
-        if(clickedBlock.getRelative(e.getBlockFace()).getType() != Material.AIR) return;
 
         boolean facingEast = player.getFacing() == BlockFace.EAST || player.getFacing() == BlockFace.WEST;
 
         Set<Block> checked = new HashSet<>();
         BlockFace[] faces = getRelativeBlockFaces(facingEast);
 
-        Block block = clickedBlock.getRelative(e.getBlockFace());
-        PortalBounds bounds = new PortalBounds(block.getLocation(), facingEast);
-
-        if (checkBlock(block, validPortalMaterials, checked, faces, bounds)) {
-            if (getConfig().getBoolean("debug", true))
-                plugin.getLogger().info("Check completed! Found " + checked.size() + " valid portal blocks!");
-            e.setCancelled(true);
-            buildPortal(checked, facingEast);
-            return;
-        }
-
-        if (getConfig().getBoolean("debug", true))
-            plugin.getLogger().info("Check failed in default orientation with "
-                    + checked.size()
-                    + " blocks found, let's try another direction...");
-        facingEast = !facingEast;
-        bounds = new PortalBounds(block.getLocation(), facingEast);
-        faces = getRelativeBlockFaces(facingEast);
-        checked.clear();
-        if (checkBlock(block, validPortalMaterials, checked, faces, bounds)) {
-            if (getConfig().getBoolean("debug", true))
-                plugin.getLogger().info("Check completed! Found " + checked.size() + " valid portal blocks!");
-            e.setCancelled(true);
-            buildPortal(checked, facingEast);
-            return;
         }
         if (getConfig().getBoolean("debug", true))
             plugin.getLogger().info("Portal creation failed after checking " + checked.size() + " blocks.");
     }
 
-    private boolean checkBlock(Block block, List<Material> validPortalMaterials, Set<Block> checked, BlockFace[] faces, PortalBounds bounds) {
-        if (validPortalMaterials.contains(block.getType()) || checked.contains(block))
-            return true;
-        if (block.getType() != Material.AIR && block.getType() != Material.FIRE)
-            return false;
-        checked.add(block);
-        if (bounds.updateBounds(block.getLocation()))
-            if (!bounds.withinBounds())
-                return false;
-        if (!checkBlock(block.getRelative(faces[2]), validPortalMaterials, checked, faces, bounds) ||
-                !checkBlock(block.getRelative(faces[1]), validPortalMaterials, checked, faces, bounds) ||
-                !checkBlock(block.getRelative(faces[3]), validPortalMaterials, checked, faces, bounds) ||
-                !checkBlock(block.getRelative(faces[0]), validPortalMaterials, checked, faces, bounds)
-        )
-            return false;
-        return true;
-    }
 
     private void buildPortal(Set<Block> portalBlocks, boolean facingEast) {
         for (Block b : portalBlocks) {

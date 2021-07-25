@@ -230,6 +230,8 @@ public class ItemBuilder {
         return list;
     }
 
+
+
     public static void mutateItemMeta(SkullMeta meta, String b64) {
         Field metaProfileField ;
         Method metaSetProfileMethod;
@@ -257,4 +259,23 @@ public class ItemBuilder {
 		profile.getProperties().put("textures", new Property("textures", b64));
 		return profile;
 	}
+
+    public static ItemStack guiItemFromFile(ConfigurationSection section,String itemType){
+        ItemStack item = itemFromFile(section, null);
+        NBTItem nbti = new NBTItem(item);
+        nbti.setString("misc-item", itemType);
+        return nbti.getItem();
+
+    }
+
+    public static boolean hasKey(ItemStack item,String key){
+        NBTItem nbti = new NBTItem(item);
+        if(nbti.hasKey("misc-item")){
+            return nbti.getString("misc-item").equals(key);
+        }
+
+        return false;
+    }
+
+    
 }

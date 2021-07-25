@@ -2,8 +2,10 @@ package com.github.sachin.tweakin.nbtapi.nms;
 
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class NMSHelper {
@@ -41,7 +43,7 @@ public abstract class NMSHelper {
 
     public abstract void harvestBlock(Player player,Location location,ItemStack tool);
 
-
-
+    public abstract void spawnVillager(Villager villager);
     
+    public abstract void avoidPlayer(Entity entity,Player player);
 }

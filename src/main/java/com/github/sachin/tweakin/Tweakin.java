@@ -10,14 +10,19 @@ import java.util.concurrent.Callable;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem.CloudEntity;
 import com.github.sachin.tweakin.bstats.Metrics;
+import com.github.sachin.tweakin.bstats.Metrics.AdvancedPie;
 import com.github.sachin.tweakin.bstats.Metrics.DrilldownPie;
 import com.github.sachin.tweakin.bstats.Metrics.MultiLineChart;
+import com.github.sachin.tweakin.bstats.Metrics.SimpleBarChart;
+import com.github.sachin.tweakin.bstats.Metrics.SimplePie;
 import com.github.sachin.tweakin.commands.CoreCommand;
+import com.github.sachin.tweakin.gui.GuiListener;
 import com.github.sachin.tweakin.lapisintable.LapisData;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.manager.TweakManager;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
+import com.github.sachin.tweakin.utils.MiscItems;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -38,6 +43,7 @@ public final class Tweakin extends JavaPlugin {
     private boolean isEnabled;
     public boolean isProtocolLibEnabled;
     public boolean isFirstInstall;
+    private MiscItems miscItems;
     private List<Player> placedPlayers = new ArrayList<>();
 
 
@@ -56,6 +62,9 @@ public final class Tweakin extends JavaPlugin {
             return;
 
         }
+
+        reloadMiscItems();
+        this.getServer().getPluginManager().registerEvents(new GuiListener(plugin), plugin);
         this.isProtocolLibEnabled = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
         this.nmsHelper = nbtapi.getNMSHelper();
         this.saveDefaultConfig();
@@ -65,9 +74,18 @@ public final class Tweakin extends JavaPlugin {
         tweakManager.load();
         ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
         commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
+        commandManager.getCommandCompletions().registerCompletion("tweaklist", c -> tweakManager.getTweakNames());
         commandManager.registerCommand(new CoreCommand(this));
         enabledBstats();
         getLogger().info("Tweakin loaded successfully");
+    }
+
+    public MiscItems getMiscItems() {
+        return miscItems;
+    }
+
+    public void reloadMiscItems(){
+        this.miscItems = new MiscItems(this);
     }
 
     @Override
@@ -96,24 +114,24 @@ public final class Tweakin extends JavaPlugin {
             Metrics metrics = new Metrics(this,11786);
             getLogger().info("Enabling bstats...");
             
-            metrics.addCustomChart(new DrilldownPie("enabled_tweaks", ()->{
-                Map<String,Map<String,Integer>> map = new HashMap<>();
-                for(BaseTweak tweak : getTweakManager().getTweakList()){
-                    Map<String,Integer> entry = new HashMap<>();
-                    entry.put("tweak", 1);
-                    if(tweak.shouldEnable()){
-                        map.put(tweak.getName(), entry);
+            metrics.addCustomChart(new AdvancedPie("Enabled-Tweaks", new Callable<Map<String, Integer>>() {
+                @Override
+                public Map<String, Integer> call() throws Exception {
+                    Map<String, Integer> map = new HashMap<>();
+                    for(BaseTweak tweak : getTweakManager().getTweakList()){
+                        if(tweak.shouldEnable()){
+                            map.put(tweak.getName(), 1);
+                        }
                     }
-                    
+                    return map;
                 }
-                return map;
             }));
         }
     }
 
     public void addPlacedPlayer(Player player){
         placedPlayers.add(player);
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,() -> {placedPlayers.remove(player);}, 5);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,() -> {placedPlayers.remove(player);}, 3);
     }
 
     public List<Player> getPlacedPlayers() {

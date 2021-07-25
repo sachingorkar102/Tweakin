@@ -17,3 +17,7 @@ invalid-item: "&cSpecify a valid item"
 gave-item: "&7Gave &6%item% &7to &6%player% &7successfully"
 
 cant-drop-box: "&cCant drop shulker box while sneaking."
+
+invalid-tweak: "&cPlease specify valid tweak name"
+tweak-enabled: "&6%tweak% &7enabled"
+tweak-disabled: "&6%tweak% &7disabled"

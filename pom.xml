@@ -6,7 +6,7 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>1.9</version>
+    <version>2.0</version>
     <packaging>jar</packaging>
 
     
@@ -67,7 +67,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                  <outputDirectory>/home/sachin/Desktop/Test-Server/plugins</outputDirectory>
+                </configuration>
+            </plugin>
         </plugins>
+
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -111,7 +120,7 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.16.5.jar</systemPath>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>Spigot-1.16.1</groupId>
             <artifactId>spigot</artifactId>
             <version>1.16.1</version>
@@ -124,7 +133,7 @@
             <version>1.16.3</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.16.3.jar</systemPath>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>Spigot-1.17</groupId>
             <artifactId>spigot</artifactId>

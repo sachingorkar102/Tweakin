@@ -1,26 +1,43 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
 
+import java.util.EnumSet;
+import java.util.List;
+
 import com.google.common.base.Enums;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 
 import net.minecraft.core.BlockPosition;
 import net.minecraft.core.EnumDirection;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.level.EntityPlayer;
-import net.minecraft.server.v1_16_R3.Block;
 import net.minecraft.util.ColorUtil;
 import net.minecraft.world.EnumHand;
 import net.minecraft.world.EnumInteractionResult;
+import net.minecraft.world.entity.EntityInsentient;
+import net.minecraft.world.entity.EntityLiving;
+import net.minecraft.world.entity.ai.attributes.GenericAttributes;
+import net.minecraft.world.entity.ai.goal.PathfinderGoal;
+import net.minecraft.world.entity.ai.goal.PathfinderGoalAvoidTarget;
+import net.minecraft.world.entity.animal.EntityAnimal;
+import net.minecraft.world.entity.npc.EntityVillager;
 import net.minecraft.world.item.context.BlockActionContext;
+import net.minecraft.world.level.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.IBlockData;
+// import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.MovingObjectPositionBlock;
 import net.minecraft.world.phys.Vec3D;
 
@@ -139,11 +156,41 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         
         
     }
-
-    public void harvestBlock(Player player,Location location,ItemStack tool){
+    @Override
+    public void spawnVillager(Villager villager) {
+        EntityVillager vil = (EntityVillager) ((CraftEntity)villager).getHandle();
+        vil.bP.a(2, new FollowPathFinder(vil));
         
     }
 
+    @Override
+    public void avoidPlayer(Entity entity,Player player) {
+        
+        EntityAnimal animal = (EntityAnimal) ((CraftEntity)entity).getHandle();
+        List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
+        if(!list.isEmpty()){
+            for (EntityAnimal en : list) {
+                if(en.getBukkitEntity().getType() == entity.getType()){
+                    
+                    en.bP.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.5D, 1.5D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
+                }
+            }
+        }
+    }
+
+    public void harvestBlock(Player player,Location location,ItemStack tool){
+        net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(tool);
+        EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
+        
+        BlockPosition pos = new BlockPosition(location.getX(),location.getY(),location.getZ());
+        
+        World world = ((CraftWorld)player.getWorld()).getHandle();
+        
+        IBlockData blockData = world.getType(pos);
+        Block nmsBlock = blockData.getBlock();
+        nmsBlock.a(world, nmsPlayer, pos, blockData, world.getTileEntity(pos), nmsItem);
+        world.a(pos,false);
+    }
 
 
     public int getColor(String str,int transparency){
@@ -156,6 +203,55 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         int green = Integer.parseInt(array[1]);
         int blue = Integer.parseInt(array[2]);
         return ColorUtil.a.a(transparency, red, green, blue);
+    }
+
+
+    private class FollowPathFinder extends PathfinderGoal{
+
+        private EntityInsentient a;
+        private EntityPlayer player;
+
+        public FollowPathFinder(EntityInsentient var0) {
+            this.a = var0;
+            a(EnumSet.of(Type.valueOf("MOVE"),Type.valueOf("LOOK")));
+        }
+
+        @Override
+        public boolean a() {
+            List<EntityLiving> list = a.getWorld().a(EntityLiving.class, a.getBoundingBox().g(10));
+            if(!list.isEmpty()){
+                for(EntityLiving e : list){
+                    if(e instanceof EntityPlayer){
+                        EntityPlayer target = (EntityPlayer) e;
+                        
+                        if(CraftItemStack.asBukkitCopy(target.getItemInMainHand()).getType() == Material.EMERALD_BLOCK){
+                            this.player = target;
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public void c() {
+            if(player != null){
+                a.getNavigation().a(player.locX(),player.locY(),player.locZ(),0.6);
+            }
+        }
+
+        
+        @Override
+        public boolean b() {
+            return !this.player.a(this.a,10);
+        }
+
+        @Override
+        public void d() {
+            this.player = null;
+        }
+
     }
 
 

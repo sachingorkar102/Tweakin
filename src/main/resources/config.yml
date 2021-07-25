@@ -3,8 +3,7 @@
 # changes can be reloaded with /tweakin reload command [Permission: tweakin.command.reload]
 # Some common options are:
 
-# enabled: true # weather or not module should be enabled
-# enabled: true # weather or not module should be enabled
+# enabled: true # weather or not module should be enabled [Please use /tw toggle command instead of changing this value from here]
 # black-list-worlds: [world] # list of worlds where module will not function
 
 # Read the text above each module for more info that module like commands and permissions(if any)
@@ -144,8 +143,21 @@ coordinate-hud:
   enable-on-first-join: true
   # if set to true the hud will only display if player has a compass in there inventory
   have-compass: false
+  # will show a speed value too if player is on passenger like boat,minecart,horse etc.
+  show-speed: false
   # intervals in ticks at which hud will update
-  interval-ticks: 2 
+  interval-ticks: 2
+  # the text that will be displayed on hud
+  text: "&eXYZ: &f%x%,%y%,%z%  &e%direction%     %time%"
+  # at which position the hud should display, valid vaules: ACTIONBAR,BOSSBAR
+  hud-type: ACTIONBAR
+  # Only works if hud-type is set to BOSSBAR
+  boss-bar:
+    # Valid colors: PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
+    color: YELLOW
+    # Valid styles: SOLID,SEGMENTED_6,SEGMENTED_10,SEGMENTED_12,SEGMENTED_20
+    style: SOLID
+
 
 # Feeding a baby animal a Poisonous Potato has a chance to poison it for a few seconds.
 # A baby animal that has been poisoned by this method will never grow into an adult.
@@ -358,3 +370,42 @@ broadcast-sound-nerf:
 better-sign-edit:
   enabled: false
   black-list-worlds: []
+
+# Breaking grass or crops with a hoe will break a 3x3 of them. A Diamond & Netherite Hoe will break a 5x5 instead.
+# If you put Fortune on the hoe, it'll also apply that effect to everything it breaks.
+hoe-harvesting:
+  enabled: false
+  black-list-worlds: []
+  # range at which area will be cleared. 
+  # eg, if range is set to 1, a 3x3 area will be cleared
+  # if set to 2, a 5x5 area will be cleared
+  range:
+    wooden: 1
+    stone: 1
+    iron: 1
+    diamond: 2
+    netherite: 2
+  # list of materials that can be harvested within range
+  harvestable-materials:
+    - GRASS
+    - TALL_GRASS
+
+# Holding an Emerald Block causes nearby villagers to follow the player, much like animals do for food items. 
+villager-follow-emerald:
+  enabled: false
+  black-list-worlds: []
+
+# Animals will flee in groups on melee attacks, adding some stratagy to killing them 
+# Permission: 
+  # tweakin.fleemobs.bypass: mobs will not flee if player has this permission
+animal-flee:
+  enabled: false
+  black-list-worlds: []
+  # list of animals that will flee on hit
+  fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
+
+# Item frame containing item in them can be made invisible if right clicked with shears
+# Permission: tweakin.shearitemframe.use
+shear-item-frame:
+  enabled: false
+  black-list-worlds: []  

@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.google.common.base.Predicates;
 
+import org.bukkit.FluidCollisionMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -46,9 +47,10 @@ public class SwingThroughGrassTweak extends BaseTweak implements Listener{
         Player player = e.getPlayer();
         if(!player.hasPermission("tweakin.swingthroughgrass")) return;
         Predicate<Entity> p = new EntityTest<>(player);
-        RayTraceResult raytrace = player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 3.5,0,p);
+        // RayTraceResult raytrace = player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 3.5,0,p);
+        RayTraceResult raytrace = player.getWorld().rayTrace(player.getEyeLocation(), player.getEyeLocation().getDirection(), 3.5, FluidCollisionMode.NEVER, true, 0, p);
         if(raytrace != null){
-            if(raytrace.getHitEntity() != null){
+            if(raytrace.getHitEntity() != null && raytrace.getHitBlock() == null){
                 
                 Entity hitEntity = raytrace.getHitEntity();
                 getPlugin().getNmsHelper().attack(player, hitEntity);

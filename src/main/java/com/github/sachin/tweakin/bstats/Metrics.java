@@ -109,6 +109,7 @@ public class Metrics {
   private void appendPlatformData(JsonObjectBuilder builder) {
     builder.appendField("playerAmount", getPlayerAmount());
     builder.appendField("onlineMode", Bukkit.getOnlineMode() ? 1 : 0);
+    builder.appendField("ProtocolLib-enabled", plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib") ? 1 : 0);
     builder.appendField("bukkitVersion", Bukkit.getVersion());
     builder.appendField("bukkitName", Bukkit.getName());
     builder.appendField("javaVersion", System.getProperty("java.version"));

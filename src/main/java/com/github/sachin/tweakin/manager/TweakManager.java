@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
+import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
 import com.github.sachin.tweakin.bettersignedit.BetterSignEditTweak;
 import com.github.sachin.tweakin.bossspawnsounds.BroadCastSoundTweak;
@@ -28,11 +29,13 @@ import com.github.sachin.tweakin.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
 import com.github.sachin.tweakin.rotationwrench.RotationWrenchItem;
+import com.github.sachin.tweakin.shearitemframe.ShearItemFrameTweak;
 import com.github.sachin.tweakin.silencemobs.SilenceMobsTweak;
 import com.github.sachin.tweakin.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
+import com.github.sachin.tweakin.villagerfollowemerald.VillagerFollowEmraldTweak;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -44,7 +47,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TweakManager {
 
@@ -52,6 +57,7 @@ public class TweakManager {
     private Message messageManager;
     private List<BaseTweak> tweakList = new ArrayList<>();
     private List<TweakItem> registeredItems = new ArrayList<>();
+    private Map<BaseTweak,Boolean> guiMap = new HashMap<>();
     private FileConfiguration recipeConfig;
     
 
@@ -78,26 +84,27 @@ public class TweakManager {
         int registered = 0;
         File configFile = new File(plugin.getDataFolder(),"config.yml");
         File recipeFile = new File(plugin.getDataFolder(),"recipes.yml");
+        plugin.reloadMiscItems();
         if(!recipeFile.exists()){
             plugin.saveResource("recipes.yml", false);
         }
-        plugin.reloadConfig();
         this.recipeConfig = YamlConfiguration.loadConfiguration(recipeFile);
         try {
-            ConfigUpdater.update(plugin, "recipes.yml", recipeFile, new ArrayList<>());
+            ConfigUpdater.update(plugin, "recipes.yml", recipeFile, new ArrayList<>(),unregister);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
         try {
-            ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>());
+            ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>(),unregister);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        plugin.reloadConfig();
         if(plugin.isFirstInstall){
             sendConsoleMessage("&a-----------Tweakin------------");
             sendConsoleMessage("&eThank you for installing &6Tweakin!!");
             sendConsoleMessage("&eTweakin is installed on server for the first time..");
-            sendConsoleMessage("&e&lAll tweaks are disabled by default, they can be enabled in &6&lplugins/Tweakin/config.yml");
+            sendConsoleMessage("&e&lAll tweaks are disabled by default, they can be enabled by using &6&l/tweakin toggle &e&lingame or &6&l/tweakin toggle [tweak-name] &e&lin console");
             sendConsoleMessage("&a------------------------------");
             if(!unregister){
                 FirstInstallListener listener = new FirstInstallListener();
@@ -129,6 +136,7 @@ public class TweakManager {
                     }
                     registered++;
                 }
+                guiMap.put(t, t.shouldEnable());
             } catch (Exception e) {
                 plugin.getLogger().info("Error occured while registering "+t.getName()+" tweak..");
                 plugin.getLogger().info("Report this error on discord or at spigot page in discussion section.");
@@ -173,7 +181,10 @@ public class TweakManager {
             else{
                 plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds and better-sign-edit...");
             }
-            // tweakList.add(new HoeHarvestingTweak(plugin));
+            tweakList.add(new HoeHarvestingTweak(plugin));
+            tweakList.add(new VillagerFollowEmraldTweak(plugin));
+            tweakList.add(new AnimalFleeTweak(plugin));
+            tweakList.add(new ShearItemFrameTweak(plugin));
         }
         return tweakList;
     }
@@ -186,7 +197,7 @@ public class TweakManager {
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------"));
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eThank you for installing &6Tweakin!!"));
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eTweakin is installed on server for the first time.."));
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e&lAll tweaks are disabled by default, they can be enabled in &6&lplugins/Tweakin/config.yml"));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e&lAll tweaks are disabled by default, they can be enabled by using &6&l/tweakin toggle &e&lingame or &6&l/tweakin toggle [tweak-name] &e&lin console"));
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a------------------------------"));
     }
 
@@ -196,6 +207,18 @@ public class TweakManager {
 
     public List<TweakItem> getRegisteredItems() {
         return registeredItems;
+    }
+
+    public Map<BaseTweak, Boolean> getGuiMap() {
+        return guiMap;
+    }
+
+    public List<String> getTweakNames(){
+        List<String> list = new ArrayList<>();
+        for(BaseTweak t : getTweakList()){
+            list.add(t.getName());
+        }
+        return list;
     }
 
 
@@ -212,6 +235,15 @@ public class TweakManager {
         for (TweakItem tweakItem : registeredItems) {
             if(tweakItem.getName().equals(name)){
                 return tweakItem;
+            }
+        }
+        return null;
+    }
+
+    public BaseTweak getTweakFromName(String name){
+        for(BaseTweak tweak : getTweakList()){
+            if(tweak.getName().equals(name)){
+                return tweak;
             }
         }
         return null;

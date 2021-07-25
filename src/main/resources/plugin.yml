@@ -10,6 +10,12 @@ description: A modular plugin with the objective of improving the vanilla gamepl
 
 
 permissions:
+  tweakin.command.*:
+    default: op
+    children:
+      tweakin.command.reload: true
+      tweakin.command.give: true
+      tweakin.command.toggle: true
   tweakin.armorclick:
     default: true
   tweakin.shulkerboxclick:
@@ -71,5 +77,8 @@ permissions:
       tweakin.slimebucket.pickup: true
   tweakin.bettersignedit.use:
     default: true    
-
+  tweakin.fleemobs.bypass:
+    default: op  
+  tweakin.shearitemframe.use:
+    default: true
 

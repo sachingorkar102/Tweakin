@@ -1,8 +1,10 @@
 package com.github.sachin.tweakin.commands;
 
+import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.gui.PagedGuiHolder;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -41,6 +43,36 @@ public class CoreCommand extends BaseCommand{
         }
         plugin.getTweakManager().reload();
         sender.sendMessage(messageManager.getMessage("reloaded"));
+    }
+
+    @Subcommand("toggle")
+    @CommandCompletion("@tweaklist")
+    public void onConfigureCommand(CommandSender sender,String[] args){
+        if(!sender.hasPermission("tweakin.command.toggle")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
+        if(args.length == 0 && sender instanceof Player){
+            PagedGuiHolder gui = new PagedGuiHolder(plugin,(Player) sender);
+            gui.openPage();
+        }
+        else if(args.length == 1){
+            BaseTweak t = plugin.getTweakManager().getTweakFromName(args[0]);
+            if(t != null){
+                if(t.shouldEnable()){
+                    plugin.getTweakManager().getGuiMap().put(t, false);
+                    sender.sendMessage(messageManager.getMessage("tweak-disabled").replace("%tweak%", args[0]));
+                }
+                else{
+                    plugin.getTweakManager().getGuiMap().put(t, true);
+                    sender.sendMessage(messageManager.getMessage("tweak-enabled").replace("%tweak%", args[0]));
+                }
+                plugin.getTweakManager().reload();
+            }
+            else{
+                sender.sendMessage(messageManager.getMessage("invalid-tweak"));
+            }
+        }
     }
 
     @Subcommand("give")
