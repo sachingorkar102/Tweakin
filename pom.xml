@@ -6,7 +6,7 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>2.0</version>
+    <version>2.2</version>
     <packaging>jar</packaging>
 
     
@@ -72,7 +72,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                  <outputDirectory>/home/sachin/Desktop/Test-Server/plugins</outputDirectory>
+                  <outputDirectory>/home/sachin/Desktop/Test-Server-1.16/plugins</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
@@ -141,7 +141,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/spigot-1.17.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>SpartanAPI</groupId>
             <artifactId>spartan</artifactId>

@@ -45,6 +45,7 @@ public final class Tweakin extends JavaPlugin {
     public boolean isFirstInstall;
     private MiscItems miscItems;
     private List<Player> placedPlayers = new ArrayList<>();
+    public String snowBallTweakName;
 
 
 
@@ -53,6 +54,13 @@ public final class Tweakin extends JavaPlugin {
         plugin = this;
         this.isEnabled = true;
         this.isFirstInstall = false;
+        if(Math.random() < 0.25){
+            this.snowBallTweakName = "snowball-knockback";
+        }
+        else{
+            this.snowBallTweakName = "meow-ball-knockback";
+        }
+        System.out.println(this.snowBallTweakName);
         this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
         NBTAPI nbtapi = new NBTAPI();
         if(!nbtapi.loadVersions(this,version)){

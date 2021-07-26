@@ -32,6 +32,7 @@ import com.github.sachin.tweakin.rotationwrench.RotationWrenchItem;
 import com.github.sachin.tweakin.shearitemframe.ShearItemFrameTweak;
 import com.github.sachin.tweakin.silencemobs.SilenceMobsTweak;
 import com.github.sachin.tweakin.slimebucket.SlimeInBucket;
+import com.github.sachin.tweakin.snowballknockback.SnowBallKnockBackTweak;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
@@ -185,6 +186,7 @@ public class TweakManager {
             tweakList.add(new VillagerFollowEmraldTweak(plugin));
             tweakList.add(new AnimalFleeTweak(plugin));
             tweakList.add(new ShearItemFrameTweak(plugin));
+            tweakList.add(new SnowBallKnockBackTweak(plugin));
         }
         return tweakList;
     }

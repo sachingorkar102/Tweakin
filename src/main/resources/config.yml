@@ -37,14 +37,12 @@ left-click-shulker-box:
 
 # Create nether portals with any shape,size and with any blocks, remember this only applies to nether portals
 # Permission: tweakin.customportal.use
-custom-portal:
+custom-shaped-portals:
   enabled: false
   black-list-worlds: []
   # Max height and width of a portal
   max-height: 40
   max-width: 20
-  # If debug is set to true, you'll see some info about portal creation process in console
-  debug: false
   # list of blocks as valid portal frame
   valid-portal-blocks:
     - OBSIDIAN
@@ -408,4 +406,13 @@ animal-flee:
 # Permission: tweakin.shearitemframe.use
 shear-item-frame:
   enabled: false
-  black-list-worlds: []  
+  black-list-worlds: []
+
+# Snowballs and eggs will apply more knockback to entity on hit and also deal damage
+snowball-knockback:
+  enabled: false
+  # multiplier for knockback
+  modifier: 0.8
+  black-list-worlds: []
+  # how much damage entity should take, set to 0 to disable it
+  damage: 0.5

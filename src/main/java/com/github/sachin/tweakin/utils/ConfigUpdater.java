@@ -93,8 +93,60 @@ public class ConfigUpdater {
             }
             Object newObj = newConfig.get(key);
             Object oldObj = oldConfig.get(key);
-            
-            if (oldObj instanceof ConfigurationSection && newObj instanceof ConfigurationSection) {
+            if(key.equals("snowball-knockback")){
+                writer.write(plugin.snowBallTweakName+":\n");
+            }
+            else if(key.equals("snowball-knockback.enabled")){
+                if(unregister){
+                    BaseTweak t = plugin.getTweakManager().getTweakFromName(plugin.snowBallTweakName);
+                    if(t != null){
+                        writer.write("  enabled: "+plugin.getTweakManager().getGuiMap().getOrDefault(t, false)+"\n");
+                    }
+                }
+                else{
+                    if(oldConfig.contains("snowball-knockback.enabled")){
+                        writer.write("  enabled: "+oldConfig.getBoolean("snowball-knockback.enabled")+"\n");
+                    }
+                    else if(oldConfig.contains("meow-ball-knockback.enabled")){
+                        writer.write("  enabled: "+oldConfig.getBoolean("meow-ball-knockback.enabled")+"\n");
+                    }
+                }
+            }
+            else if(key.equals("snowball-knockback.modifier")){
+                if(oldConfig.contains("snowball-knockback.modifier")){
+                    writer.write("  modifier: "+oldConfig.getDouble("snowball-knockback.modifier")+"\n");
+                }
+                else if(oldConfig.contains("meow-ball-knockback.enabled")){
+                    writer.write("  modifier: "+oldConfig.getDouble("meow-ball-knockback.modifier")+"\n");
+                }
+                
+                else {
+                    writer.write("  modifier: 0.5\n");
+                }
+            }
+            else if(key.equals("snowball-knockback.black-list-worlds")){
+                if(oldConfig.contains("snowball-knockback.black-list-worlds")){
+                    writer.write("  black-list-worlds: "+oldConfig.getStringList("snowball-knockback.black-list-worlds")+"\n");
+                }
+                else if(oldConfig.contains("meow-ball-knockback.black-list-worlds")){
+                    writer.write("  black-list-worlds: "+oldConfig.getStringList("meow-ball-knockback.black-list-worlds")+"\n");
+                }
+                else{
+                    writer.write("  black-list-worlds: []");
+                }
+            }
+            else if(key.equals("snowball-knockback.damage")){
+                if(oldConfig.contains("snowball-knockback.damage")){
+                    writer.write("  damage: "+oldConfig.getDouble("snowball-knockback.damage")+"\n");
+                }
+                else if(oldConfig.contains("meow-ball-knockback.damage")){
+                    writer.write("  damage: "+oldConfig.getDouble("meow-ball-knockback.damage")+"\n");
+                }
+                else{
+                    writer.write("  damage: 0.5");
+                }
+            }
+            else if (oldObj instanceof ConfigurationSection && newObj instanceof ConfigurationSection) {
                 //write the old section
                 writeSection(writer, actualKey, prefixSpaces, (ConfigurationSection) oldObj);
             } else if (newObj instanceof ConfigurationSection) {
