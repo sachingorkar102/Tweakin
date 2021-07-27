@@ -101,6 +101,7 @@ public class TweakManager {
             e.printStackTrace();
         }
         plugin.reloadConfig();
+        FirstInstallListener listener = new FirstInstallListener();
         if(plugin.isFirstInstall){
             sendConsoleMessage("&a-----------Tweakin------------");
             sendConsoleMessage("&eThank you for installing &6Tweakin!!");
@@ -108,7 +109,6 @@ public class TweakManager {
             sendConsoleMessage("&e&lAll tweaks are disabled by default, they can be enabled by using &6&l/tweakin toggle &e&lingame or &6&l/tweakin toggle [tweak-name] &e&lin console");
             sendConsoleMessage("&a------------------------------");
             if(!unregister){
-                FirstInstallListener listener = new FirstInstallListener();
                 plugin.getServer().getPluginManager().registerEvents(listener, plugin);
                 Bukkit.getOnlinePlayers().forEach(p -> {
                     if(p.isOp()){
@@ -143,6 +143,16 @@ public class TweakManager {
                 plugin.getLogger().info("Report this error on discord or at spigot page in discussion section.");
                 e.printStackTrace();
             }
+        }
+        if(registered == 0 && !plugin.isFirstInstall){
+            Bukkit.getOnlinePlayers().forEach(p -> {
+                if(p.isOp() && plugin.getConfig().getBoolean("op-notifications",true)){
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------"));
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eAll tweaks seems to be disabled, use &6/tw toggle &eor &6/tw &6toggle [tweak-name] "));
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eto enable some!!"));
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a------------------------------"));
+                }
+            });
         }
         plugin.getLogger().info("Registered "+registered+" tweaks successfully");
         Bukkit.getOnlinePlayers().forEach(p -> p.updateCommands());

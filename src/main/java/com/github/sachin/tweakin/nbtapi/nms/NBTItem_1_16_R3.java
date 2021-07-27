@@ -169,6 +169,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
 
     public void spawnVillager(Villager villager){
         EntityVillager vil = (EntityVillager) ((CraftEntity)villager).getHandle();
+        
         vil.goalSelector.a(2,new FollowPathFinder(vil));
         
     }

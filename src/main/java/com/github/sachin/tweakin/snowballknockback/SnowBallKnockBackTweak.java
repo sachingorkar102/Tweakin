@@ -16,7 +16,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class SnowBallKnockBackTweak extends BaseTweak implements Listener{
 
     public SnowBallKnockBackTweak(Tweakin plugin) {
-        super(plugin, plugin.snowBallTweakName);
+        super(plugin, "snowball-knockback");
     }
 
     @EventHandler
@@ -24,6 +24,7 @@ public class SnowBallKnockBackTweak extends BaseTweak implements Listener{
         if(e.getEntityType() == EntityType.SNOWBALL || e.getEntityType() == EntityType.EGG) {
             Entity hitEntity = e.getHitEntity();
             if(hitEntity != null){
+                if(getBlackListWorlds().contains(hitEntity.getWorld().getName())) return;
                 hitEntity.setVelocity(e.getEntity().getVelocity().multiply(getConfig().getDouble("modifier")));
 
                 if(hitEntity instanceof LivingEntity){

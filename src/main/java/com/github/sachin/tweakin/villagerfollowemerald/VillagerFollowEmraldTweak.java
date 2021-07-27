@@ -10,6 +10,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
 
@@ -26,16 +27,21 @@ public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
     
 
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler
     public void onChunkLoad(ChunkLoadEvent e){
         if(getBlackListWorlds().contains(e.getChunk().getWorld().getName())) return;
-        for(Entity en : e.getChunk().getEntities()){
-            if(en instanceof Villager){
-                Villager vil = (Villager) en;
-                if(vil.hasAI()){
-                    plugin.getNmsHelper().spawnVillager(vil);
+        new BukkitRunnable(){
+            public void run() {
+                for(Entity en : e.getChunk().getEntities()){
+                    if(en instanceof Villager){
+        
+                        Villager vil = (Villager) en;
+                        System.out.println(vil.getLocation());
+                        plugin.getNmsHelper().spawnVillager(vil);
+                    }
                 }
-            }
-        }
+            };
+        }.runTaskLater(plugin, 5L); 
+        // using a delay as it dosnt work at the time of event
     }
 }
