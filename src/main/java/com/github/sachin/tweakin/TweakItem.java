@@ -98,6 +98,11 @@ public abstract class TweakItem extends BaseTweak {
         return nbtItem.hasKey(getName());
     }
 
+    public boolean isSimilar(ItemStack item){
+        NBTItem nbtItem = new NBTItem(item);
+        return nbtItem.hasKey(getName());
+    }
+
     protected class UsedItem{
 
         private ItemStack item;

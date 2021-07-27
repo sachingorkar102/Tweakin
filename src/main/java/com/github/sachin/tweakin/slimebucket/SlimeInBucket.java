@@ -32,7 +32,6 @@ public class SlimeInBucket extends TweakItem implements Listener{
         this.item.setItemMeta(meta);
     }
 
-    
     @EventHandler
     public void onSlimePickUp(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof Slime)) return;
@@ -47,7 +46,8 @@ public class SlimeInBucket extends TweakItem implements Listener{
         if(item.getType() != Material.BUCKET) return;
         e.setCancelled(true);
         player.swingMainHand();
-        player.getInventory().setItemInMainHand(getItem());
+        item.setAmount(item.getAmount()-1);
+        player.getInventory().addItem(getItem());
         slime.remove();
     }
 
@@ -66,7 +66,8 @@ public class SlimeInBucket extends TweakItem implements Listener{
             relative.setType(Material.AIR);
             Slime slime = player.getWorld().spawn(relative.getLocation().add(0.5,0.5,0.5), Slime.class);
             slime.setSize(1);
-            player.getInventory().setItemInMainHand(new ItemStack(Material.BUCKET));
+            e.getItem().setAmount(e.getItem().getAmount()-1);
+            player.getInventory().addItem(new ItemStack(Material.BUCKET));
         }
     }
 

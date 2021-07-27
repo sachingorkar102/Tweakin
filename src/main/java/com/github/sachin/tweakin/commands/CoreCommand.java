@@ -24,7 +24,7 @@ import co.aikar.commands.annotation.Subcommand;
 @CommandAlias("tw|tweakin")
 public class CoreCommand extends BaseCommand{
  
-    
+
     @Dependency
     private Tweakin plugin;
 

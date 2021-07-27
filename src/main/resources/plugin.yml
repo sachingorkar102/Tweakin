@@ -16,6 +16,11 @@ permissions:
       tweakin.command.reload: true
       tweakin.command.give: true
       tweakin.command.toggle: true
+  tweakin.infinitybucket.*:
+    default: true
+    children:
+      tweakin.infinitybucket.craft: true
+      tweakin.infinitybucket.use: true    
   tweakin.armorclick:
     default: true
   tweakin.shulkerboxclick:

@@ -419,3 +419,17 @@ snowball-knockback:
   black-list-worlds: []
   # how much damage entity should take, set to 0 to disable it
   damage: 0.5
+
+# Water Buckets can now be given Infinity through an Anvil.
+# Permissions:
+  # tweakin.infinitybucket.craft: permission to combine infinity book and water bucket in anvil
+  # tweakin.infinitybucket.use: permission to use infinite water bucket
+infinity-water-bucket:
+  enabled: false
+  item:
+    id: WATER_BUCKET
+    display: "&6Infinte Water Bucket"
+    enchants:
+      - INFINITY 1
+    lore:
+      - "&aThis bucket will last forever..."

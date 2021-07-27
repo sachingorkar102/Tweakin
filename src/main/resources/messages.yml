@@ -21,3 +21,6 @@ cant-drop-box: "&cCant drop shulker box while sneaking."
 invalid-tweak: "&cPlease specify valid tweak name"
 tweak-enabled: "&6%tweak% &7enabled"
 tweak-disabled: "&6%tweak% &7disabled"
+
+cant-catch-fish: "&cCant pickup fish with infinity water bucket"
+cant-catch-axolotl: "&cCant pickup axolotl with infinity water bucket"

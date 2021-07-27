@@ -36,7 +36,6 @@ public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
                     if(en instanceof Villager){
         
                         Villager vil = (Villager) en;
-                        System.out.println(vil.getLocation());
                         plugin.getNmsHelper().spawnVillager(vil);
                     }
                 }

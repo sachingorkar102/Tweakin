@@ -19,6 +19,7 @@ import com.github.sachin.tweakin.coordinatehud.CoordinateHUDTweak;
 import com.github.sachin.tweakin.customportals.CustomPortalTweak;
 import com.github.sachin.tweakin.fastleafdecay.FastLeafDecayTweak;
 import com.github.sachin.tweakin.hoeharvesting.HoeHarvestingTweak;
+import com.github.sachin.tweakin.infinitybucket.InfinityWaterBucketTweak;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.lavabucketcan.LavaBucketTrashCan;
 import com.github.sachin.tweakin.netherportalcoords.NetherPortalCoordsTweak;
@@ -142,17 +143,22 @@ public class TweakManager {
                 plugin.getLogger().info("Error occured while registering "+t.getName()+" tweak..");
                 plugin.getLogger().info("Report this error on discord or at spigot page in discussion section.");
                 e.printStackTrace();
+                
             }
         }
         if(registered == 0 && !plugin.isFirstInstall){
-            Bukkit.getOnlinePlayers().forEach(p -> {
-                if(p.isOp() && plugin.getConfig().getBoolean("op-notifications",true)){
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------"));
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eAll tweaks seems to be disabled, use &6/tw toggle &eor &6/tw &6toggle [tweak-name] "));
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eto enable some!!"));
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a------------------------------"));
-                }
-            });
+            if(plugin.getConfig().getBoolean("op-notifications",true)){
+                Bukkit.getOnlinePlayers().forEach(p -> {
+                    if(p.isOp()){
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------"));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eAll tweaks seems to be disabled, use &6/tw toggle &eor &6/tw &6toggle [tweak-name]"));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eto enable some!!"));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cDo not use &6config.yml &cto toggle tweaks"));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a------------------------------"));
+                    }
+                });
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------\n&eAll tweaks seems to be disabled, use &6/tw toggle &eor &6/tw &6toggle [tweak-name]\n&eto enable some!!\n&cDo not use &6config.yml &cto toggle tweaks\n&a------------------------------"));
+            }
         }
         plugin.getLogger().info("Registered "+registered+" tweaks successfully");
         Bukkit.getOnlinePlayers().forEach(p -> p.updateCommands());
@@ -197,6 +203,7 @@ public class TweakManager {
             tweakList.add(new AnimalFleeTweak(plugin));
             tweakList.add(new ShearItemFrameTweak(plugin));
             tweakList.add(new SnowBallKnockBackTweak(plugin));
+            tweakList.add(new InfinityWaterBucketTweak(plugin));
         }
         return tweakList;
     }

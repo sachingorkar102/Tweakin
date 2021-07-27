@@ -15,6 +15,7 @@ import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.block.Banner;
 import org.bukkit.block.BlockState;
@@ -124,12 +125,17 @@ public class ItemBuilder {
         }
 
         // enchants
-        // if (section.contains("enchants")) {
-        //     ConfigurationSection enchants = section.getConfigurationSection("enchants");
-        //     for (String string : enchants.getKeys(false)) {
-        //         Enchantment.WATER_WORKER.getke
-        //     }
-        // }
+        if (section.contains("enchants")) {
+            for (String string : section.getStringList("enchants")) {
+                String[] l = string.split(" ");
+                if(l.length != 2) continue;
+                String name = l[0].toLowerCase();
+                int level = Integer.parseInt(l[1]);
+                Enchantment enchant = Enchantment.getByKey(NamespacedKey.minecraft(name));
+                if(enchant == null) continue;
+                meta.addEnchant(enchant, level, true);
+            }
+        }
 
         // item flags
         if(section.contains("flags")){

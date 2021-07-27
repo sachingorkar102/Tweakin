@@ -9,9 +9,11 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
+import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
+
 public class Test {
     public static void main(String[] args) {
-        System.out.println( Math.random() > 1);
-        System.out.println( !(Math.random() < 1));
+        System.out.println(Enchantment.getByKey(NamespacedKey.minecraft("mending")));
     }
 }
