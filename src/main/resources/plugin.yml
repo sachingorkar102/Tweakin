@@ -19,8 +19,8 @@ permissions:
   tweakin.infinitybucket.*:
     default: true
     children:
-      tweakin.infinitybucket.craft: true
-      tweakin.infinitybucket.use: true    
+    - tweakin.infinitybucket.craft
+    - tweakin.infinitybucket.use    
   tweakin.armorclick:
     default: true
   tweakin.shulkerboxclick:

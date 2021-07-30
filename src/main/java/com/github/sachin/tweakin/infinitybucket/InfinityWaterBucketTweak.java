@@ -5,11 +5,13 @@ import java.util.Map;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 
+import org.apache.logging.log4j.core.layout.SyslogLayout;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Fish;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
@@ -18,6 +20,7 @@ import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MainHand;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 // tweakin.infinitybucket.craft,tweakin.infinitybucket.use
@@ -27,7 +30,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
 		super(plugin, "infinity-water-bucket");
 	}
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onAnvilUse(PrepareAnvilEvent e){
         if(e.getView().getBottomInventory().getHolder() instanceof Player){
             Player player = (Player) e.getView().getBottomInventory().getHolder();
@@ -38,14 +41,12 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
             ItemStack slot2 = inv.getItem(1);
             if(slot1 == null || slot2 == null) return;
             if(slot1.getType() == Material.WATER_BUCKET && slot2.getType() == Material.ENCHANTED_BOOK){
-                Map<Enchantment,Integer> enchs = slot2.getEnchantments();
+                EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) slot2.getItemMeta();
+    
+                Map<Enchantment,Integer> enchs = enchMeta.getStoredEnchants();
                 if(enchs.containsKey(Enchantment.ARROW_INFINITE) && enchs.get(Enchantment.ARROW_INFINITE)>0){
                     ItemStack result = getItem().clone();
-                    if(!inv.getRenameText().equals("")){
-                        ItemMeta meta = result.getItemMeta();
-                        meta.setDisplayName(inv.getRenameText());
-                        result.setItemMeta(meta);
-                    }
+                    inv.setRepairCost(getConfig().getInt("cost"));
                     e.setResult(result);
                 }
             }

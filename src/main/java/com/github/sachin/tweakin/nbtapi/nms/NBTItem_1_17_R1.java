@@ -228,6 +228,10 @@ public class NBTItem_1_17_R1 extends NMSHelper{
                             this.player = target;
                             return true;
                         }
+                        else if(CraftItemStack.asBukkitCopy(target.getItemInOffHand()).getType() == Material.EMERALD_BLOCK){
+                            this.player = target;
+                            return true;
+                        }
                     }
                 }
             }

@@ -325,6 +325,8 @@ slime-in-bucket:
   model-undetected: 103
   # Custom Model data that will be used when the item is in a slime chunk
   model-detected: 104
+  # what interval in ticks the runnable should run
+  interval-ticks: 20
   item:
     id: SLIME_BALL
     display: "Slime In A Bucket"
@@ -426,6 +428,7 @@ snowball-knockback:
   # tweakin.infinitybucket.use: permission to use infinite water bucket
 infinity-water-bucket:
   enabled: false
+  cost: 2
   item:
     id: WATER_BUCKET
     display: "&6Infinte Water Bucket"

@@ -1,8 +1,16 @@
 package com.github.sachin.tweakin.slimebucket;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -13,16 +21,56 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 public class SlimeInBucket extends TweakItem implements Listener{
+
+    private SlimeRunnable runnable;
+    private final Set<Player> enabled = new HashSet<>();
 
     public SlimeInBucket(Tweakin plugin) {
         super(plugin, "slime-in-bucket");
     }
+
+    @Override
+    public void register() {
+        
+        super.register();
+        if(runnable != null){
+            runnable.cancel();
+        }
+        this.runnable = new SlimeRunnable();
+        runnable.runTaskTimer(plugin, 1, getConfig().getLong("interval-ticks",20));
+        Bukkit.getOnlinePlayers().forEach(p -> enabled.add(p));
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent e){
+        enabled.add(e.getPlayer());
+    }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent e){
+        enabled.remove(e.getPlayer());
+        
+    }
+
+    @Override
+    public void unregister() {
+        super.unregister();
+        if(runnable != null){
+            this.runnable.cancel();
+            enabled.clear();
+        }
+    }
+
 
     @Override
     public void buildItem() {
@@ -71,33 +119,36 @@ public class SlimeInBucket extends TweakItem implements Listener{
         }
     }
 
-    @EventHandler
-    public void playerMoveEvent(PlayerMoveEvent e){
-        Location l1 = e.getFrom();
-        Location l2 = e.getTo();
-        if(l1.getBlockX() != l2.getBlockX() || l1.getBlockZ() != l2.getBlockZ()){
-            Player player = e.getPlayer();
-            if(getBlackListWorlds().contains(player.getWorld().getName()) || !player.hasPermission("tweakin.slimebucket.detect")) return;
-            int model = 0;
-            if(l2.getChunk().isSlimeChunk()){
-                model = getConfig().getInt("model-detected",104);
-            }
-            else{
-                model = getConfig().getInt("model-undetected",103);
-            }
-            if(hasItem(player, EquipmentSlot.HAND)){
-                
-                ItemStack item = player.getInventory().getItemInMainHand();
-                ItemMeta meta = item.getItemMeta();
-                meta.setCustomModelData(model);
-                item.setItemMeta(meta);
-            }
-            if(hasItem(player, EquipmentSlot.OFF_HAND)){
-                ItemStack item = player.getInventory().getItemInOffHand();
-                ItemMeta meta = item.getItemMeta();
-                meta.setCustomModelData(model);
-                item.setItemMeta(meta);
-            }
+    private class SlimeRunnable extends BukkitRunnable{
+
+        @Override
+        public void run() {
+            if(enabled.isEmpty()) return;
+            enabled.forEach(player -> {
+                if(getBlackListWorlds().contains(player.getWorld().getName()) || !player.hasPermission("tweakin.slimebucket.detect")) return;
+                int model = 0;
+                Location loc = player.getLocation();
+                if(loc.getChunk().isSlimeChunk()){
+                    model = getConfig().getInt("model-detected",104);
+                }
+                else{
+                    model = getConfig().getInt("model-undetected",103);
+                }
+                if(hasItem(player, EquipmentSlot.HAND)){
+                    
+                    ItemStack item = player.getInventory().getItemInMainHand();
+                    ItemMeta meta = item.getItemMeta();
+                    meta.setCustomModelData(model);
+                    item.setItemMeta(meta);
+                }
+                if(hasItem(player, EquipmentSlot.OFF_HAND)){
+                    ItemStack item = player.getInventory().getItemInOffHand();
+                    ItemMeta meta = item.getItemMeta();
+                    meta.setCustomModelData(model);
+                    item.setItemMeta(meta);
+                }
+            });
         }
+        
     }
 }
