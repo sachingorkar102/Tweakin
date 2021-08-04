@@ -5,6 +5,9 @@ import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.gui.PagedGuiHolder;
+import com.github.sachin.tweakin.mobheads.Head;
+import com.google.common.base.Enums;
+import com.google.common.base.Optional;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -102,5 +105,45 @@ public class CoreCommand extends BaseCommand{
         player.getInventory().addItem(item);
         sender.sendMessage(messageManager.getMessage("gave-item").replace("%item%", args[1]).replace("%player%", player.getName()));
         
+    }
+
+    // /tw givehead [playername] [head-name] [amount]
+    @Subcommand("givehead")
+    @CommandCompletion("@players @tweakinheads @nothing")
+    public void onGiveHeadCommand(CommandSender sender,String[] args){
+        if(!sender.hasPermission("tweakin.command.givehead")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
+        if(!plugin.getTweakManager().getTweakFromName("mob-heads").registered){
+            sender.sendMessage(messageManager.getMessage("tweak-is-disabled"));
+            return;
+        }
+        if(args.length < 2) return;
+        Player player = Bukkit.getPlayer(args[0]);
+        Optional<Head> oHead = Enums.getIfPresent(Head.class, args[1]);
+        if(player == null){
+            sender.sendMessage(messageManager.getMessage("invalid-player"));
+            return;
+        }
+        if(args[1].equals("ALL")){
+            for(Head h : Head.values()){
+                player.getLocation().getWorld().dropItemNaturally(player.getLocation(), h.getSkull().clone());
+            }
+            return;
+        }
+        if(!oHead.isPresent()){
+            sender.sendMessage(messageManager.getMessage("invalid-item"));
+            return;
+        }
+        int amount = 1;
+        if(args.length == 3){
+            amount = Integer.parseInt(args[2]);
+        }
+        ItemStack item = oHead.get().getSkull().clone();
+        item.setAmount(amount);
+        player.getInventory().addItem(item);
+        sender.sendMessage(messageManager.getMessage("gave-head").replace("%head%", args[1]).replace("%player%", player.getName()));
+
     }
 }

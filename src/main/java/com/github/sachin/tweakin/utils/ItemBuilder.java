@@ -258,6 +258,7 @@ public class ItemBuilder {
 			}
 		}
 	}
+    
 
     private static GameProfile makeProfile(String b64) {
 		UUID id = new UUID(b64.substring(b64.length() - 20).hashCode(),b64.substring(b64.length() - 10).hashCode());

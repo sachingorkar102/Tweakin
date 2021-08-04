@@ -86,4 +86,6 @@ permissions:
     default: op  
   tweakin.shearitemframe.use:
     default: true
+  tweakin.mobheads.drops:
+    default: true  
 

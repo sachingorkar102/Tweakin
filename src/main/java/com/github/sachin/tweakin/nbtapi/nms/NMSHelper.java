@@ -1,5 +1,7 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
+import com.github.sachin.tweakin.mobheads.Head;
+
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Animals;
@@ -46,4 +48,8 @@ public abstract class NMSHelper {
     public abstract void spawnVillager(Villager villager);
     
     public abstract void avoidPlayer(Entity entity,Player player);
+
+
+    public abstract boolean matchAxoltlVariant(Entity entity,String color);
+    public abstract boolean isScreamingGoat(Entity entity);
 }

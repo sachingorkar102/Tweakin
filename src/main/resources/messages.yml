@@ -24,3 +24,6 @@ tweak-disabled: "&6%tweak% &7disabled"
 
 cant-catch-fish: "&cCant pickup fish with infinity water bucket"
 cant-catch-axolotl: "&cCant pickup axolotl with infinity water bucket"
+
+gave-head: "&7Gave &6%head% &7to &6%player% &7successfully"
+tweak-is-disabled: "&c%tweak% is disabled, can't execute the command"

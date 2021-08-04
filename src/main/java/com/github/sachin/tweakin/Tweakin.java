@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem.CloudEntity;
@@ -20,6 +21,7 @@ import com.github.sachin.tweakin.gui.GuiListener;
 import com.github.sachin.tweakin.lapisintable.LapisData;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.manager.TweakManager;
+import com.github.sachin.tweakin.mobheads.Head;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 import com.github.sachin.tweakin.utils.MiscItems;
@@ -56,7 +58,7 @@ public final class Tweakin extends JavaPlugin {
         this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
         NBTAPI nbtapi = new NBTAPI();
         if(!nbtapi.loadVersions(this,version)){
-            getLogger().warning("Running incompataible version, stopping twekin");
+            getLogger().warning("Running incompataible version, stopping tweakin");
             this.isEnabled = false;
             this.getServer().getPluginManager().disablePlugin(this);
             return;
@@ -75,6 +77,8 @@ public final class Tweakin extends JavaPlugin {
         ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
         commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
         commandManager.getCommandCompletions().registerCompletion("tweaklist", c -> tweakManager.getTweakNames());
+        List<String> headList = Arrays.asList(Head.values()).stream().map(h -> h.toString()).collect(Collectors.toList());
+        commandManager.getCommandCompletions().registerCompletion("tweakinheads",c -> headList);
         commandManager.registerCommand(new CoreCommand(this));
         enabledBstats();
         getLogger().info("Tweakin loaded successfully");

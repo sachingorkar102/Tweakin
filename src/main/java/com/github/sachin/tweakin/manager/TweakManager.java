@@ -22,6 +22,7 @@ import com.github.sachin.tweakin.hoeharvesting.HoeHarvestingTweak;
 import com.github.sachin.tweakin.infinitybucket.InfinityWaterBucketTweak;
 import com.github.sachin.tweakin.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.lavabucketcan.LavaBucketTrashCan;
+import com.github.sachin.tweakin.mobheads.MobHeadsTweak;
 import com.github.sachin.tweakin.netherportalcoords.NetherPortalCoordsTweak;
 import com.github.sachin.tweakin.noteblock.NoteBlockHeadsTweak;
 import com.github.sachin.tweakin.patdogs.PatDogTweak;
@@ -204,6 +205,7 @@ public class TweakManager {
             tweakList.add(new ShearItemFrameTweak(plugin));
             tweakList.add(new SnowBallKnockBackTweak(plugin));
             tweakList.add(new InfinityWaterBucketTweak(plugin));
+            tweakList.add(new MobHeadsTweak(plugin));
         }
         return tweakList;
     }

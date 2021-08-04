@@ -14,6 +14,19 @@ import org.bukkit.enchantments.Enchantment;
 
 public class Test {
     public static void main(String[] args) {
-        System.out.println(Enchantment.getByKey(NamespacedKey.minecraft("mending")));
+        Some a = Some.A1;
+        Some b = Some.A2;
+        
+    }
+
+
+    private enum Some{
+
+        A1,A2,A3;
+
+
+        private Some(){
+            System.out.println();
+        }
     }
 }

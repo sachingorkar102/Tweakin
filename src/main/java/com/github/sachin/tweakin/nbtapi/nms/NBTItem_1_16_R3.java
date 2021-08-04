@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
 
+import com.github.sachin.tweakin.mobheads.Head;
 import com.google.common.base.Enums;
 
 import org.bukkit.Location;
@@ -190,6 +191,16 @@ public class NBTItem_1_16_R3 extends NMSHelper{
                 }
             }
         }
+    }
+
+    @Override
+    public boolean matchAxoltlVariant(Entity entity,String color) {
+        return false;
+    }
+
+    @Override
+    public boolean isScreamingGoat(Entity entity) {
+        return false;
     }
 
 

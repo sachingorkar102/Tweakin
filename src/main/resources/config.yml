@@ -18,10 +18,6 @@ metrics: true
 # weather or not to show 
 op-notifications: true
 
-# list of sections that will be ignored while looking to update this config
-# Only use this if your specific config section changes are cleared after reload
-# Example: adding rotation-wrench.item to list will ignore that section completely while updating this config
-ignored-sections: []
 
 # Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
 # Permission: tweakin.armorclick
@@ -436,3 +432,13 @@ infinity-water-bucket:
       - INFINITY 1
     lore:
       - "&aThis bucket will last forever..."
+
+# mobs have a chance to drop there heads on death,
+# each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes to take place)
+# Permission:
+  # tweakin.mobheads.drops: players without this permission will not get mob head drops on killing them(only works if require-player-kill is set to true)
+mob-heads:
+  enabled: false
+  black-list-worlds: []
+  # if set to false mobs will not drop heads if they are not killed by player
+  require-player-kill: true  

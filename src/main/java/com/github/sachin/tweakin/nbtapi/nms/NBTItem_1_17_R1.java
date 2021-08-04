@@ -4,6 +4,7 @@ package com.github.sachin.tweakin.nbtapi.nms;
 import java.util.EnumSet;
 import java.util.List;
 
+import com.github.sachin.tweakin.mobheads.Head;
 import com.google.common.base.Enums;
 
 import org.bukkit.Location;
@@ -14,7 +15,9 @@ import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Animals;
+import org.bukkit.entity.Axolotl;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Goat;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
@@ -203,6 +206,17 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         int green = Integer.parseInt(array[1]);
         int blue = Integer.parseInt(array[2]);
         return ColorUtil.a.a(transparency, red, green, blue);
+    }
+
+    @Override
+    public boolean matchAxoltlVariant(Entity entity, String color) {
+        
+        return ((Axolotl)entity).getVariant().toString().equals(color);
+    }
+
+    @Override
+    public boolean isScreamingGoat(Entity entity) {
+        return ((Goat)entity).isScreaming();
     }
 
 
