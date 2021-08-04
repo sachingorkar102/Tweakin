@@ -1,8 +1,8 @@
 # list of heads for mob-heads tweak,
 # WARNING: RESTART THE SERVER AFTER MAKING CHANGES TO THIS FILE
 # WARNING: do not remove any mob section, set the chance and looting to 0 to disable the mob drop completely
-# get the textures from https://minecraft-heads.com (use the value part) 
 # texture option allows to change the head appearence, only change it if you have experience with it,
+# get the textures from https://minecraft-heads.com (use the value part) 
 # OPTIONALLY remove the "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUv" from the value part
 # chance option allows to change the probability of mob dropping its head (1 being 100%, 0.1 being 10%, 0.5 being 50%, 0 being 0% and so on)
 # looting option is the multiplier that will be added to chance option if the killer(player) has looting enchantment on there weapon, this also takes enchantment level into account

@@ -434,7 +434,7 @@ infinity-water-bucket:
       - "&aThis bucket will last forever..."
 
 # mobs have a chance to drop there heads on death,
-# each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes to take place)
+# each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes in heads.yml to take place)
 # Permission:
   # tweakin.mobheads.drops: players without this permission will not get mob head drops on killing them(only works if require-player-kill is set to true)
 mob-heads:

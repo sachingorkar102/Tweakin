@@ -114,15 +114,16 @@ public class CoreCommand extends BaseCommand{
             return;
         }
         StringBuilder builder = new StringBuilder();
-        builder.append(ChatColor.YELLOW+"--------==Tweak-List==--------");
-        builder.append(ChatColor.translateAlternateColorCodes('&', "&l&aEnabled Tweaks")+"\n");
+        builder.append("\n");
+        builder.append(ChatColor.YELLOW+"--------==Tweak-List==--------\n");
+        builder.append(ChatColor.translateAlternateColorCodes('&', "&a&lEnabled Tweaks")+"\n");
         for(BaseTweak t : plugin.getTweakManager().getTweakList()){
             if(t.registered){
                 builder.append(ChatColor.GREEN+t.getName()+ChatColor.RESET+", ");
             }
         }
         builder.append("\n");
-        builder.append(ChatColor.translateAlternateColorCodes('&', "&l&cDisabled Tweaks")+"\n");
+        builder.append(ChatColor.translateAlternateColorCodes('&', "&c&lDisabled Tweaks")+"\n");
         for(BaseTweak t : plugin.getTweakManager().getTweakList()){
             if(!t.registered){
                 builder.append(ChatColor.RED+t.getName()+ChatColor.RESET+", ");

@@ -221,7 +221,6 @@ public class NBTItem_1_16_R3 extends NMSHelper{
                 for(EntityLiving e : list){
                     if(e instanceof EntityPlayer){
                         EntityPlayer target = (EntityPlayer) e;
-                        
                         if(CraftItemStack.asBukkitCopy(target.getItemInMainHand()).getType() == Material.EMERALD_BLOCK){
                             this.player = target;
                             return true;
