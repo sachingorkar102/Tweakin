@@ -16,6 +16,8 @@ permissions:
       tweakin.command.reload: true
       tweakin.command.give: true
       tweakin.command.toggle: true
+      tweakin.command.givehead: true
+      tweakin.command.list: true
   tweakin.infinitybucket.*:
     default: true
     children:

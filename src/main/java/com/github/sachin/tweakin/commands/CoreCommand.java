@@ -107,6 +107,33 @@ public class CoreCommand extends BaseCommand{
         
     }
 
+    @Subcommand("tweak-list")
+    public void onList(CommandSender sender){
+        if(!sender.hasPermission("tweakin.command.list")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
+        StringBuilder builder = new StringBuilder();
+        builder.append(ChatColor.YELLOW+"--------==Tweak-List==--------");
+        builder.append(ChatColor.translateAlternateColorCodes('&', "&l&aEnabled Tweaks")+"\n");
+        for(BaseTweak t : plugin.getTweakManager().getTweakList()){
+            if(t.registered){
+                builder.append(ChatColor.GREEN+t.getName()+ChatColor.RESET+", ");
+            }
+        }
+        builder.append("\n");
+        builder.append(ChatColor.translateAlternateColorCodes('&', "&l&cDisabled Tweaks")+"\n");
+        for(BaseTweak t : plugin.getTweakManager().getTweakList()){
+            if(!t.registered){
+                builder.append(ChatColor.RED+t.getName()+ChatColor.RESET+", ");
+            }
+        }
+        builder.append("\n");
+        builder.append(ChatColor.YELLOW+"------------------------------");
+        sender.sendMessage(builder.toString());
+
+    }
+
     // /tw givehead [playername] [head-name] [amount]
     @Subcommand("givehead")
     @CommandCompletion("@players @tweakinheads @nothing")
@@ -116,7 +143,7 @@ public class CoreCommand extends BaseCommand{
             return;
         }
         if(!plugin.getTweakManager().getTweakFromName("mob-heads").registered){
-            sender.sendMessage(messageManager.getMessage("tweak-is-disabled"));
+            sender.sendMessage(messageManager.getMessage("tweak-is-disabled").replace("%tweak%", "mob-heads"));
             return;
         }
         if(args.length < 2) return;
