@@ -4,6 +4,7 @@ package com.github.sachin.tweakin.nbtapi.nms;
 import java.util.EnumSet;
 import java.util.List;
 
+import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
 import com.google.common.base.Enums;
 
@@ -21,6 +22,7 @@ import org.bukkit.entity.Goat;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 import net.minecraft.core.BlockPosition;
 import net.minecraft.core.EnumDirection;
@@ -175,7 +177,9 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
         if(!list.isEmpty()){
             for (EntityAnimal en : list) {
-                if(en.getBukkitEntity().getType() == entity.getType()){
+                Entity bEn = en.getBukkitEntity();
+                
+                if(bEn.getType() == entity.getType() && !bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER)){
                     
                     en.bP.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.5D, 1.5D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
                 }

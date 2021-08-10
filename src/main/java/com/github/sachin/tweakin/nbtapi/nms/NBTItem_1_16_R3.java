@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.function.Predicate;
 
+import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
 import com.google.common.base.Enums;
 
@@ -31,6 +32,7 @@ import org.bukkit.entity.Villager;
 import net.minecraft.server.v1_16_R3.*;
 
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.Vector;
 
 
@@ -188,7 +190,8 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
         if(!list.isEmpty()){
             for (EntityAnimal en : list) {
-                if(en.getBukkitEntity().getType() == entity.getType()){
+                Entity bEn = en.getBukkitEntity();
+                if(bEn.getType() == entity.getType() && !bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER)){
                     
                     en.goalSelector.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
                 }
