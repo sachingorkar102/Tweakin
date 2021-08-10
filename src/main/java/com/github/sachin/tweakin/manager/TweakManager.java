@@ -7,6 +7,7 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
+import com.github.sachin.tweakin.bettergrindstone.BetterGrindStoneTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
 import com.github.sachin.tweakin.bettersignedit.BetterSignEditTweak;
 import com.github.sachin.tweakin.bossspawnsounds.BroadCastSoundTweak;
@@ -206,6 +207,7 @@ public class TweakManager {
             tweakList.add(new SnowBallKnockBackTweak(plugin));
             tweakList.add(new InfinityWaterBucketTweak(plugin));
             tweakList.add(new MobHeadsTweak(plugin));
+            tweakList.add(new BetterGrindStoneTweak(plugin));
         }
         return tweakList;
     }

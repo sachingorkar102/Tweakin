@@ -90,4 +90,6 @@ permissions:
     default: true
   tweakin.mobheads.drops:
     default: true  
+  tweakin.bettergrindstone:
+    default: true  
 

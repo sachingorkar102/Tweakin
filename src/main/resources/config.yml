@@ -442,3 +442,10 @@ mob-heads:
   black-list-worlds: []
   # if set to false mobs will not drop heads if they are not killed by player
   require-player-kill: true  
+
+# You can put an enchanted item and a book into the grindstone, and you will get the enchantments onto the book,
+# destroying your enchanted item in the process
+# Permission:
+  # tweakin.bettergrindstone: allows to use the grindstone functionality
+better-grindstone:
+  enabled: false  

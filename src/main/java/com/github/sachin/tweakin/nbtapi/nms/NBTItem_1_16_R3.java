@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
+import java.util.function.Predicate;
 
 import com.github.sachin.tweakin.mobheads.Head;
 import com.google.common.base.Enums;
@@ -23,6 +24,7 @@ import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
@@ -187,6 +189,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         if(!list.isEmpty()){
             for (EntityAnimal en : list) {
                 if(en.getBukkitEntity().getType() == entity.getType()){
+                    
                     en.goalSelector.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
                 }
             }
@@ -202,6 +205,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
     public boolean isScreamingGoat(Entity entity) {
         return false;
     }
+
 
 
     private class FollowPathFinder extends PathfinderGoal{
