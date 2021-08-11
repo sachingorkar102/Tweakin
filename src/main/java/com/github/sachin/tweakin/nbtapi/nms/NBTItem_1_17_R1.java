@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.nbtapi.nms;
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
@@ -33,6 +34,7 @@ import net.minecraft.server.v1_16_R3.MaterialMapColor;
 import net.minecraft.util.ColorUtil;
 import net.minecraft.world.EnumHand;
 import net.minecraft.world.EnumInteractionResult;
+import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.attributes.GenericAttributes;
@@ -171,7 +173,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
     }
 
     @Override
-    public void avoidPlayer(Entity entity,Player player) {
+    public void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded) {
         
         EntityAnimal animal = (EntityAnimal) ((CraftEntity)entity).getHandle();
         List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
@@ -180,8 +182,8 @@ public class NBTItem_1_17_R1 extends NMSHelper{
                 Entity bEn = en.getBukkitEntity();
                 
                 if(bEn.getType() == entity.getType() && !bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER)){
-                    
-                    en.bP.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.5D, 1.5D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
+                    if(!bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && avoidBreeded) continue;
+                    en.bP.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId(),cooldown));
                 }
             }
         }
@@ -223,6 +225,28 @@ public class NBTItem_1_17_R1 extends NMSHelper{
     @Override
     public boolean isScreamingGoat(Entity entity) {
         return ((Goat)entity).isScreaming();
+    }
+
+    private class FleePathFinder<T extends EntityLiving> extends PathfinderGoalAvoidTarget<T>{
+        private int tick = 0;
+        private int cooldown;
+
+        public FleePathFinder(EntityCreature entity, Class<T> avoider, float maxDis, double walkSpeedModifier, double sprintSpeedModifier,
+                Predicate<EntityLiving> condition,int cooldown) {
+            super(entity, avoider, maxDis, walkSpeedModifier, sprintSpeedModifier, condition);
+            this.cooldown = cooldown*20;
+        }
+
+        @Override
+        public boolean a() {
+            tick++;
+            if(tick > cooldown){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
     }
 
 

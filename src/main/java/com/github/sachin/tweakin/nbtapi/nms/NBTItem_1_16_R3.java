@@ -184,16 +184,16 @@ public class NBTItem_1_16_R3 extends NMSHelper{
     }
 
     @Override
-    public void avoidPlayer(Entity entity,Player player) {
+    public void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded) {
         
         EntityAnimal animal = (EntityAnimal) ((CraftEntity)entity).getHandle();
         List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
         if(!list.isEmpty()){
             for (EntityAnimal en : list) {
                 Entity bEn = en.getBukkitEntity();
-                if(bEn.getType() == entity.getType() && !bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER)){
-                    
-                    en.goalSelector.a(1, new PathfinderGoalAvoidTarget<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId()));
+                if(bEn.getType() == entity.getType()){
+                    if(!bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && avoidBreeded) continue;
+                    en.goalSelector.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId(),cooldown));
                 }
             }
         }
@@ -209,6 +209,30 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         return false;
     }
 
+
+    private class FleePathFinder<T extends EntityLiving> extends PathfinderGoalAvoidTarget<T>{
+
+        private int tick = 0;
+        private int cooldown;
+
+        public FleePathFinder(EntityCreature entity, Class<T> avoider, float maxDis, double walkSpeedModifier, double sprintSpeedModifier,
+                Predicate<EntityLiving> condition,int cooldown) {
+            super(entity, avoider, maxDis, walkSpeedModifier, sprintSpeedModifier, condition);
+            this.cooldown = cooldown*20;
+        }
+
+        @Override
+        public boolean a() {
+            tick++;
+            if(tick > cooldown){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
+    }
 
 
     private class FollowPathFinder extends PathfinderGoal{
