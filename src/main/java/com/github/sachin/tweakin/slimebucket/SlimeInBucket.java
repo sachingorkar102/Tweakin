@@ -14,6 +14,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.MagmaCube;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
@@ -82,7 +84,8 @@ public class SlimeInBucket extends TweakItem implements Listener{
 
     @EventHandler
     public void onSlimePickUp(PlayerInteractEntityEvent e){
-        if(!(e.getRightClicked() instanceof Slime)) return;
+        if(e.getRightClicked().getType() != EntityType.SLIME) return;
+        
         Slime slime = (Slime) e.getRightClicked();
         if(slime.getSize() != 1) return;
         if(getBlackListWorlds().contains(slime.getWorld().getName()))return;
