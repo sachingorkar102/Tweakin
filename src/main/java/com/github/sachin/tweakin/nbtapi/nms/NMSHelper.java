@@ -1,5 +1,7 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
+import java.util.List;
+
 import com.github.sachin.tweakin.mobheads.Head;
 
 import org.bukkit.Location;
@@ -52,4 +54,6 @@ public abstract class NMSHelper {
 
     public abstract boolean matchAxoltlVariant(Entity entity,String color);
     public abstract boolean isScreamingGoat(Entity entity);
+
+    public abstract List<Entity> getEntitiesWithinRadius(int radius,Entity center);
 }

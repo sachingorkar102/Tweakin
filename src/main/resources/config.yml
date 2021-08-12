@@ -395,11 +395,16 @@ villager-follow-emerald:
   black-list-worlds: []
 
 # Animals will flee in groups on melee attacks, adding some stratagy to killing them 
+# Already breeded animals by player will not flee away
 # Permission: 
   # tweakin.fleemobs.bypass: mobs will not flee if player has this permission
 animal-flee:
   enabled: false
   black-list-worlds: []
+  # if set to true breeded animals by player will not flee away
+  ignore-breeded: false
+  # after how much time the animal will forget player and stop fleeing (in seconds)
+  cooldown: 60
   # list of animals that will flee on hit
   fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
 
@@ -448,4 +453,23 @@ mob-heads:
 # Permission:
   # tweakin.bettergrindstone: allows to use the grindstone functionality
 better-grindstone:
-  enabled: false  
+  enabled: false 
+  
+# a elytra and chestplate can be combined in anvil to create armored elytra which has protection of chestplate and also ability to fly with elytra
+# to obtain chestplate and elytra back drop a anvil on the item entity of armored elytra
+# or it can be thrown in lava to seprate(not recommended as both items will be destroyed unless chestplate was netherite)
+# enchantments of both items are combined too
+# the durability of armored elytra is equivalent to elytra
+# Permission:
+  # tweakin.armoredelytra.craft: permission to combine elytra and chestplate in anvil  
+armored-elytra:
+  enabled: false
+  cost: 10
+  combineable-materials: [LEATHER_CHESTPLATE,IRON_CHESTPLATE,DIAMOND_CHESTPLATE,NETHERITE_CHESTPLATE,GOLDEN_CHESTPLATE,CHAINMAIL_CHESTPLATE]
+  item:
+    id: ELYTRA
+    display: "&eArmored Elytra"
+    lore:
+      - "&7Benifits of elytra and chestplate at once"
+    options:
+      model: 0  

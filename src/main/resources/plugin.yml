@@ -92,4 +92,6 @@ permissions:
     default: true  
   tweakin.bettergrindstone:
     default: true  
+  tweakin.armoredelytra.craft:
+    default: true  
 

@@ -6,7 +6,6 @@ import org.bukkit.persistence.PersistentDataType;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.CommandPermission;
 
 
 public class ToggleCommand extends BaseCommand{
