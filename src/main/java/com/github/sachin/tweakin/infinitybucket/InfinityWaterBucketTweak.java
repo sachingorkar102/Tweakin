@@ -56,7 +56,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
     @EventHandler
     public void onWaterBucketUse(PlayerBucketEmptyEvent e){
         Player player = e.getPlayer();
-        if(hasItem(player, EquipmentSlot.HAND) || hasItem(player, EquipmentSlot.OFF_HAND)){
+        if(player.getInventory().getItemInMainHand().isSimilar(getItem()) || player.getInventory().getItemInOffHand().isSimilar(getItem())){
             if(player.hasPermission("tweakin.infinitybucket.use")){
                 e.setItemStack(getItem());
             }
