@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.armoredelytra.ArmoredElytraTweak;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
@@ -208,6 +209,7 @@ public class TweakManager {
             tweakList.add(new InfinityWaterBucketTweak(plugin));
             tweakList.add(new MobHeadsTweak(plugin));
             tweakList.add(new BetterGrindStoneTweak(plugin));
+            tweakList.add(new ArmoredElytraTweak(plugin));
         }
         return tweakList;
     }

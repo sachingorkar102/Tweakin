@@ -4,6 +4,7 @@ package com.github.sachin.tweakin.nbtapi.nms;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
@@ -29,8 +30,6 @@ import net.minecraft.core.BlockPosition;
 import net.minecraft.core.EnumDirection;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.level.EntityPlayer;
-import net.minecraft.server.v1_16_R3.Item;
-import net.minecraft.server.v1_16_R3.MaterialMapColor;
 import net.minecraft.util.ColorUtil;
 import net.minecraft.world.EnumHand;
 import net.minecraft.world.EnumInteractionResult;
@@ -187,6 +186,14 @@ public class NBTItem_1_17_R1 extends NMSHelper{
                 }
             }
         }
+    }
+
+    @Override
+    public List<Entity> getEntitiesWithinRadius(int radius, Entity center) {
+        net.minecraft.world.entity.Entity nmsEn = ((CraftEntity)center).getHandle();
+        
+        List<Entity> list = nmsEn.getWorld().a(net.minecraft.world.entity.Entity.class,nmsEn.getBoundingBox().g(radius)).stream().map(e -> e.getBukkitEntity()).collect(Collectors.toList());
+        return list;
     }
 
     public void harvestBlock(Player player,Location location,ItemStack tool){

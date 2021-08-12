@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
@@ -198,6 +200,13 @@ public class NBTItem_1_16_R3 extends NMSHelper{
                 }
             }
         }
+    }
+
+    public List<Entity> getEntitiesWithinRadius(int radius,Entity center){
+        net.minecraft.server.v1_16_R3.Entity nmsEn = ((CraftEntity)center).getHandle();
+        List<Entity> list = nmsEn.getWorld().a(net.minecraft.server.v1_16_R3.Entity.class,nmsEn.getBoundingBox().g(radius)).stream().map(e -> e.getBukkitEntity()).collect(Collectors.toList());
+        return list;
+        
     }
 
     @Override
