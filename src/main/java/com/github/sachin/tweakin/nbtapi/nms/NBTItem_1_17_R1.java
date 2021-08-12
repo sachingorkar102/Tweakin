@@ -239,11 +239,11 @@ public class NBTItem_1_17_R1 extends NMSHelper{
 
         @Override
         public boolean a() {
-            tick++;
             if(tick > cooldown){
                 return false;
             }
             else{
+                tick++;
                 return true;
             }
         }

@@ -192,7 +192,8 @@ public class NBTItem_1_16_R3 extends NMSHelper{
             for (EntityAnimal en : list) {
                 Entity bEn = en.getBukkitEntity();
                 if(bEn.getType() == entity.getType()){
-                    if(!bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && avoidBreeded) continue;
+                    if(bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && avoidBreeded) continue;
+                    
                     en.goalSelector.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId(),cooldown));
                 }
             }
@@ -209,9 +210,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         return false;
     }
 
-
     private class FleePathFinder<T extends EntityLiving> extends PathfinderGoalAvoidTarget<T>{
-
         private int tick = 0;
         private int cooldown;
 
@@ -223,15 +222,14 @@ public class NBTItem_1_16_R3 extends NMSHelper{
 
         @Override
         public boolean a() {
-            tick++;
             if(tick > cooldown){
                 return false;
             }
             else{
-                return true;
+                tick++;
+                return super.a();
             }
         }
-
     }
 
 
