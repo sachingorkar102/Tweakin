@@ -251,7 +251,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
             }
             else{
                 tick++;
-                return true;
+                return super.a();
             }
         }
     }
