@@ -66,7 +66,7 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
             
             if(downLadder == null) return;
             if(downLadder.getType() == Material.AIR){
-                boolean fakePlaced = plugin.getNmsHelper().placeItem(player, downLadder.getLocation(), new ItemStack(Material.DIRT), e.getBlockFace());
+                boolean fakePlaced = plugin.getNmsHelper().placeItem(player, downLadder.getLocation(), new ItemStack(Material.DIRT), e.getBlockFace(),null);
                 if(fakePlaced){
                     downLadder.getLocation().getBlock().setType(Material.LADDER);
                     downLadder.getLocation().getBlock().setBlockData(e.getClickedBlock().getBlockData());

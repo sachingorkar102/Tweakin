@@ -41,7 +41,7 @@ public abstract class NMSHelper {
 
     public abstract void attack(Player player,Entity target);
 
-    public abstract boolean placeItem(Player player,Location location,ItemStack item,BlockFace hitFace);
+    public abstract boolean placeItem(Player player,Location location,ItemStack item,BlockFace hitFace,String tweakName);
 
     public abstract int getColor(String str,int transparency);
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
 import com.google.common.base.Enums;
@@ -143,7 +144,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         
     }
 
-    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace){
+    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace,String tweakName){
         
         net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
@@ -156,6 +157,15 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         if(result.toString() == "CONSUME"){
             player.swingMainHand();
             player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
+            if(tweakName != null){
+                Tweakin plugin = Tweakin.getPlugin();
+                if(plugin.placedBlocksMap.containsKey(tweakName)){
+                    plugin.placedBlocksMap.put(tweakName, plugin.placedBlocksMap.get(tweakName)+1);
+                }
+                else{
+                    plugin.placedBlocksMap.put(tweakName, 1);
+                }
+            }
             return true;
         }
         else{

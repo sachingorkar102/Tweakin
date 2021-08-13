@@ -91,7 +91,7 @@ public class TrowelItem extends TweakItem implements Listener{
                 }
             }
             player.getInventory().setItemInMainHand(item);
-            boolean placed = getPlugin().getNmsHelper().placeItem(player, loc, player.getInventory().getItemInMainHand(),hitFace);
+            boolean placed = getPlugin().getNmsHelper().placeItem(player, loc, player.getInventory().getItemInMainHand(),hitFace,getName());
             player.getInventory().setItemInMainHand(iteminHand);
             players.add(player);
             new BukkitRunnable(){

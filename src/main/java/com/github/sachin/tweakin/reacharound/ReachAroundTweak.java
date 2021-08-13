@@ -206,7 +206,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         if(loc != null){
             // BlockPlaceEvent event = new BlockPlaceEvent(loc.getBlock(), loc.getBlock().getState(), placedAgainst, itemInHand, thePlayer, canBuild, hand)
             plugin.addPlacedPlayer(player);
-            boolean placed = getPlugin().getNmsHelper().placeItem(player, loc,e.getItem(),BlockFace.UP);
+            boolean placed = getPlugin().getNmsHelper().placeItem(player, loc,e.getItem(),BlockFace.UP,getName());
             if(placed && player.getGameMode() != GameMode.CREATIVE){
                 item.setAmount(item.getAmount()-1);
             }

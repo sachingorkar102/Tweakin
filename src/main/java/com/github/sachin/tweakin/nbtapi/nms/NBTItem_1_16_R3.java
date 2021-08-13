@@ -13,6 +13,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.github.sachin.tweakin.TweakItem;
+import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
 import com.google.common.base.Enums;
@@ -133,9 +135,8 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         
     }
 
-    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace){
+    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace,String tweakName){
         net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
-        
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         MovingObjectPositionBlock mop = new MovingObjectPositionBlock(new Vec3D(location.getX(),location.getY(),location.getZ()),Enums.getIfPresent(EnumDirection.class, hitFace.toString()).or(EnumDirection.DOWN),pos,false);
@@ -145,6 +146,15 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         if(result == EnumInteractionResult.CONSUME){
             player.swingMainHand();
             player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
+            if(tweakName != null){
+                Tweakin plugin = Tweakin.getPlugin();
+                if(plugin.placedBlocksMap.containsKey(tweakName)){
+                    plugin.placedBlocksMap.put(tweakName, plugin.placedBlocksMap.get(tweakName)+1);
+                }
+                else{
+                    plugin.placedBlocksMap.put(tweakName, 1);
+                }
+            }
             return true;
         }
         else{

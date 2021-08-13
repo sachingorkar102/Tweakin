@@ -39,6 +39,7 @@ import co.aikar.commands.PaperCommandManager;
 public final class Tweakin extends JavaPlugin {
 
     private static Tweakin plugin;
+    private Metrics metrics;
     private String version;
     private PaperCommandManager commandManager;
     public CommandReplacements replacements;
@@ -48,6 +49,7 @@ public final class Tweakin extends JavaPlugin {
     public boolean isProtocolLibEnabled;
     public boolean isFirstInstall;
     private MiscItems miscItems;
+    public final Map<String,Integer> placedBlocksMap = new HashMap<>();
     private List<Player> placedPlayers = new ArrayList<>();
 
 
@@ -107,6 +109,14 @@ public final class Tweakin extends JavaPlugin {
                 }
             }
         }
+        if(metrics != null){
+            this.metrics.addCustomChart(new AdvancedPie("Placed-Blocks", new Callable<Map<String, Integer>>() {
+                @Override
+                public Map<String, Integer> call() throws Exception {
+                    return placedBlocksMap;
+                }
+            }));
+        }
         if(tweak.registered){
             tweak.saveLapisData();
         }
@@ -118,10 +128,10 @@ public final class Tweakin extends JavaPlugin {
 
     private void enabledBstats(){
         if(getConfig().getBoolean("metrics",true)){
-            Metrics metrics = new Metrics(this,11786);
+            this.metrics = new Metrics(this,11786);
             getLogger().info("Enabling bstats...");
             
-            metrics.addCustomChart(new AdvancedPie("Enabled-Tweaks", new Callable<Map<String, Integer>>() {
+            this.metrics.addCustomChart(new AdvancedPie("Enabled-Tweaks", new Callable<Map<String, Integer>>() {
                 @Override
                 public Map<String, Integer> call() throws Exception {
                     Map<String, Integer> map = new HashMap<>();
