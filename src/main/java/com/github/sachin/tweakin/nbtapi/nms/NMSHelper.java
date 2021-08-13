@@ -49,7 +49,7 @@ public abstract class NMSHelper {
 
     public abstract void spawnVillager(Villager villager);
     
-    public abstract void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded);
+    public abstract void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded,double sprintSpeed);
 
 
     public abstract boolean matchAxoltlVariant(Entity entity,String color);

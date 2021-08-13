@@ -186,7 +186,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
     }
 
     @Override
-    public void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded) {
+    public void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded,double sprintSpeed) {
         
         EntityAnimal animal = (EntityAnimal) ((CraftEntity)entity).getHandle();
         List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
@@ -196,7 +196,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
                 if(bEn.getType() == entity.getType()){
                     if(bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && avoidBreeded) continue;
                     
-                    en.goalSelector.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, 1.7D,(pl) -> pl.getUniqueID() == player.getUniqueId(),cooldown));
+                    en.goalSelector.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, sprintSpeed,(pl) -> pl.getUniqueID() == player.getUniqueId(),cooldown));
                 }
             }
         }

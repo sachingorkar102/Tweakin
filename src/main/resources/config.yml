@@ -405,6 +405,8 @@ animal-flee:
   ignore-breeded: false
   # after how much time the animal will forget player and stop fleeing (in seconds)
   cooldown: 60
+  # the speed at which animals will run
+  sprint-speed: 1.7
   # list of animals that will flee on hit
   fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
 
@@ -464,7 +466,9 @@ better-grindstone:
   # tweakin.armoredelytra.craft: permission to combine elytra and chestplate in anvil  
 armored-elytra:
   enabled: false
+  # the experience cost
   cost: 10
+  # list of items that can be used to combine with elytra (only use chestplate item types)
   combineable-materials: [LEATHER_CHESTPLATE,IRON_CHESTPLATE,DIAMOND_CHESTPLATE,NETHERITE_CHESTPLATE,GOLDEN_CHESTPLATE,CHAINMAIL_CHESTPLATE]
   item:
     id: ELYTRA
