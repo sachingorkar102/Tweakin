@@ -13,10 +13,11 @@ public class ToggleCommand extends BaseCommand{
     private ReachAroundTweak instance;
 
     public ToggleCommand(ReachAroundTweak instance){
+        instance.getPlugin().replacements.addReplacement("reacharoundalias", instance.getConfig().getString("alias","togglereacharound"));
         this.instance = instance;
     }
     
-    @CommandAlias("togglereacharound|treacharound")
+    @CommandAlias("%reacharoundalias")
     public void onCommand(Player player){
         if(instance.getCurrentTasks().containsKey(player.getUniqueId())){
             player.getPersistentDataContainer().remove(instance.key);

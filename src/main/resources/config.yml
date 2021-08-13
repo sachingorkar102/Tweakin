@@ -71,6 +71,9 @@ noteblock-mob-sounds:
 reach-around:
   enabled: false
   black-list-worlds: []
+  # alias for the toggle reacharound command (requires a server restart)
+  # Pro tip: use | to add more then one alias eg. togglereacharound|togglereach
+  alias: togglereacharound
   # if set to true reacharound will be enabled by default when player first joins the server
   enabled-on-first-join: true
   # list of materials that cant be placed with reacharound

@@ -33,6 +33,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import co.aikar.commands.CommandReplacements;
 import co.aikar.commands.PaperCommandManager;
 
 public final class Tweakin extends JavaPlugin {
@@ -40,6 +41,7 @@ public final class Tweakin extends JavaPlugin {
     private static Tweakin plugin;
     private String version;
     private PaperCommandManager commandManager;
+    public CommandReplacements replacements;
     private TweakManager tweakManager;
     private NMSHelper nmsHelper;
     private boolean isEnabled;
@@ -62,9 +64,9 @@ public final class Tweakin extends JavaPlugin {
             this.isEnabled = false;
             this.getServer().getPluginManager().disablePlugin(this);
             return;
-
+            
         }
-
+        
         reloadMiscItems();
         this.getServer().getPluginManager().registerEvents(new GuiListener(plugin), plugin);
         this.isProtocolLibEnabled = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
@@ -72,6 +74,7 @@ public final class Tweakin extends JavaPlugin {
         this.saveDefaultConfig();
         this.reloadConfig();
         this.commandManager = new PaperCommandManager(this);
+        this.replacements = commandManager.getCommandReplacements();
         this.tweakManager = new TweakManager(this);
         tweakManager.load();
         ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
