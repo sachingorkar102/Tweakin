@@ -1,6 +1,7 @@
 package com.github.sachin.tweakin.coordinatehud;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,8 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Vehicle;
@@ -40,6 +43,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
     final Map<Vehicle,SpeedData> speedDataMap = new HashMap<>();
     final NamespacedKey key = new NamespacedKey(getPlugin(), "coordinatehud");
     final NamespacedKey firstKey = new NamespacedKey(getPlugin(),"coordinatehud-firstJoin");
+    final List<EntityType> validVehicles = Arrays.asList(EntityType.HORSE,EntityType.MINECART,EntityType.BOAT,EntityType.MULE,EntityType.DONKEY,EntityType.STRIDER,EntityType.LLAMA,EntityType.PIG,EntityType.SKELETON_HORSE);
     private BaseCommand command;
     private HUDRunnable runnable;
     private Long intervalTicks;
@@ -163,9 +167,11 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
                 if(getConfig().getBoolean("show-speed",true)){
                     if(player.isInsideVehicle()){
-                        Vehicle vh = (Vehicle) player.getVehicle();
-                        
-                        message = message + ChatColor.GOLD+" Speed: "+ChatColor.RESET+Math.round(getSpeed(vh) * 100.0) / 100.0;
+                        EntityType vechType = player.getVehicle().getType();
+                        if(validVehicles.contains(vechType)){
+                            Vehicle vh = (Vehicle) player.getVehicle();
+                            message = message + ChatColor.GOLD+" Speed: "+ChatColor.RESET+Math.round(getSpeed(vh) * 100.0) / 100.0;
+                        }
                     }
                 }
                 message = ChatColor.translateAlternateColorCodes('&', message);
