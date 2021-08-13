@@ -139,6 +139,9 @@ swing-through-grass:
 # Command: /togglehud,/thud
 coordinate-hud:
   enabled: false
+  # alias for the toggle reacharound command (requires a server restart)
+  # Pro tip: use | to add more then one alias eg. togglehud|thud
+  alias: togglehud|thud
   # weather or not to enable hud when player first joins the server
   enable-on-first-join: true
   # if set to true the hud will only display if player has a compass in there inventory

@@ -13,10 +13,11 @@ public class ToggleCommand extends BaseCommand{
     private CoordinateHUDTweak instance;
 
     public ToggleCommand(CoordinateHUDTweak instance){
+        instance.getPlugin().replacements.addReplacement("togglehudalias", instance.getConfig().getString("alias","togglehud"));
         this.instance = instance;
     }
 
-    @CommandAlias("togglehud|thud")
+    @CommandAlias("%togglehudalias")
     public void onCommand(Player player){
         if(!player.hasPermission("tweakin.coordinatehud")){
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("no-permission"));
