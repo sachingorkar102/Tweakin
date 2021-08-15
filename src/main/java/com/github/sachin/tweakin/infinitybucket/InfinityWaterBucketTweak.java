@@ -5,7 +5,6 @@ import java.util.Map;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 
-import org.apache.logging.log4j.core.layout.SyslogLayout;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Fish;
@@ -15,13 +14,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerBucketEntityEvent;
 import org.bukkit.inventory.AnvilInventory;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.MainHand;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
-import org.bukkit.inventory.meta.ItemMeta;
 
 // tweakin.infinitybucket.craft,tweakin.infinitybucket.use
 public class InfinityWaterBucketTweak extends TweakItem implements Listener{
@@ -68,17 +64,19 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
     }
 
     @EventHandler
-    public void onFishPickUp(PlayerInteractEntityEvent e){
+    public void onFishPickUp(PlayerBucketEntityEvent e){
         Player player = e.getPlayer();
-        if(e.getRightClicked() instanceof Fish){
-            if(hasItem(player, e.getHand())){
-                e.setCancelled(true);
-                player.sendMessage(getTweakManager().getMessageManager().getMessage("cant-catch-fish"));
-            }
+        ItemStack item = e.getOriginalBucket();
+        if(item == null) return;
+        if(!item.isSimilar(getItem())) return;
+        if(e.getEntity() instanceof Fish){
+            e.setCancelled(true);
+            player.sendMessage(getTweakManager().getMessageManager().getMessage("cant-catch-fish"));
         }
         else if(plugin.getVersion().startsWith("v1_17")){
-            if(e.getRightClicked().getType().toString().equals("AXOLOTL")){
+            if(e.getEntity().getType().toString().equals("AXOLOTL")){
                 e.setCancelled(true);
+                
                 player.sendMessage(getTweakManager().getMessageManager().getMessage("cant-catch-axolotl"));
             }
         }
