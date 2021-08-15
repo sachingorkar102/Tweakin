@@ -9,11 +9,13 @@ import java.util.stream.Collectors;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
+import com.github.sachin.tweakin.utils.PaperUtils;
 import com.google.common.base.Enums;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
@@ -182,17 +184,20 @@ public class NBTItem_1_17_R1 extends NMSHelper{
     }
 
     @Override
-    public void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded,double sprintSpeed) {
+    public void avoidPlayer(Entity entity,Player player,ConfigurationSection config) {
         
         EntityAnimal animal = (EntityAnimal) ((CraftEntity)entity).getHandle();
         List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
+        if(Tweakin.getPlugin().isRunningPaper){
+            PaperUtils.removePanicGoal(entity);
+        }
         if(!list.isEmpty()){
             for (EntityAnimal en : list) {
                 Entity bEn = en.getBukkitEntity();
                 
-                if(bEn.getType() == entity.getType() && !bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER)){
-                    if(!bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && avoidBreeded) continue;
-                    en.bP.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, sprintSpeed,(pl) -> pl.getUniqueID() == player.getUniqueId(),cooldown));
+                if(bEn.getType() == entity.getType()){
+                    if(bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && config.getBoolean("ignore-breeded")) continue;
+                    en.bP.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,config.getInt("max-radius"), config.getDouble("walk-speed"), config.getDouble("sprint-speed"),(pl) -> pl.getUniqueID() == player.getUniqueId(),config.getInt("cooldown")));
                 }
             }
         }

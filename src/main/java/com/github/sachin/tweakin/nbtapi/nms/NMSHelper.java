@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.mobheads.Head;
 
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -49,11 +50,12 @@ public abstract class NMSHelper {
 
     public abstract void spawnVillager(Villager villager);
     
-    public abstract void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded,double sprintSpeed);
+    public abstract void avoidPlayer(Entity entity,Player player,ConfigurationSection config);
 
 
     public abstract boolean matchAxoltlVariant(Entity entity,String color);
     public abstract boolean isScreamingGoat(Entity entity);
 
     public abstract List<Entity> getEntitiesWithinRadius(int radius,Entity center);
+
 }

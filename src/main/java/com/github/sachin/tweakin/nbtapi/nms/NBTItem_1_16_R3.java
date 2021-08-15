@@ -17,11 +17,13 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.mobheads.Head;
+import com.github.sachin.tweakin.utils.PaperUtils;
 import com.google.common.base.Enums;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
@@ -35,6 +37,7 @@ import org.bukkit.entity.Villager;
 
 import net.minecraft.server.v1_16_R3.*;
 
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.Vector;
@@ -196,17 +199,19 @@ public class NBTItem_1_16_R3 extends NMSHelper{
     }
 
     @Override
-    public void avoidPlayer(Entity entity,Player player,int cooldown,boolean avoidBreeded,double sprintSpeed) {
+    public void avoidPlayer(Entity entity,Player player,ConfigurationSection config) {
         
         EntityAnimal animal = (EntityAnimal) ((CraftEntity)entity).getHandle();
         List<EntityAnimal> list = animal.getWorld().a(EntityAnimal.class,animal.getBoundingBox().g(5));
+        if(Tweakin.getPlugin().isRunningPaper){
+            PaperUtils.removePanicGoal(entity);
+        }
         if(!list.isEmpty()){
             for (EntityAnimal en : list) {
                 Entity bEn = en.getBukkitEntity();
                 if(bEn.getType() == entity.getType()){
-                    if(bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && avoidBreeded) continue;
-                    
-                    en.goalSelector.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,20F, 1.6D, sprintSpeed,(pl) -> pl.getUniqueID() == player.getUniqueId(),cooldown));
+                    if(bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && config.getBoolean("ignore-breeded")) continue;
+                    en.goalSelector.a(1, new FleePathFinder<EntityPlayer>(en,EntityPlayer.class,config.getInt("max-radius"), config.getDouble("walk-speed"), config.getDouble("sprint-speed"),(pl) -> pl.getUniqueID() == player.getUniqueId(),config.getInt("cooldown")));
                 }
             }
         }

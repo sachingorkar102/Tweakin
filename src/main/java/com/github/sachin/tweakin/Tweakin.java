@@ -40,6 +40,7 @@ public final class Tweakin extends JavaPlugin {
 
     private static Tweakin plugin;
     private Metrics metrics;
+    public boolean isRunningPaper;
     private String version;
     private PaperCommandManager commandManager;
     public CommandReplacements replacements;
@@ -59,6 +60,13 @@ public final class Tweakin extends JavaPlugin {
         plugin = this;
         this.isEnabled = true;
         this.isFirstInstall = false;
+        try {
+            Class.forName("com.destroystokyo.paper.utils.PaperPluginLogger");
+            this.isRunningPaper = true;
+        } catch (ClassNotFoundException e) {
+            this.isRunningPaper = false;
+            e.printStackTrace();
+        }
         this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
         NBTAPI nbtapi = new NBTAPI();
         if(!nbtapi.loadVersions(this,version)){

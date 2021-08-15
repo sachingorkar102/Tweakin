@@ -37,9 +37,10 @@ public class AnimalFleeTweak extends BaseTweak implements Listener{
                 if(player.hasPermission("tweakin.fleemobs.bypass")) return;
                 Entity attacked = e.getEntity();
                 if(getConfig().getStringList("fleeable-mobs").contains(attacked.getType().toString())){
-                    if(!attacked.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
-                        plugin.getNmsHelper().avoidPlayer(attacked, player,getConfig().getInt("cooldown",60),getConfig().getBoolean("ignore-breeded"),getConfig().getDouble("sprint-speed",1.7));
+                    if(attacked.getPersistentDataContainer().has(key, PersistentDataType.INTEGER) && getConfig().getBoolean("ignore-breeded")){
+                        return;
                     }
+                    plugin.getNmsHelper().avoidPlayer(attacked, player,getConfig());
                 }
             }
         }
