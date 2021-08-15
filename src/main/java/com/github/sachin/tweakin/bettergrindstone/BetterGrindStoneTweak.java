@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.bettergrindstone;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.nbtapi.NBTItem;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -43,9 +44,11 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     ItemStack weapon = inv.getItem(0);
                     ItemStack book = inv.getItem(1);
                     ItemStack result = inv.getItem(2);
+                    
                     if(weapon != null && book != null && result == null){
                         if(book.getType() == Material.BOOK && !weapon.getEnchantments().isEmpty() && weapon.getType() != Material.ENCHANTED_BOOK){
-        
+                            NBTItem nbti = new NBTItem(weapon);
+                            if(nbti.hasKey("armored-elytra")) return;
                             ItemStack enchantedBook = new ItemStack(Material.ENCHANTED_BOOK);
                             EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
                             for(Enchantment ench : weapon.getEnchantments().keySet()){
