@@ -155,6 +155,26 @@ ender_dragon:
   display: "Ender Dragon Head"
   chance: 1
   looting: 0
+
+zombie:
+  display: "Zombie Head"
+  chance: 0
+  looting: 0
+
+creeper:
+  display: "Creeper Head"
+  chance: 0
+  looting: 0
+
+skeleton:
+  display: "Skeleton Skull"
+  chance: 0
+  looting: 0
+
+wither_skeleton:
+  display: "Wither Skeleton Skull"
+  chance: 0
+  looting: 0        
   
 enderman:
   display: "Enderman Head"
