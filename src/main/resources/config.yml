@@ -413,6 +413,10 @@ animal-flee:
   cooldown: 60
   # the speed at which animals will run
   sprint-speed: 1.7
+  # maximum radius at which mobs will try to run away from player
+  max-radius: 10
+  # walk speed of mob while avoiding player(different from sprint-speed)
+  walk-speed: 1.5
   # list of animals that will flee on hit
   fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
 

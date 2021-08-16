@@ -35,6 +35,10 @@ public abstract class BaseTweak {
         this.shouldEnable = config.getBoolean("enabled",true);
     }
 
+    public BaseTweak getInstance(){
+        return this;
+    }
+
 
 
     public TweakManager getTweakManager() {

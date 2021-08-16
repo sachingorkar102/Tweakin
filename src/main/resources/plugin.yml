@@ -85,7 +85,7 @@ permissions:
   tweakin.bettersignedit.use:
     default: true    
   tweakin.fleemobs.bypass:
-    default: op  
+    default: false
   tweakin.shearitemframe.use:
     default: true
   tweakin.mobheads.drops:

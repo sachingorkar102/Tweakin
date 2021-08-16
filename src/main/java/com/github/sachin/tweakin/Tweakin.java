@@ -63,9 +63,9 @@ public final class Tweakin extends JavaPlugin {
         try {
             Class.forName("com.destroystokyo.paper.utils.PaperPluginLogger");
             this.isRunningPaper = true;
+            getLogger().info("Running papermc..");
         } catch (ClassNotFoundException e) {
             this.isRunningPaper = false;
-            e.printStackTrace();
         }
         this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
         NBTAPI nbtapi = new NBTAPI();

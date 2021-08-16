@@ -11,22 +11,10 @@ import java.nio.charset.StandardCharsets;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 
 public class Test {
     public static void main(String[] args) {
-        Some a = Some.A1;
-        Some b = Some.A2;
-        
     }
 
-
-    private enum Some{
-
-        A1,A2,A3;
-
-
-        private Some(){
-            System.out.println();
-        }
-    }
 }
