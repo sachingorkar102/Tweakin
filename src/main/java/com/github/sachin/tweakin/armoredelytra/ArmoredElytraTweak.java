@@ -47,6 +47,7 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
 
     @EventHandler
     public void onItemBurn(EntityDamageByBlockEvent e){
+        if(e.getDamager() == null) return;
         if(e.getDamager().getType() != Material.LAVA) return;
         if(e.getEntity().getType() == EntityType.DROPPED_ITEM){
             Item item = (Item) e.getEntity();
