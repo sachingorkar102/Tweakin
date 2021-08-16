@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.api.events.FastLeafDecayEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -45,12 +46,16 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
                 List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
                 for (Location location : locs) {
 
-
+                    
                     Bukkit.getScheduler().scheduleSyncDelayedTask(getPlugin(), () -> {
                         Block block = location.getBlock();
-                        if(block.getType().name().endsWith("LEAVES")){
-                            block.breakNaturally(hoe);
-                            locs.remove(location);
+                        FastLeafDecayEvent event = new FastLeafDecayEvent(((FastLeafDecayTweak)getInstance()), block);
+                        Bukkit.getPluginManager().callEvent(event);
+                        if(!event.isCancelled()){
+                            if(block.getType().name().endsWith("LEAVES")){
+                                block.breakNaturally(hoe);
+                                locs.remove(location);
+                            }
                         }
                     },new Random().nextInt(duration));
 
