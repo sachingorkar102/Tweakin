@@ -94,6 +94,8 @@ fast-leaf-decay:
   black-list-worlds: []
   # maximum duration leaves will stay (in seconds)
   duration: 10
+  # weather or not to run checks for nearby leaf blocks in async fashion
+  use-async: true
 
 # Ladders are slightly tweaked to improve your laddering experience:
   # Right clicking a ladder with another one will place it, allowing you to drop ladders down without risking falling to your death.
@@ -487,3 +489,12 @@ armored-elytra:
       - "&7Benifits of elytra and chestplate at once"
     options:
       model: 0
+
+
+# a message a broadcasted to all players when a villager dies
+# the message is configurable in messages.yml
+# Permission: 
+  # tweakin.villagerdeathmessage.notify: players with this permission will only recive the death messages
+villager-death-message:
+  enabled: true
+  black-list-worlds: []      

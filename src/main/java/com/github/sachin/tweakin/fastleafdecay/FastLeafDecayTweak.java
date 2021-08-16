@@ -14,6 +14,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Leaves;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.inventory.ItemStack;
@@ -34,37 +35,46 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
         this.duration = getConfig().getInt("duration",10) * 20;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = true)
     public void onLeafDecay(LeavesDecayEvent e){
         if(e instanceof FastLeafDecayEvent) return;
         if(getBlackListWorlds().contains(e.getBlock().getWorld().getName())) return;
         e.setCancelled(true);
         Block block = e.getBlock();
-        ItemStack hoe = new ItemStack(Material.WOODEN_HOE);
-        new BukkitRunnable(){
-            @Override
-            public void run() {
-                List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
-                for (Location location : locs) {
-
-                    
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(getPlugin(), () -> {
-                        Block block = location.getBlock();
-                        FastLeafDecayEvent event = new FastLeafDecayEvent(((FastLeafDecayTweak)getInstance()), block);
-                        Bukkit.getPluginManager().callEvent(event);
-                        if(!event.isCancelled()){
-                            if(block.getType().name().endsWith("LEAVES")){
-                                block.breakNaturally(hoe);
-                                locs.remove(location);
-                            }
-                        }
-                    },new Random().nextInt(duration));
-
-
+        if(getConfig().getBoolean("use-async")){
+            new BukkitRunnable(){
+                @Override
+                public void run() {
+                    List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
+                    removeLeaves(locs);
                 }
-            }
-        }.runTaskAsynchronously(getPlugin());
+            }.runTaskAsynchronously(getPlugin());
+        }
+        else{
+            List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
+            removeLeaves(locs);
+        }
         
+    }
+    
+    private void removeLeaves(List<Location> locs){
+        for (Location location : locs) {
+    
+            
+            Bukkit.getScheduler().scheduleSyncDelayedTask(getPlugin(), () -> {
+                Block block = location.getBlock();
+                FastLeafDecayEvent event = new FastLeafDecayEvent(((FastLeafDecayTweak)getInstance()), block);
+                Bukkit.getPluginManager().callEvent(event);
+                if(!event.isCancelled()){
+                    if(block.getType().name().endsWith("LEAVES")){
+                        block.breakNaturally();
+                        locs.remove(location);
+                    }
+                }
+            },new Random().nextInt(duration));
+    
+    
+        }
     }
 
     public List<Location> getNearbyBlocks(Location location, int radius) {
