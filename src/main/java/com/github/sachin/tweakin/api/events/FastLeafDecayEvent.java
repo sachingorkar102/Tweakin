@@ -3,21 +3,19 @@ package com.github.sachin.tweakin.api.events;
 import com.github.sachin.tweakin.fastleafdecay.FastLeafDecayTweak;
 
 import org.bukkit.block.Block;
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.block.LeavesDecayEvent;
 
-public class FastLeafDecayEvent extends Event implements Cancellable{
+public class FastLeafDecayEvent extends LeavesDecayEvent{
 
     private FastLeafDecayTweak tweak;
     private Block leafBlock;
-    private boolean isCancelled;
     private static final HandlerList HANDLERS = new HandlerList();
 
     public FastLeafDecayEvent(FastLeafDecayTweak tweak,Block leafBlock){
+        super(leafBlock);
         this.tweak = tweak;
         this.leafBlock = leafBlock;
-        this.isCancelled = false;
     }
 
     public FastLeafDecayTweak getTweak() {
@@ -37,15 +35,6 @@ public class FastLeafDecayEvent extends Event implements Cancellable{
         return HANDLERS;
     }
 
-    @Override
-    public boolean isCancelled() {
-        return this.isCancelled;
-    }
-
-    @Override
-    public void setCancelled(boolean isCancelled) {
-        this.isCancelled = isCancelled;
-    }
 
     
 }

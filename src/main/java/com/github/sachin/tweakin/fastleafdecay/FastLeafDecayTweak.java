@@ -36,6 +36,7 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
 
     @EventHandler
     public void onLeafDecay(LeavesDecayEvent e){
+        if(e instanceof FastLeafDecayEvent) return;
         if(getBlackListWorlds().contains(e.getBlock().getWorld().getName())) return;
         e.setCancelled(true);
         Block block = e.getBlock();
