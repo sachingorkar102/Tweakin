@@ -40,6 +40,7 @@ import com.github.sachin.tweakin.snowballknockback.SnowBallKnockBackTweak;
 import com.github.sachin.tweakin.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
+import com.github.sachin.tweakin.villagerdeathmessage.VillagerDeathMessageTweak;
 import com.github.sachin.tweakin.villagerfollowemerald.VillagerFollowEmraldTweak;
 
 import org.bukkit.Bukkit;
@@ -210,6 +211,7 @@ public class TweakManager {
             tweakList.add(new MobHeadsTweak(plugin));
             tweakList.add(new BetterGrindStoneTweak(plugin));
             tweakList.add(new ArmoredElytraTweak(plugin));
+            tweakList.add(new VillagerDeathMessageTweak(plugin));
         }
         return tweakList;
     }

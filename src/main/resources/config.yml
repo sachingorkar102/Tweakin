@@ -486,4 +486,4 @@ armored-elytra:
     lore:
       - "&7Benifits of elytra and chestplate at once"
     options:
-      model: 0  
+      model: 0
