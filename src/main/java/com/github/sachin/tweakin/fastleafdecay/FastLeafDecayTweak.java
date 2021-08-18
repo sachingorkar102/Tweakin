@@ -1,28 +1,28 @@
 package com.github.sachin.tweakin.fastleafdecay;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.api.events.FastLeafDecayEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Leaves;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.LeavesDecayEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class FastLeafDecayTweak extends BaseTweak implements Listener{
 
     private int duration;
+    private final Set<LeavesDecayEvent> fastDecayEvents = new HashSet<>();
 
 
     public FastLeafDecayTweak(Tweakin plugin) {
@@ -37,7 +37,7 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
 
     @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = true)
     public void onLeafDecay(LeavesDecayEvent e){
-        if(e instanceof FastLeafDecayEvent) return;
+        if(fastDecayEvents.remove(e)) return;
         if(getBlackListWorlds().contains(e.getBlock().getWorld().getName())) return;
         e.setCancelled(true);
         Block block = e.getBlock();
@@ -63,10 +63,11 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
             
             Bukkit.getScheduler().scheduleSyncDelayedTask(getPlugin(), () -> {
                 Block block = location.getBlock();
-                FastLeafDecayEvent event = new FastLeafDecayEvent(((FastLeafDecayTweak)getInstance()), block);
-                Bukkit.getPluginManager().callEvent(event);
-                if(!event.isCancelled()){
-                    if(block.getType().name().endsWith("LEAVES")){
+                if(block.getType().name().endsWith("LEAVES")){
+                    LeavesDecayEvent event = new LeavesDecayEvent(block);
+                    fastDecayEvents.add(event);
+                    Bukkit.getPluginManager().callEvent(event);
+                    if(!event.isCancelled()){
                         block.breakNaturally();
                         locs.remove(location);
                     }
