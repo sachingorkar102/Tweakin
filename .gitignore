@@ -96,7 +96,6 @@ $RECYCLE.BIN/
 *.lnk
 
 target/
-lib/
 plugins
 .factorypath
 .classpath
