@@ -425,6 +425,7 @@ animal-flee:
 
 # Item frame containing item in them can be made invisible if right clicked with shears
 # Permission: tweakin.shearitemframe.use
+# Worldguard flag: tweakin-shear-item-frame [enabled by default]
 shear-item-frame:
   enabled: false
   black-list-worlds: []

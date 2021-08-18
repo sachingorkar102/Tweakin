@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.shearitemframe;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.TConstants;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -21,9 +22,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class ShearItemFrameTweak extends BaseTweak implements Listener{
 
     private final NamespacedKey key = Tweakin.getKey("tweakin-frame");
+    private SIFFlag flag;
 
     public ShearItemFrameTweak(Tweakin plugin) {
         super(plugin, "shear-item-frame");
+        if(plugin.isWorldGuardEnabled){
+            this.flag = (SIFFlag) plugin.getWGFlagManager().getFlag(TConstants.SIF_FLAG);
+        }
     }
 
     @EventHandler(priority = EventPriority.LOWEST,ignoreCancelled = false)
@@ -32,6 +37,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
         Player player = e.getPlayer();
         if(player.isSneaking() || !player.hasPermission("tweakin.shearitemframe.use")) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
+        if(flag != null && !flag.queryFlag(player, e.getRightClicked().getLocation())) return;
         ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
         if(item.getType() != Material.SHEARS) return;
         ItemFrame frame = (ItemFrame) e.getRightClicked();

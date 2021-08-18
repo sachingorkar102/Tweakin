@@ -12,4 +12,5 @@ public class TConstants {
 
 
     public static final String BSE_FLAG = "tweakin-better-sign-edit";                                                            
+    public static final String SIF_FLAG = "tweakin-shear-item-frame";                                                            
 }
