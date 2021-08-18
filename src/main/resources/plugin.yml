@@ -4,7 +4,7 @@ main: com.github.sachin.tweakin.Tweakin
 api-version: 1.16
 api: []
 authors: [ sachingorkar ]
-softdepend: [ProtocolLib,Spartan]
+softdepend: [ProtocolLib,Spartan,WorldGuard]
 description: A modular plugin with the objective of improving the vanilla gameplay experience
 
 
@@ -21,8 +21,8 @@ permissions:
   tweakin.infinitybucket.*:
     default: true
     children:
-    - tweakin.infinitybucket.craft
-    - tweakin.infinitybucket.use    
+      tweakin.infinitybucket.craft: true
+      tweakin.infinitybucket.use: true    
   tweakin.armorclick:
     default: true
   tweakin.shulkerboxclick:
