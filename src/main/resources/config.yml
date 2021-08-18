@@ -39,9 +39,9 @@ left-click-shulker-box:
 custom-shaped-portals:
   enabled: false
   black-list-worlds: []
-  # Max height and width of a portal
-  max-height: 40
-  max-width: 20
+  # Max height and width of a portal - default is 23x23, but you may increase it
+  max-height: 23
+  max-width: 23
   # list of blocks as valid portal frame
   valid-portal-blocks:
     - OBSIDIAN
