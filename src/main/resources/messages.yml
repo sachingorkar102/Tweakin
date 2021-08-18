@@ -28,4 +28,4 @@ cant-catch-axolotl: "&cCant pickup axolotl with infinity water bucket"
 gave-head: "&7Gave &6%head% &7to &6%player% &7successfully"
 tweak-is-disabled: "&c%tweak% is disabled, can't execute the command"
 
-villager-death-message: "&eA village has died! &r&6XYZ: %x%, %y%, %z% &ein %world-type%"
+villager-death-message: "&eA villager has died! &r&6XYZ: %x%, %y%, %z% &ein %world-type%"
