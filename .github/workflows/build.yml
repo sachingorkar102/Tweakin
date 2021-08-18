@@ -36,8 +36,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2    
       - name: Building maven project
         run: mvn package -f pom.xml
-      - run: mkdir staging && cp target/*Tweakin-3.1.jar staging
+      - run: mkdir staging && cp target/Tweakin-3.1.jar staging
       - uses: actions/upload-artifact@v2
         with:
           name: Tweakin-3.1.jar
-          path: staging  
+          path: staging/Tweakin-3.1.jar  
