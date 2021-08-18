@@ -29,3 +29,9 @@ jobs:
           settings-path: ${{ github.workspace }}
       - name: Building maven project
         run: mvn package -f pom.xml
+      - name: Uploading artifacts  
+        run: mkdir staging && cp target/*.jar staging
+        uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: staging  
