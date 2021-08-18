@@ -25,6 +25,7 @@ import com.github.sachin.tweakin.mobheads.Head;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 import com.github.sachin.tweakin.utils.MiscItems;
+import com.sk89q.worldguard.WorldGuard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -41,6 +42,8 @@ public final class Tweakin extends JavaPlugin {
     private static Tweakin plugin;
     private Metrics metrics;
     public boolean isRunningPaper;
+    private WGFlagManager wgFlagManager;
+    public boolean isWorldGuardEnabled;
     private String version;
     private PaperCommandManager commandManager;
     public CommandReplacements replacements;
@@ -54,10 +57,20 @@ public final class Tweakin extends JavaPlugin {
     private List<Player> placedPlayers = new ArrayList<>();
 
 
+    @Override
+    public void onLoad() {
+        plugin = this;
+        isWorldGuardEnabled = Bukkit.getPluginManager().getPlugin("WorldGuard") != null;
+        if(isWorldGuardEnabled){
+            wgFlagManager = new WGFlagManager(this);
+            wgFlagManager.registerFlags();
+            plugin.getLogger().info("Found WorldGuard, initializing flags support");
+        }
+    }
+
 
     @Override
     public void onEnable() {
-        plugin = this;
         this.isEnabled = true;
         
         this.isFirstInstall = false;
@@ -182,6 +195,10 @@ public final class Tweakin extends JavaPlugin {
 
     public static NamespacedKey getKey(String key){
         return new NamespacedKey(plugin, key);
+    }
+
+    public WGFlagManager getWGFlagManager() {
+        return wgFlagManager;
     }
 
     

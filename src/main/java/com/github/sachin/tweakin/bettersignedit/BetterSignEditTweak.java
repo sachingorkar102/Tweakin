@@ -13,6 +13,7 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.TConstants;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -36,6 +37,7 @@ public class BetterSignEditTweak extends BaseTweak implements Listener{
 
     public ProtocolManager manager;
     private UpdateSignListener listener;
+    private BSEFlag flag;
     public final NamespacedKey key;
     public List<Player> lines = new ArrayList<>();
 
@@ -44,11 +46,15 @@ public class BetterSignEditTweak extends BaseTweak implements Listener{
         this.manager = ProtocolLibrary.getProtocolManager();
         this.listener = new UpdateSignListener(plugin,this);
         this.key = new NamespacedKey(plugin, "sign-edited");
+        if(plugin.isWorldGuardEnabled){
+            this.flag = (BSEFlag) plugin.getWGFlagManager().getFlag(TConstants.BSE_FLAG);
+        }
     }
 
     @Override
     public void register() {
         super.register();
+        
         manager.addPacketListener(listener);
     }
 
@@ -65,8 +71,12 @@ public class BetterSignEditTweak extends BaseTweak implements Listener{
         Player player = e.getPlayer();
         if(!player.isSneaking()) return;
         if(!e.getClickedBlock().getType().toString().endsWith("_SIGN") || !player.hasPermission("tweakin.bettersignedit.use") || getBlackListWorlds().contains(player.getWorld().getName())) return;
+        if(flag != null && !flag.queryFlag(player,e.getClickedBlock().getLocation())){
+            return;
+        }
         Sign sign = (Sign) e.getClickedBlock().getState();
         sign.getPersistentDataContainer().set(key, PersistentDataType.STRING, "");
+        
         sign.update(true);
         lines.add(player);
         PacketContainer packet = new PacketContainer(PacketType.Play.Server.OPEN_SIGN_EDITOR);

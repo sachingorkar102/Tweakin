@@ -374,6 +374,7 @@ broadcast-sound-nerf:
 # Right clicking a sign now lets you edit it even after it's been placed.
 # Respects grief plugins
 # Permisssion: tweakin.bettersignedit.use
+# WorldGuard flag: tweakin-better-sign-edit [enabled by default]
 better-sign-edit:
   enabled: false
   black-list-worlds: []
