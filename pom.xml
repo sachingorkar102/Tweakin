@@ -86,6 +86,14 @@
         </resources>
     </build>
 
+    <distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub OWNER Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/sachingorkar102/tweakin</url>
+		</repository>
+	</distributionManagement>
+
     <repositories>
         <repository>
             <id>spigotmc-repo</id>
