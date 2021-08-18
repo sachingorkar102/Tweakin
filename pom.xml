@@ -6,7 +6,7 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>3.0</version>
+    <version>3.1</version>
     <packaging>jar</packaging>
 
     
@@ -19,7 +19,6 @@
     </properties>
 
     <build>
-        <defaultGoal>clean package install</defaultGoal>
         <plugins>
 
             <plugin>

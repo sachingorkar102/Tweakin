@@ -27,7 +27,7 @@ jobs:
           java-version: 8
           server-id: github
           settings-path: ${{ github.workspace }}
-          
+
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
@@ -36,7 +36,3 @@ jobs:
           restore-keys: ${{ runner.os }}-m2    
       - name: Building maven project
         run: mvn package -f pom.xml
-      - name: Publish to GitHub Packages
-        run: mvn deploy --file pom.xml -s ${{ github.workspace }}/.m2/settings.xml
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
