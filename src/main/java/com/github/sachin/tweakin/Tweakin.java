@@ -63,8 +63,8 @@ public final class Tweakin extends JavaPlugin {
         isWorldGuardEnabled = Bukkit.getPluginManager().getPlugin("WorldGuard") != null;
         if(isWorldGuardEnabled){
             wgFlagManager = new WGFlagManager(this);
-            wgFlagManager.registerFlags();
             plugin.getLogger().info("Found WorldGuard, initializing flags support");
+            wgFlagManager.registerFlags();
         }
     }
 
