@@ -31,6 +31,3 @@ jobs:
         run: mvn package -f pom.xml
       - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v2
-        with:
-          name: Package
-          path: staging
