@@ -195,17 +195,24 @@ silence-mobs:
   rename-mob: false
   # list of valid names that can be used on name tag to silence the mob (case sensetive)
   silence-names:
-    - "Silence me"
-    - "silence me"
-    - "Silence plz"
-    - "Silence"
-    - "silence"
+    - 'Silence'
+    - 'silence'
+    - 'Silence me'
+    - 'silence me'
+    - 'Mute'
+    - 'mute'
+    - 'Mute me'
+    - 'mute me'
   # list of valid names that can be used on name tag to unsilence the mob (case sensetive)
   unsilence-names:
-    - "Unsilence"
-    - "unsilence"
-    - "Unmute me"
-    - "unmute me"
+    - 'Unsilence'
+    - 'unsilence'
+    - 'Unsilence me'
+    - 'unsilence me'
+    - 'Unmute'
+    - 'unmute'
+    - 'Unmute me'
+    - 'unmute me'
 
 # Optionally use Resource pack to change the sprite of item [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # Adds a wrench which allows to rotate any rotatable block listed in rotatable-materials.
@@ -232,7 +239,7 @@ rotation-wrench:
     id: 'STICK'
     display: '&aRotation Wrench'
     lore:
-      - "&6Right click a block to rotate"
+      - '&6Right click on a block to rotate'
     options:
       model: 100
 
@@ -308,9 +315,9 @@ lava-bucket-trash-can:
   enabled: false
   # item lore that will be shown when player fills up a lava bucket (keep empty to disable it)
   help-lore:
-    - "&eRight Click a item onto bucket to destroy it."
+    - '&eRight-Click an item on the bucket to destroy it.'
   # List of materials that cant be destroyed with this method,
-  # use ^NAME to allow a list of items that end with NAME, eg. ^_STAIRS  
+  # use ^NAME to allow a list of items that end with NAME, eg. ^_STAIRS
   # use *NAME to allow a list of items that start with NAME eg. *NETHERITE
   black-list-materials:
     - "^SHULKER_BOX"
@@ -338,9 +345,8 @@ slime-in-bucket:
     id: 'SLIME_BALL'
     display: 'Slime In A Bucket'
     lore:
-      - "&eSlime will start jumping once inside a slime chunk"
-      - "&eLeft click on block to release the slime"
-
+      - '&eSlime will start jumping once inside a slime chunk'
+      - '&eLeft click on a block to let the slime go'
 
 # You can pat the dogs. Sneak-Right click them with an empty hand to perform this glorious act.
 # this will also heal the dog betweed 1-3 hearts

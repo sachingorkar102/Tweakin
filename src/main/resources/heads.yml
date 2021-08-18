@@ -478,7 +478,7 @@ toast_rabbit:
   looting: 0
 
 killer_rabbit:
-  texture: NzFkZDc2NzkyOWVmMmZkMmQ0M2U4NmU4NzQ0YzRiMGQ4MTA4NTM0NzEyMDFmMmRmYTE4Zjk2YTY3ZGU1NmUyZiJ9fX0=
+  texture: 'NzFkZDc2NzkyOWVmMmZkMmQ0M2U4NmU4NzQ0YzRiMGQ4MTA4NTM0NzEyMDFmMmRmYTE4Zjk2YTY3ZGU1NmUyZiJ9fX0='
   display: "Killer Bunny Head"
   chance: 1
   looting: 0
