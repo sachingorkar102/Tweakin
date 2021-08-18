@@ -59,6 +59,7 @@ public final class Tweakin extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         this.isEnabled = true;
+        
         this.isFirstInstall = false;
         try {
             Class.forName("com.destroystokyo.paper.utils.PaperPluginLogger");
