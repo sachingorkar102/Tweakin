@@ -1,9 +1,0 @@
-name: Tweakin
-version: ${project.version}
-main: com.github.sachin.tweakin.Tweakin
-api-version: 1.16
-api: []
-authors: [ sachingorkar ]
-softdepend: [ProtocolLib]
-description: A modular plugin with the objective of improving the vanilla gameplay experience
-
