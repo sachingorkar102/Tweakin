@@ -45,7 +45,6 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
             new BukkitRunnable(){
                 @Override
                 public void run() {
-                    if(plugin.getServer().isStopping()) return;
                     List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
                     removeLeaves(locs);
                 }

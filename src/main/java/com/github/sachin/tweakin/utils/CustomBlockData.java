@@ -25,8 +25,10 @@ public class CustomBlockData implements PersistentDataContainer{
         this.pdc = getData();
     }
 
+    
     private PersistentDataContainer getData(){
         Chunk chunk = location.getBlock().getChunk();
+        
         PersistentDataContainer chunkPDC = chunk.getPersistentDataContainer();
         if(chunkPDC.has(key, PersistentDataType.TAG_CONTAINER)){
             return chunkPDC.get(key,PersistentDataType.TAG_CONTAINER);
@@ -38,6 +40,7 @@ public class CustomBlockData implements PersistentDataContainer{
 
     private void save() {
         Chunk chunk = location.getBlock().getChunk();
+        
         chunk.getPersistentDataContainer().set(key, PersistentDataType.TAG_CONTAINER, pdc);
     }
 

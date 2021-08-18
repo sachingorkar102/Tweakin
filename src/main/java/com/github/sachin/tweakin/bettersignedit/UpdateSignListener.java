@@ -30,6 +30,7 @@ public class UpdateSignListener extends PacketAdapter{
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void onPacketReceiving(PacketEvent event) {
         PacketContainer packet = event.getPacket();
         Player player = event.getPlayer();
@@ -48,6 +49,7 @@ public class UpdateSignListener extends PacketAdapter{
                         String[] lines = packet.getStringArrays().read(0);
                         int i = 0;
                         for(String l : lines){
+                            
                             sign.setLine(i, l);
                             i++;
                         }
