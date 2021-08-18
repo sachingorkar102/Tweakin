@@ -1,17 +1,17 @@
-name: Tweakin
+name: 'Tweakin'
 version: ${project.version}
-main: com.github.sachin.tweakin.Tweakin
+main: 'com.github.sachin.tweakin.Tweakin'
 api-version: 1.16
 api: []
-authors: [ sachingorkar ]
-softdepend: [ProtocolLib,Spartan]
-description: A modular plugin with the objective of improving the vanilla gameplay experience
-
-
-
+authors:
+  - 'sachingorkar'
+softdepend:
+  - 'ProtocolLib'
+  - 'Spartan'
+description: 'A modular plugin with the objective of improving the vanilla gameplay experience'
 permissions:
   tweakin.command.*:
-    default: op
+    default: 'op'
     children:
       tweakin.command.reload: true
       tweakin.command.give: true
@@ -21,14 +21,14 @@ permissions:
   tweakin.infinitybucket.*:
     default: true
     children:
-    - tweakin.infinitybucket.craft
-    - tweakin.infinitybucket.use    
+      - 'tweakin.infinitybucket.craft'
+      - 'tweakin.infinitybucket.use'
   tweakin.armorclick:
     default: true
   tweakin.shulkerboxclick:
     default: true
   tweakin.enderchestclick:
-    default: true  
+    default: true
   tweakin.customportal.use:
     default: true
   tweakin.reacharound.*:
@@ -46,15 +46,15 @@ permissions:
   tweakin.autorecipeunlock:
     default: true
   tweakin.netherportalcoords:
-    default: true 
+    default: true
   tweakin.swingthroughgrass:
     default: true
   tweakin.coordinatehud:
     default: true
   tweakin.coordniatehud.compassbypass:
-    default: op  
+    default: 'op'
   tweakin.posionpotato.use:
-    default: true    
+    default: true
   tweakin.burnvinetip.use:
     default: true
   tweakin.silencemobs.*:
@@ -67,35 +67,34 @@ permissions:
   tweakin.bottledcloud.*:
     default: true
     children:
-      tweakin.bottledcloud.pickup: true   
-      tweakin.bottledcloud.use: true   
+      tweakin.bottledcloud.pickup: true
+      tweakin.bottledcloud.use: true
   tweakin.trowel.use:
     default: true
   tweakin.patdog:
     default: true
   tweakin.patcat:
-    default: true  
+    default: true
   tweakin.compasstrack:
-    default: true  
+    default: true
   tweakin.slimebucket.*:
     default: true
     children:
       tweakin.slimebucket.detect: true
       tweakin.slimebucket.pickup: true
   tweakin.bettersignedit.use:
-    default: true    
+    default: true
   tweakin.fleemobs.bypass:
     default: false
   tweakin.shearitemframe.use:
     default: true
   tweakin.mobheads.drops:
-    default: true  
+    default: true
   tweakin.bettergrindstone:
-    default: true  
+    default: true
   tweakin.armoredelytra.craft:
-    default: true  
+    default: true
   tweakin.villagerdeathmessage.notify:
-    default: true  
+    default: true
   # tweakin.tradernotify:
-  #   default: true  
-
+  #   default: true

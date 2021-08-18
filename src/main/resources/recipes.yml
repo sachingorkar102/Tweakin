@@ -1,11 +1,10 @@
 rotation-wrench:
   1:
-    - air|gold_ingot|air
-    - air|gold_ingot|gold_ingot
-    - iron_ingot|air|air
-
+    - 'air|gold_ingot|air'
+    - 'air|gold_ingot|gold_ingot'
+    - 'iron_ingot|air|air'
 trowel:
   1:
-    - air|air|air
-    - air|iron_ingot|air
-    - air|stick|air    
+    - 'air|air|air'
+    - 'air|iron_ingot|air'
+    - 'air|stick|air'

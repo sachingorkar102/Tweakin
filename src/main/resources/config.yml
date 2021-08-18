@@ -3,7 +3,7 @@
 # changes can be reloaded with /tweakin reload command [Permission: tweakin.command.reload]
 # Some common options are:
 
-# enabled: true # weather or not module should be enabled [Please use /tw toggle command instead of changing this value from here]
+# enabled: true # wether or not module should be enabled [Please use /tw toggle command instead of changing this value from here]
 # black-list-worlds: [world] # list of worlds where module will not function
 
 # Read the text above each module for more info that module like commands and permissions(if any)
@@ -15,9 +15,8 @@ first-install: true
 # its bstats
 metrics: true
 
-# weather or not to show 
+# wether or not to show
 op-notifications: true
-
 
 # Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
 # Permission: tweakin.armorclick
@@ -25,14 +24,14 @@ armor-right-click:
   enabled: false
 
 # Shift+Left Clicking shulker box or ender-chest in air will show its contents
-# Permission: 
+# Permission:
   # tweakin.shulkerboxclick: permission to allow opening of shulker box
   # tweakin.enderchestclick: permission to allow opening of enderchest
 left-click-shulker-box:
   enabled: false
   black-list-worlds: []
   # if set to true players will able to open the enderchest just like shulker-box
-  enderchest: true  
+  enderchest: true
 
 # Create nether portals with any shape,size and with any blocks, remember this only applies to nether portals
 # Permission: tweakin.customportal.use
@@ -44,8 +43,8 @@ custom-shaped-portals:
   max-width: 20
   # list of blocks as valid portal frame
   valid-portal-blocks:
-    - OBSIDIAN
-    - CRYING_OBSIDIAN
+    - 'OBSIDIAN'
+    - 'CRYING_OBSIDIAN'
 
 # Note Blocks with heads attached to their side will emit the respective mob's sound instead of a note.
 # The mob sound's pitch is based on the note block pitch.
@@ -57,9 +56,9 @@ noteblock-mob-sounds:
   # DRAGON_WALL_HEAD,ZOMBIE_WALL_HEAD,WITHER_SKELETON_WALL_SKULL,SKELETON_WALL_SKULL
   black-list-heads: []
 
-# REQUIRES: ProtocolLib 
+# REQUIRES: ProtocolLib
 # Reacharound Placing allows you to place blocks behind the block you're looking at.
-# This can be done either vertically or horizontally, 
+# This can be done either vertically or horizontally,
 # provided you wouldn't be placing a block given normal rules.
 # Can be toggled by individual player by running /togglereacharound command
 # Permissions:
@@ -73,28 +72,28 @@ reach-around:
   black-list-worlds: []
   # alias for the toggle reacharound command (requires a server restart)
   # Pro tip: use | to add more then one alias eg. togglereacharound|togglereach
-  alias: togglereacharound
+  alias: 'togglereacharound'
   # if set to true reacharound will be enabled by default when player first joins the server
   enabled-on-first-join: true
   # list of materials that cant be placed with reacharound
-  # use ^NAME to allow a list of blocks that end with NAME, eg. ^SHULKER_BOX 
+  # use ^NAME to allow a list of blocks that end with NAME, eg. ^SHULKER_BOX
   black-list-materials:
-  - ^SHULKER_BOX
-  # weather or not to show future position of block as transperent highlight
+    - '^SHULKER_BOX'
+  # wether or not to show future position of block as transperent highlight
   show-highlight: true
   # what should be the color of highlight
   # use 0,16,0 if on 1.17, as blockhighlight is bugged in this 1.17 and colors dont match up
-  color: 204,204,204
+  color: '204,204,204'
   # transparency of highlight
   transparency: 50
 
-# Leaves decay much faster when no logs are nearby, or when the leaves are not player placed  
+# Leaves decay much faster when no logs are nearby, or when the leaves are not player placed
 fast-leaf-decay:
   enabled: false
   black-list-worlds: []
   # maximum duration leaves will stay (in seconds)
   duration: 10
-  # weather or not to run checks for nearby leaf blocks in async fashion
+  # wether or not to run checks for nearby leaf blocks in async fashion
   use-async: true
 
 # Ladders are slightly tweaked to improve your laddering experience:
@@ -111,7 +110,7 @@ better-ladder:
 
 # Lapis placed in enchanting table will stay there
 lapis-in-table:
-  enabled: false 
+  enabled: false
   black-list-worlds: []
 
 # All recipes will be unlocked when player joins server
@@ -127,7 +126,7 @@ nether-portal-coords:
   enabled: false
   # pairs of valid overworld|nether
   world-pairs:
-    world: world_nether
+    world: 'world_nether'
 
 # Does what it says, allows player to attack mobs through grass or any other passable block
 # Permission: tweakin.swingthroughgrass
@@ -135,7 +134,7 @@ swing-through-grass:
   enabled: false
 
 # displays coordinate hud,direction and ingame time at actionbar
-# Permission: 
+# Permission:
   # tweakin.coordinatehud: permission to use /togglerhud command
   # tweakin.coordniatehud.compassbypass: players having this permission do not require compass to be in inventory (have-compass option should be enabled)
 # Command: /togglehud,/thud
@@ -143,8 +142,8 @@ coordinate-hud:
   enabled: false
   # alias for the toggle reacharound command (requires a server restart)
   # Pro tip: use | to add more then one alias eg. togglehud|thud
-  alias: togglehud|thud
-  # weather or not to enable hud when player first joins the server
+  alias: 'togglehud|thud'
+  # wether or not to enable hud when player first joins the server
   enable-on-first-join: true
   # if set to true the hud will only display if player has a compass in there inventory
   have-compass: false
@@ -153,16 +152,15 @@ coordinate-hud:
   # intervals in ticks at which hud will update
   interval-ticks: 2
   # the text that will be displayed on hud
-  text: "&eXYZ: &f%x%,%y%,%z%  &e%direction%     %time%"
+  text: '&eXYZ: &f%x%,%y%,%z%  &e%direction%     %time%'
   # at which position the hud should display, valid vaules: ACTIONBAR,BOSSBAR
-  hud-type: ACTIONBAR
+  hud-type: 'ACTIONBAR'
   # Only works if hud-type is set to BOSSBAR
   boss-bar:
     # Valid colors: PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
-    color: YELLOW
+    color: 'YELLOW'
     # Valid styles: SOLID,SEGMENTED_6,SEGMENTED_10,SEGMENTED_12,SEGMENTED_20
-    style: SOLID
-
+    style: 'SOLID'
 
 # Feeding a baby animal a Poisonous Potato has a chance to poison it for a few seconds.
 # A baby animal that has been poisoned by this method will never grow into an adult.
@@ -174,7 +172,6 @@ poison-potato-usage:
   chance: 0.1
   # list of animals that will not be affected by this
   black-list-animals: []
-
 
 # The tip of a vine can now be burnt with a Flint and Steel.
 # When you do so, the vine will no longer be able to grow.
@@ -190,11 +187,11 @@ silence-mobs:
   black-list-worlds: []
   # list of mobs that will not be affected by this tweak
   black-list-mobs:
-    - WITHER
-    - ENDER_DRAGON
-  # weather or not to consume tag after silencing the mob
+    - 'WITHER'
+    - 'ENDER_DRAGON'
+  # wether or not to consume tag after silencing the mob
   consume-tag: false
-  # weather or not to actually rename mob after right clicking with name tag
+  # wether or not to actually rename mob after right clicking with name tag
   rename-mob: false
   # list of valid names that can be used on name tag to silence the mob (case sensetive)
   silence-names:
@@ -215,10 +212,10 @@ silence-mobs:
 # Permission: tweakin.rotationwrench.use
 rotation-wrench:
   enabled: false
-  # weather or not item is craftable, if set to false recipes regarding this item will not register
+  # wether or not item is craftable, if set to false recipes regarding this item will not register
   craftable: true
   # list of valid rotatable blocks
-  # use ^NAME to allow a list of blocks that end with NAME, eg. ^_STAIRS  
+  # use ^NAME to allow a list of blocks that end with NAME, eg. ^_STAIRS
   rotatable-materials:
     - ^_PISTON
     - OBSERVER
@@ -232,8 +229,8 @@ rotation-wrench:
   # configuration for item 
   # use ignored-sections option above if the changes get reset after reload
   item:
-    id: STICK
-    display: "&aRotation Wrench"
+    id: 'STICK'
+    display: '&aRotation Wrench'
     lore:
       - "&6Right click a block to rotate"
     options:
@@ -244,7 +241,7 @@ rotation-wrench:
 # The Bottled Cloud can be right clicked to produce a block floating in midair in front of you.
 # The cloud block disappears after a few seconds, but you can right click it with any other block to replace the two.
 # The cloud will go back in the bottle when you do this.
-# Permission: 
+# Permission:
   # tweakin.bottledcloud.*: provides all permissions related to this tweak
   # tweakin.bottledcloud.pickup: provides permission to pickup cloud with glass bottle at given heights
   # tweakin.bottledcloud.use: provides permission to use the bottled cloud
@@ -257,36 +254,35 @@ bottled-cloud:
   maximum-height: 132
   # configuration of item
   item:
-    id: GLASS_BOTTLE
-    display: "Bottled Cloud"
+    id: 'GLASS_BOTTLE'
+    display: 'Bottled Cloud'
     lore:
-      - "&7Right-Click in air to place cloud"
-    options: 
+      - '&7Right-Click in air to place cloud'
+    options:
       model: 101
-
 
 # Optionally use resource pack to change the item sprite [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # A Trowel tool can be crafted with Iron and Sticks.
 # The Trowel, when right clicked, will place a random block from your hotbar, making it useful for ruins or paths.
-# Permission: 
+# Permission:
   # tweakin.trowel.use: provides permission to use the trowel
 trowel:
   enabled: false
-  # weather or not item is craftable, if set to false recipes(from recipes.yml) regarding this item will not register 
+  # wether or not item is craftable, if set to false recipes(from recipes.yml) regarding this item will not register
   craftable: true
-  # weather or not item should take damage on use, only use for damagable items like iron_hoe
+  # wether or not item should take damage on use, only use for damagable items like iron_hoe
   # Note: max uses of the item depends on what base material you are using example iron_hoe has 250 max durability meaning trowel will have 250 max uses
   take-damage: true
   # configuration for item
   item:
-    id: IRON_HOE
-    display: "&7Trowel"
+    id: 'IRON_HOE'
+    display: '&7Trowel'
     flags:
-      - HIDE_ATTRIBUTES
+      - 'HIDE_ATTRIBUTES'
     options:
       model: 102
     lore:
-      - "&7Right-Click to place random blocks from hotbar"
+      - '&7Right-Click to place random blocks from hotbar'
 
 # Creepers will no longer explode, instead they will turn into twinkling fireworks
 confetti-creepers:
@@ -296,8 +292,15 @@ confetti-creepers:
   chance: 0.1
   # list of colors that will be included in fire work
   # visit https://www.shodor.org/stella2java/rgbint.html to convert your rgb colors to integers
-  colors: [11743532,15435844,14602026,4312372,6719955,8073150,14188952]     
-  
+  colors:
+    - 11743532
+    - 15435844
+    - 14602026
+    - 4312372
+    - 6719955
+    - 8073150
+    - 14188952
+
 # Items can now be right clicked onto a Lava Bucket to destroy them forever.
 # Shulker Boxes and items that are immune to fire (eg. Netherite) can not be destroyed this way.
 # Items can only be destroyed if the lava bucket is in player's inventory
@@ -332,8 +335,8 @@ slime-in-bucket:
   # what interval in ticks the runnable should run
   interval-ticks: 20
   item:
-    id: SLIME_BALL
-    display: "Slime In A Bucket"
+    id: 'SLIME_BALL'
+    display: 'Slime In A Bucket'
     lore:
       - "&eSlime will start jumping once inside a slime chunk"
       - "&eLeft click on block to release the slime"
@@ -346,9 +349,9 @@ pat-dogs:
   enabled: false
   # cooldown in ticks to pat a dog, set to 0 to disable it
   cooldown: 60
-  # weather or not to heal the dog after patting
+  # wether or not to heal the dog after patting
   heal: true
-  # weather or not cats can be patted too.
+  # wether or not cats can be patted too.
   pat-cats: false
 
 # compass can now work in nether and end too,
@@ -358,12 +361,12 @@ pat-dogs:
 compass-work-everywhere:
   enabled: false
   black-list-worlds: []
-  # weather or not compass will work in nether
+  # wether or not compass will work in nether
   nether: true
-  # weather or not compass will work in end
+  # wether or not compass will work in end
   end: true
 
-# REQUIRES ProtocolLib 
+# REQUIRES ProtocolLib
 # A tweak to silence these nasty server wide broadcast sounds:
 # Wither spawn,end portal create event and ender dragon death
 # only players within 40 block radius of the sound source can hear them, not sure why its not in vanilla already...
@@ -383,7 +386,7 @@ better-sign-edit:
 hoe-harvesting:
   enabled: false
   black-list-worlds: []
-  # range at which area will be cleared. 
+  # range at which area will be cleared.
   # eg, if range is set to 1, a 3x3 area will be cleared
   # if set to 2, a 5x5 area will be cleared
   range:
@@ -402,9 +405,9 @@ villager-follow-emerald:
   enabled: false
   black-list-worlds: []
 
-# Animals will flee in groups on melee attacks, adding some stratagy to killing them 
+# Animals will flee in groups on melee attacks, adding some stratagy to killing them
 # Already breeded animals by player will not flee away
-# Permission: 
+# Permission:
   # tweakin.fleemobs.bypass: mobs will not flee if player has this permission
 animal-flee:
   enabled: false
@@ -445,12 +448,12 @@ infinity-water-bucket:
   enabled: false
   cost: 2
   item:
-    id: WATER_BUCKET
-    display: "&6Infinte Water Bucket"
+    id: 'WATER_BUCKET'
+    display: '&6Infinte Water Bucket'
     enchants:
-      - INFINITY 1
+      - 'INFINITY 1'
     lore:
-      - "&aThis bucket will last forever..."
+      - '&aThis bucket will last forever...'
 
 # mobs have a chance to drop there heads on death,
 # each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes in heads.yml to take place)
@@ -460,22 +463,22 @@ mob-heads:
   enabled: false
   black-list-worlds: []
   # if set to false mobs will not drop heads if they are not killed by player
-  require-player-kill: true  
+  require-player-kill: true
 
 # You can put an enchanted item and a book into the grindstone, and you will get the enchantments onto the book,
 # destroying your enchanted item in the process
 # Permission:
   # tweakin.bettergrindstone: allows to use the grindstone functionality
 better-grindstone:
-  enabled: false 
-  
+  enabled: false
+
 # a elytra and chestplate can be combined in anvil to create armored elytra which has protection of chestplate and also ability to fly with elytra
 # to obtain chestplate and elytra back drop a anvil on the item entity of armored elytra
 # or it can be thrown in lava to seprate(not recommended as both items will be destroyed unless chestplate was netherite)
 # enchantments of both items are combined too
 # the durability of armored elytra is equivalent to elytra
 # Permission:
-  # tweakin.armoredelytra.craft: permission to combine elytra and chestplate in anvil  
+  # tweakin.armoredelytra.craft: permission to combine elytra and chestplate in anvil
 armored-elytra:
   enabled: false
   # the experience cost
@@ -483,18 +486,17 @@ armored-elytra:
   # list of items that can be used to combine with elytra (only use chestplate item types)
   combineable-materials: [LEATHER_CHESTPLATE,IRON_CHESTPLATE,DIAMOND_CHESTPLATE,NETHERITE_CHESTPLATE,GOLDEN_CHESTPLATE,CHAINMAIL_CHESTPLATE]
   item:
-    id: ELYTRA
-    display: "&eArmored Elytra"
+    id: 'ELYTRA'
+    display: '&eArmored Elytra'
     lore:
-      - "&7Benifits of elytra and chestplate at once"
+      - '&7Benefits of an Elytra and a chestplate at once'
     options:
       model: 0
 
-
 # a message a broadcasted to all players when a villager dies
 # the message is configurable in messages.yml
-# Permission: 
+# Permission:
   # tweakin.villagerdeathmessage.notify: players with this permission will only recive the death messages
 villager-death-message:
   enabled: true
-  black-list-worlds: []      
+  black-list-worlds: []
