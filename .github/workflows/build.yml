@@ -38,5 +38,5 @@ jobs:
       - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v2
         with:
-          name: Tweakin
+          name: Package
           path: staging
