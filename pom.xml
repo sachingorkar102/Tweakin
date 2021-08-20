@@ -147,7 +147,7 @@
             <artifactId>spigot</artifactId>
             <version>1.16.5</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.16.5.jar</systemPath>
+            <systemPath>${project.basedir}/libs/spigot-1.16.5.jar</systemPath>
         </dependency>
         <!-- <dependency>
             <groupId>Spigot-1.16.1</groupId>
@@ -168,14 +168,14 @@
             <artifactId>spigot</artifactId>
             <version>1.17</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.17.jar</systemPath>
+            <systemPath>${project.basedir}/libs/spigot-1.17.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>SpartanAPI</groupId>
             <artifactId>spartan</artifactId>
             <version>1.17</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/SpartanAPI.jar</systemPath>
+            <systemPath>${project.basedir}/libs/SpartanAPI.jar</systemPath>
         </dependency>
        
         <!-- Protocol lib -->

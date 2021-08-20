@@ -1,2 +1,0 @@
-gamerule sendCommandFeedback false
-schedule function custom_nether_portals:restore_command_feedback 1t replace
