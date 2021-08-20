@@ -74,7 +74,7 @@ public class TrowelItem extends TweakItem implements Listener{
         placeBlock(block.getLocation(), player, e.getBlockFace(),false,null);
         
     }
-    
+
     public void placeBlock(Location loc,Player player,BlockFace hitFace,boolean isReacharound,ReachAroundTweak instance){
         List<ItemStack> hotBar = getHotBarContents(player);
         ItemStack iteminHand = player.getInventory().getItemInMainHand().clone();
@@ -85,6 +85,7 @@ public class TrowelItem extends TweakItem implements Listener{
                 if(matchString(item.getType().toString(), instance.getConfig().getStringList("black-list-materials"))){
                     return;
                 }
+                
             }
             player.getInventory().setItemInMainHand(item);
             boolean placed = getPlugin().getNmsHelper().placeItem(player, loc, player.getInventory().getItemInMainHand(),hitFace,getName());
