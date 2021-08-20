@@ -16,6 +16,10 @@ public class PaperUtils {
 
     public static void removePanicGoal(Entity entity){
         try {
+<<<<<<< HEAD
+=======
+            
+>>>>>>> b4d7df9fe24db8bf1614bbc05a5429f8a82571e0
             Method method = Class.forName("org.bukkit.Bukkit").getMethod("getMobGoals");
             ((MobGoals)method.invoke(null)).removeGoal(((Creature)entity), VanillaGoal.PANIC);
         } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {

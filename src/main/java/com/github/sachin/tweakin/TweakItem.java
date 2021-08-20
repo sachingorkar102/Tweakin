@@ -23,7 +23,6 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
-
 public abstract class TweakItem extends BaseTweak {
 
     protected ItemStack item;

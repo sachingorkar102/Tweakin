@@ -318,7 +318,6 @@ lava-bucket-trash-can:
     - "SHULKER_BOX$"
     - "^NETHERITE"
 
-
 # Use of Resource pack is important [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # disable this if you dont use resource packs on server.
 # Right clicking a tiny(size 1) slime with a bucket puts it in there.
@@ -480,8 +479,6 @@ better-grindstone:
   enabled: false
   # if set to true, items enchanted from enchanting table will be ignored
   ignore-items-from-enchanting-table: false
-
-
 # a elytra and chestplate can be combined in anvil to create armored elytra which has protection of chestplate and also ability to fly with elytra
 # to obtain chestplate and elytra back drop a anvil on the item entity of armored elytra
 # or it can be thrown in lava to seprate(not recommended as both items will be destroyed unless chestplate was netherite)

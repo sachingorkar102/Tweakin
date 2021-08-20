@@ -60,6 +60,7 @@ public class LavaBucketTrashCan extends BaseTweak implements Listener{
 
     }
 
+<<<<<<< HEAD
     // NOT USED ANYMORE
     // private boolean isBlackListMaterial(Material mat){
     //     String blockName = mat.toString();
@@ -80,5 +81,26 @@ public class LavaBucketTrashCan extends BaseTweak implements Listener{
     //     }
     //     return false;
     // }
+=======
+    private boolean isBlackListMaterial(Material mat){
+        String blockName = mat.toString();
+        for (String string : getConfig().getStringList("black-list-materials")) {
+            if(string.startsWith("^")){
+                if(blockName.endsWith(string.replace("^", ""))){
+                    return true;
+                }
+            }
+            else if(string.startsWith("*")){
+                if(blockName.startsWith(string.replace("*", ""))){
+                    return true;
+                }
+            }
+            if(blockName.equals(string)){
+                return true;
+            }
+        }
+        return false;
+    }
+>>>>>>> b4d7df9fe24db8bf1614bbc05a5429f8a82571e0
     
 }

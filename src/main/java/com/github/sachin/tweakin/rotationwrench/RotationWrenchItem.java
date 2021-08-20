@@ -114,12 +114,17 @@ public class RotationWrenchItem extends TweakItem implements Listener{
                 public void run() {
                     cooldownPlayers.remove(player);
                 };
+<<<<<<< HEAD
             }.runTaskLater(getPlugin(), 5);
+=======
+            }.runTaskLater(getPlugin(), 20);
+>>>>>>> b4d7df9fe24db8bf1614bbc05a5429f8a82571e0
         }
 
         
     }
 
+<<<<<<< HEAD
     // NOT IN USE
     // public boolean isRotatable(Block block){
     //     String blockName = block.getType().toString();
@@ -135,5 +140,21 @@ public class RotationWrenchItem extends TweakItem implements Listener{
     //     }
     //     return false;
     // }
+=======
+    public boolean isRotatable(Block block){
+        String blockName = block.getType().toString();
+        for (String string : rotateableMaterials) {
+            if(string.startsWith("^")){
+                if(blockName.endsWith(string.replace("^", ""))){
+                    return true;
+                }
+            }
+            if(blockName.equals(string)){
+                return true;
+            }
+        }
+        return false;
+    }
+>>>>>>> b4d7df9fe24db8bf1614bbc05a5429f8a82571e0
     
 }
