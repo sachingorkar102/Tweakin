@@ -73,10 +73,6 @@ public class TrowelItem extends TweakItem implements Listener{
         }
         placeBlock(block.getLocation(), player, e.getBlockFace(),false,null);
         
-
-        
-        // System.out.println(result.toString());
-        
     }
     public void placeBlock(Location loc,Player player,BlockFace hitFace,boolean isReacharound,ReachAroundTweak instance){
         List<ItemStack> hotBar = getHotBarContents(player);
