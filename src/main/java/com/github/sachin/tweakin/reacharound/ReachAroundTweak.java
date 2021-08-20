@@ -200,11 +200,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
                 }
             }
         }
-<<<<<<< HEAD
         if(matchString(item.getType().toString(), getConfig().getStringList("black-list-materials"))) return;
-=======
-        if(isValidMaterial(item.getType())) return;
->>>>>>> b4d7df9fe24db8bf1614bbc05a5429f8a82571e0
         if(!item.getType().isBlock()) return;
         Location loc = getPlayerReachAroundTarget(player);
         if(loc != null){

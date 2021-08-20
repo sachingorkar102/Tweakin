@@ -6,13 +6,10 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.Material;
-<<<<<<< HEAD
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Directional;
-=======
->>>>>>> b4d7df9fe24db8bf1614bbc05a5429f8a82571e0
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Fish;
 import org.bukkit.entity.Player;
