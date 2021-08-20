@@ -1,0 +1,99 @@
+# Thank You for downloading tweakin :)
+# Each module can be configured separately
+# changes can be reloaded with /tweakin reload command [Permission: tweakin.command.reload]
+# Some common options are:
+
+# enabled: true # weather or not module should be enabled
+# black-list-worlds: [world] # list of worlds where module will not function
+
+# Read the text above each module for more info that module like commands and permissions(if any)
+# if you found any issue/bug, join me up on discord: https://discord.gg/tTHs4jKu6f
+
+# Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
+# Permission: tweakin.armorclick
+armor-right-click:
+  enabled: true
+
+# Right Clicking shulker box in air will show its contents
+# Permission: tweakin.shulkerboxclick
+right-click-shulker-box:
+  enabled: true  
+
+# Create nether portals with any shape,size and with any blocks, remember this only applies to nether portals
+# Permission: tweakin.customportal.use
+custom-portal:
+  enabled: true
+  black-list-worlds: []
+  # max radius of portal
+  radius: 20
+  # list of blocks as valid portal frame
+  valid-portal-blocks:
+    - OBSIDIAN
+    - CRYING_OBSIDIAN
+
+# Note Blocks with heads attached to their side will emit the respective mob's sound instead of a note.
+# The mob sound's pitch is based on the note block pitch.
+# only vanilla mob heads will work
+noteblock-mob-sounds:
+  enabled: true
+  black-list-worlds: []
+  # list of heads which will be ignored
+  # DRAGON_WALL_HEAD,ZOMBIE_WALL_HEAD,WITHER_SKELETON_WALL_SKULL,SKELETON_WALL_SKULL
+  black-list-heads: []
+
+# REQUIRES: ProtocolLib 
+# Reacharound Placing allows you to place blocks behind the block you're looking at.
+# This can be done either vertically or horizontally, 
+# provided you wouldn't be placing a block given normal rules.
+# Permissions:
+  # tweakin.reacharound.vertical: permission to place vertically
+  # tweakin.reacharound.horizontal: permission to place horizontally
+  # tweakin.reacharound.highlight: permission to show highlight
+reach-around:
+  enabled: true
+  black-list-worlds: []
+  # weather or not to show future position of block as transperent highlight
+  show-highlight: true
+  # what should be the color of highlight
+  color: "#bfbfbf"
+  # transparency of highlight
+  transparency: 60
+
+# Leaves decay much faster when no logs are nearby, or when the leaves are not player placed  
+fast-leaf-decay:
+  enabled: true
+  black-list-worlds: []  
+
+# Ladders are slightly tweaked to improve your laddering experience:
+  # Right clicking a ladder with another one will place it, allowing you to drop ladders down without risking falling to your death.
+  # Shift+right clicking any end of ladder will allow you to reach the another end, resulting in quick climb
+# Permission: tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
+better-ladder:
+  enabled: true
+  black-list-worlds: []
+
+# Lapis placed in enchanting table will stay there
+lapis-in-table:
+  enabled: true 
+  black-list-worlds: []
+
+# All recipes will be unlocked when player joins server
+# Permission: tweakin.autorecipeunlock
+auto-recipe-unlock:
+  enabled: true
+
+# Helps to sync nether portals between overworld and nether
+# right clicking a nether portal block while holding compass will display the calculated coordinates in compass
+# these coordinates will direct where the other portal should be created in the opposite dimension.
+# Permission: tweakin.netherportalcoords
+nether-portal-coords:
+  enabled: true
+  # pairs of valid overworld|nether
+  world-pairs:
+    world: world_nether
+
+# Does what it says, allows player to attack mobs through grass or any other passable block
+# Permission: tweakin.swingthroughgrass
+swing-through-grass:
+  enabled: true    
+  

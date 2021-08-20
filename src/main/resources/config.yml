@@ -1,0 +1,513 @@
+# Thank You for downloading tweakin :)
+# Each module can be configured separately
+# changes can be reloaded with /tweakin reload command [Permission: tweakin.command.reload]
+# Some common options are:
+
+# enabled: true # weather or not module should be enabled [Please use /tw toggle command instead of changing this value from here]
+# black-list-worlds: [world] # list of worlds where module will not function
+
+# Read the text above each module for more info that module like commands and permissions(if any)
+# if you found any issue/bug, join me up on discord: https://discord.gg/tTHs4jKu6f
+
+# dont touch this one
+first-install: true
+
+# its bstats
+metrics: true
+
+# weather or not to show 
+op-notifications: true
+
+
+# Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
+# Permission: tweakin.armorclick
+armor-right-click:
+  enabled: false
+
+# Shift+Left Clicking shulker box or ender-chest in air will show its contents
+# Permission: 
+  # tweakin.shulkerboxclick: permission to allow opening of shulker box
+  # tweakin.enderchestclick: permission to allow opening of enderchest
+left-click-shulker-box:
+  enabled: false
+  black-list-worlds: []
+  # if set to true players will able to open the enderchest just like shulker-box
+  enderchest: true  
+
+# Create nether portals with any shape,size and with any blocks, remember this only applies to nether portals
+# Permission: tweakin.customportal.use
+custom-shaped-portals:
+  enabled: false
+  black-list-worlds: []
+  # Max height and width of a portal
+  max-height: 40
+  max-width: 20
+  # list of blocks as valid portal frame
+  valid-portal-blocks:
+    - OBSIDIAN
+    - CRYING_OBSIDIAN
+
+# Note Blocks with heads attached to their side will emit the respective mob's sound instead of a note.
+# The mob sound's pitch is based on the note block pitch.
+# only vanilla mob heads will work
+noteblock-mob-sounds:
+  enabled: false
+  black-list-worlds: []
+  # list of heads which will be ignored
+  # DRAGON_WALL_HEAD,ZOMBIE_WALL_HEAD,WITHER_SKELETON_WALL_SKULL,SKELETON_WALL_SKULL
+  black-list-heads: []
+
+# REQUIRES: ProtocolLib 
+# Reacharound Placing allows you to place blocks behind the block you're looking at.
+# This can be done either vertically or horizontally, 
+# provided you wouldn't be placing a block given normal rules.
+# Can be toggled by individual player by running /togglereacharound command
+# Permissions:
+  # tweakin.reacharound.*: grants all permissions given below for reacharound
+  # tweakin.reacharound.vertical: permission to place vertically
+  # tweakin.reacharound.horizontal: permission to place horizontally
+  # tweakin.reacharound.highlight: permission to show highlight
+  # tweakin.reacharound.togglecommand: permission to use /togglereacharound|/treacharound
+reach-around:
+  enabled: false
+  black-list-worlds: []
+  # alias for the toggle reacharound command (requires a server restart)
+  # Pro tip: use | to add more then one alias eg. togglereacharound|togglereach
+  alias: togglereacharound
+  # if set to true reacharound will be enabled by default when player first joins the server
+  enabled-on-first-join: true
+  # list of materials that cant be placed with reacharound
+  # Pro tip: 
+    # use NAME$ to take those names into account which end with "NAME" eg. "SHULKER_BOX$"
+    # use ^NAME to take those names into acccount which start with "NAME" eg. "^NETHERITE"
+  black-list-materials:
+  - SHULKER_BOX$
+  # weather or not to show future position of block as transperent highlight
+  show-highlight: true
+  # what should be the color of highlight
+  # use 0,16,0 if on 1.17, as blockhighlight is bugged in this 1.17 and colors dont match up
+  color: 204,204,204
+  # transparency of highlight
+  transparency: 50
+
+# Leaves decay much faster when no logs are nearby, or when the leaves are not player placed  
+fast-leaf-decay:
+  enabled: false
+  black-list-worlds: []
+  # maximum duration leaves will stay (in seconds)
+  duration: 10
+  # weather or not to run checks for nearby leaf blocks in async fashion
+  use-async: true
+
+# Ladders are slightly tweaked to improve your laddering experience:
+  # Right clicking a ladder with another one will place it, allowing you to drop ladders down without risking falling to your death.
+  # Shift+right clicking any end of ladder will allow you to reach the another end, resulting in quick climb (may or may not work with anti cheats)
+# Permission: tweakin.betterladder.* tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
+better-ladder:
+  enabled: false
+  black-list-worlds: []
+  # Universal toggle for dropdown ladder feature
+  dropdown: true
+  # Universal toggle for quickclimb ladder feature
+  quickclimb: true
+
+# Lapis placed in enchanting table will stay there
+lapis-in-table:
+  enabled: false 
+  black-list-worlds: []
+
+# All recipes will be unlocked when player joins server
+# Permission: tweakin.autorecipeunlock
+auto-recipe-unlock:
+  enabled: false
+
+# Helps to sync nether portals between overworld and nether
+# right clicking a nether portal block while holding compass will display the calculated coordinates in compass
+# these coordinates will direct where the other portal should be created in the opposite dimension.
+# Permission: tweakin.netherportalcoords
+nether-portal-coords:
+  enabled: false
+  # pairs of valid overworld|nether
+  world-pairs:
+    world: world_nether
+
+# Does what it says, allows player to attack mobs through grass or any other passable block
+# Permission: tweakin.swingthroughgrass
+swing-through-grass:
+  enabled: false
+
+# displays coordinate hud,direction and ingame time at actionbar
+# Permission: 
+  # tweakin.coordinatehud: permission to use /togglerhud command
+  # tweakin.coordniatehud.compassbypass: players having this permission do not require compass to be in inventory (have-compass option should be enabled)
+# Command: /togglehud,/thud
+coordinate-hud:
+  enabled: false
+  # alias for the toggle reacharound command (requires a server restart)
+  # Pro tip: use | to add more then one alias eg. togglehud|thud
+  alias: togglehud|thud
+  # weather or not to enable hud when player first joins the server
+  enable-on-first-join: true
+  # if set to true the hud will only display if player has a compass in there inventory
+  have-compass: false
+  # will show a speed value too if player is on passenger like boat,minecart,horse etc.
+  show-speed: false
+  # intervals in ticks at which hud will update
+  interval-ticks: 2
+  # the text that will be displayed on hud
+  text: "&eXYZ: &f%x%,%y%,%z%  &e%direction%     %time%"
+  # at which position the hud should display, valid vaules: ACTIONBAR,BOSSBAR
+  hud-type: ACTIONBAR
+  # Only works if hud-type is set to BOSSBAR
+  boss-bar:
+    # Valid colors: PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
+    color: YELLOW
+    # Valid styles: SOLID,SEGMENTED_6,SEGMENTED_10,SEGMENTED_12,SEGMENTED_20
+    style: SOLID
+
+
+# Feeding a baby animal a Poisonous Potato has a chance to poison it for a few seconds.
+# A baby animal that has been poisoned by this method will never grow into an adult.
+# Permission: tweakin.posionpotato.use
+poison-potato-usage:
+  enabled: false
+  black-list-worlds: []
+  # chance at which the baby will be poisoned bettween (0-1)
+  chance: 0.1
+  # list of animals that will not be affected by this
+  black-list-animals: []
+
+
+# The tip of a vine can now be burnt with a Flint and Steel.
+# When you do so, the vine will no longer be able to grow.
+# Permission: tweakin.burnvinetip.use
+burn-vine-tip:
+  enabled: false
+  black-list-worlds: []
+
+# silence mobs using a name tag
+# Permission: tweakin.silencemobs.*, tweakin.silencemobs.silence, tweakin.silencemobs.unsilence
+silence-mobs:
+  enabled: false
+  black-list-worlds: []
+  # list of mobs that will not be affected by this tweak
+  black-list-mobs:
+    - WITHER
+    - ENDER_DRAGON
+  # weather or not to consume tag after silencing the mob
+  consume-tag: false
+  # weather or not to actually rename mob after right clicking with name tag
+  rename-mob: false
+  # list of valid names that can be used on name tag to silence the mob (case sensetive)
+  silence-names:
+    - "Silence me"
+    - "silence me"
+    - "Silence plz"
+    - "Silence"
+    - "silence"
+  # list of valid names that can be used on name tag to unsilence the mob (case sensetive)
+  unsilence-names:
+    - "Unsilence"
+    - "unsilence"
+    - "Unmute me"
+    - "unmute me"
+
+# Optionally use Resource pack to change the sprite of item [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
+# Adds a wrench which allows to rotate any rotatable block listed in rotatable-materials.
+# Permission: tweakin.rotationwrench.use
+rotation-wrench:
+  enabled: false
+  # weather or not item is craftable, if set to false recipes regarding this item will not register
+  craftable: true
+  # list of valid rotatable blocks
+  # Pro tip: 
+    # use NAME$ to take those names into account which end with "NAME" eg. "SHULKER_BOX$"
+    # use ^NAME to take those names into acccount which start with "NAME" eg. "^NETHERITE"
+  rotatable-materials:
+    - _PISTON$
+    - OBSERVER
+    - DISPENSER
+    - _STAIRS$
+    - _TERRACOTTA$
+    - COMPARATOR
+    - REPEATER
+    - CHEST
+    - _LOG$
+  # configuration for item 
+  # use ignored-sections option above if the changes get reset after reload
+  item:
+    id: STICK
+    display: "&aRotation Wrench"
+    lore:
+      - "&6Right click a block to rotate"
+    options:
+      model: 100
+
+# Optionally use Resource pack to change the sprite of item [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
+# Using a Glass Bottle at the cloud levels (126-132 by default) will get you a Bottled Cloud.
+# The Bottled Cloud can be right clicked to produce a block floating in midair in front of you.
+# The cloud block disappears after a few seconds, but you can right click it with any other block to replace the two.
+# The cloud will go back in the bottle when you do this.
+# Permission: 
+  # tweakin.bottledcloud.*: provides all permissions related to this tweak
+  # tweakin.bottledcloud.pickup: provides permission to pickup cloud with glass bottle at given heights
+  # tweakin.bottledcloud.use: provides permission to use the bottled cloud
+bottled-cloud:
+  enabled: false
+  black-list-worlds: []
+  # minimium height for glass bottle to pickup cloud
+  minimum-height: 126
+  # maximum height for glass bottle to pickup cloud
+  maximum-height: 132
+  # configuration of item
+  item:
+    id: GLASS_BOTTLE
+    display: "Bottled Cloud"
+    lore:
+      - "&7Right-Click in air to place cloud"
+    options: 
+      model: 101
+
+
+# Optionally use resource pack to change the item sprite [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
+# A Trowel tool can be crafted with Iron and Sticks.
+# The Trowel, when right clicked, will place a random block from your hotbar, making it useful for ruins or paths.
+# Permission: 
+  # tweakin.trowel.use: provides permission to use the trowel
+trowel:
+  enabled: false
+  # weather or not item is craftable, if set to false recipes(from recipes.yml) regarding this item will not register 
+  craftable: true
+  # weather or not item should take damage on use, only use for damagable items like iron_hoe
+  # Note: max uses of the item depends on what base material you are using example iron_hoe has 250 max durability meaning trowel will have 250 max uses
+  take-damage: true
+  # configuration for item
+  item:
+    id: IRON_HOE
+    display: "&7Trowel"
+    flags:
+      - HIDE_ATTRIBUTES
+    options:
+      model: 102
+    lore:
+      - "&7Right-Click to place random blocks from hotbar"
+
+# Creepers will no longer explode, instead they will turn into twinkling fireworks
+confetti-creepers:
+  enabled: false
+  black-list-worlds: []
+  # The chance that creeper will explode as confetti(0.0-1.0, 1 being 100%)
+  chance: 0.1
+  # list of colors that will be included in fire work
+  # visit https://www.shodor.org/stella2java/rgbint.html to convert your rgb colors to integers
+  colors: [11743532,15435844,14602026,4312372,6719955,8073150,14188952]     
+  
+# Items can now be right clicked onto a Lava Bucket to destroy them forever.
+# Shulker Boxes and items that are immune to fire (eg. Netherite) can not be destroyed this way.
+# Items can only be destroyed if the lava bucket is in player's inventory
+lava-bucket-trash-can:
+  enabled: false
+  # item lore that will be shown when player fills up a lava bucket (keep empty to disable it)
+  help-lore:
+    - "&eRight Click a item onto bucket to destroy it."
+  # List of materials that cant be destroyed with this method,
+  # Pro tip: 
+    # use NAME$ to take those names into account which end with "NAME" eg. "SHULKER_BOX$"
+    # use ^NAME to take those names into acccount which start with "NAME" eg. "^NETHERITE"
+  black-list-materials:
+    - "SHULKER_BOX$"
+    - "^NETHERITE"
+
+
+# Use of Resource pack is important [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
+# disable this if you dont use resource packs on server.
+# Right clicking a tiny(size 1) slime with a bucket puts it in there.
+# It remains quiet, but will start jumping inside the bucket if you find yourself in a slime chunk.
+# The slime can also be deployed back into the world by right clicking on a block.
+# Permission:
+  # tweakin.slimebucket.pickup: permission to pickup slime when right clicked with empty bucket
+  # tweakin.slimebucket.detect: slime will not bounce in bucket if player holding it dosnt have this permission
+slime-in-bucket:
+  enabled: false
+  black-list-worlds: []
+  # Custom Model data that will be used when the item is not in slime chunk
+  model-undetected: 103
+  # Custom Model data that will be used when the item is in a slime chunk
+  model-detected: 104
+  # what interval in ticks the runnable should run
+  interval-ticks: 20
+  item:
+    id: SLIME_BALL
+    display: "Slime In A Bucket"
+    lore:
+      - "&eSlime will start jumping once inside a slime chunk"
+      - "&eLeft click on block to release the slime"
+
+
+# You can pat the dogs. Sneak-Right click them with an empty hand to perform this glorious act.
+# this will also heal the dog betweed 1-3 hearts
+# Permission: tweakin.patdog,tweakin.patcat
+pat-dogs:
+  enabled: false
+  # cooldown in ticks to pat a dog, set to 0 to disable it
+  cooldown: 60
+  # weather or not to heal the dog after patting
+  heal: true
+  # weather or not cats can be patted too.
+  pat-cats: false
+
+# compass can now work in nether and end too,
+# pointing towards the portal you entered from, this will only work if you have a compass in main_hand
+# right clicking the bed with compass in main_hand will start pointing towards bed location
+# Permission: tweakin.compasstrack
+compass-work-everywhere:
+  enabled: false
+  black-list-worlds: []
+  # weather or not compass will work in nether
+  nether: true
+  # weather or not compass will work in end
+  end: true
+
+# REQUIRES ProtocolLib 
+# A tweak to silence these nasty server wide broadcast sounds:
+# Wither spawn,end portal create event and ender dragon death
+# only players within 40 block radius of the sound source can hear them, not sure why its not in vanilla already...
+broadcast-sound-nerf:
+  enabled: false
+
+# Requires ProtocolLib
+# Right clicking a sign now lets you edit it even after it's been placed.
+# Respects grief plugins
+# Permisssion: tweakin.bettersignedit.use
+# WorldGuard flag: tweakin-better-sign-edit [enabled by default]
+better-sign-edit:
+  enabled: false
+  black-list-worlds: []
+
+# Breaking grass or crops with a hoe will break a 3x3 of them. A Diamond & Netherite Hoe will break a 5x5 instead.
+# If you put Fortune on the hoe, it'll also apply that effect to everything it breaks.
+hoe-harvesting:
+  enabled: false
+  black-list-worlds: []
+  # range at which area will be cleared. 
+  # eg, if range is set to 1, a 3x3 area will be cleared
+  # if set to 2, a 5x5 area will be cleared
+  range:
+    wooden: 1
+    stone: 1
+    iron: 1
+    diamond: 2
+    netherite: 2
+  # list of materials that can be harvested within range
+  harvestable-materials:
+    - GRASS
+    - TALL_GRASS
+
+# Holding an Emerald Block causes nearby villagers to follow the player, much like animals do for food items. 
+villager-follow-emerald:
+  enabled: false
+  black-list-worlds: []
+
+# Animals will flee in groups on melee attacks, adding some stratagy to killing them 
+# Already breeded animals by player will not flee away
+# Permission: 
+  # tweakin.fleemobs.bypass: mobs will not flee if player has this permission
+animal-flee:
+  enabled: false
+  black-list-worlds: []
+  # if set to true breeded animals by player will not flee away
+  ignore-breeded: false
+  # after how much time the animal will forget player and stop fleeing (in seconds)
+  cooldown: 60
+  # the speed at which animals will run
+  sprint-speed: 1.7
+  # maximum radius at which mobs will try to run away from player
+  max-radius: 10
+  # walk speed of mob while avoiding player(different from sprint-speed)
+  walk-speed: 1.5
+  # list of animals that will flee on hit
+  fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
+
+# Item frame containing item in them can be made invisible if right clicked with shears
+# Permission: tweakin.shearitemframe.use
+# Worldguard flag: tweakin-shear-item-frame [enabled by default]
+shear-item-frame:
+  enabled: false
+  black-list-worlds: []
+
+# Snowballs and eggs will apply more knockback to entity on hit and also deal damage
+snowball-knockback:
+  enabled: false
+  # multiplier for knockback
+  modifier: 0.8
+  black-list-worlds: []
+  # how much damage entity should take, set to 0 to disable it
+  damage: 0.5
+
+# Water Buckets can now be given Infinity through an Anvil.
+# Permissions:
+  # tweakin.infinitybucket.craft: permission to combine infinity book and water bucket in anvil
+  # tweakin.infinitybucket.use: permission to use infinite water bucket
+infinity-water-bucket:
+  enabled: false
+  # the experience cost to combine water_bucket and infinity book through anvil
+  cost: 2
+  # weather or not dispensers can use infinity bucket like players
+  dispenser-usable: true
+  item:
+    id: WATER_BUCKET
+    display: "&6Infinte Water Bucket"
+    enchants:
+      - INFINITY 1
+    lore:
+      - "&aThis bucket will last forever..."
+
+# mobs have a chance to drop there heads on death,
+# each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes in heads.yml to take place)
+# Permission:
+  # tweakin.mobheads.drops: players without this permission will not get mob head drops on killing them(only works if require-player-kill is set to true)
+mob-heads:
+  enabled: false
+  black-list-worlds: []
+  # if set to false mobs will not drop heads if they are not killed by player
+  require-player-kill: true  
+
+# You can put an enchanted item and a book into the grindstone, and you will get the enchantments onto the book,
+# destroying your enchanted item in the process
+# Permission:
+  # tweakin.bettergrindstone: allows to use the grindstone functionality
+better-grindstone:
+  enabled: false
+  # if set to true, items enchanted from enchanting table will be ignored
+  ignore-items-from-enchanting-table: false
+
+
+# a elytra and chestplate can be combined in anvil to create armored elytra which has protection of chestplate and also ability to fly with elytra
+# to obtain chestplate and elytra back drop a anvil on the item entity of armored elytra
+# or it can be thrown in lava to seprate(not recommended as both items will be destroyed unless chestplate was netherite)
+# enchantments of both items are combined too
+# the durability of armored elytra is equivalent to elytra
+# Permission:
+  # tweakin.armoredelytra.craft: permission to combine elytra and chestplate in anvil  
+armored-elytra:
+  enabled: false
+  # the experience cost
+  cost: 10
+  # list of items that can be used to combine with elytra (only use chestplate item types)
+  combineable-materials: [LEATHER_CHESTPLATE,IRON_CHESTPLATE,DIAMOND_CHESTPLATE,NETHERITE_CHESTPLATE,GOLDEN_CHESTPLATE,CHAINMAIL_CHESTPLATE]
+  item:
+    id: ELYTRA
+    display: "&eArmored Elytra"
+    lore:
+      - "&7Benifits of elytra and chestplate at once"
+    options:
+      model: 0
+
+
+# a message a broadcasted to all players when a villager dies
+# the message is configurable in messages.yml
+# Permission: 
+  # tweakin.villagerdeathmessage.notify: players with this permission will only recive the death messages
+villager-death-message:
+  enabled: true
+  black-list-worlds: []      

@@ -1,0 +1,44 @@
+{
+	"display": {
+		"icon": {
+			"item": "minecraft:air"
+		},
+		"title": "",
+		"description": "",
+		"show_toast": false,
+		"announce_to_chat": false,
+		"hidden": true
+	},
+	"criteria": {
+		"player_interacted_with_entity": {
+			"trigger": "minecraft:item_used_on_block",
+			"conditions": {
+				"item": {
+					"tag": "custom_nether_portals:ignition"
+				},
+				"player": [
+					{
+						"condition": "minecraft:alternative",
+						"terms": [
+							{
+								"condition": "minecraft:location_check",
+								"predicate": {
+									"dimension": "minecraft:overworld"
+								}
+							},
+							{
+								"condition": "minecraft:location_check",
+								"predicate": {
+									"dimension": "minecraft:the_nether"
+								}
+							}
+						]
+					}
+				]
+			}
+		}
+	},
+	"rewards": {
+		"function": "custom_nether_portals:use_ignition"
+	}
+}
