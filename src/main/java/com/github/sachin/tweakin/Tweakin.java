@@ -29,9 +29,11 @@ import com.sk89q.worldguard.WorldGuard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import co.aikar.commands.CommandReplacements;
@@ -90,7 +92,6 @@ public final class Tweakin extends JavaPlugin {
             return;
             
         }
-        
         reloadMiscItems();
         this.getServer().getPluginManager().registerEvents(new GuiListener(plugin), plugin);
         this.isProtocolLibEnabled = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");

@@ -48,6 +48,11 @@ public class CoreCommand extends BaseCommand{
         sender.sendMessage(messageManager.getMessage("reloaded"));
     }
 
+    // @Subcommand("test")
+    // public void onTest(Player player,String[] args){
+    //     plugin.getNmsHelper().spawnArmorStand(player.getLocation(),Double.parseDouble(args[0]));
+    // }
+
     @Subcommand("toggle")
     @CommandCompletion("@tweaklist")
     public void onConfigureCommand(CommandSender sender,String[] args){

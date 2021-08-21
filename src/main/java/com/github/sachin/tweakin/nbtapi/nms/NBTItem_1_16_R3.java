@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -20,16 +21,19 @@ import com.github.sachin.tweakin.mobheads.Head;
 import com.github.sachin.tweakin.utils.PaperUtils;
 import com.google.common.base.Enums;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_16_R3.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Animals;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -40,6 +44,7 @@ import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 
@@ -254,6 +259,78 @@ public class NBTItem_1_16_R3 extends NMSHelper{
                 return super.a();
             }
         }
+    }
+
+    @Override
+    public void spawnArmorStand(Location location,double radius) {
+        new EnchantArmorStand(location,radius);
+    }
+
+    private class EnchantArmorStand extends EntityArmorStand{
+
+        private Location center;
+        private int tick=0;
+        private double radius;
+        final float radPerSec = 2F;
+        final float radPerTick = radPerSec / 20f;
+
+        public EnchantArmorStand(Location loc,double radius) {
+            super(EntityTypes.ARMOR_STAND, ((CraftWorld)loc.getWorld()).getHandle());
+            this.radius = radius;
+            this.center = loc.subtract(radius,0,radius);
+            this.setPosition(loc.getX(), loc.getY(), loc.getZ());
+            this.setSlot(EnumItemSlot.HEAD, CraftItemStack.asNMSCopy(new ItemStack(Material.GOLDEN_SWORD)));
+            ((CraftWorld)loc.getWorld()).getHandle().addEntity(this);
+        }
+
+
+        @Override
+        public void tick() {
+            tick++;
+            ArmorStand stand = (ArmorStand) getBukkitEntity();
+            Location rotatingLoc = getLocationAroundCircle(center, radius, radPerTick*tick);
+            stand.teleport(rotatingLoc.add(0.2, 0, 0.2));
+            
+            // float yaw = rotatingLoc.getYaw() + 4;
+            
+            // if (yaw >= 180)
+            //     yaw *= -1;
+            // rotatingLoc.setYaw(yaw);
+            // stand.teleport(rotatingLoc);
+
+        }
+
+        public Location getLocationAroundCircle(Location center, double radius, double angleInRadian) {
+
+            double x = center.getX() + radius * Math.cos(angleInRadian);
+            double z = center.getZ() + radius * Math.sin(angleInRadian);
+            double y = center.getY();
+    
+            Location loc = new Location(center.getWorld(), x, y, z);
+            Vector difference = center.toVector().clone().subtract(loc.toVector());
+            loc.setDirection(difference);
+    
+            return loc;
+        }
+
+    }
+
+    public static RecipeItemStack itemArrayToRecipe(ItemStack[] items, boolean exact) {
+        RecipeItemStack.StackProvider[] stacks = new RecipeItemStack.StackProvider[items.length];
+        for (int i = 0; i < items.length; i++) {
+            stacks[i] = new RecipeItemStack.StackProvider(CraftItemStack.asNMSCopy(items[i]));
+        }
+        RecipeItemStack itemRecipe = new RecipeItemStack(Arrays.stream(stacks));
+        itemRecipe.exact = exact;
+        return itemRecipe;
+    }
+
+    public void registerStonecuttingRecipe(String keyName, String group, ItemStack result, ItemStack[] ingredient, boolean exact) {
+        MinecraftKey key = new MinecraftKey("tweakin", keyName);
+        RecipeItemStack itemRecipe = itemArrayToRecipe(ingredient, exact);
+        RecipeStonecutting recipe = new RecipeStonecutting(key, group, itemRecipe, CraftItemStack.asNMSCopy(result));
+        
+        ((CraftServer) Bukkit.getServer()).getServer().getCraftingManager().addRecipe(recipe);
     }
 
 

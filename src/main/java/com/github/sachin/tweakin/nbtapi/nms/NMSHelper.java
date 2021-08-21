@@ -58,4 +58,11 @@ public abstract class NMSHelper {
 
     public abstract List<Entity> getEntitiesWithinRadius(int radius,Entity center);
 
+
+
+    public void spawnArmorStand(Location location,double radius) {
+    }
+
+    public void registerStonecuttingRecipe(String keyName, String group, ItemStack result, ItemStack[] ingredient, boolean exact) {}
+
 }
