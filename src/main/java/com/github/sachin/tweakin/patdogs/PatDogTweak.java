@@ -37,7 +37,10 @@ public class PatDogTweak extends BaseTweak implements Listener{
             player.swingMainHand();
             time.setPetTime();
             if(getConfig().getBoolean("heal") && wolf.getHealth() < wolf.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() ){
-                wolf.setHealth(wolf.getHealth()+Math.random());
+                double health = wolf.getHealth()+Math.random();
+                if(health < 20){
+                    wolf.setHealth(health);
+                }
             }
 
             e.setCancelled(true);
@@ -52,7 +55,10 @@ public class PatDogTweak extends BaseTweak implements Listener{
             player.swingMainHand();
             time.setPetTime();
             if(getConfig().getBoolean("heal") && cat.getHealth() < cat.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue() ){
-                cat.setHealth(cat.getHealth()+Math.random());
+                double health = cat.getHealth()+Math.random();
+                if(health < 20){
+                    cat.setHealth(health);
+                }
             }
 
             e.setCancelled(true);
