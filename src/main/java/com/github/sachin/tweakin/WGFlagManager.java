@@ -37,7 +37,6 @@ public class WGFlagManager {
         registeredFlags.put(TConstants.BSE_FLAG, new BSEFlag(plugin));
         registeredFlags.put(TConstants.SIF_FLAG, new SIFFlag(plugin));
     }
-
     public BaseFlag getFlag(String name){
         return registeredFlags.get(name);
     }
