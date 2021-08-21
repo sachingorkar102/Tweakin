@@ -31,7 +31,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
         }
     }
 
-    @EventHandler(priority = EventPriority.LOWEST,ignoreCancelled = false)
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onShear(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof ItemFrame)) return;
         Player player = e.getPlayer();
