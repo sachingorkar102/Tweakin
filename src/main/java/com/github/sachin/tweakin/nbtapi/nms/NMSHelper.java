@@ -42,7 +42,7 @@ public abstract class NMSHelper {
 
     public abstract void attack(Player player,Entity target);
 
-    public abstract boolean placeItem(Player player,Location location,ItemStack item,BlockFace hitFace,String tweakName);
+    public abstract boolean placeItem(Player player,Location location,ItemStack item,BlockFace hitFace,String tweakName,boolean playSound);
 
     public abstract int getColor(String str,int transparency);
 

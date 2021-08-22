@@ -143,7 +143,7 @@ public class NBTItem_1_16_R3 extends NMSHelper{
         
     }
 
-    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace,String tweakName){
+    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace,String tweakName,boolean playSound){
         net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
         EntityPlayer nmsPlayer = ((CraftPlayer)player).getHandle();

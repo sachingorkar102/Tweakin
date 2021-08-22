@@ -146,7 +146,7 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         
     }
 
-    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace,String tweakName){
+    public boolean placeItem(Player player, Location location,ItemStack item,BlockFace hitFace,String tweakName,boolean playSound){
         
         net.minecraft.world.item.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         BlockPosition pos = new BlockPosition(location.getX(), location.getY(), location.getZ());
@@ -158,7 +158,9 @@ public class NBTItem_1_17_R1 extends NMSHelper{
         // nmsItem.a(nmsPlayer, TooltipFlag.a.a).;
         if(result.toString() == "CONSUME"){
             player.swingMainHand();
-            player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
+            if(playSound){
+                player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
+            }
             if(tweakName != null){
                 Tweakin plugin = Tweakin.getPlugin();
                 if(plugin.placedBlocksMap.containsKey(tweakName)){

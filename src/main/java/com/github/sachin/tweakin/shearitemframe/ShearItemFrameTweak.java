@@ -43,7 +43,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
         ItemFrame frame = (ItemFrame) e.getRightClicked();
         if(frame.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) return;
         if(!frame.getItem().getType().isAir()){
-            boolean placed = plugin.getNmsHelper().placeItem(player, frame.getLocation(), new ItemStack(Material.DIRT), frame.getAttachedFace(),null);
+            boolean placed = plugin.getNmsHelper().placeItem(player, frame.getLocation(), new ItemStack(Material.DIRT), frame.getAttachedFace(),null,false);
             if(placed){
                 frame.getLocation().getBlock().setType(Material.AIR);
                 frame.setVisible(false);

@@ -111,7 +111,7 @@ public class SlimeInBucket extends TweakItem implements Listener{
         Block clickedBlock = e.getClickedBlock();
         Block relative = clickedBlock.getRelative(e.getBlockFace());
         if(relative.getType() != Material.AIR) return;
-        boolean placed = getPlugin().getNmsHelper().placeItem(player, relative.getLocation(), new ItemStack(Material.DIRT), e.getBlockFace(),null);
+        boolean placed = getPlugin().getNmsHelper().placeItem(player, relative.getLocation(), new ItemStack(Material.DIRT), e.getBlockFace(),null,false);
         if(placed){
             e.setCancelled(true);
             relative.setType(Material.AIR);
