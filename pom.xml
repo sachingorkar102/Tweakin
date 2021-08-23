@@ -6,7 +6,7 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>3.1.3</version>
+    <version>3.1.4</version>
     <packaging>jar</packaging>
     
     <name>Tweakin</name>
@@ -59,6 +59,10 @@
                                 <relocation>
                                     <pattern>co.aikar.locales</pattern>
                                     <shadedPattern>com.github.sachin.tweakin.locales</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>de.jeff_media.morepersistentdatatypes</pattern>
+                                    <shadedPattern>com.github.sachin.tweakin.morepersistentdatatypes</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
@@ -117,6 +121,10 @@
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
+        <repository>
+            <id>jeff-media-gbr</id>
+            <url>https://repo.jeff-media.de/maven2/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -125,6 +133,13 @@
             <artifactId>spigot-api</artifactId>
             <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>de.jeff_media</groupId>
+            <artifactId>MorePersistentDataTypes</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <!-- WorldGuard -->
         <dependency>
