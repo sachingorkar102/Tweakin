@@ -15,11 +15,7 @@ import org.bukkit.entity.EntityType;
 
 public class Test {
     public static void main(String[] args) {
-        String a = "hi";
-
-        if(a != null && a.equals("hi")){
-            System.out.println("hi");
-        }
+        System.out.println(Integer.MAX_VALUE > Short.MAX_VALUE);
     }
 
 }

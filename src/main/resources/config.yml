@@ -111,9 +111,13 @@ better-ladder:
   # Universal toggle for quickclimb ladder feature
   quickclimb: true
 
+# Also called Better Enchanting Table
 # Lapis placed in enchanting table will stay there
+# item placed in enchanting slot will display above the enchanting table
 lapis-in-table:
   enabled: false 
+  # weather or not to store the item thats being enchanted too
+  store-item: true
   black-list-worlds: []
 
 # All recipes will be unlocked when player joins server

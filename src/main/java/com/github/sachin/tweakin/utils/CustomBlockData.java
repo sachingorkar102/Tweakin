@@ -9,6 +9,7 @@ import com.github.sachin.tweakin.Tweakin;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -16,26 +17,33 @@ import org.bukkit.persistence.PersistentDataType;
 public class CustomBlockData implements PersistentDataContainer{
 
     private Location location;
+    private Chunk chunk;
     private NamespacedKey key;
     private PersistentDataContainer pdc;
 
     public CustomBlockData(Location location){
         this.location = location;
-        this.key = Tweakin.getKey(String.format("%d/%d/%d", location.getBlockX(),location.getBlockY(),location.getBlockZ()));
-        this.pdc = getData();
+        this.chunk = location.getBlock().getChunk();
+        int x = location.getBlockX() & 0x000F;
+        int y = location.getBlockY() & 0x00FF;
+        int z = location.getBlockZ() & 0x000F;
+        this.key = Tweakin.getKey(String.format("x%dy%dz%d", x, y, z));
+        this.pdc = getPersistentDataContainer();
     }
 
+
     
-    private PersistentDataContainer getData(){
-        Chunk chunk = location.getBlock().getChunk();
-    
-        PersistentDataContainer chunkPDC = chunk.getPersistentDataContainer();
-        if(chunkPDC.has(key, PersistentDataType.TAG_CONTAINER)){
-            return chunkPDC.get(key,PersistentDataType.TAG_CONTAINER);
+    private PersistentDataContainer getPersistentDataContainer() {
+        final PersistentDataContainer chunkPDC = chunk.getPersistentDataContainer();
+        final PersistentDataContainer blockPDC;
+        if (chunkPDC.has(key, PersistentDataType.TAG_CONTAINER)) {
+            blockPDC = chunkPDC.get(key, PersistentDataType.TAG_CONTAINER);
+            assert blockPDC != null;
+            return blockPDC;
         }
-        PersistentDataContainer blockPDC = chunkPDC.getAdapterContext().newPersistentDataContainer();
+        blockPDC = chunkPDC.getAdapterContext().newPersistentDataContainer();
         chunkPDC.set(key, PersistentDataType.TAG_CONTAINER, blockPDC);
-        return chunkPDC;
+        return blockPDC;
     }
 
     private void save() {
@@ -85,6 +93,10 @@ public class CustomBlockData implements PersistentDataContainer{
     @Override
     public PersistentDataAdapterContext getAdapterContext() {
         return pdc.getAdapterContext();
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     

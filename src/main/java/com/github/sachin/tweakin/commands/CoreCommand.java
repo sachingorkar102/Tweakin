@@ -11,7 +11,10 @@ import com.google.common.base.Optional;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -47,11 +50,6 @@ public class CoreCommand extends BaseCommand{
         plugin.getTweakManager().reload();
         sender.sendMessage(messageManager.getMessage("reloaded"));
     }
-
-    // @Subcommand("test")
-    // public void onTest(Player player,String[] args){
-    //     plugin.getNmsHelper().spawnArmorStand(player.getLocation(),Double.parseDouble(args[0]));
-    // }
 
     @Subcommand("toggle")
     @CommandCompletion("@tweaklist")
