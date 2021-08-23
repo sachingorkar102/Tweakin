@@ -233,6 +233,7 @@ rotation-wrench:
     - DISPENSER
     - _STAIRS$
     - _TERRACOTTA$
+    - _TERRACOTTA$
     - COMPARATOR
     - REPEATER
     - CHEST
@@ -439,6 +440,7 @@ shear-item-frame:
   black-list-worlds: []
 
 # Snowballs and eggs will apply more knockback to entity on hit and also deal damage
+# Worldguard flag: tweakin-snowball-knockback [default to true]
 snowball-knockback:
   enabled: false
   # multiplier for knockback

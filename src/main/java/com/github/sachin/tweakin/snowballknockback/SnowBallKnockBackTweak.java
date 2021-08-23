@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.snowballknockback;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.TConstants;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -15,8 +16,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class SnowBallKnockBackTweak extends BaseTweak implements Listener{
 
+    private SBKFlag flag;
+
     public SnowBallKnockBackTweak(Tweakin plugin) {
         super(plugin, "snowball-knockback");
+        if(plugin.isWorldGuardEnabled){
+            this.flag = (SBKFlag) plugin.getWGFlagManager().getFlag(TConstants.SBK_FLAG);
+        }
     }
 
     @EventHandler
@@ -25,6 +31,9 @@ public class SnowBallKnockBackTweak extends BaseTweak implements Listener{
             Entity hitEntity = e.getHitEntity();
             if(hitEntity != null){
                 if(getBlackListWorlds().contains(hitEntity.getWorld().getName())) return;
+                if(flag != null && !flag.queryFlag(hitEntity.getLocation())){
+                    return;
+                }
                 hitEntity.setVelocity(e.getEntity().getVelocity().multiply(getConfig().getDouble("modifier")));
 
                 if(hitEntity instanceof LivingEntity){

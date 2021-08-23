@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.github.sachin.tweakin.bettersignedit.BSEFlag;
 import com.github.sachin.tweakin.shearitemframe.SIFFlag;
+import com.github.sachin.tweakin.snowballknockback.SBKFlag;
 import com.github.sachin.tweakin.utils.TConstants;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
@@ -36,6 +37,7 @@ public class WGFlagManager {
     public void registerFlags(){
         registeredFlags.put(TConstants.BSE_FLAG, new BSEFlag(plugin));
         registeredFlags.put(TConstants.SIF_FLAG, new SIFFlag(plugin));
+        registeredFlags.put(TConstants.SBK_FLAG, new SBKFlag(plugin));
     }
     public BaseFlag getFlag(String name){
         return registeredFlags.get(name);

@@ -43,6 +43,7 @@ public final class Tweakin extends JavaPlugin {
 
     private static Tweakin plugin;
     private Metrics metrics;
+    
     public boolean isRunningPaper;
     private WGFlagManager wgFlagManager;
     public boolean isWorldGuardEnabled;
