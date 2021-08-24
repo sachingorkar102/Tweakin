@@ -8,6 +8,7 @@ public class SBKFlag extends BaseFlag{
 
     public SBKFlag(Tweakin plugin) {
         super(plugin, TConstants.SBK_FLAG);
+        register();
     }
     
 }

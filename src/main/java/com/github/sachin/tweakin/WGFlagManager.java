@@ -7,8 +7,12 @@ import com.github.sachin.tweakin.bettersignedit.BSEFlag;
 import com.github.sachin.tweakin.shearitemframe.SIFFlag;
 import com.github.sachin.tweakin.snowballknockback.SBKFlag;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.sk89q.worldedit.util.Direction.Flag;
 import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
+
+import org.bukkit.Location;
 
 public class WGFlagManager {
 
@@ -34,7 +38,9 @@ public class WGFlagManager {
         return registry;
     }
 
+
     public void registerFlags(){
+            
         registeredFlags.put(TConstants.BSE_FLAG, new BSEFlag(plugin));
         registeredFlags.put(TConstants.SIF_FLAG, new SIFFlag(plugin));
         registeredFlags.put(TConstants.SBK_FLAG, new SBKFlag(plugin));
@@ -42,5 +48,7 @@ public class WGFlagManager {
     public BaseFlag getFlag(String name){
         return registeredFlags.get(name);
     }
+
+    
     
 }

@@ -7,6 +7,7 @@ import com.github.sachin.tweakin.utils.TConstants;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -41,9 +42,13 @@ public class SnowBallKnockBackTweak extends BaseTweak implements Listener{
 
                         @Override
                         public void run() {
-                            ((LivingEntity)hitEntity).damage(getConfig().getDouble("damage"));
+                            if(e.getEntity().getShooter() instanceof Player){
+                                ((LivingEntity)hitEntity).damage(getConfig().getDouble("damage"),(Player)e.getEntity().getShooter());
+                            }
+                            else{
+                                ((LivingEntity)hitEntity).damage(getConfig().getDouble("damage"));
+                            }
                         }
-                        
                     }.runTaskLater(plugin, 2L);
                 }
             }

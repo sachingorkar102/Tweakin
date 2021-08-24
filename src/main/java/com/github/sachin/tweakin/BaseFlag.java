@@ -7,6 +7,8 @@ import com.sk89q.worldguard.bukkit.BukkitUtil;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.association.RegionAssociable;
+import com.sk89q.worldguard.protection.flags.Flag;
+import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.registry.FlagConflictException;
 import com.sk89q.worldguard.protection.managers.RegionManager;
@@ -68,6 +70,15 @@ public abstract class BaseFlag {
         ApplicableRegionSet regionSet = regionManager.getApplicableRegions(BlockVector3.at(loc.getX(), loc.getY(), loc.getZ()));
         return regionSet.testState(null, flag);
     }
+
+    // public boolean queryWGFlag(String flagName,Location loc){
+    //     Flag<?> flag = Flags.fuzzyMatchFlag(manager.getRegistry(), flagName);
+    //     if(flag == null){ return false;}
+    //     RegionContainer regionContainer = manager.getWGinstance().getPlatform().getRegionContainer();
+    //     RegionManager regionManager = regionContainer.get(BukkitAdapter.adapt(loc.getWorld()));
+    //     ApplicableRegionSet regionSet = regionManager.getApplicableRegions(BlockVector3.at(loc.getX(), loc.getY(), loc.getZ()));
+    //     return regionSet.testState(null, flag);
+    // }
 
 
     
