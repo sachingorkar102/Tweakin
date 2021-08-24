@@ -33,6 +33,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.entity.ItemDespawnEvent;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -61,12 +62,17 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
     private Map<Player,Location> invMap = new HashMap<>();
 
 	public LapisInTableTweak(Tweakin plugin) {
-		super(plugin, "lapis-in-table");
+        super(plugin, "lapis-in-table");
         this.lapisFile = new File(getPlugin().getDataFolder().getAbsolutePath()+"/"+"data/lapis-data.yml");
         
         loadLapisData();
         
 	}
+
+    @Override
+    public void register() {
+        super.register();
+    }
 
     public void saveLapisData(){
         if(!this.lapisFile.exists()) return;
@@ -239,6 +245,7 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         Item itemEn = loc.getWorld().spawn(loc, Item.class);
         itemEn.setItemStack(item);
         itemEn.setPickupDelay(Integer.MAX_VALUE);
+        itemEn.getPersistentDataContainer().set(entityItemKey, PersistentDataType.INTEGER, 1);
         ArmorStand stand = loc.getWorld().spawn(loc.add(0.5, 1.2, 0.5), ArmorStand.class);
         stand.setMarker(true);
         stand.setVisible(false);
@@ -247,6 +254,13 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         data.set(entityItemKey, PersistentDataType.STRING, itemEn.getUniqueId().toString());
         data.set(entityStandItemKey, PersistentDataType.STRING, stand.getUniqueId().toString());
         
+    }
+
+    @EventHandler
+    public void onItemDespawn(ItemDespawnEvent e){
+        if(e.getEntity().getPersistentDataContainer().has(entityItemKey, PersistentDataType.INTEGER)){
+            e.setCancelled(true);
+        }
     }
 
     private void removeEnchantItem(CustomBlockData data){
