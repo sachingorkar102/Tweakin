@@ -5,6 +5,7 @@ import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -58,24 +59,32 @@ public class HoeHarvestingTweak extends BaseTweak implements Listener{
     @EventHandler
     public void onHarvest(BlockBreakEvent e){
         Player player = e.getPlayer();
+        if(!player.isSneaking()) return;
         ItemStack item = player.getInventory().getItemInMainHand();
         Location breakedBlock = e.getBlock().getLocation();
-        if(!matchString(e.getBlock().getType().toString(),getConfig().getStringList("harvestable-materials"))) return;
-        if(item == null) return;
-        String itemType = item.getType().toString();
-        if(!itemType.endsWith("_HOE")) return; 
-        int range = getRange(itemType);
-        for (int x = breakedBlock.getBlockX() - range; x <= breakedBlock.getBlockX() + range; x++){
-            for (int z = breakedBlock.getBlockZ() - range; z <= breakedBlock.getBlockZ() + range; z++){
-                Location loc = new Location(breakedBlock.getWorld(), x, breakedBlock.getBlockY(), z);
-                Material blockType = loc.getBlock().getType();
-                if(matchString(blockType.toString(),getConfig().getStringList("harvestable-materials"))){
-                    plugin.getNmsHelper().harvestBlock(player, loc, item);
-                    
+        if(matchesHarvestable(e.getBlock().getType())){
+
+            if(item == null) return;
+            
+            String itemType = item.getType().toString();
+            if(!itemType.endsWith("_HOE")) return; 
+            int range = getRange(itemType);
+            for (int x = breakedBlock.getBlockX() - range; x <= breakedBlock.getBlockX() + range; x++){
+                for (int z = breakedBlock.getBlockZ() - range; z <= breakedBlock.getBlockZ() + range; z++){
+                    Location loc = new Location(breakedBlock.getWorld(), x, breakedBlock.getBlockY(), z);
+                    Material blockType = loc.getBlock().getType();
+                    if(matchesHarvestable(blockType)){
+                        plugin.getNmsHelper().harvestBlock(player, loc, item);
+                        
+                    }
                 }
             }
         }
         
+    }
+
+    private boolean matchesHarvestable(Material mat){
+        return matchString(mat.toString(),getConfig().getStringList("harvestable-materials")) || matchTag(mat, getConfig().getStringList("harvestable-materials"));
     }
     
 }

@@ -388,7 +388,7 @@ better-sign-edit:
   enabled: false
   black-list-worlds: []
 
-# Breaking grass or crops with a hoe will break a 3x3 of them. A Diamond & Netherite Hoe will break a 5x5 instead.
+# Breaking grass or crops with a hoe (while sneaking) will break a 3x3 of them. A Diamond & Netherite Hoe will break a 5x5 instead.
 # If you put Fortune on the hoe, it'll also apply that effect to everything it breaks.
 hoe-harvesting:
   enabled: false
@@ -403,9 +403,14 @@ hoe-harvesting:
     diamond: 2
     netherite: 2
   # list of materials that can be harvested within range
+  # you can use tags too to consider a group of similar materials like FLOWERS and CROPS
+  # list of all valid tags can be found here https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Tag.html
   harvestable-materials:
     - GRASS
     - TALL_GRASS
+    - FLOWERS
+    - CROPS
+
 
 # Holding an Emerald Block causes nearby villagers to follow the player, much like animals do for food items. 
 villager-follow-emerald:

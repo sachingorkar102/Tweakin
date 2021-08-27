@@ -5,7 +5,10 @@ import java.util.List;
 
 import com.github.sachin.tweakin.manager.TweakManager;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -83,6 +86,16 @@ public abstract class BaseTweak {
             }
             if(str.equals(s)) return true;
 
+        }
+        return false;
+    }
+
+    public boolean matchTag(Material mat,List<String> matcher){
+        for(String s : matcher){
+            Tag<Material> tag = Bukkit.getTag("blocks", NamespacedKey.minecraft(s.toLowerCase()),Material.class);
+            if(tag != null && tag.getValues().contains(mat)){
+                return true;
+            }
         }
         return false;
     }
