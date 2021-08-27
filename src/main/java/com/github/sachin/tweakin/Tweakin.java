@@ -37,6 +37,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import co.aikar.commands.CommandReplacements;
+import co.aikar.commands.MessageType;
 import co.aikar.commands.PaperCommandManager;
 
 public final class Tweakin extends JavaPlugin {
@@ -106,6 +107,7 @@ public final class Tweakin extends JavaPlugin {
         ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
         commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
         commandManager.getCommandCompletions().registerCompletion("tweaklist", c -> tweakManager.getTweakNames());
+        
         List<String> headList = Arrays.asList(Head.values()).stream().map(h -> h.toString()).collect(Collectors.toList());
         commandManager.getCommandCompletions().registerCompletion("tweakinheads",c -> headList);
         commandManager.registerCommand(new CoreCommand(this));

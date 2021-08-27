@@ -10,7 +10,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.Event.Result;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.GrindstoneInventory;
@@ -20,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+
 // Permission: tweakin.bettergrindstone
 public class BetterGrindStoneTweak extends BaseTweak implements Listener{
 
@@ -27,6 +27,7 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
 
     public BetterGrindStoneTweak(Tweakin plugin) {
         super(plugin, "better-grindstone");
+        
     }
 
     @EventHandler
@@ -52,6 +53,7 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     inv.setItem(1, new ItemStack(Material.BOOK));
                 }
             }
+            
             if(!player.hasPermission("tweakin.bettergrindstone")) return;
             new BukkitRunnable(){
                 @Override
@@ -70,7 +72,11 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                             for(Enchantment ench : weapon.getEnchantments().keySet()){
                                 enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
                             }
+                            
                             enchantedBook.setItemMeta(enchMeta);
+                            // if(isPluginEnabled("ExcellentEnchants")){
+                            //     ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
+                            // }
                             inv.setItem(2, enchantedBook);
                         }
                         

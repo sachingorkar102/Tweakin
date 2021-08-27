@@ -19,11 +19,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import co.aikar.commands.BaseCommand;
+import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Dependency;
 import co.aikar.commands.annotation.Description;
+import co.aikar.commands.annotation.HelpCommand;
 import co.aikar.commands.annotation.Subcommand;
 
 @Description("core command for tweakin")
@@ -36,10 +38,15 @@ public class CoreCommand extends BaseCommand{
 
     private Message messageManager;
 
+
     public CoreCommand(Tweakin plugin){
         this.plugin = plugin;
         this.messageManager = plugin.getTweakManager().getMessageManager();
+        
     }
+
+    
+
 
     @Subcommand("reload")
     public void onReloadCommand(CommandSender sender){

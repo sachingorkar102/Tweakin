@@ -6,7 +6,7 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>3.1.4</version>
+    <version>3.1.5</version>
     <packaging>jar</packaging>
     
     <name>Tweakin</name>
@@ -207,8 +207,14 @@
             <scope>provided</scope>
         </dependency>
 
-
-
+        <!-- ExcellentEnchants -->
+        <dependency>
+            <groupId>ExcellentEnchants</groupId>
+            <artifactId>excellentenchants</artifactId>
+            <version>1.17</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/ExcellentEnchants.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>co.aikar</groupId>
             <artifactId>acf-paper</artifactId>

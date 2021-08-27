@@ -7,15 +7,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
+import java.util.regex.Pattern;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 
 public class Test {
-    public static void main(String[] args) {
-        System.out.println(Integer.MAX_VALUE > Short.MAX_VALUE);
+    public static void main(String[] args) throws NoSuchFieldException, SecurityException, ClassNotFoundException {
+        
     }
 
 }

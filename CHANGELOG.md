@@ -10,3 +10,5 @@
 **Spigot Release**
 1) added store-item option to lapis-in-table, if set to true the item thats being enchanted will also be stored in table and will be displayed above the table
 2) internal changes to data storage in blocks
+### 3.1.5
+1) made sneaking required to harvest with hoe-harvesting and added tags support to harvestable-materials
