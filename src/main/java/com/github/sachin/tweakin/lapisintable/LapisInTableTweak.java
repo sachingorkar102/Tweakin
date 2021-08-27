@@ -287,9 +287,11 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         }
         Item item = (Item) Bukkit.getEntity(UUID.fromString(data.get(entityItemKey, PersistentDataType.STRING)));
         ArmorStand stand = (ArmorStand) Bukkit.getEntity(UUID.fromString(data.get(entityStandItemKey, PersistentDataType.STRING)));
-        stand.removePassenger(item);
-        item.setItemStack(updatedItem);
-        stand.addPassenger(item);
+        if(item != null && !item.isDead()){
+            stand.removePassenger(item);
+            item.setItemStack(updatedItem);
+            stand.addPassenger(item);
+        }
         // new BukkitRunnable(){
         //     public void run() {
         //     };
