@@ -11,6 +11,7 @@ import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Leaves;
 import org.bukkit.event.EventHandler;
@@ -45,13 +46,13 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
             new BukkitRunnable(){
                 @Override
                 public void run() {
-                    List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
+                    List<Location> locs = getNearbyBlocks(block.getLocation(), 10,true);
                     removeLeaves(locs);
                 }
             }.runTaskAsynchronously(getPlugin());
         }
         else{
-            List<Location> locs = getNearbyBlocks(block.getLocation(), 10);
+            List<Location> locs = getNearbyBlocks(block.getLocation(), 10,false);
             removeLeaves(locs);
         }
         
@@ -78,7 +79,7 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
         }
     }
 
-    public List<Location> getNearbyBlocks(Location location, int radius) {
+    public List<Location> getNearbyBlocks(Location location, int radius,boolean isAsync) {
         // List<Block> blocks = new ArrayList<Block>();
         List<Location> locs = new ArrayList<>();
         for(int x = location.getBlockX() - radius; x <= location.getBlockX() + radius; x++) {
@@ -86,11 +87,24 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
                 for(int z = location.getBlockZ() - radius; z <= location.getBlockZ() + radius; z++) {
                     Block block = location.getWorld().getBlockAt(x, y, z);
                     if(!block.getType().isAir()){
-                        if(isLeaf(block)){
-                            
-                            Leaves leaves = (Leaves) block.getBlockData();
-                            if(!leaves.isPersistent() && leaves.getDistance() > 6 && !locs.contains(block.getLocation())){
-                                locs.add(block.getLocation());
+                        if(isAsync){
+                            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, ()-> {
+                                if(isLeaf(block)){
+                                    
+                                    Leaves leaves = (Leaves) block.getBlockData();
+                                    if(!leaves.isPersistent() && leaves.getDistance() > 6 && !locs.contains(block.getLocation())){
+                                        locs.add(block.getLocation());
+                                    }
+                                }
+                            });
+                        }
+                        else{
+                            if(isLeaf(block)){
+                                    
+                                Leaves leaves = (Leaves) block.getBlockData();
+                                if(!leaves.isPersistent() && leaves.getDistance() > 6 && !locs.contains(block.getLocation())){
+                                    locs.add(block.getLocation());
+                                }
                             }
                         }
                     }
@@ -101,12 +115,7 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener{
     }
 
     private boolean isLeaf(Block block){
-        try {
-            Leaves leaf = (Leaves) block.getBlockData();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return Tag.LEAVES.isTagged(block.getType());
     }
     
 }
