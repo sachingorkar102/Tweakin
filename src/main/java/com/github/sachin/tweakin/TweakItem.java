@@ -8,6 +8,7 @@ import java.util.Set;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.ItemBuilder;
+import com.github.sachin.tweakin.utils.MiscItems;
 import com.google.common.base.Enums;
 import com.google.common.base.Optional;
 
@@ -44,7 +45,7 @@ public abstract class TweakItem extends BaseTweak {
     }
 
     public void buildItem(){
-        this.item = ItemBuilder.itemFromFile(getConfig().getConfigurationSection("item"), getName());
+        this.item = ItemBuilder.itemFromFile(plugin.getMiscItems().CONFIG.getConfigurationSection(getName()), getName());
         
     }
 

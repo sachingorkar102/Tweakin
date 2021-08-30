@@ -32,6 +32,23 @@ public class ConfigUpdater {
         
     }
 
+    public static void updateWithoutComments(Tweakin plugin,String fileName,File toUpdate){
+        FileConfiguration oldFile = YamlConfiguration.loadConfiguration(toUpdate);
+        BufferedReader newReader = new BufferedReader(new InputStreamReader(plugin.getResource(fileName),StandardCharsets.UTF_8));
+        FileConfiguration newConfig = YamlConfiguration.loadConfiguration(newReader);
+        oldFile.options().copyDefaults();
+        for(String key : newConfig.getKeys(false)){
+            if(!oldFile.contains(key)){
+                oldFile.set(key, newConfig.get(key));
+            }
+        }
+        try {
+            oldFile.save(toUpdate);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     /**

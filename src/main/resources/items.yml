@@ -1,0 +1,76 @@
+enabled-button:
+  id: GREEN_WOOL
+  lore:
+  - "&aEnabled"
+
+disabled-button:
+  id: RED_WOOL
+  lore:
+  - "&cDisabled"
+
+fillar-glass:
+  id: GRAY_STAINED_GLASS_PANE
+  display: " "  
+
+
+info-paper:
+  id: PAPER
+  display: "&eInfo"
+  lore:
+  - "&6A gui to enable and disable tweaks"
+  - "&6Close the gui to save changes"
+  - "&cto configure each tweak's option like black-list-worlds use config.yml"
+  - "&cdo not use &6config.yml &cto toggle tweaks, instead"
+  - "&cuse &e/tw toggle &ccommand ingame or &e/tw toggle [tweak-name] &cthrough console"
+
+next-button:
+  id: ARROW
+  display: "Next Page"
+
+previous-button:
+  id: ARROW
+  display: "Previous Page"    
+
+trowel:
+    id: IRON_HOE
+    display: "&7Trowel"
+    flags:
+      - HIDE_ATTRIBUTES
+    options:
+      model: 102
+    lore:
+      - "&7Right-Click to place random blocks from hotbar"  
+bottled-cloud:
+    id: GLASS_BOTTLE
+    display: "Bottled Cloud"
+    lore:
+      - "&7Right-Click in air to place cloud"
+    options: 
+      model: 101   
+rotation-wrench:
+    id: STICK
+    display: "&aRotation Wrench"
+    lore:
+      - "&6Right click a block to rotate"
+    options:
+      model: 100 
+slime-in-bucket:
+    id: SLIME_BALL
+    display: "Slime In A Bucket"
+    lore:
+      - "&eSlime will start jumping once inside a slime chunk"
+      - "&eLeft click on block to release the slime"         
+infinity-water-bucket:
+    id: WATER_BUCKET
+    display: "&6Infinte Water Bucket"
+    enchants:
+      - INFINITY 1
+    lore:
+      - "&aThis bucket will last forever..."           
+armored-elytra:
+    id: ELYTRA
+    display: "&eArmored Elytra"
+    lore:
+      - "&7Benifits of elytra and chestplate at once"
+    options:
+      model: 0      

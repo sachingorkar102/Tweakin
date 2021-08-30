@@ -238,15 +238,6 @@ rotation-wrench:
     - REPEATER
     - CHEST
     - _LOG$
-  # configuration for item 
-  # use ignored-sections option above if the changes get reset after reload
-  item:
-    id: STICK
-    display: "&aRotation Wrench"
-    lore:
-      - "&6Right click a block to rotate"
-    options:
-      model: 100
 
 # Optionally use Resource pack to change the sprite of item [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # Using a Glass Bottle at the cloud levels (126-132 by default) will get you a Bottled Cloud.
@@ -264,14 +255,6 @@ bottled-cloud:
   minimum-height: 126
   # maximum height for glass bottle to pickup cloud
   maximum-height: 132
-  # configuration of item
-  item:
-    id: GLASS_BOTTLE
-    display: "Bottled Cloud"
-    lore:
-      - "&7Right-Click in air to place cloud"
-    options: 
-      model: 101
 
 
 # Optionally use resource pack to change the item sprite [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
@@ -286,16 +269,6 @@ trowel:
   # weather or not item should take damage on use, only use for damagable items like iron_hoe
   # Note: max uses of the item depends on what base material you are using example iron_hoe has 250 max durability meaning trowel will have 250 max uses
   take-damage: true
-  # configuration for item
-  item:
-    id: IRON_HOE
-    display: "&7Trowel"
-    flags:
-      - HIDE_ATTRIBUTES
-    options:
-      model: 102
-    lore:
-      - "&7Right-Click to place random blocks from hotbar"
 
 # Creepers will no longer explode, instead they will turn into twinkling fireworks
 confetti-creepers:
@@ -340,12 +313,7 @@ slime-in-bucket:
   model-detected: 104
   # what interval in ticks the runnable should run
   interval-ticks: 20
-  item:
-    id: SLIME_BALL
-    display: "Slime In A Bucket"
-    lore:
-      - "&eSlime will start jumping once inside a slime chunk"
-      - "&eLeft click on block to release the slime"
+  
 
 
 # You can pat the dogs. Sneak-Right click them with an empty hand to perform this glorious act.
@@ -464,13 +432,7 @@ infinity-water-bucket:
   cost: 2
   # weather or not dispensers can use infinity bucket like players
   dispenser-usable: true
-  item:
-    id: WATER_BUCKET
-    display: "&6Infinte Water Bucket"
-    enchants:
-      - INFINITY 1
-    lore:
-      - "&aThis bucket will last forever..."
+  
 
 # mobs have a chance to drop there heads on death,
 # each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes in heads.yml to take place)
@@ -503,13 +465,7 @@ armored-elytra:
   cost: 10
   # list of items that can be used to combine with elytra (only use chestplate item types)
   combineable-materials: [LEATHER_CHESTPLATE,IRON_CHESTPLATE,DIAMOND_CHESTPLATE,NETHERITE_CHESTPLATE,GOLDEN_CHESTPLATE,CHAINMAIL_CHESTPLATE]
-  item:
-    id: ELYTRA
-    display: "&eArmored Elytra"
-    lore:
-      - "&7Benifits of elytra and chestplate at once"
-    options:
-      model: 0
+  
 
 
 # a message a broadcasted to all players when a villager dies
