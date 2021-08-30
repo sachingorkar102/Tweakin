@@ -4,16 +4,19 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.TConstants;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.hanging.HangingPlaceEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
@@ -31,7 +34,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
         }
     }
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onShear(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof ItemFrame)) return;
         Player player = e.getPlayer();
@@ -52,6 +55,34 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
             }
         }
     }
+
+    // @EventHandler
+    // public void onSkeleSpawn(EntitySpawnEvent e){
+    //     if(e.getEntity().getType() == EntityType.SKELETON){
+    //         Skeleton skele = (Skeleton) e.getEntity();
+    //         skele.setAI(false);
+    //         skele.setInvulnerable(true);
+    //         skele.teleport(skele.getLocation().clone().subtract(0,2,0));
+    //         new BukkitRunnable(){
+    //             int i = 0;
+    //             Location loc = skele.getLocation().clone().subtract(0,2,0);
+    //             public void run() {
+    //                 i++;
+    //                 if(i==200){
+    //                     skele.setAI(true);
+    //                     skele.setInvulnerable(false);
+    //                     cancel();
+    //                 }
+    //                 else{
+    //                     loc = loc.add(0, 0.01, 0);
+    //                     skele.teleport(loc);
+    //                 }
+                    
+    //             };
+    //         }.runTaskTimer(plugin, 0, 1);
+            
+    //     }
+    // }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onDamage(EntityDamageByEntityEvent e){

@@ -14,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+
 public class HoeHarvestingTweak extends BaseTweak implements Listener{
 
     
@@ -62,6 +63,7 @@ public class HoeHarvestingTweak extends BaseTweak implements Listener{
         if(!player.isSneaking()) return;
         ItemStack item = player.getInventory().getItemInMainHand();
         Location breakedBlock = e.getBlock().getLocation();
+        
         if(matchesHarvestable(e.getBlock().getType())){
 
             if(item == null) return;
