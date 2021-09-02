@@ -182,6 +182,9 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                             nbti.setString(CHEST_KEY, InventoryUtils.serializeItem(item1));
                             nbti.setString(ELYTRA_KEY, InventoryUtils.serializeItem(item2));
                             combinedElytra = nbti.getItem();
+                            ItemMeta elytraMeta = combinedElytra.getItemMeta();
+                            elytraMeta.setDisplayName(inv.getRenameText());
+                            combinedElytra.setItemMeta(elytraMeta);
                             inv.setRepairCost(getConfig().getInt("cost",10));
                             inv.setItem(2, combinedElytra);
                         }

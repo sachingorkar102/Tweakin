@@ -23,6 +23,7 @@ import org.bukkit.event.player.PlayerBucketEntityEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 
 // tweakin.infinitybucket.craft,tweakin.infinitybucket.use
 public class InfinityWaterBucketTweak extends TweakItem implements Listener{
@@ -64,6 +65,9 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
                 Map<Enchantment,Integer> enchs = enchMeta.getStoredEnchants();
                 if(enchs.containsKey(Enchantment.ARROW_INFINITE) && enchs.get(Enchantment.ARROW_INFINITE)>0){
                     ItemStack result = getItem().clone();
+                    ItemMeta meta = result.getItemMeta();
+                    meta.setDisplayName(inv.getRenameText());
+                    result.setItemMeta(meta);
                     inv.setRepairCost(getConfig().getInt("cost"));
                     e.setResult(result);
                 }
