@@ -62,7 +62,7 @@ slime-in-bucket:
       - "&eLeft click on block to release the slime"         
 infinity-water-bucket:
     id: WATER_BUCKET
-    display: "&6Infinte Water Bucket"
+    display: "&6Infinite Water Bucket"
     enchants:
       - INFINITY 1
     lore:
