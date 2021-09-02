@@ -73,4 +73,129 @@ armored-elytra:
     lore:
       - "&7Benifits of elytra and chestplate at once"
     options:
-      model: 0      
+      model: 0  
+
+plate-enabled:
+  id: GREEN_WOOL
+  display: "&7Plate &a[Enabled]"
+plate-disabled:
+  id: RED_WOOL
+  display: "&7Plate &c[Disabled]"
+small-enabled:
+  id: GREEN_WOOL
+  display: "&7Small &a[Enabled]"
+small-disabled:
+  id: RED_WOOL
+  display: "&7Small &c[Disabled]"
+visible-enabled:
+  id: GREEN_WOOL
+  display: "&7Visible &a[Enabled]"
+visible-disabled:
+  id: RED_WOOL
+  display: "&7Visible &c[Disabled]"
+gravity-enabled:
+  id: GREEN_WOOL
+  display: "&7Gravity &a[Enabled]"
+gravity-disabled:
+  id: RED_WOOL
+  display: "&7Gravity &c[Disabled]"
+arms-enabled:
+  id: GREEN_WOOL
+  display: "&7Arms &a[Enabled]"
+arms-disabled:
+  id: RED_WOOL
+  display: "&7Arms &c[Disabled]"
+glowing-enabled:
+  id: GREEN_WOOL
+  display: "&7Glowing &a[Enabled]"
+glowing-disabled:
+  id: RED_WOOL
+  display: "&7Glowing &c[Disabled]"
+invulnerable-enabled:
+  id: GREEN_WOOL
+  display: "&7Invulnerable &a[Enabled]"
+invulnerable-disabled:
+  id: RED_WOOL
+  display: "&7Invulnerable &c[Disabled]"
+interactable-enabled:
+  id: GREEN_WOOL
+  display: "&7Interactable &a[Enabled]"
+interactable-disabled:
+  id: RED_WOOL
+  display: "&7Interactable &c[Disabled]"
+uuid-unlocked:
+  id: GREEN_WOOL
+  display: "&7UUID Unlocked"  
+uuid-locked:
+  id: RED_WOOL
+  display: "&7UUID Locked &a(%player_name%)"
+
+lore-helper:
+  - "&8Left or Right mouse click to ajust values"
+  - "&8Hold shift to increment 10x faster"  
+head-x:
+  id: LIME_WOOL
+  display: "&7Head &eX&7:&f%value%"
+head-y:
+  id: MAGENTA_WOOL
+  display: "&7Head &6Y&7:&f%value%"
+head-z:
+  id: ORANGE_WOOL
+  display: "&7Head &cZ&7:&f%value%"    
+torso-x:
+  id: LIME_WOOL
+  display: "&7Torso &eX&7:&f%value%"
+torso-y:
+  id: MAGENTA_WOOL
+  display: "&7Torso &6Y&7:&f%value%"
+torso-z:
+  id: ORANGE_WOOL
+  display: "&7Torso &cZ&7:&f%value%"    
+left-arm-x:
+  id: LIME_WOOL
+  display: "&7Left Arm &eX&7:&f%value%"
+left-arm-y:
+  id: MAGENTA_WOOL
+  display: "&7Left Arm &6Y&7:&f%value%"
+left-arm-z:
+  id: ORANGE_WOOL
+  display: "&7Left Arm &cZ&7:&f%value%"    
+right-arm-x:
+  id: LIME_WOOL
+  display: "&7Right Arm &eX&7:&f%value%"
+right-arm-y:
+  id: MAGENTA_WOOL
+  display: "&7Right Arm &6Y&7:&f%value%"
+right-arm-z:
+  id: ORANGE_WOOL
+  display: "&7Right Arm &cZ&7:&f%value%"    
+left-leg-x:
+  id: LIME_WOOL
+  display: "&7Left Leg &eX&7:&f%value%"
+left-leg-y:
+  id: MAGENTA_WOOL
+  display: "&7Left Leg &6Y&7:&f%value%"
+left-leg-z:
+  id: ORANGE_WOOL
+  display: "&7Left Leg &cZ&7:&f%value%"    
+right-leg-x:
+  id: LIME_WOOL
+  display: "&7Right Leg &eX&7:&f%value%"
+right-leg-y:
+  id: MAGENTA_WOOL
+  display: "&7Right Leg &6Y&7:&f%value%"
+right-leg-z:
+  id: ORANGE_WOOL
+  display: "&7Right Leg &cZ&7:&f%value%"    
+pos-x:
+  id: LIME_WOOL
+  display: "&7Position &eX&7:&f%value%"
+pos-y:
+  id: MAGENTA_WOOL
+  display: "&7Position &6Y&7:&f%value%"
+pos-z:
+  id: ORANGE_WOOL
+  display: "&7Position &cZ&7:&f%value%"    
+body-rotation:
+  id: LIME_WOOL
+  display: "&7Body Rotation: &f%value%"  

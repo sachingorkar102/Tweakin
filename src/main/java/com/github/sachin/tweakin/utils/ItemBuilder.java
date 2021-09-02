@@ -5,6 +5,7 @@ import com.google.common.base.Strings;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import com.github.sachin.tweakin.betterarmorstands.GuiItems;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.google.common.base.Enums;
 
@@ -273,6 +274,13 @@ public class ItemBuilder {
         nbti.setString("misc-item", itemType);
         return nbti.getItem();
 
+    }
+
+    public static ItemStack asGuiItem(ConfigurationSection section,GuiItems guiItem){
+        ItemStack item = itemFromFile(section, null);
+        NBTItem nbti = new NBTItem(item);
+        nbti.setString("tweakin-armor-stand-gui", guiItem.toString());
+        return nbti.getItem();
     }
 
     public static boolean hasKey(ItemStack item,String key){

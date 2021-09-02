@@ -29,3 +29,7 @@ gave-head: "&7Gave &6%head% &7to &6%player% &7successfully"
 tweak-is-disabled: "&c%tweak% is disabled, can't execute the command"
 
 villager-death-message: "&eA villager has died! &r&6XYZ: %x%, %y%, %z% &ein %world-type%"
+
+armorstand-locked: "&eThe armor stand is UUID locked by &6%player%"
+look-at-armorstand: "&cLook at a armor stand, then execute the command to select it"
+armorstand-edited: "&carmor stand is being edited by other player"

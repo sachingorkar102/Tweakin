@@ -95,7 +95,11 @@ permissions:
   tweakin.armoredelytra.craft:
     default: true  
   tweakin.villagerdeathmessage.notify:
-    default: true  
-  # tweakin.tradernotify:
-  #   default: true  
+    default: true 
+  tweakin.betterarmorstands.*:
+    default: true   
+    children:
+      tweakin.betterarmorstands.armorswap: true
+      tweakin.betterarmorstands.uuidlockbypass: false
+      tweakin.betterarmorstands.command: true
 

@@ -23,9 +23,10 @@ import org.bukkit.inventory.ItemStack;
 
 public class Test {
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{
-        Class<?> miscItemsClass = Class.forName("com.github.sachin.tweakin.utils.MiscItems");
-        Field f = miscItemsClass.getField("ENABLED_BUTTON");
-        f.get(new ItemStack(Material.ACACIA_BOAT));
+        System.out.println(Math.toDegrees(1));
+        // Class<?> miscItemsClass = Class.forName("com.github.sachin.tweakin.utils.MiscItems");
+        // Field f = miscItemsClass.getField("ENABLED_BUTTON");
+        // f.get(new ItemStack(Material.ACACIA_BOAT));
         // File file = new File("new-config.yml");
         // FileConfiguration newConfig = YamlConfiguration.loadConfiguration(new File("config.yml"));
         // FileConfiguration oldConfig = YamlConfiguration.loadConfiguration(file);
@@ -56,5 +57,7 @@ public class Test {
         // writer.close();
         // reader.close();
     }
+
+
 
 }

@@ -18,6 +18,7 @@ public class MiscItems {
     public final ItemStack INFO_PAPER;
     public final ItemStack NEXT_BUTTON;
     public final ItemStack PREVIOUS_BUTTON;
+
     
 
 

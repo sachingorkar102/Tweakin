@@ -475,3 +475,19 @@ armored-elytra:
 villager-death-message:
   enabled: true
   black-list-worlds: []      
+
+# Adding some more features to armor stand and giving players more control over them
+# Permissions:
+  # tweakin.betterarmorstands.armorswap: players with this permission will able to swap entire armor with armor stand
+  # tweakin.betterarmorstands.command: permission for /armorstand command
+  # tweakin.betterarmorstands.uuidlockbypass: players with this permission can edit armor stands even if its uuid locked
+better-armorstands:
+  enabled: false  
+  black-list-worlds: []
+  # if set to false armor swaping between armor stand and player will be disabled
+  armor-swap: true
+  # if set to false armor stand will not spawn with arms by default
+  spawn-with-arms: true
+  # Aliases for /armorstand command
+  # Pro tip: use | to add more then one aliases
+  alias: as|armorstand|editarmorstand

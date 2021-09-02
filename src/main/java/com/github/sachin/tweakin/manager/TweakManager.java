@@ -6,7 +6,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.armoredelytra.ArmoredElytraTweak;
 import com.github.sachin.tweakin.autorecipeunlock.AutoRecipeUnlockTweak;
-import com.github.sachin.tweakin.betterelytrarocket.BetterElytraRocketTweak;
+import com.github.sachin.tweakin.betterarmorstands.BetterArmorStandTweak;
 import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.bettergrindstone.BetterGrindStoneTweak;
 import com.github.sachin.tweakin.betterladder.BetterLadderTweak;
@@ -16,7 +16,6 @@ import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.burnvinetip.BurnVineTipTweak;
 import com.github.sachin.tweakin.compassworkeverywhere.CompassEveryWhereTweak;
 import com.github.sachin.tweakin.confetticreepers.ConfettiCreepers;
-import com.github.sachin.tweakin.controlledburn.ControlledBurnTweak;
 import com.github.sachin.tweakin.coordinatehud.CoordinateHUDTweak;
 import com.github.sachin.tweakin.customportals.CustomPortalTweak;
 import com.github.sachin.tweakin.fastleafdecay.FastLeafDecayTweak;
@@ -212,6 +211,7 @@ public class TweakManager {
             tweakList.add(new BetterGrindStoneTweak(plugin));
             tweakList.add(new ArmoredElytraTweak(plugin));
             tweakList.add(new VillagerDeathMessageTweak(plugin));
+            tweakList.add(new BetterArmorStandTweak(plugin));
         }
         return tweakList;
     }
