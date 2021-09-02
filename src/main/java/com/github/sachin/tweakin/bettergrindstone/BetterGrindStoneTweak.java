@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.GrindstoneInventory;
 import org.bukkit.inventory.ItemStack;
@@ -42,8 +43,9 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
 
     @EventHandler
     public void onGrindStoneUse(InventoryClickEvent e){
-        if(e.getClickedInventory() instanceof GrindstoneInventory){
-            GrindstoneInventory inv = (GrindstoneInventory) e.getClickedInventory();
+        if(e.getView().getTopInventory() instanceof GrindstoneInventory){
+            GrindstoneInventory inv = (GrindstoneInventory) e.getView().getTopInventory();
+            
             ItemStack cursor = e.getCursor();
             Player player = (Player) e.getWhoClicked();
             if(cursor != null){
@@ -53,7 +55,6 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     inv.setItem(1, new ItemStack(Material.BOOK));
                 }
             }
-            
             if(!player.hasPermission("tweakin.bettergrindstone")) return;
             new BukkitRunnable(){
                 @Override
@@ -64,7 +65,7 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     
                     if(weapon != null && book != null && result == null){
                         if(weapon.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.INTEGER) && getConfig().getBoolean("ignore-items-from-enchanting-table")) return;
-                        if(book.getType() == Material.BOOK && !weapon.getEnchantments().isEmpty() && weapon.getType() != Material.ENCHANTED_BOOK){
+                        if(book.getType() == Material.BOOK && book.getAmount()==1 && !weapon.getEnchantments().isEmpty() && weapon.getType() != Material.ENCHANTED_BOOK){
                             NBTItem nbti = new NBTItem(weapon);
                             if(nbti.hasKey("armored-elytra")) return;
                             ItemStack enchantedBook = new ItemStack(Material.ENCHANTED_BOOK);
