@@ -123,7 +123,8 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
                 }
 
                 if(validHead != null){
-                    if(getConfig().getBoolean("require-player-kill") && killed.getKiller() != null){
+                    boolean requirePlayerKill = getConfig().getBoolean("require-player-kill");
+                    if(requirePlayerKill && killed.getKiller() != null){
                         Player killer = killed.getKiller();
                         if(!killer.hasPermission("tweakin.mobheads.drops")) return;
                         ItemStack item1 = killer.getInventory().getItemInMainHand();
@@ -142,11 +143,9 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
                             e.getDrops().add(validHead.getSkull());
                         }
                     }
-                    else{
-                        if(validHead.hasChance()){
-                            e.getDrops().add(validHead.getSkull());
-                        }
-                    }        
+                    else if(!requirePlayerKill && validHead.hasChance()){
+                        e.getDrops().add(validHead.getSkull());
+                    }      
                 }
             }
         }
