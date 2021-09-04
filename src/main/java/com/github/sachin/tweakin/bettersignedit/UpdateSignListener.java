@@ -30,7 +30,6 @@ public class UpdateSignListener extends PacketAdapter{
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void onPacketReceiving(PacketEvent event) {
         PacketContainer packet = event.getPacket();
         Player player = event.getPlayer();
@@ -38,37 +37,29 @@ public class UpdateSignListener extends PacketAdapter{
         Block block = player.getWorld().getBlockAt(pos.getX(), pos.getY(), pos.getZ());
         if(!instance.lines.contains(player)) return;
         event.setCancelled(true);
-        new BukkitRunnable(){
-            @Override
-            public void run() {
-                if(block.getType().toString().endsWith("_SIGN")){
-                    
-                    Sign sign = (Sign) block.getState();
-                    if(sign.getPersistentDataContainer().has(instance.key, PersistentDataType.STRING)){
-                        sign.getPersistentDataContainer().remove(instance.key);
-                        String[] lines = packet.getStringArrays().read(0);
-                        int i = 0;
-                        for(String l : lines){
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            if(block.getType().toString().endsWith("_SIGN")){
+                
+                Sign sign = (Sign) block.getState();
+                if(sign.getPersistentDataContainer().has(instance.key, PersistentDataType.STRING)){
+                    sign.getPersistentDataContainer().remove(instance.key);
+                    String[] lines = packet.getStringArrays().read(0);
+                    int i = 0;
+                    SignChangeEvent signEvent = new SignChangeEvent(block, player, lines);
+                    Bukkit.getServer().getPluginManager().callEvent(signEvent);
+                    if(!signEvent.isCancelled()){
+                        for(String l : signEvent.getLines()){
                             
                             sign.setLine(i, l);
                             i++;
                         }
-                        sign.update(true);
-                        // Bukkit.getScheduler().scheduleSyncDelayedTask(getPlugin(), () -> {sign.update(true);},20);
-                        PacketContainer packet = instance.manager.createPacket(PacketType.Play.Client.UPDATE_SIGN);
-                        packet.getBlockPositionModifier().write(0, pos);
-                        packet.getStringArrays().write(0, lines);
-                        try {
-                            instance.manager.recieveClientPacket(player, packet);
-                        } catch (IllegalAccessException | InvocationTargetException e) {
-                            e.printStackTrace();
-                        }
-                        instance.lines.remove(player);
                     }
+                    sign.update(true);
+                    instance.lines.remove(player);
                 }
-            
             }
-        }.runTask(plugin);
+            
+        });
     }
 
 }
