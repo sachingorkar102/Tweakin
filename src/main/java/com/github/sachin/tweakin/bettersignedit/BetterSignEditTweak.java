@@ -65,7 +65,7 @@ public class BetterSignEditTweak extends BaseTweak implements Listener{
     }
 
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onSignClick(PlayerInteractEvent e){
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getHand() != EquipmentSlot.HAND || e.getItem() != null) return;
         Player player = e.getPlayer();
