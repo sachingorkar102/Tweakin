@@ -41,6 +41,7 @@ public class ArmorStandCommand extends BaseCommand{
     @CommandAlias("%tweakinarmorstandcommand")
     @CommandCompletion("last|near")
     public void onCommand(Player player,String[] args){
+        if(instance.getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(!player.hasPermission("tweakin.betterarmorstands.command")){
             player.sendMessage(messageManager.getMessage("no-permission"));
             return;

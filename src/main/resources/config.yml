@@ -477,10 +477,17 @@ villager-death-message:
   black-list-worlds: []      
 
 # Adding some more features to armor stand and giving players more control over them
+# /armorstand or /as can be used to edit a armorstand player is looking at with a gui
+# all the messages,titles and items from gui are configurable in messages.yml and items.yml
+# Better ArmorStands also adds preset poses which can be accessed through editor gui, this feature adds 20+ preset poses to choose from
+# Admins can add their own poses with /tw addpose [pose-id] [display-name] command whilist looking at the posed armorstand
+# to remove a existing pose use /tw removepose [pose-id] command 
 # Permissions:
   # tweakin.betterarmorstands.armorswap: players with this permission will able to swap entire armor with armor stand
   # tweakin.betterarmorstands.command: permission for /armorstand command
   # tweakin.betterarmorstands.uuidlockbypass: players with this permission can edit armor stands even if its uuid locked
+  # tweakin.command.addpose: permission to use addpose command
+  # tweakin.command.removepose: permission to use remove pose command
 better-armorstands:
   enabled: false  
   black-list-worlds: []
