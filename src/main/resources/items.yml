@@ -13,6 +13,10 @@ fillar-glass:
   display: " "  
 
 
+back-button:
+  id: BARRIER
+  display: "&cBack"
+
 info-paper:
   id: PAPER
   display: "&eInfo"
@@ -199,3 +203,6 @@ pos-z:
 body-rotation:
   id: LIME_WOOL
   display: "&7Body Rotation: &f%value%"  
+preset-poses:
+  id: ARMOR_STAND
+  display: "&aPreset Poses"  

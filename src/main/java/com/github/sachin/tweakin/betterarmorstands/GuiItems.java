@@ -401,6 +401,14 @@ public enum GuiItems {
             inv.setItem(slot, UUID_LOCKED.setUuidLoc(player.getName()));
         }
     },
+    PRESET_POSES("preset-poses"){
+        @Override
+        public void handleClick(InventoryClickEvent e, ArmorStand as, ClickType click, Inventory inv, int slot,Location loc, double changedValue, EulerAngle angle) {
+            Player player = (Player) e.getWhoClicked();
+            PresetPoseGui gui = new PresetPoseGui(player, as);
+            gui.openPage();
+        }
+    }
     ;
 
 

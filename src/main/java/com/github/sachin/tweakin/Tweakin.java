@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import com.github.sachin.tweakin.betterarmorstands.PresetPose;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.bottledcloud.BottledCloudItem.CloudEntity;
 import com.github.sachin.tweakin.bstats.Metrics;
@@ -105,6 +106,7 @@ public final class Tweakin extends JavaPlugin {
         this.tweakManager = new TweakManager(this);
         tweakManager.load();
         ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
+        
         commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
         commandManager.getCommandCompletions().registerCompletion("tweaklist", c -> tweakManager.getTweakNames());
         
@@ -126,13 +128,10 @@ public final class Tweakin extends JavaPlugin {
     @Override
     public void onDisable() {
         if(!isEnabled) return;
-        LapisInTableTweak tweak = (LapisInTableTweak) getTweakManager().getTweakList().get(6);
-        for(TweakItem i: tweakManager.getRegisteredItems()){
-            if(i instanceof BottledCloudItem && i.registered){
-                BottledCloudItem instance = (BottledCloudItem) i;
-                for(CloudEntity entity : instance.clouds.values()){
-                    entity.ticker.removeAll();
-                }
+        
+        for(BaseTweak t : tweakManager.getTweakList()){
+            if(t.registered){
+                t.onDisable();
             }
         }
         if(metrics != null){
@@ -143,9 +142,7 @@ public final class Tweakin extends JavaPlugin {
                 }
             }));
         }
-        if(tweak.registered){
-            tweak.saveLapisData();
-        }
+        
     }
 
     public String getVersion() {

@@ -1,7 +1,9 @@
 package com.github.sachin.tweakin.betterarmorstands;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import com.github.sachin.tweakin.BaseTweak;
@@ -41,17 +43,25 @@ import de.jeff_media.morepersistentdatatypes.DataType;
 public class BetterArmorStandTweak extends BaseTweak implements Listener{
 
     private ArmorStandCommand command;
+    private final PoseManager poseManager;
     private Message messageManager;
+    protected final Map<UUID,UUID> cachedAsList = new HashMap<>();
 
     public BetterArmorStandTweak(Tweakin plugin) {
         super(plugin, "better-armorstands");
+        this.poseManager = new PoseManager(this);
         this.command = new ArmorStandCommand(this);
         this.messageManager = plugin.getTweakManager().getMessageManager();
     }
-
+    
+    public PoseManager getPoseManager() {
+        return poseManager;
+    }
+    
     @Override
     public void register() {
         super.register();
+        poseManager.loadPoses();
         registerCommands(command);
     }
 
@@ -108,8 +118,6 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             if(e.getHand()==EquipmentSlot.HAND && player.isSneaking() && getConfig().getBoolean("armor-swap") && player.hasPermission("tweakin.betterarmorstands.armorswap")){
                 e.setCancelled(true);
                 for(EquipmentSlot slot : EquipmentSlot.values()){
-                    // swapArmor(as, player, slot);
-                
                     ItemStack asItem = as.getEquipment().getItem(slot);
                     ItemStack playerItem = player.getEquipment().getItem(slot);
                     as.getEquipment().setItem(slot, playerItem);
@@ -159,16 +167,27 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             }.runTaskLater(plugin, 1);    
             
         }
+
+        if(e.getClickedInventory().getHolder() instanceof PresetPoseGui){
+            PresetPoseGui gui = (PresetPoseGui) e.getClickedInventory().getHolder();
+            gui.handlePageClicks(e);
+        }
     }
 
     @EventHandler
     public void onGuiClose(InventoryCloseEvent e){
         if(e.getInventory().getHolder() instanceof ASGuiHolder){
             ASGuiHolder gui = (ASGuiHolder) e.getInventory().getHolder();
+            cachedAsList.put(e.getPlayer().getUniqueId(), gui.armorStand.getUniqueId());
             gui.armorStand.getPersistentDataContainer().remove(TConstants.ARMORSTAND_EDITED);
+            
         }
     }
 
+    @Override
+    public void onDisable() {
+        poseManager.savePoses();
+    }
 
 
     

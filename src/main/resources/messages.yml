@@ -32,4 +32,11 @@ villager-death-message: "&eA villager has died! &r&6XYZ: %x%, %y%, %z% &ein %wor
 
 armorstand-locked: "&eThe armor stand is UUID locked by &6%player%"
 look-at-armorstand: "&cLook at a armor stand, then execute the command to select it"
-armorstand-edited: "&carmor stand is being edited by other player"
+armorstand-edited: "&cArmor stand is being edited by other player"
+no-armorstand-near: "&cNo armor stand found nearby"
+armorstand-dead: "&cArmorstand dosn't exsist or is removed"
+pose-added: "&ePose added successfully"
+pose-exists: "&cPose with id %pose% already exists"
+pose-removed: "&ePose removed successfully"
+armorstand-editor-gui-title: "Armor Stand Editor"
+armorstand-poses-gui-title: "Armor Stand Poses"

@@ -302,6 +302,11 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         return data.has(entityItemKey, PersistentDataType.STRING) && data.has(entityStandItemKey, PersistentDataType.STRING);
     }
 
+    @Override
+    public void onDisable() {
+        saveLapisData();
+    }
+
     
 
   

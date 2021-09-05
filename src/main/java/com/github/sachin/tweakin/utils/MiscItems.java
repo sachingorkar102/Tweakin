@@ -18,6 +18,7 @@ public class MiscItems {
     public final ItemStack INFO_PAPER;
     public final ItemStack NEXT_BUTTON;
     public final ItemStack PREVIOUS_BUTTON;
+    public final ItemStack BACK_BUTTON;
 
     
 
@@ -35,6 +36,7 @@ public class MiscItems {
         this.INFO_PAPER = ItemBuilder.guiItemFromFile(CONFIG.getConfigurationSection("info-paper"), "info-paper");
         this.NEXT_BUTTON = ItemBuilder.guiItemFromFile(CONFIG.getConfigurationSection("next-button"), "next-button");
         this.PREVIOUS_BUTTON = ItemBuilder.guiItemFromFile(CONFIG.getConfigurationSection("previous-button"), "previous-button");
+        this.BACK_BUTTON = ItemBuilder.guiItemFromFile(CONFIG.getConfigurationSection("back-button"), "back-button");
     }
 
 }

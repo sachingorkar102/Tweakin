@@ -4,6 +4,8 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.betterarmorstands.BetterArmorStandTweak;
+import com.github.sachin.tweakin.betterarmorstands.PresetPose;
 import com.github.sachin.tweakin.gui.PagedGuiHolder;
 import com.github.sachin.tweakin.mobheads.Head;
 import com.google.common.base.Enums;
@@ -15,9 +17,11 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.RayTraceResult;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
@@ -28,6 +32,7 @@ import co.aikar.commands.annotation.Dependency;
 import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.HelpCommand;
 import co.aikar.commands.annotation.Subcommand;
+import co.aikar.commands.annotation.Syntax;
 
 @Description("core command for tweakin")
 @CommandAlias("tw|tweakin")
@@ -44,6 +49,58 @@ public class CoreCommand extends BaseCommand{
         this.plugin = plugin;
         this.messageManager = plugin.getTweakManager().getMessageManager();
         
+    }
+
+    // /tweakin removepose [pose-name]
+    @Subcommand("removepose")
+    @CommandCompletion("@tweakinposes")
+    public void onRemovePose(CommandSender sender,String[] args){
+        if(args.length != 1) return;
+        if(!sender.hasPermission("tweakin.command.removepose")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
+        BetterArmorStandTweak tweak = (BetterArmorStandTweak) plugin.getTweakManager().getTweakFromName("better-armorstands");
+        if(!tweak.registered){
+            sender.sendMessage(messageManager.getMessage("tweak-is-disabled").replace("%tweak%", "better-armorstands"));
+            return;
+        }
+        String id = args[0];
+        if(tweak.getPoseManager().getPoses().remove(id) != null){
+            sender.sendMessage(messageManager.getMessage("pose-removed"));
+        }
+
+    }
+
+    // /tweakin addpose [id] [display]
+    @Subcommand("addpose")
+    public void onAddPose(Player player,String[] args){
+        if(args.length != 2) return;
+        if(!player.hasPermission("tweakin.command.addpose")){
+            player.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
+        BetterArmorStandTweak tweak = (BetterArmorStandTweak) plugin.getTweakManager().getTweakFromName("better-armorstands");
+        if(!tweak.registered){
+            player.sendMessage(messageManager.getMessage("tweak-is-disabled").replace("%tweak%", "better-armorstands"));
+            return;
+        }
+        String id = args[0];
+        String display = args[1];
+        if(tweak.getPoseManager().getPoses().containsKey(id)){
+            player.sendMessage(messageManager.getMessage("pose-exists").replace("%pose%", id));
+            return;
+        }
+        RayTraceResult result = player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 5, (entity)-> (entity instanceof ArmorStand));
+        if(result != null && result.getHitEntity() != null){
+            ArmorStand as = (ArmorStand) result.getHitEntity();
+            PresetPose pose = new PresetPose(id,display, as.getHeadPose(), as.getBodyPose(), as.getLeftArmPose(), as.getRightArmPose(), as.getLeftLegPose(), as.getRightLegPose());
+            tweak.getPoseManager().addPose(pose);
+            player.sendMessage(messageManager.getMessage("pose-added"));
+        }
+        else{
+            player.sendMessage(messageManager.getMessage("look-at-armorstand"));
+        }
     }
 
     

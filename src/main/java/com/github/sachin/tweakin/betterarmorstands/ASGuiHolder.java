@@ -30,7 +30,7 @@ public class ASGuiHolder implements InventoryHolder{
     public ASGuiHolder(Player player,ArmorStand armorStand){
         this.armorStand= armorStand;
         this.player = player;
-        this.inventory = Bukkit.createInventory(this, 54, "ArmorStand Gui");
+        this.inventory = Bukkit.createInventory(this, 54, plugin.getTweakManager().getMessageManager().getMessageWithoutPrefix("armorstand-editor-gui-title"));
     }
 
     public static void openGui(Player player,ArmorStand as){
@@ -55,7 +55,7 @@ public class ASGuiHolder implements InventoryHolder{
 
 
     public void setItems(){
-        for(int i : Arrays.asList(0,2,3,12,13,18,20,21,22,23,24,25,26,27,37,45,36)){
+        for(int i : Arrays.asList(0,2,3,12,13,18,20,21,22,23,24,25,26,27,37,45)){
             inventory.setItem(i, plugin.getMiscItems().FILLAR_GLASS);
         }
         inventory.setItem(4, armorStand.hasBasePlate() ? GuiItems.PLATE_EN.item : GuiItems.PLATE_DI.item);
@@ -108,6 +108,7 @@ public class ASGuiHolder implements InventoryHolder{
             inventory.setItem(17, GuiItems.UUID_UNLOCKED.item);
         }
         inventory.setItem(46, GuiItems.BODY_ROTATION.setDouble(armorStand.getLocation().getYaw()));
+        inventory.setItem(36,GuiItems.PRESET_POSES.item);
     }
 
 

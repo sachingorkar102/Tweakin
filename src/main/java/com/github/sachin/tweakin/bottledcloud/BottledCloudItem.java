@@ -166,6 +166,13 @@ public class BottledCloudItem extends TweakItem implements Listener{
 
     }
 
+    @Override
+    public void onDisable() {
+        for(CloudEntity entity : clouds.values()){
+            entity.ticker.removeAll();
+        }
+    }
+
 
     public class CloudEntity {
 

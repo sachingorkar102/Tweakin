@@ -141,4 +141,6 @@ public abstract class BaseTweak {
         this.config = plugin.getConfig().getConfigurationSection(configKey);
         this.shouldEnable = config.getBoolean("enabled");
     }
+
+    public void onDisable(){}
 }

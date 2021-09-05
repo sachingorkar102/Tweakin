@@ -12,6 +12,9 @@ import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
+import com.github.sachin.tweakin.betterarmorstands.PresetPose;
+import com.google.gson.Gson;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
@@ -20,10 +23,13 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.EulerAngle;
 
 public class Test {
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{
         System.out.println(Math.toDegrees(1));
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(new PresetPose("test", "test", new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1))));;
         // Class<?> miscItemsClass = Class.forName("com.github.sachin.tweakin.utils.MiscItems");
         // Field f = miscItemsClass.getField("ENABLED_BUTTON");
         // f.get(new ItemStack(Material.ACACIA_BOAT));

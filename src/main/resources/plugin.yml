@@ -18,6 +18,8 @@ permissions:
       tweakin.command.toggle: true
       tweakin.command.givehead: true
       tweakin.command.list: true
+      tweakin.command.addpose: true
+      tweakin.command.removepose: true
   tweakin.infinitybucket.*:
     default: true
     children:
