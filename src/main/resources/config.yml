@@ -498,3 +498,11 @@ better-armorstands:
   # Aliases for /armorstand command
   # Pro tip: use | to add more then one aliases
   alias: as|armorstand|editarmorstand
+
+# REQUIRES better-armorstands to be enabled
+# A wand item to use to edit armor stands, rather then using /armorstand command
+# Permissions:
+  # tweakin.armorstandwand.use: permission to use the wand
+armorstand-wand:
+  enabled: false
+  craftable: true    

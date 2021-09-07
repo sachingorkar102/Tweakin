@@ -45,11 +45,14 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
 
     private ArmorStandCommand command;
     private final PoseManager poseManager;
+    private final ArmorStandWandItem wandItem;
     private Message messageManager;
     protected final Map<UUID,UUID> cachedAsList = new HashMap<>();
 
     public BetterArmorStandTweak(Tweakin plugin) {
         super(plugin, "better-armorstands");
+        this.wandItem = new ArmorStandWandItem(plugin,this);
+        getTweakManager().registerTweak(wandItem);
         this.poseManager = new PoseManager(this);
         this.command = new ArmorStandCommand(this);
         this.messageManager = plugin.getTweakManager().getMessageManager();
@@ -96,31 +99,27 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
 
     @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = false)
     public void onArmorStandInteract(PlayerInteractAtEntityEvent e){
-        
+        if(e.isCancelled()) return;
         Player player = e.getPlayer();
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(e.getRightClicked() instanceof ArmorStand){
             ArmorStand as = (ArmorStand) e.getRightClicked();
-            if(as.getPersistentDataContainer().has(TConstants.INTERACTABLE_AS, PersistentDataType.INTEGER)){
-                e.setCancelled(true);
-                return;
+            ItemStack clickedItem = player.getInventory().getItem(e.getHand());
+            if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !player.hasPermission("tweakin.betterarmorstands.uuidlockbypass")){
+                player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
             }
-            if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.hasPermission("tweakin.betterarmorstands.uuidlockbypass")){
-                UUID uuid = as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID);
-                if(!uuid.equals(player.getUniqueId())){
-                    
-                    player.sendMessage(messageManager.getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(uuid).getName()));
-                    e.setCancelled(true);
-                    return;
-                }
-            }
-            if(as.getPersistentDataContainer().has(TConstants.ARMORSTAND_EDITED, PersistentDataType.INTEGER)){
+            else if(as.getPersistentDataContainer().has(TConstants.ARMORSTAND_EDITED, PersistentDataType.INTEGER)){
                 player.sendMessage(messageManager.getMessage("armorstand-edited"));
                 e.setCancelled(true);
-                return;
             }
-            if(e.isCancelled()) return;
-            if(e.getHand()==EquipmentSlot.HAND && player.isSneaking() && getConfig().getBoolean("armor-swap") && player.hasPermission("tweakin.betterarmorstands.armorswap")){
+            else if(wandItem.registered && clickedItem != null && wandItem.isSimilar(clickedItem) && player.hasPermission("tweakin.armorstandwand.use") && player.isSneaking()){
+                e.setCancelled(true);
+                ASGuiHolder.openGui(player, as);
+            }
+            else if(as.getPersistentDataContainer().has(TConstants.INTERACTABLE_AS, PersistentDataType.INTEGER)){
+                e.setCancelled(true);;
+            }
+            else if(e.getHand()==EquipmentSlot.HAND && player.isSneaking() && getConfig().getBoolean("armor-swap") && player.hasPermission("tweakin.betterarmorstands.armorswap")){
                 e.setCancelled(true);
                 for(EquipmentSlot slot : EquipmentSlot.values()){
                     ItemStack asItem = as.getEquipment().getItem(slot);

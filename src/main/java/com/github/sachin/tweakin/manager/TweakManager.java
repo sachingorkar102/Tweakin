@@ -216,6 +216,10 @@ public class TweakManager {
         return tweakList;
     }
 
+    public void registerTweak(BaseTweak tweak){
+        tweakList.add(tweak);
+    }
+
     private void sendConsoleMessage(String message){
         plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', message));
     }

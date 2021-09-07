@@ -104,4 +104,6 @@ permissions:
       tweakin.betterarmorstands.armorswap: true
       tweakin.betterarmorstands.uuidlockbypass: false
       tweakin.betterarmorstands.command: true
+  tweakin.armorstandwand.use:
+    default: true    
 

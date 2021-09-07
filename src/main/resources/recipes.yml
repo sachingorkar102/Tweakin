@@ -8,4 +8,10 @@ trowel:
   1:
     - air|air|air
     - air|iron_ingot|air
-    - air|stick|air    
+    - air|stick|air  
+    
+armorstand-wand:
+  1:
+    - air|air|cobblestone
+    - air|stick|air
+    - cobblestone|air|air      

@@ -62,7 +62,7 @@ public class ASGuiHolder implements InventoryHolder{
         inventory.setItem(7, armorStand.hasGravity() ? GuiItems.GRAVITY_EN.item : GuiItems.GRAVITY_DI.item);
         inventory.setItem(8, armorStand.hasArms() ? GuiItems.ARMS_EN.item : GuiItems.ARMS_DI.item);
         inventory.setItem(14, armorStand.isGlowing() ? GuiItems.GLOWING_EN.item : GuiItems.GLOWING_DI.item);
-        inventory.setItem(15, armorStand.isInvulnerable() ? GuiItems.INVULNERABLE_EN.item : GuiItems.INTERACTABLE_DI.item);
+        inventory.setItem(15, armorStand.isInvulnerable() ? GuiItems.INVULNERABLE_EN.item : GuiItems.INVULNERABLE_DI.item);
         inventory.setItem(16, armorStand.getPersistentDataContainer().has(TConstants.INTERACTABLE_AS, PersistentDataType.INTEGER)? GuiItems.INTERACTABLE_DI.item : GuiItems.INTERACTABLE_EN.item);
         EulerAngle headA = armorStand.getHeadPose();
         inventory.setItem(29, GuiItems.HEAD_X.setDouble(headA.getX()));
