@@ -60,7 +60,7 @@ public class ArmorStandCommand extends BaseCommand{
         }
         else if(args.length==1){
             if(args[0].equalsIgnoreCase("near")){
-                List<Entity> stands = player.getNearbyEntities(5, 5, 5).stream().filter(e -> (e instanceof ArmorStand)).collect(Collectors.toList());
+                List<Entity> stands = player.getNearbyEntities(5, 5, 5).stream().filter(e -> (e instanceof ArmorStand) && !((ArmorStand)e).isMarker()).collect(Collectors.toList());
                 if(!stands.isEmpty()){
                     ArmorStand as = (ArmorStand) stands.get(0);
                     if(canBuild(player, as)){

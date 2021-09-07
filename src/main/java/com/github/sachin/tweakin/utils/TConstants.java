@@ -22,4 +22,5 @@ public class TConstants {
     
     public static final NamespacedKey UUID_LOCK_KEY = Tweakin.getKey("bas-uuid-lock");
     public static final NamespacedKey ARMORSTAND_EDITED = Tweakin.getKey("bas-armorstand-edited");
+    public static final NamespacedKey INTERACTABLE_AS = Tweakin.getKey("bas-interactable-armorstand");
 }

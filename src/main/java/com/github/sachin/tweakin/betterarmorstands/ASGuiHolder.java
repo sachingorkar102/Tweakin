@@ -34,12 +34,10 @@ public class ASGuiHolder implements InventoryHolder{
     }
 
     public static void openGui(Player player,ArmorStand as){
-        if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.hasPermission("tweakin.betterarmorstands.uuidlockbypass")){
-            UUID uuid = as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID);
-            if(!player.getUniqueId().equals(uuid)){
-                player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(uuid).getName()));
-                return;
-            }
+        if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !player.hasPermission("tweakin.betterarmorstands.uuidlockbypass")){
+            player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
+            return;
+            
         }
         if(as.getPersistentDataContainer().has(TConstants.ARMORSTAND_EDITED, PersistentDataType.INTEGER)){
             player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-edited"));
@@ -65,7 +63,7 @@ public class ASGuiHolder implements InventoryHolder{
         inventory.setItem(8, armorStand.hasArms() ? GuiItems.ARMS_EN.item : GuiItems.ARMS_DI.item);
         inventory.setItem(14, armorStand.isGlowing() ? GuiItems.GLOWING_EN.item : GuiItems.GLOWING_DI.item);
         inventory.setItem(15, armorStand.isInvulnerable() ? GuiItems.INVULNERABLE_EN.item : GuiItems.INTERACTABLE_DI.item);
-        inventory.setItem(16, armorStand.isMarker()? GuiItems.INTERACTABLE_DI.item : GuiItems.INTERACTABLE_EN.item);
+        inventory.setItem(16, armorStand.getPersistentDataContainer().has(TConstants.INTERACTABLE_AS, PersistentDataType.INTEGER)? GuiItems.INTERACTABLE_DI.item : GuiItems.INTERACTABLE_EN.item);
         EulerAngle headA = armorStand.getHeadPose();
         inventory.setItem(29, GuiItems.HEAD_X.setDouble(headA.getX()));
         inventory.setItem(38, GuiItems.HEAD_Y.setDouble(headA.getY()));

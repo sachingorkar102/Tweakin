@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.EulerAngle;
 
 import de.jeff_media.morepersistentdatatypes.DataType;
@@ -150,7 +151,7 @@ public enum GuiItems {
         public void handleClick(InventoryClickEvent e,ArmorStand as,ClickType click,Inventory inv,int slot,Location loc,double changedValue,EulerAngle angle) {
             
             inv.setItem(slot, INTERACTABLE_DI.item);
-            as.setMarker(true);
+            as.getPersistentDataContainer().set(TConstants.INTERACTABLE_AS, PersistentDataType.INTEGER, 1);
         }
     },
     INTERACTABLE_DI("interactable-disabled"){
@@ -158,7 +159,7 @@ public enum GuiItems {
         public void handleClick(InventoryClickEvent e,ArmorStand as,ClickType click,Inventory inv,int slot,Location loc,double changedValue,EulerAngle angle) {            
             
             inv.setItem(slot, INTERACTABLE_EN.item);
-            as.setMarker(false);
+            as.getPersistentDataContainer().remove(TConstants.INTERACTABLE_AS);
         }
     },
     HEAD_X("head-x"){

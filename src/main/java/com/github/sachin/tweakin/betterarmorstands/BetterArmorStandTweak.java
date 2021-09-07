@@ -38,6 +38,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
 
 import de.jeff_media.morepersistentdatatypes.DataType;
+import scala.concurrent.impl.FutureConvertersImpl.P;
 
 // tweakin.betterarmorstands.armorswap,tweakin.betterarmorstands.uuidlockbypass,tweakin.betterarmorstands.command
 public class BetterArmorStandTweak extends BaseTweak implements Listener{
@@ -100,6 +101,10 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(e.getRightClicked() instanceof ArmorStand){
             ArmorStand as = (ArmorStand) e.getRightClicked();
+            if(as.getPersistentDataContainer().has(TConstants.INTERACTABLE_AS, PersistentDataType.INTEGER)){
+                e.setCancelled(true);
+                return;
+            }
             if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.hasPermission("tweakin.betterarmorstands.uuidlockbypass")){
                 UUID uuid = as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID);
                 if(!uuid.equals(player.getUniqueId())){
