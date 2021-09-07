@@ -33,6 +33,7 @@ import com.github.sachin.tweakin.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.rightclickshulker.RightClickShulkerBox;
 import com.github.sachin.tweakin.rotationwrench.RotationWrenchItem;
 import com.github.sachin.tweakin.shearitemframe.ShearItemFrameTweak;
+import com.github.sachin.tweakin.shearnametag.ShearNameTagTweak;
 import com.github.sachin.tweakin.silencemobs.SilenceMobsTweak;
 import com.github.sachin.tweakin.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.snowballknockback.SnowBallKnockBackTweak;
@@ -212,6 +213,7 @@ public class TweakManager {
             tweakList.add(new ArmoredElytraTweak(plugin));
             tweakList.add(new VillagerDeathMessageTweak(plugin));
             tweakList.add(new BetterArmorStandTweak(plugin));
+            tweakList.add(new ShearNameTagTweak(plugin));
         }
         return tweakList;
     }

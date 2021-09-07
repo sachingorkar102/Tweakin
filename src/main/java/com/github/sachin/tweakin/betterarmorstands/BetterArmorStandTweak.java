@@ -12,6 +12,7 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.TConstants;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.ArmorStand;
@@ -19,26 +20,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.EulerAngle;
 
 import de.jeff_media.morepersistentdatatypes.DataType;
-import scala.concurrent.impl.FutureConvertersImpl.P;
 
 // tweakin.betterarmorstands.armorswap,tweakin.betterarmorstands.uuidlockbypass,tweakin.betterarmorstands.command
 public class BetterArmorStandTweak extends BaseTweak implements Listener{
@@ -105,6 +98,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         if(e.getRightClicked() instanceof ArmorStand){
             ArmorStand as = (ArmorStand) e.getRightClicked();
             ItemStack clickedItem = player.getInventory().getItem(e.getHand());
+            // security checks
             if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !player.hasPermission("tweakin.betterarmorstands.uuidlockbypass")){
                 player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
             }
@@ -112,10 +106,20 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
                 player.sendMessage(messageManager.getMessage("armorstand-edited"));
                 e.setCancelled(true);
             }
+            else if(clickedItem.getType()==Material.SHEARS && player.isSneaking()) return;
+            // NameTagChecks
+            else if(clickedItem.getType()==Material.NAME_TAG && player.isSneaking() && clickedItem.getItemMeta().hasDisplayName()){
+                as.setCustomName(clickedItem.getItemMeta().getDisplayName());
+                as.setCustomNameVisible(true);
+                as.getPersistentDataContainer().set(TConstants.NAMETAGED_MOB, PersistentDataType.INTEGER, 1);
+                clickedItem.setAmount(clickedItem.getAmount()-1);
+            }
+            // wand checks
             else if(wandItem.registered && clickedItem != null && wandItem.isSimilar(clickedItem) && player.hasPermission("tweakin.armorstandwand.use") && player.isSneaking()){
                 e.setCancelled(true);
                 ASGuiHolder.openGui(player, as);
             }
+            // replacement for setMarker
             else if(as.getPersistentDataContainer().has(TConstants.INTERACTABLE_AS, PersistentDataType.INTEGER)){
                 e.setCancelled(true);;
             }
@@ -136,6 +140,9 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e){
         if(e.getClickedInventory() == null) return;
+        if(e.getInventory().getHolder() instanceof ASGuiHolder && e.isShiftClick()){
+            e.setCancelled(true);
+        }
         if(e.getClickedInventory().getHolder() instanceof ASGuiHolder){
             ASGuiHolder holder = (ASGuiHolder) e.getClickedInventory().getHolder();
             Inventory inv = holder.getInventory();

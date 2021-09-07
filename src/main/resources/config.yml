@@ -505,4 +505,12 @@ better-armorstands:
   # tweakin.armorstandwand.use: permission to use the wand
 armorstand-wand:
   enabled: false
-  craftable: true    
+  craftable: true  
+  
+# NOTE: only works with mobs that were name tagged after this tweak was enabled
+# Shift+Right click a name tagged mob with shears to remove the name and get the nametag back 
+# Permissions:
+  # tweakin.shearnametag.use: Permission to use this tweak
+shear-name-tag:
+  enabled: false  
+  black-list-worlds: []

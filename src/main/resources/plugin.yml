@@ -105,5 +105,7 @@ permissions:
       tweakin.betterarmorstands.uuidlockbypass: false
       tweakin.betterarmorstands.command: true
   tweakin.armorstandwand.use:
-    default: true    
+    default: true   
+  tweakin.shearnametag.use:
+    default: true   
 
