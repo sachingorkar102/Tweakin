@@ -32,7 +32,7 @@ public abstract class BaseFlag {
 
 
     public void register(){
-        this.flag = new StateFlag(flagName,false);
+        this.flag = new StateFlag(flagName,true);
         try {
             manager.getRegistry().register(flag);
             plugin.getLogger().info("Worldguard flag: "+flagName+ " registered successfully");
