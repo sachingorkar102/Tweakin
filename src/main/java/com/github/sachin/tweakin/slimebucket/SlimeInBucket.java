@@ -131,7 +131,7 @@ public class SlimeInBucket extends TweakItem implements Listener{
                 if(getBlackListWorlds().contains(player.getWorld().getName()) || !player.hasPermission("tweakin.slimebucket.detect")) return;
                 int model = 0;
                 Location loc = player.getLocation();
-                if(loc.getChunk().isSlimeChunk()){
+                if(loc.getChunk().isSlimeChunk() && getConfig().getInt("max-y-level") > loc.getBlockY()){
                     model = getConfig().getInt("model-detected",104);
                 }
                 else{
@@ -144,7 +144,8 @@ public class SlimeInBucket extends TweakItem implements Listener{
                     meta.setCustomModelData(model);
                     item.setItemMeta(meta);
                 }
-                if(hasItem(player, EquipmentSlot.OFF_HAND)){
+                System.out.println(isSimilar(player.getInventory().getItemInOffHand()));
+                if(isSimilar(player.getInventory().getItemInOffHand())){
                     ItemStack item = player.getInventory().getItemInOffHand();
                     ItemMeta meta = item.getItemMeta();
                     meta.setCustomModelData(model);
