@@ -24,4 +24,5 @@ public class TConstants {
     public static final NamespacedKey ARMORSTAND_EDITED = Tweakin.getKey("bas-armorstand-edited");
     public static final NamespacedKey INTERACTABLE_AS = Tweakin.getKey("bas-interactable-armorstand");
     public static final NamespacedKey NAMETAGED_MOB = Tweakin.getKey("nametaged-mob");
+    public static final NamespacedKey COPY_PASTE_KEY = Tweakin.getKey("copy-paste-key");
 }

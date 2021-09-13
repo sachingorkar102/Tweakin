@@ -2,15 +2,19 @@ package com.github.sachin.tweakin.betterarmorstands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.ItemBuilder;
 import com.github.sachin.tweakin.utils.TConstants;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -26,6 +30,34 @@ import net.md_5.bungee.api.ChatColor;
 public enum GuiItems {
 
 
+    COPY_BUTTON("copy-button"){
+        @Override
+        public void handleClick(InventoryClickEvent e, ArmorStand as, ClickType click, Inventory inv, int slot,Location loc, double changedValue, EulerAngle angle) {
+            e.getWhoClicked().getPersistentDataContainer().set(TConstants.COPY_PASTE_KEY, DataType.UUID, as.getUniqueId());
+            inv.setItem(slot, PASTE_BUTTON.item);
+        }
+    },
+    PASTE_BUTTON("paste-button"){
+        @Override
+        public void handleClick(InventoryClickEvent e, ArmorStand as, ClickType click, Inventory inv, int slot,Location loc, double changedValue, EulerAngle angle) {
+            Player player = (Player) e.getWhoClicked();
+            UUID uuid = player.getPersistentDataContainer().get(TConstants.COPY_PASTE_KEY, DataType.UUID);
+            if(uuid != null){
+                Entity en = Bukkit.getEntity(uuid);
+                if(en != null && !en.isDead()){
+                    ArmorStand cAS = (ArmorStand) en;
+                    as.setHeadPose(cAS.getHeadPose());
+                    as.setBodyPose(cAS.getBodyPose());
+                    as.setLeftArmPose(cAS.getLeftArmPose());
+                    as.setRightArmPose(cAS.getRightArmPose());
+                    as.setLeftLegPose(cAS.getLeftLegPose());
+                    as.setRightLegPose(cAS.getRightLegPose());
+                }
+                inv.setItem(slot, COPY_BUTTON.item);
+                player.getPersistentDataContainer().remove(TConstants.COPY_PASTE_KEY);
+            }
+        }
+    },
     PLATE_EN("plate-enabled"){
         @Override
         public void handleClick(InventoryClickEvent e,ArmorStand as,ClickType click,Inventory inv,int slot,Location loc,double changedValue,EulerAngle angle) {

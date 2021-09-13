@@ -90,7 +90,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = false)
+    @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = true)
     public void onArmorStandInteract(PlayerInteractAtEntityEvent e){
         if(e.isCancelled()) return;
         Player player = e.getPlayer();
@@ -109,8 +109,8 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             else if(clickedItem.getType()==Material.SHEARS && player.isSneaking()) return;
             // NameTagChecks
             else if(clickedItem.getType()==Material.NAME_TAG && player.isSneaking() && clickedItem.getItemMeta().hasDisplayName()){
-                as.setCustomName(clickedItem.getItemMeta().getDisplayName());
                 as.setCustomNameVisible(true);
+                as.setCustomName(clickedItem.getItemMeta().getDisplayName());
                 as.getPersistentDataContainer().set(TConstants.NAMETAGED_MOB, PersistentDataType.INTEGER, 1);
                 clickedItem.setAmount(clickedItem.getAmount()-1);
             }

@@ -53,7 +53,7 @@ public class ASGuiHolder implements InventoryHolder{
 
 
     public void setItems(){
-        for(int i : Arrays.asList(0,2,3,12,13,18,20,21,22,23,24,25,26,27,37,45)){
+        for(int i : Arrays.asList(0,2,3,12,13,18,20,21,22,23,24,25,26,27,37)){
             inventory.setItem(i, plugin.getMiscItems().FILLAR_GLASS);
         }
         inventory.setItem(4, armorStand.hasBasePlate() ? GuiItems.PLATE_EN.item : GuiItems.PLATE_DI.item);
@@ -107,6 +107,7 @@ public class ASGuiHolder implements InventoryHolder{
         }
         inventory.setItem(46, GuiItems.BODY_ROTATION.setDouble(armorStand.getLocation().getYaw()));
         inventory.setItem(36,GuiItems.PRESET_POSES.item);
+        inventory.setItem(45, player.getPersistentDataContainer().has(TConstants.COPY_PASTE_KEY, DataType.UUID) ? GuiItems.PASTE_BUTTON.item : GuiItems.COPY_BUTTON.item);
     }
 
 

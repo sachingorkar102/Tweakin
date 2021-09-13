@@ -307,6 +307,9 @@ lava-bucket-trash-can:
 slime-in-bucket:
   enabled: false
   black-list-worlds: []
+  # the value of y level below the slime in bucket will start detecting slimes
+  # default to 256 so slime chunk will be detected at any y level
+  max-y-level: 256
   # Custom Model data that will be used when the item is not in slime chunk
   model-undetected: 103
   # Custom Model data that will be used when the item is in a slime chunk

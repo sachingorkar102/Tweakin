@@ -213,3 +213,9 @@ body-rotation:
 preset-poses:
   id: ARMOR_STAND
   display: "&aPreset Poses"  
+copy-button:
+  id: MAP
+  display: "&eCopy Pose"
+paste-button:
+  id: FILLED_MAP
+  display: "&7Paste Pose"    

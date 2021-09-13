@@ -100,6 +100,7 @@ public abstract class TweakItem extends BaseTweak {
     }
 
     public boolean isSimilar(ItemStack item){
+        if(item == null) return false;
         NBTItem nbtItem = new NBTItem(item);
         return nbtItem.hasKey(getName());
     }
