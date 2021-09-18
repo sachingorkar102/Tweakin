@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.ClickType;
@@ -24,8 +25,9 @@ public class RightClickArmor extends BaseTweak implements Listener {
         super(plugin,"armor-right-click");
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = true)
     public void armorClickInAir(PlayerInteractEvent e){
+        if(e.isCancelled()) return;
         if(e.getAction() != Action.RIGHT_CLICK_AIR || e.getItem() == null || e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
         if(!player.hasPermission("tweakin.armorclick")) return;

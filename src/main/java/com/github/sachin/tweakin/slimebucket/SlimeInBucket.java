@@ -144,7 +144,6 @@ public class SlimeInBucket extends TweakItem implements Listener{
                     meta.setCustomModelData(model);
                     item.setItemMeta(meta);
                 }
-                System.out.println(isSimilar(player.getInventory().getItemInOffHand()));
                 if(isSimilar(player.getInventory().getItemInOffHand())){
                     ItemStack item = player.getInventory().getItemInOffHand();
                     ItemMeta meta = item.getItemMeta();
