@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
@@ -16,6 +18,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -25,6 +28,7 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -195,9 +199,52 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         }
     }
 
+
+    public void openArmorStandNear(Player player){
+        List<Entity> stands = player.getNearbyEntities(5, 5, 5).stream().filter(e -> (e instanceof ArmorStand) && !((ArmorStand)e).isMarker()).collect(Collectors.toList());
+        if(!stands.isEmpty()){
+            TreeMap<Integer,Entity> map = new TreeMap<>();
+            for(Entity en : stands){
+                map.put((int)Math.round(en.getLocation().distanceSquared(player.getLocation())),en);
+            }
+            ArmorStand as = (ArmorStand) map.get(map.firstKey());
+            if(canBuild(player, as)){
+                ASGuiHolder.openGui(player, as);
+            }
+        }
+        else{
+            player.sendMessage(messageManager.getMessage("no-armorstand-near"));
+        }
+    }
+
+
+    public void openArmorStandLast(Player player){
+        UUID uuid = cachedAsList.get(player.getUniqueId());
+        if(uuid != null){
+            Entity en = Bukkit.getEntity(uuid);
+            if(en != null && !en.isDead()){
+                ArmorStand as = (ArmorStand) en;
+                if(canBuild(player, as)){
+                    ASGuiHolder.openGui(player, as);
+                }
+
+            }
+        }
+        else{
+            player.sendMessage(messageManager.getMessage("armorstand-dead"));
+        }
+    }
+
     @Override
     public void onDisable() {
         poseManager.savePoses();
+    }
+
+
+    private boolean canBuild(Player player,ArmorStand as){
+        PlayerInteractEntityEvent event = new PlayerInteractEntityEvent(player, as);
+        Bukkit.getPluginManager().callEvent(event);
+        return !event.isCancelled();
     }
 
 

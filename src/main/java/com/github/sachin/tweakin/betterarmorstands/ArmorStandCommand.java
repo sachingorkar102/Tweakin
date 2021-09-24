@@ -60,34 +60,11 @@ public class ArmorStandCommand extends BaseCommand{
         }
         else if(args.length==1){
             if(args[0].equalsIgnoreCase("near")){
-                List<Entity> stands = player.getNearbyEntities(5, 5, 5).stream().filter(e -> (e instanceof ArmorStand) && !((ArmorStand)e).isMarker()).collect(Collectors.toList());
-                if(!stands.isEmpty()){
-                    ArmorStand as = (ArmorStand) stands.get(0);
-                    if(canBuild(player, as)){
-                        ASGuiHolder.openGui(player, as);
-                    }
-                }
-                else{
-                    player.sendMessage(messageManager.getMessage("no-armorstand-near"));
-                }
+                instance.openArmorStandNear(player);
 
             }
             else if(args[0].equalsIgnoreCase("last")){
-                UUID uuid = instance.cachedAsList.get(player.getUniqueId());
-                if(uuid != null){
-                    Entity en = Bukkit.getEntity(uuid);
-                    if(en != null && !en.isDead()){
-                        ArmorStand as = (ArmorStand) en;
-                        if(canBuild(player, as)){
-                            ASGuiHolder.openGui(player, as);
-                        }
-
-                    }
-                }
-                else{
-                    player.sendMessage(messageManager.getMessage("armorstand-dead"));
-                }
-
+                instance.openArmorStandLast(player);
             }
         }
     }
