@@ -83,6 +83,8 @@ armorstand-wand:
   display: "&eArmorStand Wand"
   lore:
     - "&7Shift+Right Click on armorstand to edit it"
+    - "&7Shift+Right Click in air to edit lastly edited armorstand"
+    - "&7Right Click in air to edit nearest armorstand"
   options:
     model: 103  
 

@@ -54,6 +54,10 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
         headConfig = YamlConfiguration.loadConfiguration(file);
         this.manager = new HeadManager(this);
     }
+    
+
+
+
 
     @EventHandler
     public void onHeadDrops(ItemSpawnEvent e){

@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import com.github.sachin.tweakin.betterarmorstands.PresetPose;
@@ -27,9 +28,17 @@ import org.bukkit.util.EulerAngle;
 
 public class Test {
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{
-        System.out.println(Math.toDegrees(1));
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(new PresetPose("test", "test", new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1))));;
+        // System.out.println(Math.toDegrees(1));
+        // Gson gson = new Gson();
+        // System.out.println(gson.toJson(new PresetPose("test", "test", new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1))));;
+        TreeMap<Integer,String> map = new TreeMap<>();
+        map.put(2, "Hello");
+        map.put(5, "Hello");
+        map.put(3, "Hello");
+        map.put(6, "Hello");
+        map.put(8, "Hello");
+        map.put(1, "Hellossss");
+        System.out.println(map.get(map.firstKey()));
         // Class<?> miscItemsClass = Class.forName("com.github.sachin.tweakin.utils.MiscItems");
         // Field f = miscItemsClass.getField("ENABLED_BUTTON");
         // f.get(new ItemStack(Material.ACACIA_BOAT));

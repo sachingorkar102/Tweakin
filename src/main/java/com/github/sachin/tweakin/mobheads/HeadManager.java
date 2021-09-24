@@ -18,6 +18,7 @@ public class HeadManager {
     private final Map<EntityType,List<Head>> multiHeadMap = new HashMap<>();
 
     public HeadManager(MobHeadsTweak instance){
+        
         instance.getPlugin().getLogger().info("Generating Head Map, this might take a while...");
         int i = 0;
         for(Head h : Head.values()){
@@ -35,10 +36,12 @@ public class HeadManager {
             }
         }
         instance.getPlugin().getLogger().info("Generated "+i+" mob heads..");
+        
     }
 
     public Map<EntityType, List<Head>> getMultiHeadMap() {
         return multiHeadMap;
     }
+
     
 }

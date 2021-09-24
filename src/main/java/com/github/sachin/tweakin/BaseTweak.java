@@ -34,9 +34,12 @@ public abstract class BaseTweak {
             this.shouldEnable = false;
             return;
         }
+        this.onLoad();
         this.reload();
         this.shouldEnable = config.getBoolean("enabled",true);
     }
+
+    
 
     public BaseTweak getInstance(){
         return this;
@@ -143,4 +146,6 @@ public abstract class BaseTweak {
     }
 
     public void onDisable(){}
+
+    public void onLoad(){}
 }

@@ -1,6 +1,8 @@
 package com.github.sachin.tweakin.mobheads;
 
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
@@ -10,6 +12,7 @@ import com.google.common.base.Predicates;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Bee;
 import org.bukkit.entity.Cat;
@@ -18,6 +21,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fox;
 import org.bukkit.entity.Fox.Type;
 import org.bukkit.entity.Horse;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Llama;
 import org.bukkit.entity.Llama.Color;
 import org.bukkit.entity.MushroomCow;
@@ -186,7 +190,7 @@ public enum Head {
     PIGLIN_BRUTE,
     ZOMBIE("ZOMBIE",Material.ZOMBIE_HEAD),
     ZOMBIE_HORSE,
-    ZOMBIE_ARMORER("ZOMBIE_VILLAGER",(vil)->((ZombieVillager)vil).getVillagerProfession()==Villager.Profession.ARMORER),
+    ZOMBIE_ARMORER("ZOMBIE_VILLAGER",(vil)->cast(vil, ZombieVillager.class).getVillagerProfession()==Villager.Profession.ARMORER),
     ZOMBIE_BUTCHER("ZOMBIE_VILLAGER",(vil)-> ((ZombieVillager)vil).getVillagerProfession()==Villager.Profession.BUTCHER),
     ZOMBIE_CARTOGRAPHER("ZOMBIE_VILLAGER",(vil)->((ZombieVillager)vil).getVillagerProfession()==Villager.Profession.CARTOGRAPHER),
     ZOMBIE_CLERIC("ZOMBIE_VILLAGER",(vil)->((ZombieVillager)vil).getVillagerProfession()==Villager.Profession.CLERIC),
@@ -231,6 +235,13 @@ public enum Head {
         this.skull = createSkull(section);
         this.entityType = entityType;
 
+    }
+
+    public void reload(){
+        this.section = MobHeadsTweak.headConfig.getConfigurationSection(toString().toLowerCase());
+        this.lootingMul = section.getDouble("looting",0.0);
+        this.chance = section.getDouble("chance",0);
+        this.skull = createSkull(section);
     }
 
 
@@ -307,5 +318,12 @@ public enum Head {
         nbtItem.setString("mob-head-item", toString());
         return nbtItem.getItem();
     }
+
+    private static <T extends LivingEntity> T cast(Entity en,Class<T> caster){
+        
+        return caster.cast(en);
+
+    }
+
 
 }

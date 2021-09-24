@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.bettergrindstone;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
+import com.github.sachin.tweakin.utils.compat.AdvancedEnchantments;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -69,15 +70,16 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                             NBTItem nbti = new NBTItem(weapon);
                             if(nbti.hasKey("armored-elytra")) return;
                             ItemStack enchantedBook = new ItemStack(Material.ENCHANTED_BOOK);
-                            EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
-                            for(Enchantment ench : weapon.getEnchantments().keySet()){
-                                enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
+                            if(AdvancedEnchantments.isPluginEnabled){
+                                AdvancedEnchantments.applyEnchantments(enchantedBook, weapon);
                             }
-                            
-                            enchantedBook.setItemMeta(enchMeta);
-                            // if(isPluginEnabled("ExcellentEnchants")){
-                            //     ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
-                            // }
+                            else{
+                                EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
+                                for(Enchantment ench : weapon.getEnchantments().keySet()){
+                                    enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
+                                }
+                                enchantedBook.setItemMeta(enchMeta);
+                            }
                             inv.setItem(2, enchantedBook);
                         }
                         
