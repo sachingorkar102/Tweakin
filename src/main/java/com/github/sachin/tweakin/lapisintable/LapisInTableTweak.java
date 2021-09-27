@@ -111,8 +111,10 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
         }
     }
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onTableClickEvent(PlayerInteractEvent e){
+        if(e.isCancelled()) return;
+        
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK) return; 
         if(e.getClickedBlock() == null) return;
