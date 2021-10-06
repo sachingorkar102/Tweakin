@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.villagerfollowemerald;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.TConstants;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
@@ -16,7 +17,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
 
-    private final NamespacedKey key = Tweakin.getKey("villager-already-set");
 
     public VillagerFollowEmraldTweak(Tweakin plugin) {
         super(plugin, "villager-follow-emerald");
@@ -26,7 +26,7 @@ public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
     public void onClick(EntitySpawnEvent e){
         if(e.getEntity() instanceof Villager && !getBlackListWorlds().contains(e.getEntity().getWorld().getName())){
             plugin.getNmsHelper().spawnVillager((Villager)e.getEntity());
-            e.getEntity().getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
+            e.getEntity().getPersistentDataContainer().set(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER, 1);
         }
     }
     
@@ -42,9 +42,9 @@ public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
                     if(en instanceof Villager){
         
                         Villager vil = (Villager) en;
-                        if(!vil.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
+                        if(!vil.getPersistentDataContainer().has(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER)){
                             plugin.getNmsHelper().spawnVillager(vil);
-                            vil.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
+                            vil.getPersistentDataContainer().set(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER, 1);
                         }
                     }
                 }
