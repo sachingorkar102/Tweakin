@@ -108,6 +108,7 @@ public class CoreCommand extends BaseCommand{
         sender.sendMessage(messageManager.getMessage("reloaded"));
     }
 
+
     @Subcommand("toggle")
     @CommandCompletion("@tweaklist")
     public void onConfigureCommand(CommandSender sender,String[] args){

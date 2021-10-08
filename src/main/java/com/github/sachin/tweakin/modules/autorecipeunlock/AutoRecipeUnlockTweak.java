@@ -23,7 +23,6 @@ public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
 
     public AutoRecipeUnlockTweak(Tweakin plugin) {
         super(plugin, "auto-recipe-unlock");
-        loadRecipes();
     }
 
     @Override
