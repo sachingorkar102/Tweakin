@@ -108,4 +108,10 @@ permissions:
     default: true   
   tweakin.shearnametag.use:
     default: true   
+  tweakin.lavabuckettrashcan.*:
+    default: true
+    children:
+      tweakin.lavabuckettrashcan.dragdrop: true
+      tweakin.lavabuckettrashcan.gui: true
+
 
