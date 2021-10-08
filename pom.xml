@@ -6,7 +6,7 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>3.3.3</version>
+    <version>3.3.4</version>
     <packaging>jar</packaging>
     
     <name>Tweakin</name>
