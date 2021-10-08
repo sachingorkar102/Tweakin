@@ -60,7 +60,7 @@ public class HoeHarvestingTweak extends BaseTweak implements Listener{
     @EventHandler
     public void onHarvest(BlockBreakEvent e){
         Player player = e.getPlayer();
-        if(!player.isSneaking()) return;
+        if(!player.isSneaking() && getConfig().getBoolean("require-sneaking")) return;
         ItemStack item = player.getInventory().getItemInMainHand();
         Location breakedBlock = e.getBlock().getLocation();
         

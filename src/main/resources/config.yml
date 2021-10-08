@@ -388,6 +388,8 @@ hoe-harvesting:
     - TALL_GRASS
     - FLOWERS
     - CROPS
+  # if set to false player will able to hoe-harvest even without sneaking 
+  require-sneaking: true  
 
 
 # Holding an Emerald Block causes nearby villagers to follow the player, much like animals do for food items. 
@@ -523,4 +525,9 @@ armorstand-wand:
   # tweakin.shearnametag.use: Permission to use this tweak
 shear-name-tag:
   enabled: false  
+  black-list-worlds: []
+
+# Lectern book page will reset to 0 when player closes it
+lectern-page-reset:
+  enabled: false
   black-list-worlds: []
