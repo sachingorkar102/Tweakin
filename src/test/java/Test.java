@@ -12,8 +12,6 @@ import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
-
-import com.github.sachin.tweakin.betterarmorstands.PresetPose;
 import com.google.gson.Gson;
 
 import org.bukkit.Material;

@@ -5,7 +5,7 @@ import com.google.common.base.Strings;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import com.github.sachin.tweakin.betterarmorstands.GuiItems;
+import com.github.sachin.tweakin.modules.betterarmorstands.GuiItems;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.google.common.base.Enums;
 

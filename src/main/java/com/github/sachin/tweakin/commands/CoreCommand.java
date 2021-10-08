@@ -4,35 +4,27 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.betterarmorstands.BetterArmorStandTweak;
-import com.github.sachin.tweakin.betterarmorstands.PresetPose;
 import com.github.sachin.tweakin.gui.PagedGuiHolder;
-import com.github.sachin.tweakin.mobheads.Head;
+import com.github.sachin.tweakin.modules.betterarmorstands.BetterArmorStandTweak;
+import com.github.sachin.tweakin.modules.betterarmorstands.PresetPose;
+import com.github.sachin.tweakin.modules.mobheads.Head;
 import com.google.common.base.Enums;
 import com.google.common.base.Optional;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
-import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Dependency;
 import co.aikar.commands.annotation.Description;
-import co.aikar.commands.annotation.HelpCommand;
 import co.aikar.commands.annotation.Subcommand;
-import co.aikar.commands.annotation.Syntax;
 
 @Description("core command for tweakin")
 @CommandAlias("tw|tweakin")

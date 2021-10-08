@@ -1,23 +1,14 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
 import java.awt.Color;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.locks.Lock;
 import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
-import com.github.sachin.tweakin.mobheads.Head;
+import com.github.sachin.tweakin.modules.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.utils.PaperUtils;
 import com.google.common.base.Enums;
 
@@ -28,24 +19,42 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
-import org.bukkit.entity.Animals;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-
-import net.minecraft.server.v1_16_R3.*;
-
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
+
+import net.minecraft.server.v1_16_R3.Block;
+import net.minecraft.server.v1_16_R3.BlockActionContext;
+import net.minecraft.server.v1_16_R3.BlockPosition;
+import net.minecraft.server.v1_16_R3.EntityAnimal;
+import net.minecraft.server.v1_16_R3.EntityArmorStand;
+import net.minecraft.server.v1_16_R3.EntityCreature;
+import net.minecraft.server.v1_16_R3.EntityInsentient;
+import net.minecraft.server.v1_16_R3.EntityLiving;
+import net.minecraft.server.v1_16_R3.EntityPlayer;
+import net.minecraft.server.v1_16_R3.EntityTypes;
+import net.minecraft.server.v1_16_R3.EntityVillager;
+import net.minecraft.server.v1_16_R3.EnumDirection;
+import net.minecraft.server.v1_16_R3.EnumHand;
+import net.minecraft.server.v1_16_R3.EnumInteractionResult;
+import net.minecraft.server.v1_16_R3.EnumItemSlot;
+import net.minecraft.server.v1_16_R3.IBlockData;
+import net.minecraft.server.v1_16_R3.MinecraftKey;
+import net.minecraft.server.v1_16_R3.MovingObjectPositionBlock;
+import net.minecraft.server.v1_16_R3.NBTTagCompound;
+import net.minecraft.server.v1_16_R3.PathfinderGoal;
+import net.minecraft.server.v1_16_R3.PathfinderGoalAvoidTarget;
+import net.minecraft.server.v1_16_R3.RecipeItemStack;
+import net.minecraft.server.v1_16_R3.RecipeStonecutting;
+import net.minecraft.server.v1_16_R3.Vec3D;
+import net.minecraft.server.v1_16_R3.World;
 
 
 

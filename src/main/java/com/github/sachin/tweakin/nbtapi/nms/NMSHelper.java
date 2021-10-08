@@ -2,12 +2,9 @@ package com.github.sachin.tweakin.nbtapi.nms;
 
 import java.util.List;
 
-import com.github.sachin.tweakin.mobheads.Head;
-
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;

@@ -7,8 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.betterflee.AnimalFleeTweak;
-import com.github.sachin.tweakin.mobheads.Head;
+import com.github.sachin.tweakin.modules.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.utils.PaperUtils;
 import com.google.common.base.Enums;
 
@@ -20,7 +19,6 @@ import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
-import org.bukkit.entity.Animals;
 import org.bukkit.entity.Axolotl;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Goat;
@@ -39,7 +37,6 @@ import net.minecraft.world.EnumInteractionResult;
 import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.entity.EntityInsentient;
 import net.minecraft.world.entity.EntityLiving;
-import net.minecraft.world.entity.ai.attributes.GenericAttributes;
 import net.minecraft.world.entity.ai.goal.PathfinderGoal;
 import net.minecraft.world.entity.ai.goal.PathfinderGoalAvoidTarget;
 import net.minecraft.world.entity.animal.EntityAnimal;

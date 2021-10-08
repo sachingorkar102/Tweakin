@@ -3,16 +3,12 @@ package com.github.sachin.tweakin;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.sachin.tweakin.bettersignedit.BSEFlag;
-import com.github.sachin.tweakin.shearitemframe.SIFFlag;
-import com.github.sachin.tweakin.snowballknockback.SBKFlag;
+import com.github.sachin.tweakin.modules.bettersignedit.BSEFlag;
+import com.github.sachin.tweakin.modules.shearitemframe.SIFFlag;
+import com.github.sachin.tweakin.modules.snowballknockback.SBKFlag;
 import com.github.sachin.tweakin.utils.TConstants;
-import com.sk89q.worldedit.util.Direction.Flag;
 import com.sk89q.worldguard.WorldGuard;
-import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
-
-import org.bukkit.Location;
 
 public class WGFlagManager {
 
