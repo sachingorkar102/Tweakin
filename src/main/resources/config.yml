@@ -531,3 +531,4 @@ shear-name-tag:
 lectern-page-reset:
   enabled: false
   black-list-worlds: []
+  
