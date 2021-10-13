@@ -79,7 +79,7 @@ armored-elytra:
   options:
     model: 0  
 armorstand-wand:
-  id: CARROT_ON_A_STICK
+  id: STICK
   display: "&eArmorStand Wand"
   lore:
     - "&7Shift+Right Click on armorstand to edit it"
