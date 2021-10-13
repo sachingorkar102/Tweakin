@@ -24,6 +24,7 @@ import com.github.sachin.tweakin.modules.burnvinetip.BurnVineTipTweak;
 import com.github.sachin.tweakin.modules.compassworkeverywhere.CompassEveryWhereTweak;
 import com.github.sachin.tweakin.modules.confetticreepers.ConfettiCreepers;
 import com.github.sachin.tweakin.modules.coordinatehud.CoordinateHUDTweak;
+import com.github.sachin.tweakin.modules.craftingtableonstick.CraftTableOnStick;
 import com.github.sachin.tweakin.modules.customportals.CustomPortalTweak;
 import com.github.sachin.tweakin.modules.fastleafdecay.FastLeafDecayTweak;
 import com.github.sachin.tweakin.modules.hoeharvesting.HoeHarvestingTweak;
@@ -215,6 +216,7 @@ public class TweakManager {
             tweakList.add(new BetterArmorStandTweak(plugin));
             tweakList.add(new ShearNameTagTweak(plugin));
             tweakList.add(new LecternPageResetTweak(plugin));
+            tweakList.add(new CraftTableOnStick(plugin));
         }
         return tweakList;
     }

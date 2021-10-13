@@ -21,6 +21,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -65,21 +66,36 @@ public abstract class TweakItem extends BaseTweak {
             return;
         }
         outer: for(String key : recipes.getKeys(false)){
-            List<String> ingredients = recipes.getStringList(key);
-            if(ingredients.size() < 3) continue;
-            NamespacedKey nKey = new NamespacedKey(getPlugin(), getName()+key);
-            ShapedRecipe shapedRecipe = new ShapedRecipe(nKey, item);
-            registeredRecipes.add(nKey);
-            shapedRecipe.shape("abc","def","ghi");
-            char[][] ing = {{'a','b','c'},{'d','e','f'},{'g','h','i'}};
-            for (int i =0;i<ingredients.size();i++) {
-                String[] a = ingredients.get(i).split("\\|");
-                if(a.length != 3) continue outer;
-                shapedRecipe.setIngredient(ing[i][0], Enums.getIfPresent(Material.class, a[0].toUpperCase()).or(Material.AIR));
-                shapedRecipe.setIngredient(ing[i][1], Enums.getIfPresent(Material.class, a[1].toUpperCase()).or(Material.AIR));
-                shapedRecipe.setIngredient(ing[i][2], Enums.getIfPresent(Material.class, a[2].toUpperCase()).or(Material.AIR));
+            if(recipes.isConfigurationSection(key) && recipes.getConfigurationSection(key).contains("type") && recipes.getConfigurationSection(key).contains("recipe")){
+                ConfigurationSection subSection = recipes.getConfigurationSection(key);
+                if(subSection.getString("type").equalsIgnoreCase("shapeless")){
+                    List<String> ingredients = subSection.getStringList("recipe");
+                    NamespacedKey nKey = Tweakin.getKey(getName()+key);
+                    ShapelessRecipe recipe = new ShapelessRecipe(nKey,item);
+                    registeredRecipes.add(nKey);
+                    for(String i : ingredients){
+                        recipe.addIngredient(Enums.getIfPresent(Material.class, i.toUpperCase()).or(Material.AIR));
+                    }
+                    Bukkit.addRecipe(recipe);
+                }
             }
-            Bukkit.addRecipe(shapedRecipe);
+            else{
+                List<String> ingredients = recipes.getStringList(key);
+                if(ingredients.size() < 3) continue;
+                NamespacedKey nKey = new NamespacedKey(getPlugin(), getName()+key);
+                ShapedRecipe shapedRecipe = new ShapedRecipe(nKey, item);
+                registeredRecipes.add(nKey);
+                shapedRecipe.shape("abc","def","ghi");
+                char[][] ing = {{'a','b','c'},{'d','e','f'},{'g','h','i'}};
+                for (int i =0;i<ingredients.size();i++) {
+                    String[] a = ingredients.get(i).split("\\|");
+                    if(a.length != 3) continue outer;
+                    shapedRecipe.setIngredient(ing[i][0], Enums.getIfPresent(Material.class, a[0].toUpperCase()).or(Material.AIR));
+                    shapedRecipe.setIngredient(ing[i][1], Enums.getIfPresent(Material.class, a[1].toUpperCase()).or(Material.AIR));
+                    shapedRecipe.setIngredient(ing[i][2], Enums.getIfPresent(Material.class, a[2].toUpperCase()).or(Material.AIR));
+                }
+                Bukkit.addRecipe(shapedRecipe);
+            }
         }
 
     }

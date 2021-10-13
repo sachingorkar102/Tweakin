@@ -15,3 +15,8 @@ armorstand-wand:
     - air|air|cobblestone
     - air|stick|air
     - cobblestone|air|air      
+
+crafting-table-on-stick:
+  1:
+    type: shapeless
+    recipe: [crafting_table,stick]

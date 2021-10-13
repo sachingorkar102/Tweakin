@@ -88,6 +88,14 @@ armorstand-wand:
   options:
     model: 103  
 
+crafting-table-on-stick:
+  id: STICK
+  display: "&eCrafting Table on Stick"
+  lore:
+    - "&7Right Click in air to open crafting table"
+  options:
+    model: 104  
+
 plate-enabled:
   id: GREEN_WOOL
   display: "&7Plate &a[Enabled]"
