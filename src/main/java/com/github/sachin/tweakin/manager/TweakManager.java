@@ -30,6 +30,7 @@ import com.github.sachin.tweakin.modules.hoeharvesting.HoeHarvestingTweak;
 import com.github.sachin.tweakin.modules.infinitybucket.InfinityWaterBucketTweak;
 import com.github.sachin.tweakin.modules.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.modules.lavabucketcan.LavaBucketTrashCan;
+import com.github.sachin.tweakin.modules.lecternpagereset.LecternPageResetTweak;
 import com.github.sachin.tweakin.modules.mobheads.MobHeadsTweak;
 import com.github.sachin.tweakin.modules.netherportalcoords.NetherPortalCoordsTweak;
 import com.github.sachin.tweakin.modules.noteblock.NoteBlockHeadsTweak;
@@ -213,6 +214,7 @@ public class TweakManager {
             tweakList.add(new VillagerDeathMessageTweak(plugin));
             tweakList.add(new BetterArmorStandTweak(plugin));
             tweakList.add(new ShearNameTagTweak(plugin));
+            tweakList.add(new LecternPageResetTweak(plugin));
         }
         return tweakList;
     }

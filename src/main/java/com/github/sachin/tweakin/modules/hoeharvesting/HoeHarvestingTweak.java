@@ -76,7 +76,7 @@ public class HoeHarvestingTweak extends BaseTweak implements Listener{
                     Location loc = new Location(breakedBlock.getWorld(), x, breakedBlock.getBlockY(), z);
                     Material blockType = loc.getBlock().getType();
                     if(matchesHarvestable(blockType)){
-                        plugin.getNmsHelper().harvestBlock(player, loc, item);
+                        loc.getBlock().breakNaturally(item);
                         
                     }
                 }
