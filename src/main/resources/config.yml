@@ -28,7 +28,7 @@ armor-right-click:
 # Permission: 
   # tweakin.shulkerboxclick: permission to allow opening of shulker box
   # tweakin.enderchestclick: permission to allow opening of enderchest
-left-click-shulker-box:
+shulker-box-preview:
   enabled: false
   black-list-worlds: []
   # if set to true players will able to open the enderchest just like shulker-box
@@ -531,4 +531,3 @@ shear-name-tag:
 lectern-page-reset:
   enabled: false
   black-list-worlds: []
-  

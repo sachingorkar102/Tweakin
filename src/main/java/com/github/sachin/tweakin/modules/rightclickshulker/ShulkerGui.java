@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BlockStateMeta;
 
 public class ShulkerGui implements InventoryHolder{
 
@@ -22,6 +23,16 @@ public class ShulkerGui implements InventoryHolder{
         this.slot = slot;
         this.shulkerItem = shulkerItem;
 
+    }
+
+    public void update(){
+        BlockStateMeta im = (BlockStateMeta) shulkerItem.getItemMeta();
+        ShulkerBox shulker = (ShulkerBox) im.getBlockState();
+        shulker.getInventory().setContents(getInventory().getContents());
+        im.setBlockState(shulker);
+        shulker.update();
+        shulkerItem.setItemMeta(im);
+        player.getInventory().setItem(slot, shulkerItem);
     }
 
     public ShulkerBox getShulker() {
