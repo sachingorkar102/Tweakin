@@ -24,6 +24,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 // permission: tweakin.shulkerboxclick,tweakin.enderchestclick
 public class RightClickShulkerBox extends BaseTweak implements Listener{
@@ -58,7 +59,6 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
                 ItemStack item = e.getCurrentItem().clone();
                 BlockStateMeta im = (BlockStateMeta) item.getItemMeta();
                 ShulkerBox shulker = (ShulkerBox) im.getBlockState();
-                ShulkerGui gui = new ShulkerGui(player, shulker,e.getSlot(),item);
                 String displayName = "Shulker Box";
                 if(item.getItemMeta() != null){
                     ItemMeta meta = item.getItemMeta();
@@ -66,14 +66,17 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
                         displayName = item.getItemMeta().getDisplayName();
                     }
                 }
-                Inventory inv = Bukkit.createInventory(gui, 27, displayName);
-                gui.setInventory(inv);
-                inv.setContents(shulker.getInventory().getContents());
-                player.openInventory(inv);
+                ShulkerGui gui = new ShulkerGui(player, shulker,e.getSlot(),item,displayName);
+                gui.open();
             }
             else if(e.getCurrentItem().getType()==Material.ENDER_CHEST && player.hasPermission("tweakin.enderchestclick")){
                 e.setCancelled(true);
-                player.openInventory(player.getEnderChest());   
+                new BukkitRunnable(){
+                    @Override
+                    public void run() {
+                        player.openInventory(player.getEnderChest());   
+                    }
+                }.runTaskLater(plugin, 1);
             }
         }
     }

@@ -1,27 +1,34 @@
 package com.github.sachin.tweakin.modules.rightclickshulker;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.github.sachin.tweakin.Tweakin;
+
+import org.bukkit.Bukkit;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class ShulkerGui implements InventoryHolder{
 
-    private Player player;
+    private UUID uuid;
     private ShulkerBox shulker;
-    private Inventory inventory;
+    private final Inventory inventory;
     private int slot;
     private ItemStack shulkerItem;
 
-    public ShulkerGui(Player player,ShulkerBox shulker,int slot,ItemStack shulkerItem){
-        this.player = player;
+    public ShulkerGui(Player player,ShulkerBox shulker,int slot,ItemStack shulkerItem,String title){
+        this.uuid = player.getUniqueId();
         this.shulker = shulker;
         this.slot = slot;
         this.shulkerItem = shulkerItem;
+        this.inventory = Bukkit.createInventory(this, 27,title);
 
     }
 
@@ -32,11 +39,22 @@ public class ShulkerGui implements InventoryHolder{
         im.setBlockState(shulker);
         shulker.update();
         shulkerItem.setItemMeta(im);
-        player.getInventory().setItem(slot, shulkerItem);
+        getPlayer().getInventory().setItem(slot, shulkerItem);
     }
 
     public ShulkerBox getShulker() {
         return shulker;
+    }
+
+    public void open(){
+        inventory.setContents(shulker.getInventory().getContents());
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                getPlayer().openInventory(inventory);
+                
+            }
+        }.runTaskLater(Tweakin.getPlugin(), 1);
     }
 
     public int getSlot() {
@@ -48,12 +66,9 @@ public class ShulkerGui implements InventoryHolder{
     }
 
     public Player getPlayer() {
-        return player;
+        return Bukkit.getPlayer(uuid);
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
 
     @Override
     public Inventory getInventory() {
