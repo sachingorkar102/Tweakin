@@ -182,7 +182,7 @@
             <artifactId>spigot</artifactId>
             <version>1.17</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/spigot-1.17.jar</systemPath>
+            <systemPath>${project.basedir}/libs/spigot-1.17.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>SpartanAPI</groupId>
