@@ -24,7 +24,7 @@ op-notifications: true
 armor-right-click:
   enabled: false
 
-# Shift+Left Clicking shulker box or ender-chest in air will show its contents
+# Middle clicking a shulker box in inventory will display its contents as if player opened the shulker itself
 # Permission: 
   # tweakin.shulkerboxclick: permission to allow opening of shulker box
   # tweakin.enderchestclick: permission to allow opening of enderchest
@@ -287,11 +287,10 @@ confetti-creepers:
 # Items can only be destroyed if the lava bucket is in player's inventory
 # Permissions:
   # tweakin.lavabuckettrashcan.dragdrop: permission for player to use drag and drop(destroy) feature of trash can
-  # tweakin.lavabuckettrashcan.gui: permission for player to use trash can gui 
+  # tweakin.lavabuckettrashcan.gui: permission for player to use trash can gui (Disabled Temp.)
 lava-bucket-trash-can:
   enabled: false
   # item lore that will be shown when player fills up a lava bucket (keep empty to disable it)
-
   help-lore:
     - "&eRight Click a item onto bucket to destroy it."
     - "&eRight Click in air to open Trash Can gui"
@@ -534,9 +533,11 @@ lectern-page-reset:
 
 # REQUIRES Resource pack for crafting table on stick item sprite
 # As name suggests crafting table and stick combined in crafting table gives crafting-table-on-stick
-# Right clicking in air will open 3x3 crafting interface
+# Middle Clicking the item in inventory will open a 3x3 crafting interface
 # Permissions:
   # tweakin.craftingtableonstick.use: permission to use the item
 crafting-table-on-stick:
   enabled: false
   craftable: true
+  # if set to true player will able to use open crafting interface by just middle clicking crafting table item in inventory
+  works-with-crafting-table: false

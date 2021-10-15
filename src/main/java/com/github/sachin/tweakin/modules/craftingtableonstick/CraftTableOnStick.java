@@ -10,9 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.PlayerInventory;
 
 public class CraftTableOnStick extends TweakItem implements Listener{
 
@@ -34,9 +37,10 @@ public class CraftTableOnStick extends TweakItem implements Listener{
 
 
     @EventHandler
-    public void onRightClick(PlayerInteractEvent e){
-        Player player = e.getPlayer();
-        if(hasItem(player, e.getHand()) && e.getAction()==Action.RIGHT_CLICK_AIR && player.hasPermission(Permissions.CRATINGTABLE_ON_STICK_USE)){
+    public void onRightClick(InventoryClickEvent e){
+        Player player = (Player) e.getWhoClicked();
+        if(e.getCurrentItem() == null || e.getClick() != ClickType.MIDDLE) return;
+        if((isSimilar(e.getCurrentItem()) || (getConfig().getBoolean("works-with-crafting-table") && e.getCurrentItem().getType()==Material.CRAFTING_TABLE)) && e.getClickedInventory() instanceof PlayerInventory && player.hasPermission(Permissions.CRATINGTABLE_ON_STICK_USE)){
             player.openWorkbench(null, true);
         }
     }

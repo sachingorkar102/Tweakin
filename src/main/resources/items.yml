@@ -92,7 +92,7 @@ crafting-table-on-stick:
   id: STICK
   display: "&eCrafting Table on Stick"
   lore:
-    - "&7Right Click in air to open crafting table"
+    - "&7Middle Click in inventory to open crafting table"
   options:
     model: 104  
 
