@@ -77,12 +77,12 @@ public class LavaBucketTrashCan extends BaseTweak implements Listener{
     }
 
 
-    @EventHandler
-    public void onPlayerClick(PlayerInteractEvent e){
-        if(e.getAction()==Action.RIGHT_CLICK_AIR && e.getItem() != null && e.getItem().getType()==Material.LAVA_BUCKET && e.getPlayer().hasPermission(Permissions.LAVABUCKET_GUI)){
-            new LavaBucketTrashGui(e.getPlayer()).open();
-        }
-    }
+    // @EventHandler
+    // public void onPlayerClick(PlayerInteractEvent e){
+    //     if(e.getAction()==Action.RIGHT_CLICK_AIR && e.getItem() != null && e.getItem().getType()==Material.LAVA_BUCKET && e.getPlayer().hasPermission(Permissions.LAVABUCKET_GUI)){
+    //         new LavaBucketTrashGui(e.getPlayer()).open();
+    //     }
+    // }
 
 
     private class LavaBucketTrashGui implements InventoryHolder{
