@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.compat.AdvancedEnchantments;
+import com.github.sachin.tweakin.utils.compat.ExcellentEnchantsCompat;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -73,12 +74,16 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                             if(AdvancedEnchantments.isPluginEnabled){
                                 AdvancedEnchantments.applyEnchantments(enchantedBook, weapon);
                             }
+                            
                             else{
                                 EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
                                 for(Enchantment ench : weapon.getEnchantments().keySet()){
                                     enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
                                 }
                                 enchantedBook.setItemMeta(enchMeta);
+                                if(ExcellentEnchantsCompat.isEnabled){
+                                    ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
+                                }
                             }
                             inv.setItem(2, enchantedBook);
                         }
