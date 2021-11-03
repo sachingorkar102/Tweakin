@@ -113,5 +113,8 @@ permissions:
     children:
       tweakin.lavabuckettrashcan.dragdrop: true
       tweakin.lavabuckettrashcan.gui: true
+  tweakin.infinitefirework.use:
+    default: true
+        
 
 

@@ -20,3 +20,9 @@ crafting-table-on-stick:
   1:
     type: shapeless
     recipe: [crafting_table,stick]
+
+infinite-firework:
+  1:
+    - "red_dye|green_dye|blue_dye"
+    - "paper|nether_star|paper"
+    - "gunpowder|fire_charge|gunpowder"    

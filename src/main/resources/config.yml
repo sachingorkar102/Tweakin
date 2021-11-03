@@ -224,6 +224,7 @@ silence-mobs:
 rotation-wrench:
   enabled: false
   # weather or not item is craftable, if set to false recipes regarding this item will not register
+  dispenser-usable: true
   craftable: true
   # list of valid rotatable blocks
   # Pro tip: 
@@ -541,3 +542,20 @@ crafting-table-on-stick:
   craftable: true
   # if set to true player will able to use open crafting interface by just middle clicking crafting table item in inventory
   works-with-crafting-table: false
+
+# Allows to create randomized firework shows rather than painfully crafting unique firework effect
+# Permissions:
+  # tweakin.infinitefirework.use: permission to use the item
+infinite-firework:
+  enabled: false  
+  craftable: true
+  # weather or not randomized firework will be dispensed via dispenser
+  dispenser-usable: true
+  # minimum flight duration of firework, 1 being half second
+  min-flight: 1
+  # maximum flight duration of firework, 1 being half second
+  max-flight: 8
+  # minimum effect count from firework
+  min-effects: 1
+  # maximum effect count
+  max-effects: 2

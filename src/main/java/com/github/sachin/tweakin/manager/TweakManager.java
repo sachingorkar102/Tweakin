@@ -28,12 +28,14 @@ import com.github.sachin.tweakin.modules.craftingtableonstick.CraftTableOnStick;
 import com.github.sachin.tweakin.modules.customportals.CustomPortalTweak;
 import com.github.sachin.tweakin.modules.fastleafdecay.FastLeafDecayTweak;
 import com.github.sachin.tweakin.modules.hoeharvesting.HoeHarvestingTweak;
+import com.github.sachin.tweakin.modules.infinitefirework.InfiniteFireworkItem;
 import com.github.sachin.tweakin.modules.infinitybucket.InfinityWaterBucketTweak;
 import com.github.sachin.tweakin.modules.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.modules.lavabucketcan.LavaBucketTrashCan;
 import com.github.sachin.tweakin.modules.lecternpagereset.LecternPageResetTweak;
 import com.github.sachin.tweakin.modules.mobheads.MobHeadsTweak;
 import com.github.sachin.tweakin.modules.netherportalcoords.NetherPortalCoordsTweak;
+import com.github.sachin.tweakin.modules.nopotionglint.NoPotionGlintTweak;
 import com.github.sachin.tweakin.modules.noteblock.NoteBlockHeadsTweak;
 import com.github.sachin.tweakin.modules.patdogs.PatDogTweak;
 import com.github.sachin.tweakin.modules.poisonpotatousage.PoisonPotatoUsageTweak;
@@ -201,7 +203,7 @@ public class TweakManager {
                 tweakList.add(new BetterSignEditTweak(plugin));
             }
             else{
-                plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds and better-sign-edit...");
+                plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds, better-sign-edit and no-potion-glint...");
             }
             tweakList.add(new HoeHarvestingTweak(plugin));
             tweakList.add(new VillagerFollowEmraldTweak(plugin));
@@ -217,6 +219,8 @@ public class TweakManager {
             tweakList.add(new ShearNameTagTweak(plugin));
             tweakList.add(new LecternPageResetTweak(plugin));
             tweakList.add(new CraftTableOnStick(plugin));
+            // tweakList.add(new NoPotionGlintTweak(plugin));
+            tweakList.add(new InfiniteFireworkItem(plugin));
         }
         return tweakList;
     }

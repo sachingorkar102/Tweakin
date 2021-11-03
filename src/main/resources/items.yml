@@ -96,6 +96,13 @@ crafting-table-on-stick:
   options:
     model: 104  
 
+infinite-firework:
+  id: FIREWORK_ROCKET
+  display: "&eInfinite Firework"
+  options:
+    enchanted: true
+      
+
 plate-enabled:
   id: GREEN_WOOL
   display: "&7Plate &a[Enabled]"

@@ -26,4 +26,5 @@ public class TConstants {
     public static final NamespacedKey NAMETAGED_MOB = Tweakin.getKey("nametaged-mob");
     public static final NamespacedKey COPY_PASTE_KEY = Tweakin.getKey("copy-paste-key");
     public static final NamespacedKey VILLAGER_FOLLOW_KEY = Tweakin.getKey("villager-already-set");
+    public static final NamespacedKey INFINITE_FIREWORK_KEY = Tweakin.getKey("infinite-firework-key");
 }
