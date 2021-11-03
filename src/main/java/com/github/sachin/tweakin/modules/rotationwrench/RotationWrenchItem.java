@@ -19,6 +19,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -50,6 +51,46 @@ public class RotationWrenchItem extends TweakItem implements Listener{
     public void unregister() {
         super.unregister();
         unregisterRecipe();
+    }
+
+    @EventHandler
+    public void onDispense(BlockDispenseEvent e){
+        if(e.getBlock().getType() == Material.DISPENSER && getConfig().getBoolean("dispenser-usable")){
+            if(isSimilar(e.getItem())){
+                Directional dispenserDirection = (Directional) e.getBlock().getBlockData();
+                Block block = e.getBlock().getRelative(dispenserDirection.getFacing());
+                if(matchString(block.getType().toString(), rotateableMaterials)){
+                    e.setCancelled(true);
+                    if(block.getBlockData() instanceof Directional){
+                        Directional directional = (Directional) block.getBlockData();
+                        BlockFace currentFace = directional.getFacing();
+                        List<BlockFace> rotations = new ArrayList<>(directional.getFaces());
+                        if(rotations.indexOf(currentFace) == rotations.size()-1){
+                            directional.setFacing(rotations.get(0));
+                            
+                        }else{
+                            directional.setFacing(rotations.get(rotations.indexOf(currentFace)+1));
+                        }
+                        block.setBlockData(directional);
+                        block.getState().update(true,true);
+                    }
+                    else if( block.getBlockData() instanceof Orientable){
+                        Orientable orientable = (Orientable) block.getBlockData();
+                        List<Axis> axises = new ArrayList<>(orientable.getAxes());
+                        Axis currentFace = orientable.getAxis();
+                        if(axises.indexOf(currentFace) == axises.size()-1){
+                            orientable.setAxis(axises.get(0));
+                        }
+                        else {
+                            orientable.setAxis(axises.get(axises.indexOf(currentFace)+1));
+                        }
+                        
+                        block.setBlockData(orientable);
+                        block.getState().update(true, true);
+                    }
+                }
+            }
+        }
     }
 
     @EventHandler

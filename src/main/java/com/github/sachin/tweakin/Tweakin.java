@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,7 @@ public final class Tweakin extends JavaPlugin {
 
     private static Tweakin plugin;
     private Metrics metrics;
-    
+    public final Random RANDOM = new Random();
     public boolean isRunningPaper;
     private WGFlagManager wgFlagManager;
     public boolean isWorldGuardEnabled;
