@@ -21,6 +21,7 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketEntityEvent;
 import org.bukkit.inventory.AnvilInventory;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -78,16 +79,31 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
     @EventHandler
     public void onWaterBucketUse(PlayerBucketEmptyEvent e){
         Player player = e.getPlayer();
-        if(player.getInventory().getItemInMainHand().isSimilar(getItem()) || player.getInventory().getItemInOffHand().isSimilar(getItem())){
+        ItemStack orignalItem = null;
+        ItemStack mainHand = player.getInventory().getItemInMainHand();
+        ItemStack offHand = player.getInventory().getItemInOffHand();
+        boolean isSimilarMain = isSimilar(mainHand);
+        boolean isSimilarOff = isSimilar(offHand);
+        if(isSimilarOff){
+            e.setCancelled(true);
+            return;
+
+        }
+
+        if(isSimilarMain)
+            orignalItem = mainHand;
+
+        if(orignalItem != null){
             if(player.hasPermission("tweakin.infinitybucket.use")){
-                e.setItemStack(getItem());
+                e.setItemStack(orignalItem);
             }
             else{
                 e.setCancelled(true);
             }
+
         }
-        
     }
+
 
     @EventHandler
     public void onFishPickUp(PlayerBucketEntityEvent e){
