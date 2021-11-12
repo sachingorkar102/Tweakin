@@ -1,28 +1,51 @@
 rotation-wrench:
   1:
-    - air|gold_ingot|air
-    - air|gold_ingot|gold_ingot
-    - iron_ingot|air|air
+    type: shaped
+    pattern:
+      - " G "
+      - " GG"
+      - "I  "
+    keys:
+      G: GOLD_INGOT  
+      I: IRON_INGOT
 
 trowel:
   1:
-    - air|air|air
-    - air|iron_ingot|air
-    - air|stick|air  
+    type: shaped
+    pattern:
+      - " I "
+      - " S "
+    keys:
+      I: IRON_INGOT
+      S: STICK   
     
 armorstand-wand:
   1:
-    - air|air|cobblestone
-    - air|stick|air
-    - cobblestone|air|air      
+    type: shaped
+    pattern:
+      - "  C"
+      - " S "
+      - "C  "
+    keys:
+      C: COBBLESTONE
+      S: STICK     
 
 crafting-table-on-stick:
   1:
     type: shapeless
-    recipe: [crafting_table,stick]
+    ingredients: [CRAFTING_TABLE,STICK]
 
 infinite-firework:
   1:
-    - "red_dye|green_dye|blue_dye"
-    - "paper|nether_star|paper"
-    - "gunpowder|fire_charge|gunpowder"    
+    type: shaped
+    pattern:
+      - "RGB"
+      - "PNP"
+      - "WFW"
+    keys:
+      R: RED_DYE
+      G: GREEN_DYE
+      B: BLUE_DYE
+      P: PAPER
+      N: NETHER_STAR
+      W: GUNPOWDER

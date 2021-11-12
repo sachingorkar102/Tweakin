@@ -15,13 +15,18 @@ import com.google.common.base.Optional;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.RecipeChoice.ExactChoice;
+import org.bukkit.inventory.RecipeChoice.MaterialChoice;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -54,8 +59,17 @@ public abstract class TweakItem extends BaseTweak {
         return item;
     }
 
+    public void addRecipe(NamespacedKey key,Recipe recipe) {
+        registeredRecipes.add(key);
+        try {
+            Bukkit.addRecipe(recipe);
+        } catch (Exception ignored) {
+        }
+    }
+
     public void registerRecipe(){
         if(!getConfig().getBoolean("craftable",true)) return;
+        unregisterRecipe();
         ConfigurationSection recipes = recipeConfig.getConfigurationSection(getName());
         if(recipes == null){
             getPlugin().getLogger().info("Could not find recipes for "+getName()+" in recipes.yml");
@@ -66,38 +80,71 @@ public abstract class TweakItem extends BaseTweak {
             return;
         }
         outer: for(String key : recipes.getKeys(false)){
-            if(recipes.isConfigurationSection(key) && recipes.getConfigurationSection(key).contains("type") && recipes.getConfigurationSection(key).contains("recipe")){
-                ConfigurationSection subSection = recipes.getConfigurationSection(key);
-                if(subSection.getString("type").equalsIgnoreCase("shapeless")){
-                    List<String> ingredients = subSection.getStringList("recipe");
-                    NamespacedKey nKey = Tweakin.getKey(getName()+key);
-                    ShapelessRecipe recipe = new ShapelessRecipe(nKey,item);
-                    registeredRecipes.add(nKey);
-                    for(String i : ingredients){
-                        recipe.addIngredient(Enums.getIfPresent(Material.class, i.toUpperCase()).or(Material.AIR));
+            ConfigurationSection recipe = recipes.getConfigurationSection(key);
+            String type = recipe.getString("type","none");
+            NamespacedKey recipeKey = Tweakin.getKey(getName()+"_"+key+"_"+type);
+            if(type.equals("shaped") && recipe.contains("keys") && recipe.contains("pattern")){
+                ShapedRecipe shapedRecipe = new ShapedRecipe(recipeKey, item.clone());    
+                List<String> patternList = recipe.getStringList("pattern");
+                boolean invalidPattern = false;
+                if(patternList.size()>3) invalidPattern = true;
+                for(String s : patternList){
+                    if(s.length()>3){
+                        invalidPattern = true;
                     }
-                    Bukkit.addRecipe(recipe);
                 }
+                if(invalidPattern) continue outer;
+                shapedRecipe.shape(patternList.toArray(new String[0]));
+                for(String ing : recipe.getConfigurationSection("keys").getKeys(false)){
+                    RecipeChoice choice = getIngredient(recipe.getString("keys."+ing), recipe.getBoolean("exact",false));
+                    if(choice != null){
+                        shapedRecipe.setIngredient(ing.charAt(0), choice);
+                    }
+                }
+                addRecipe(recipeKey, shapedRecipe);
             }
-            else{
-                List<String> ingredients = recipes.getStringList(key);
-                if(ingredients.size() < 3) continue;
-                NamespacedKey nKey = new NamespacedKey(getPlugin(), getName()+key);
-                ShapedRecipe shapedRecipe = new ShapedRecipe(nKey, item);
-                registeredRecipes.add(nKey);
-                shapedRecipe.shape("abc","def","ghi");
-                char[][] ing = {{'a','b','c'},{'d','e','f'},{'g','h','i'}};
-                for (int i =0;i<ingredients.size();i++) {
-                    String[] a = ingredients.get(i).split("\\|");
-                    if(a.length != 3) continue outer;
-                    shapedRecipe.setIngredient(ing[i][0], Enums.getIfPresent(Material.class, a[0].toUpperCase()).or(Material.AIR));
-                    shapedRecipe.setIngredient(ing[i][1], Enums.getIfPresent(Material.class, a[1].toUpperCase()).or(Material.AIR));
-                    shapedRecipe.setIngredient(ing[i][2], Enums.getIfPresent(Material.class, a[2].toUpperCase()).or(Material.AIR));
+            else if(type.equals("shapeless") && recipe.contains("ingredients")){
+                ShapelessRecipe shapelessRecipe = new ShapelessRecipe(recipeKey, item.clone());
+                
+                for(String ing : recipe.getStringList("ingredients")){
+                    RecipeChoice choice = getIngredient(ing, recipe.getBoolean("exact",false));
+                    if(choice != null){
+                        shapelessRecipe.addIngredient(choice);
+                    }
                 }
-                Bukkit.addRecipe(shapedRecipe);
+                addRecipe(recipeKey, shapelessRecipe);
             }
         }
 
+    }
+
+    private RecipeChoice getIngredient(String str,boolean exact){
+        if(str == null) return null;
+        Optional<Material> opMat = Enums.getIfPresent(Material.class, str);
+        if(opMat.isPresent()){
+            if(exact){
+                return new ExactChoice(new ItemStack(opMat.get()));
+            }
+            else{
+                return new MaterialChoice(opMat.get());
+            }
+        }
+        Tag<Material> tag = Bukkit.getTag("blocks", NamespacedKey.minecraft(str.toLowerCase()), Material.class);
+        if(tag != null){
+            List<ItemStack> items = new ArrayList<>();
+            List<Material> mats = new ArrayList<>();
+            for(Material m : tag.getValues()){
+                items.add(new ItemStack(m));
+                mats.add(m);
+            }
+            if(exact){
+                return new ExactChoice(items);
+            }
+            else{
+                return new MaterialChoice(mats);
+            }
+        }
+        return null;
     }
 
     public void unregisterRecipe(){
