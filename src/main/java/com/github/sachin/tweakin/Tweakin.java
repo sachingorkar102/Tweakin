@@ -162,6 +162,10 @@ public final class Tweakin extends JavaPlugin {
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,() -> {placedPlayers.remove(player);}, 3);
     }
 
+    public boolean isPost1_17(){
+        return Arrays.asList("v1_17_R1").contains(version);
+    }
+
     public List<Player> getPlacedPlayers() {
         return placedPlayers;
     }

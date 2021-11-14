@@ -10,6 +10,8 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 import com.google.gson.Gson;
@@ -29,14 +31,15 @@ public class Test {
         // System.out.println(Math.toDegrees(1));
         // Gson gson = new Gson();
         // System.out.println(gson.toJson(new PresetPose("test", "test", new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1))));;
-        TreeMap<Integer,String> map = new TreeMap<>();
+        Map<Integer,String> map = new HashMap<>();
         map.put(2, "Hello");
         map.put(5, "Hello");
         map.put(3, "Hello");
         map.put(6, "Hello");
         map.put(8, "Hello");
         map.put(1, "Hellossss");
-        System.out.println(map.get(map.firstKey()));
+        
+        System.out.println();
         // Class<?> miscItemsClass = Class.forName("com.github.sachin.tweakin.utils.MiscItems");
         // Field f = miscItemsClass.getField("ENABLED_BUTTON");
         // f.get(new ItemStack(Material.ACACIA_BOAT));
