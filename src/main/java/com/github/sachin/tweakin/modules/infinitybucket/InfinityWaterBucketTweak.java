@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
@@ -80,7 +81,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
 
     @EventHandler
     public void onBucketUse(PlayerInteractEvent e){
-        if(isSimilar(e.getItem()) && e.getAction()==Action.RIGHT_CLICK_BLOCK){
+        if(isSimilar(e.getItem()) && e.getAction()==Action.RIGHT_CLICK_BLOCK && e.useItemInHand()!=Result.DENY){
             Player player = e.getPlayer();
             e.setCancelled(true);
             if(!player.hasPermission("tweakin.infinitybucket.use")) return;

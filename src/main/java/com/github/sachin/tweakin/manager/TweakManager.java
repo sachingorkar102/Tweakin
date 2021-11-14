@@ -34,6 +34,7 @@ import com.github.sachin.tweakin.modules.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.modules.lavabucketcan.LavaBucketTrashCan;
 import com.github.sachin.tweakin.modules.lecternpagereset.LecternPageResetTweak;
 import com.github.sachin.tweakin.modules.mobheads.MobHeadsTweak;
+import com.github.sachin.tweakin.modules.morerecipes.MoreRecipesTweak;
 import com.github.sachin.tweakin.modules.netherportalcoords.NetherPortalCoordsTweak;
 import com.github.sachin.tweakin.modules.nopotionglint.NoPotionGlintTweak;
 import com.github.sachin.tweakin.modules.noteblock.NoteBlockHeadsTweak;
@@ -98,11 +99,7 @@ public class TweakManager {
             plugin.saveResource("recipes.yml", false);
         }
         this.recipeConfig = YamlConfiguration.loadConfiguration(recipeFile);
-        try {
-            ConfigUpdater.update(plugin, "recipes.yml", recipeFile, new ArrayList<>(),unregister);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+        ConfigUpdater.updateWithoutComments(plugin, "recipes.yml", recipeFile);
         try {
             ConfigUpdater.update(plugin, "config.yml", configFile, new ArrayList<>(),unregister);
         } catch (IOException e) {
@@ -182,7 +179,7 @@ public class TweakManager {
             tweakList.add(new LapisInTableTweak(plugin));
             tweakList.add(new CustomPortalTweak(plugin));
             // tweakList.add(new ControlledBurnTweak(plugin)); work in progress
-            tweakList.add(new AutoRecipeUnlockTweak(plugin));
+            
             tweakList.add(new NetherPortalCoordsTweak(plugin));
             tweakList.add(new SwingThroughGrassTweak(plugin));
             tweakList.add(new CoordinateHUDTweak(plugin));
@@ -221,6 +218,8 @@ public class TweakManager {
             tweakList.add(new CraftTableOnStick(plugin));
             // tweakList.add(new NoPotionGlintTweak(plugin));
             tweakList.add(new InfiniteFireworkItem(plugin));
+            tweakList.add(new MoreRecipesTweak(plugin));
+            tweakList.add(new AutoRecipeUnlockTweak(plugin));
         }
         return tweakList;
     }

@@ -544,6 +544,7 @@ crafting-table-on-stick:
   works-with-crafting-table: false
 
 # Allows to create randomized firework shows rather than painfully crafting unique firework effect
+# Note: these fireworks cant be used for elytra flight
 # Permissions:
   # tweakin.infinitefirework.use: permission to use the item
 infinite-firework:
@@ -555,7 +556,13 @@ infinite-firework:
   min-flight: 1
   # maximum flight duration of firework, 1 being half second
   max-flight: 8
-  # minimum effect count from firework
-  min-effects: 1
-  # maximum effect count
+  # minimum effect count from firework (higher number might lag client)
+  min-effects: 0
+  # maximum effect count (higher number might lag client)
   max-effects: 2
+
+# adds some useful recipes
+more-recipes:
+  enabled: false  
+  
+  

@@ -32,6 +32,12 @@ public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
         Bukkit.getOnlinePlayers().forEach(p -> discoverRecipes(p));
     }
 
+    @Override
+    public void unregister() {
+        super.unregister();
+        recipes.clear();
+    }
+
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
@@ -39,7 +45,7 @@ public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
     }
 
     public void loadRecipes(){
-        recipes.clear();
+        
         Bukkit.recipeIterator().forEachRemaining(recipe -> {
             if(recipe instanceof Keyed){
                 recipes.add(((Keyed)recipe).getKey());

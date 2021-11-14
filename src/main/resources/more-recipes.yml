@@ -1,0 +1,35 @@
+back-to-blocks-slab-edition: true
+back-to-blocks-stair-edition: true
+easy-dispenser: true
+easy-repeater: true
+easy-minecarts: true
+compact-recipes: true
+compat-shulker-box-recipe: true
+easy-stone-tools: true
+more-stonecutter-recipes: true
+rotten-flesh-to-leather: true
+universal-dyeing:
+  wool:
+    single: true
+    sorounded: true
+  concrete:
+    single: true
+    sorounded: true
+  concrete_powder:
+    single: true
+    sorounded: true
+  terracotta:
+    single: true
+    sorounded: true    
+  stained_glass:
+    single: true
+    sorounded: true
+  bed:
+    single: true
+    sorounded: true
+  stained_glass_pane:
+    single: true
+    sorounded: true
+  carpet:
+    single: true
+    sorounded: true
