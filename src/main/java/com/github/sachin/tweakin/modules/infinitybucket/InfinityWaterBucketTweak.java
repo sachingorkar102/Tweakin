@@ -16,10 +16,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -77,30 +79,13 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
     }
 
     @EventHandler
-    public void onWaterBucketUse(PlayerBucketEmptyEvent e){
-        Player player = e.getPlayer();
-        ItemStack orignalItem = null;
-        ItemStack mainHand = player.getInventory().getItemInMainHand();
-        ItemStack offHand = player.getInventory().getItemInOffHand();
-        boolean isSimilarMain = isSimilar(mainHand);
-        boolean isSimilarOff = isSimilar(offHand);
-        if(isSimilarOff){
+    public void onBucketUse(PlayerInteractEvent e){
+        if(isSimilar(e.getItem()) && e.getAction()==Action.RIGHT_CLICK_BLOCK){
+            Player player = e.getPlayer();
             e.setCancelled(true);
-            return;
-
-        }
-
-        if(isSimilarMain)
-            orignalItem = mainHand;
-
-        if(orignalItem != null){
-            if(player.hasPermission("tweakin.infinitybucket.use")){
-                e.setItemStack(orignalItem);
-            }
-            else{
-                e.setCancelled(true);
-            }
-
+            if(!player.hasPermission("tweakin.infinitybucket.use")) return;
+            Block block = e.getClickedBlock().getRelative(e.getBlockFace());
+            block.setType(Material.WATER,true);
         }
     }
 
