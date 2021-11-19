@@ -33,8 +33,8 @@ public class ASGuiHolder implements InventoryHolder{
         this.inventory = Bukkit.createInventory(this, 54, plugin.getTweakManager().getMessageManager().getMessageWithoutPrefix("armorstand-editor-gui-title"));
     }
 
-    public static void openGui(Player player,ArmorStand as){
-        if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !player.hasPermission("tweakin.betterarmorstands.uuidlockbypass")){
+    public static void openGui(Player player,ArmorStand as,BetterArmorStandTweak instance){
+        if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !instance.hasPermission(player,"tweakin.betterarmorstands.uuidlockbypass")){
             player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
             return;
             

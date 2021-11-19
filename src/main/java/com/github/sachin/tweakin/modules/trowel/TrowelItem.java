@@ -53,7 +53,7 @@ public class TrowelItem extends TweakItem implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.trowel.use")) return;
+        if(!hasPermission(player,"tweakin.trowel.use")) return;
         if(!hasItem(player, EquipmentSlot.HAND)) return;
         e.setCancelled(true);
         if(players.contains(player)) return;

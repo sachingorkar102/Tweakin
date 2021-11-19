@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
@@ -76,6 +77,15 @@ public abstract class BaseTweak {
             }
         }
         return new ArrayList<>();
+    }
+
+    public boolean hasPermission(Player player,String permission){
+        if(config.getBoolean("check-permissions",true)){
+            return player.hasPermission(permission);
+        }
+        else{
+            return true;
+        }
     }
 
 

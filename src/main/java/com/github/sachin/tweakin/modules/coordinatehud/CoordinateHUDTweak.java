@@ -143,7 +143,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
         @Override
         public void run() {
             CoordinateHUDTweak.this.enabled.forEach(player -> {
-                if(!player.getInventory().contains(Material.COMPASS) && getConfig().getBoolean("have-compass",false) && !player.hasPermission("tweakin.coordniatehud.compassbypass")){
+                if(!player.getInventory().contains(Material.COMPASS) && getConfig().getBoolean("have-compass",false) && !hasPermission(player,"tweakin.coordniatehud.compassbypass")){
                     return;
                 }
                 long time = (player.getWorld().getTime() + 6000) % 24000;

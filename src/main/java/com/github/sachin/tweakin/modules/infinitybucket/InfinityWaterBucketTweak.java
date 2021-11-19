@@ -57,7 +57,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
     public void onAnvilUse(PrepareAnvilEvent e){
         if(e.getView().getBottomInventory().getHolder() instanceof Player){
             Player player = (Player) e.getView().getBottomInventory().getHolder();
-            if(!player.hasPermission("tweakin.infinitybucket.craft")) return;
+            if(!hasPermission(player,"tweakin.infinitybucket.craft")) return;
             AnvilInventory inv = e.getInventory();
             
             ItemStack slot1 = inv.getItem(0);
@@ -84,7 +84,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
         if(isSimilar(e.getItem()) && e.getAction()==Action.RIGHT_CLICK_BLOCK && e.useItemInHand()!=Result.DENY){
             Player player = e.getPlayer();
             e.setCancelled(true);
-            if(!player.hasPermission("tweakin.infinitybucket.use")) return;
+            if(!hasPermission(player,"tweakin.infinitybucket.use")) return;
             Block block = e.getClickedBlock().getRelative(e.getBlockFace());
             block.setType(Material.WATER,true);
         }

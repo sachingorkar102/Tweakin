@@ -28,7 +28,7 @@ public class CompassEveryWhereTweak extends BaseTweak implements Listener{
     @EventHandler(priority = EventPriority.MONITOR)
     public void onSetBedSpawn(PlayerInteractEvent e){
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.compasstrack")) return;
+        if(!hasPermission(player,"tweakin.compasstrack")) return;
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getHand() != EquipmentSlot.HAND) return;
         if(!e.getClickedBlock().getType().toString().endsWith("BED")) return;
         if(e.getItem() == null) return;

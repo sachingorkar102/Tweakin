@@ -78,7 +78,7 @@ public class InfiniteFireworkItem extends TweakItem implements Listener{
         }
         if(e.getAction()==Action.RIGHT_CLICK_BLOCK){
             e.setCancelled(true);
-            if(!player.hasPermission(Permissions.INFINITEFIREWORK_USE)) return;
+            if(!hasPermission(player,Permissions.INFINITEFIREWORK_USE)) return;
             RayTraceResult raytrace = player.rayTraceBlocks(4);
             if(raytrace != null && raytrace.getHitPosition() != null){
                 Vector vec = raytrace.getHitPosition();

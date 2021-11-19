@@ -90,7 +90,7 @@ public class SlimeInBucket extends TweakItem implements Listener{
         if(slime.getSize() != 1) return;
         if(getBlackListWorlds().contains(slime.getWorld().getName()))return;
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.slimebucket.pickup")) return;
+        if(!hasPermission(player,"tweakin.slimebucket.pickup")) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
         ItemStack item = player.getInventory().getItemInMainHand();
         if(item == null) return;
@@ -128,7 +128,7 @@ public class SlimeInBucket extends TweakItem implements Listener{
         public void run() {
             if(enabled.isEmpty()) return;
             enabled.forEach(player -> {
-                if(getBlackListWorlds().contains(player.getWorld().getName()) || !player.hasPermission("tweakin.slimebucket.detect")) return;
+                if(getBlackListWorlds().contains(player.getWorld().getName()) || !hasPermission(player,"tweakin.slimebucket.detect")) return;
                 int model = 0;
                 Location loc = player.getLocation();
                 if(loc.getChunk().isSlimeChunk() && getConfig().getInt("max-y-level") > loc.getBlockY()){

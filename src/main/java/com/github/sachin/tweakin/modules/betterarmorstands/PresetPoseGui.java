@@ -57,7 +57,7 @@ public class PresetPoseGui implements InventoryHolder{
         if(nbti.hasKey("preset-pose-button")){
             PresetPose pose = instance.getPoseManager().getPoses().get(nbti.getString("preset-pose-button"));
             pose.setPose(as);
-            ASGuiHolder.openGui(player, as);
+            ASGuiHolder.openGui(player, as,instance);
         }
     }
 
@@ -75,7 +75,7 @@ public class PresetPoseGui implements InventoryHolder{
             }
         }
         else if(ItemBuilder.hasKey(e.getCurrentItem(), "back-button")){
-            ASGuiHolder.openGui(player, as);
+            ASGuiHolder.openGui(player, as,instance);
         }
     }
 

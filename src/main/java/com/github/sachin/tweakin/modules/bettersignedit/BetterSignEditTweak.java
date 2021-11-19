@@ -70,7 +70,7 @@ public class BetterSignEditTweak extends BaseTweak implements Listener{
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getHand() != EquipmentSlot.HAND || e.getItem() != null) return;
         Player player = e.getPlayer();
         if(!player.isSneaking()) return;
-        if(!e.getClickedBlock().getType().toString().endsWith("_SIGN") || !player.hasPermission("tweakin.bettersignedit.use") || getBlackListWorlds().contains(player.getWorld().getName())) return;
+        if(!e.getClickedBlock().getType().toString().endsWith("_SIGN") || !hasPermission(player,"tweakin.bettersignedit.use") || getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(flag != null && !flag.queryFlag(player,e.getClickedBlock().getLocation())){
             return;
         }

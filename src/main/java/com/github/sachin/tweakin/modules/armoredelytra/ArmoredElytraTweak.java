@@ -108,7 +108,7 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
     public void onElytraCombine(PrepareAnvilEvent e){
         if(e.getView().getBottomInventory().getHolder() instanceof Player){
             Player player = (Player) e.getView().getBottomInventory().getHolder();
-            if(!player.hasPermission("tweakin.armoredelytra.craft")) return;
+            if(!hasPermission(player, "tweakin.armoredelytra.craft")) return;
             new BukkitRunnable(){
                 @Override
                 public void run() {

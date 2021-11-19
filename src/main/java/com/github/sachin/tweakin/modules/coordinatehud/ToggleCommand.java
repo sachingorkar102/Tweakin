@@ -19,7 +19,7 @@ public class ToggleCommand extends BaseCommand{
 
     @CommandAlias("%togglehudalias")
     public void onCommand(Player player){
-        if(!player.hasPermission("tweakin.coordinatehud")){
+        if(!instance.hasPermission(player,"tweakin.coordinatehud")){
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("no-permission"));
             return;
         }

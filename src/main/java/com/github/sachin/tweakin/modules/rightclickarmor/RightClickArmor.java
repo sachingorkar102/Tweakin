@@ -30,7 +30,7 @@ public class RightClickArmor extends BaseTweak implements Listener {
         if(e.isCancelled()) return;
         if(e.getAction() != Action.RIGHT_CLICK_AIR || e.getItem() == null || e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.armorclick")) return;
+        if(!hasPermission(player,"tweakin.armorclick")) return;
         ItemStack item = e.getItem();
         String itemName = item.getType().toString();
         PlayerInventory inv = player.getInventory();
@@ -66,7 +66,7 @@ public class RightClickArmor extends BaseTweak implements Listener {
         if(e.getClick() != ClickType.RIGHT) return;
         if(e.getClickedInventory() != null && e.getClickedInventory().getType()==InventoryType.PLAYER){
             Player player = (Player) e.getWhoClicked();
-            if(!player.hasPermission("tweakin.armorclick")) return;
+            if(!hasPermission(player,"tweakin.armorclick")) return;
             if(e.getCurrentItem() == null) return;
             ItemStack item = e.getCurrentItem().clone();
             String itemName = item.getType().name();

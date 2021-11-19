@@ -61,12 +61,12 @@ public class SilenceMobsTweak extends BaseTweak implements Listener{
         ItemMeta meta = clickedItem.getItemMeta();
         if(meta == null) return;
         boolean fired = false;
-        if(silenceNames.contains(meta.getDisplayName()) && !entity.isSilent() && player.hasPermission("tweakin.silencemobs.silence")){
+        if(silenceNames.contains(meta.getDisplayName()) && !entity.isSilent() && hasPermission(player,"tweakin.silencemobs.silence")){
             entity.setSilent(true);
             player.sendMessage(getTweakManager().getMessageManager().getMessage("mob-silenced").replace("%name%", entity.getType().toString()));
             fired = true;
         }
-        else if(unsilenceNames.contains(meta.getDisplayName()) && entity.isSilent() && player.hasPermission("tweakin.silencemobs.unsilence")){
+        else if(unsilenceNames.contains(meta.getDisplayName()) && entity.isSilent() && hasPermission(player,"tweakin.silencemobs.unsilence")){
             entity.setSilent(false);
             player.sendMessage(getTweakManager().getMessageManager().getMessage("mob-unsilenced").replace("%name%", entity.getType().toString()));
             fired = true;

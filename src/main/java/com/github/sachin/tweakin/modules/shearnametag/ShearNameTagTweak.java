@@ -39,7 +39,7 @@ public class ShearNameTagTweak extends BaseTweak implements Listener{
         if(item.getType() == Material.NAME_TAG && !(entity instanceof ArmorStand) && !entity.getPersistentDataContainer().has(TConstants.NAMETAGED_MOB,PersistentDataType.INTEGER)){
             entity.getPersistentDataContainer().set(TConstants.NAMETAGED_MOB, PersistentDataType.INTEGER, 1);
         }
-        else if(item.getType() == Material.SHEARS && player.isSneaking() && player.hasPermission("tweakin.shearnametag.use") && entity.getPersistentDataContainer().has(TConstants.NAMETAGED_MOB, PersistentDataType.INTEGER)){
+        else if(item.getType() == Material.SHEARS && player.isSneaking() && hasPermission(player,"tweakin.shearnametag.use") && entity.getPersistentDataContainer().has(TConstants.NAMETAGED_MOB, PersistentDataType.INTEGER)){
             e.setCancelled(true);
             entity.getPersistentDataContainer().remove(TConstants.NAMETAGED_MOB);
             ItemStack nameTag = new ItemStack(Material.NAME_TAG);

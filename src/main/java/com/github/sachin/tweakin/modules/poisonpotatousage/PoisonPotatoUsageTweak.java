@@ -50,7 +50,7 @@ public class PoisonPotatoUsageTweak extends BaseTweak implements Listener{
     public void onPotatoFeed(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof Breedable) || e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.posionpotato.use")) return;
+        if(!hasPermission(player,"tweakin.posionpotato.use")) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(blackListAnimals.contains(e.getRightClicked().getType())) return;
         if(player.getInventory().getItemInMainHand() == null) return;

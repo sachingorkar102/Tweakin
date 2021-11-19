@@ -113,7 +113,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
         Player player = e.getPlayer();
         
         if(player.getWorld().getEnvironment() == Environment.THE_END) return;
-        if(!player.hasPermission("tweakin.customportal.use")) return;
+        if(!hasPermission(player,"tweakin.customportal.use")) return;
         Block clickedBlock = e.getClickedBlock();
         List<Material> validPortalMaterials = getValidPortalMaterials();
         if(!validPortalMaterials.contains(e.getClickedBlock().getType())) return;

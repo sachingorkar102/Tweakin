@@ -27,7 +27,7 @@ public class PatDogTweak extends BaseTweak implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
         if(player.getInventory().getItemInMainHand().getType() != Material.AIR || !player.isSneaking()) return;
-        if(e.getRightClicked() instanceof Wolf && player.hasPermission("tweakin.patdog")){
+        if(e.getRightClicked() instanceof Wolf && hasPermission(player,"tweakin.patdog")){
             Wolf wolf = (Wolf) e.getRightClicked();
             PatTime time = new PatTime(wolf);
             if(!time.canPet(getConfig().getLong("cooldown",20)) || !wolf.isSitting()) return;
@@ -45,7 +45,7 @@ public class PatDogTweak extends BaseTweak implements Listener{
 
             e.setCancelled(true);
         }
-        else if(e.getRightClicked() instanceof Cat && player.hasPermission("tweakin.patcat") && getConfig().getBoolean("pat-cats",false)){
+        else if(e.getRightClicked() instanceof Cat && hasPermission(player,"tweakin.patcat") && getConfig().getBoolean("pat-cats",false)){
             Cat cat = (Cat) e.getRightClicked();
             PatTime time = new PatTime(cat);
             if(!time.canPet(getConfig().getLong("cooldown",20)) || !cat.isSitting()) return;

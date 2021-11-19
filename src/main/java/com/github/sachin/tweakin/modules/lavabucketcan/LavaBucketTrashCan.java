@@ -64,7 +64,7 @@ public class LavaBucketTrashCan extends BaseTweak implements Listener{
             return;
         }
         Player player = (Player) e.getWhoClicked();
-        if(!player.hasPermission(Permissions.LAVABUCKET_DRAGDROP)) return;
+        if(!hasPermission(player,Permissions.LAVABUCKET_DRAGDROP)) return;
         if(e.getClick() != ClickType.RIGHT || e.getAction() != InventoryAction.SWAP_WITH_CURSOR) return;
         if(e.getCurrentItem() == null || e.getCursor() == null) return;
         if(!(e.getClickedInventory() instanceof PlayerInventory)) return;

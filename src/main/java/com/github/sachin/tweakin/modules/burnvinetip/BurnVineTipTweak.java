@@ -60,7 +60,7 @@ public class BurnVineTipTweak extends BaseTweak implements Listener{
         if(e.getItem().getType() != Material.FLINT_AND_STEEL) return;
         Block block = e.getClickedBlock();
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.burnvinetip.use")) return;
+        if(!hasPermission(player,"tweakin.burnvinetip.use")) return;
         if(getBlackListWorlds().contains(block.getWorld().getName())) return;
         if(block.getRelative(BlockFace.DOWN).getType() == Material.VINE) return;
         CustomBlockData blockData = new CustomBlockData(block.getLocation());

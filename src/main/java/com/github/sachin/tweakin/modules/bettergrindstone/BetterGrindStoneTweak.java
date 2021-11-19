@@ -57,7 +57,7 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     inv.setItem(1, new ItemStack(Material.BOOK));
                 }
             }
-            if(!player.hasPermission("tweakin.bettergrindstone")) return;
+            if(!hasPermission(player,"tweakin.bettergrindstone")) return;
             new BukkitRunnable(){
                 @Override
                 public void run() {

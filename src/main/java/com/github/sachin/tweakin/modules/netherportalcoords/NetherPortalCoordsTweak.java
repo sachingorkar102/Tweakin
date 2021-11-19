@@ -59,7 +59,7 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
         ItemStack item = e.getItem().clone();
         ItemMeta meta = item.getItemMeta();
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.netherportalcoords")) return;
+        if(!hasPermission(player,"tweakin.netherportalcoords")) return;
         if(isUntrackedCompass(item) && e.getAction() == Action.RIGHT_CLICK_AIR){
             if(player.isSneaking()){
                 player.getInventory().setItemInMainHand(new ItemStack(Material.COMPASS));

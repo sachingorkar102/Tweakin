@@ -42,7 +42,7 @@ public class ArmorStandCommand extends BaseCommand{
     @CommandCompletion("last|near")
     public void onCommand(Player player,String[] args){
         if(instance.getBlackListWorlds().contains(player.getWorld().getName())) return;
-        if(!player.hasPermission("tweakin.betterarmorstands.command")){
+        if(!instance.hasPermission(player,"tweakin.betterarmorstands.command")){
             player.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
@@ -51,7 +51,7 @@ public class ArmorStandCommand extends BaseCommand{
             if(result != null && result.getHitEntity() != null){
                 ArmorStand as = (ArmorStand) result.getHitEntity();
                 if(canBuild(player, as)){
-                    ASGuiHolder.openGui(player, as);
+                    ASGuiHolder.openGui(player, as,instance);
                 }
             }
             else{

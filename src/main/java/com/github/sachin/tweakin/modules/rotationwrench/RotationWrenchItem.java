@@ -98,7 +98,7 @@ public class RotationWrenchItem extends TweakItem implements Listener{
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
         
-        if(!player.hasPermission("tweakin.rotationwrench.use")) return;
+        if(!hasPermission(player,"tweakin.rotationwrench.use")) return;
         if(!hasItem(player, e.getHand())) return;
         Block block = e.getClickedBlock();
         if(!matchString(block.getType().toString(), rotateableMaterials)) return;

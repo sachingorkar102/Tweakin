@@ -163,7 +163,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     }
 
     public void creatPlayerTask(Player player){
-        if(getConfig().getBoolean("show-highlight",true) && player.hasPermission("tweakin.reacharound.highlight")){
+        if(getConfig().getBoolean("show-highlight",true) && hasPermission(player,"tweakin.reacharound.highlight")){
             ReachAroundRunnable runnable = new ReachAroundRunnable(this, player);
             BukkitTask task = runnable.runTaskTimer(getPlugin(), 60, 2);
             this.currentTasks.put(player.getUniqueId(), task);
@@ -249,7 +249,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     }
 
     public Location getPlayerVerticalReachAround(Player player){
-        if(!player.hasPermission("tweakin.reacharound.vertical")){
+        if(!hasPermission(player,"tweakin.reacharound.vertical")){
             return null;
         }
         Vector vec = new Vector(0, 0.5, 0);
@@ -271,7 +271,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
 
 
     public Location getPlayerHorizonTalReachAround(Player player){
-        if(!player.hasPermission("tweakin.reacharound.horizontal")){
+        if(!hasPermission(player,"tweakin.reacharound.horizontal")){
             return null;
         }
         Location playerLoc = player.getLocation();

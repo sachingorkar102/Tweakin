@@ -6,7 +6,6 @@ import org.bukkit.scheduler.BukkitTask;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Default;
 
 public class ToggleCommand extends BaseCommand{
 
@@ -19,6 +18,10 @@ public class ToggleCommand extends BaseCommand{
     
     @CommandAlias("%reacharoundalias")
     public void onCommand(Player player){
+        if(!instance.hasPermission(player,"tweakin.reacharound.togglecommand")){
+            player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("no-permission"));
+            return;
+        }
         if(instance.getCurrentTasks().containsKey(player.getUniqueId())){
             player.getPersistentDataContainer().remove(instance.key);
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("reacharound-disabled"));

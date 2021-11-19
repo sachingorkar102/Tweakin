@@ -54,7 +54,7 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
             }
         }
         if(e.getCurrentItem() != null && e.getClickedInventory() instanceof PlayerInventory && e.getAction()==InventoryAction.NOTHING && e.getClick()==ClickType.MIDDLE){
-            if(e.getCurrentItem().getType().toString().endsWith("_BOX") && player.hasPermission("tweakin.shulkerboxclick")){
+            if(e.getCurrentItem().getType().toString().endsWith("_BOX") && hasPermission(player,"tweakin.shulkerboxclick")){
                 e.setCancelled(true);
                 ItemStack item = e.getCurrentItem().clone();
                 BlockStateMeta im = (BlockStateMeta) item.getItemMeta();
@@ -69,7 +69,7 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
                 ShulkerGui gui = new ShulkerGui(player, shulker,e.getSlot(),item,displayName);
                 gui.open();
             }
-            else if(e.getCurrentItem().getType()==Material.ENDER_CHEST && player.hasPermission("tweakin.enderchestclick")){
+            else if(e.getCurrentItem().getType()==Material.ENDER_CHEST && hasPermission(player,"tweakin.enderchestclick")){
                 e.setCancelled(true);
                 new BukkitRunnable(){
                     @Override

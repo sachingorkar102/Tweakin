@@ -65,7 +65,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
     @EventHandler
     public void onRightClick(PlayerInteractEvent e){
         Player player = e.getPlayer();
-        if(!player.hasPermission("tweakin.bottledcloud.use")) return;
+        if(!hasPermission(player,"tweakin.bottledcloud.use")) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(!hasItem(player, EquipmentSlot.HAND)) return;
         if(e.getAction() == Action.RIGHT_CLICK_BLOCK) e.setCancelled(true);
@@ -98,7 +98,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
     public void onGlassBottleClick(PlayerInteractEvent e){
         Player player = e.getPlayer();
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
-        if(!player.hasPermission("tweakin.bottledcloud.pickup")) return;
+        if(!hasPermission(player,"tweakin.bottledcloud.pickup")) return;
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;

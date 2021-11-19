@@ -130,7 +130,7 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
                     boolean requirePlayerKill = getConfig().getBoolean("require-player-kill");
                     if(requirePlayerKill && killed.getKiller() != null){
                         Player killer = killed.getKiller();
-                        if(!killer.hasPermission("tweakin.mobheads.drops")) return;
+                        if(!hasPermission(killer,"tweakin.mobheads.drops")) return;
                         ItemStack item1 = killer.getInventory().getItemInMainHand();
                         ItemStack item2 = killer.getInventory().getItemInOffHand();
                         if(item1 != null){

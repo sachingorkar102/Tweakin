@@ -5,6 +5,7 @@ import com.github.sachin.tweakin.Tweakin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -34,11 +35,16 @@ public class VillagerDeathMessageTweak extends BaseTweak implements Listener{
                     world = "§aOverworld";
                     break;
             }
-            Bukkit.broadcast(getTweakManager().getMessageManager().getMessageWithoutPrefix("villager-death-message")
+            String message = getTweakManager().getMessageManager().getMessageWithoutPrefix("villager-death-message")
             .replace("%x%", String.valueOf(loc.getBlockX()))
             .replace("%y%", String.valueOf(loc.getBlockY()))
             .replace("%z%", String.valueOf(loc.getBlockZ()))
-            .replace("%world-type%", world), "tweakin.villagerdeathmessage.notify");
+            .replace("%world-type%", world);
+            for(Player player : Bukkit.getOnlinePlayers()){
+                if(hasPermission(player, "tweakin.villagerdeathmessage.notify")){
+                    player.sendMessage(message);
+                }
+            }
         }
     }
     

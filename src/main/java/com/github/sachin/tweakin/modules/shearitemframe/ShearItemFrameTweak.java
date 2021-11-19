@@ -38,7 +38,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
     public void onShear(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof ItemFrame)) return;
         Player player = e.getPlayer();
-        if(player.isSneaking() || !player.hasPermission("tweakin.shearitemframe.use")) return;
+        if(player.isSneaking() || !hasPermission(player,"tweakin.shearitemframe.use")) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(flag != null && !flag.queryFlag(player, e.getRightClicked().getLocation())) return;
         ItemStack item = e.getPlayer().getInventory().getItemInMainHand();

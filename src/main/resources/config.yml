@@ -5,6 +5,7 @@
 
 # enabled: true # weather or not module should be enabled [Please use /tw toggle command instead of changing this value from here]
 # black-list-worlds: [world] # list of worlds where module will not function
+# check-permissions: true # if set to false no permission checks will be made
 
 # Read the text above each module for more info that module like commands and permissions(if any)
 # if you found any issue/bug, join me up on discord: https://discord.gg/tTHs4jKu6f
@@ -23,6 +24,7 @@ op-notifications: true
 # Permission: tweakin.armorclick
 armor-right-click:
   enabled: false
+  check-permissions: true
 
 # Middle clicking a shulker box in inventory will display its contents as if player opened the shulker itself
 # Permission: 
@@ -30,6 +32,7 @@ armor-right-click:
   # tweakin.enderchestclick: permission to allow opening of enderchest
 shulker-box-preview:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # if set to true players will able to open the enderchest just like shulker-box
   enderchest: true  
@@ -40,6 +43,7 @@ shulker-box-preview:
 # Permission: tweakin.customportal.use
 custom-shaped-portals:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # Max height and width of a portal
   max-height: 40
@@ -54,6 +58,7 @@ custom-shaped-portals:
 # only vanilla mob heads will work
 noteblock-mob-sounds:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # list of heads which will be ignored
   # DRAGON_WALL_HEAD,ZOMBIE_WALL_HEAD,WITHER_SKELETON_WALL_SKULL,SKELETON_WALL_SKULL
@@ -72,6 +77,7 @@ noteblock-mob-sounds:
   # tweakin.reacharound.togglecommand: permission to use /togglereacharound|/treacharound
 reach-around:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # alias for the toggle reacharound command (requires a server restart)
   # Pro tip: use | to add more then one alias eg. togglereacharound|togglereach
@@ -95,6 +101,7 @@ reach-around:
 # Leaves decay much faster when no logs are nearby, or when the leaves are not player placed  
 fast-leaf-decay:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # maximum duration leaves will stay (in seconds)
   duration: 10
@@ -107,6 +114,7 @@ fast-leaf-decay:
 # Permission: tweakin.betterladder.* tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
 better-ladder:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # Universal toggle for dropdown ladder feature
   dropdown: true
@@ -118,6 +126,7 @@ better-ladder:
 # item placed in enchanting slot will display above the enchanting table
 lapis-in-table:
   enabled: false 
+  check-permissions: true
   # weather or not to store the item thats being enchanted too
   store-item: true
   black-list-worlds: []
@@ -126,6 +135,7 @@ lapis-in-table:
 # Permission: tweakin.autorecipeunlock
 auto-recipe-unlock:
   enabled: false
+  check-permissions: true
 
 # Helps to sync nether portals between overworld and nether
 # right clicking a nether portal block while holding compass will display the calculated coordinates in compass
@@ -133,6 +143,7 @@ auto-recipe-unlock:
 # Permission: tweakin.netherportalcoords
 nether-portal-coords:
   enabled: false
+  check-permissions: true
   # pairs of valid overworld|nether
   world-pairs:
     world: world_nether
@@ -141,6 +152,7 @@ nether-portal-coords:
 # Permission: tweakin.swingthroughgrass
 swing-through-grass:
   enabled: false
+  check-permissions: true
 
 # displays coordinate hud,direction and ingame time at actionbar
 # Permission: 
@@ -149,6 +161,7 @@ swing-through-grass:
 # Command: /togglehud,/thud
 coordinate-hud:
   enabled: false
+  check-permissions: true
   # alias for the toggle reacharound command (requires a server restart)
   # Pro tip: use | to add more then one alias eg. togglehud|thud
   alias: togglehud|thud
@@ -177,6 +190,7 @@ coordinate-hud:
 # Permission: tweakin.posionpotato.use
 poison-potato-usage:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # chance at which the baby will be poisoned bettween (0-1)
   chance: 0.1
@@ -189,12 +203,14 @@ poison-potato-usage:
 # Permission: tweakin.burnvinetip.use
 burn-vine-tip:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
 
 # silence mobs using a name tag
 # Permission: tweakin.silencemobs.*, tweakin.silencemobs.silence, tweakin.silencemobs.unsilence
 silence-mobs:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # list of mobs that will not be affected by this tweak
   black-list-mobs:
@@ -223,6 +239,7 @@ silence-mobs:
 # Permission: tweakin.rotationwrench.use
 rotation-wrench:
   enabled: false
+  check-permissions: true
   # weather or not item is craftable, if set to false recipes regarding this item will not register
   dispenser-usable: true
   craftable: true
@@ -253,6 +270,7 @@ rotation-wrench:
   # tweakin.bottledcloud.use: provides permission to use the bottled cloud
 bottled-cloud:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # minimium height for glass bottle to pickup cloud
   minimum-height: 126
@@ -267,6 +285,7 @@ bottled-cloud:
   # tweakin.trowel.use: provides permission to use the trowel
 trowel:
   enabled: false
+  check-permissions: true
   # weather or not item is craftable, if set to false recipes(from recipes.yml) regarding this item will not register 
   craftable: true
   # weather or not item should take damage on use, only use for damagable items like iron_hoe
@@ -276,6 +295,7 @@ trowel:
 # Creepers will no longer explode, instead they will turn into twinkling fireworks
 confetti-creepers:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # The chance that creeper will explode as confetti(0.0-1.0, 1 being 100%)
   chance: 0.1
@@ -291,6 +311,7 @@ confetti-creepers:
   # tweakin.lavabuckettrashcan.gui: permission for player to use trash can gui (Disabled Temp.)
 lava-bucket-trash-can:
   enabled: false
+  check-permissions: true
   # item lore that will be shown when player fills up a lava bucket (keep empty to disable it)
   help-lore:
     - "&eRight Click a item onto bucket to destroy it."
@@ -313,6 +334,7 @@ lava-bucket-trash-can:
   # tweakin.slimebucket.detect: slime will not bounce in bucket if player holding it dosnt have this permission
 slime-in-bucket:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # the value of y level below the slime in bucket will start detecting slimes
   # default to 256 so slime chunk will be detected at any y level
@@ -331,6 +353,7 @@ slime-in-bucket:
 # Permission: tweakin.patdog,tweakin.patcat
 pat-dogs:
   enabled: false
+  check-permissions: true
   # cooldown in ticks to pat a dog, set to 0 to disable it
   cooldown: 60
   # weather or not to heal the dog after patting
@@ -344,6 +367,7 @@ pat-dogs:
 # Permission: tweakin.compasstrack
 compass-work-everywhere:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # weather or not compass will work in nether
   nether: true
@@ -357,6 +381,7 @@ compass-work-everywhere:
 broadcast-sound-nerf:
   enabled: false
 
+
 # Requires ProtocolLib
 # Right clicking a sign now lets you edit it even after it's been placed.
 # Respects grief plugins
@@ -364,12 +389,14 @@ broadcast-sound-nerf:
 # WorldGuard flag: tweakin-better-sign-edit [enabled by default]
 better-sign-edit:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
 
 # Breaking grass or crops with a hoe (while sneaking) will break a 3x3 of them. A Diamond & Netherite Hoe will break a 5x5 instead.
 # If you put Fortune on the hoe, it'll also apply that effect to everything it breaks.
 hoe-harvesting:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # range at which area will be cleared. 
   # eg, if range is set to 1, a 3x3 area will be cleared
@@ -403,6 +430,7 @@ villager-follow-emerald:
   # tweakin.fleemobs.bypass: mobs will not flee if player has this permission
 animal-flee:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # if set to true breeded animals by player will not flee away
   ignore-breeded: false
@@ -422,6 +450,7 @@ animal-flee:
 # Worldguard flag: tweakin-shear-item-frame [enabled by default]
 shear-item-frame:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
 
 # Snowballs and eggs will apply more knockback to entity on hit and also deal damage
@@ -440,6 +469,7 @@ snowball-knockback:
   # tweakin.infinitybucket.use: permission to use infinite water bucket
 infinity-water-bucket:
   enabled: false
+  check-permissions: true
   # the experience cost to combine water_bucket and infinity book through anvil
   cost: 2
   # weather or not dispensers can use infinity bucket like players
@@ -452,6 +482,7 @@ infinity-water-bucket:
   # tweakin.mobheads.drops: players without this permission will not get mob head drops on killing them(only works if require-player-kill is set to true)
 mob-heads:
   enabled: false
+  check-permissions: true
   black-list-worlds: []
   # if set to false mobs will not drop heads if they are not killed by player
   require-player-kill: true  
@@ -462,6 +493,7 @@ mob-heads:
   # tweakin.bettergrindstone: allows to use the grindstone functionality
 better-grindstone:
   enabled: false
+  check-permissions: true
   # if set to true, items enchanted from enchanting table will be ignored
   ignore-items-from-enchanting-table: false
 # a elytra and chestplate can be combined in anvil to create armored elytra which has protection of chestplate and also ability to fly with elytra
@@ -473,6 +505,7 @@ better-grindstone:
   # tweakin.armoredelytra.craft: permission to combine elytra and chestplate in anvil  
 armored-elytra:
   enabled: false
+  check-permissions: true
   # the experience cost
   cost: 10
   # list of items that can be used to combine with elytra (only use chestplate item types)
@@ -486,6 +519,7 @@ armored-elytra:
   # tweakin.villagerdeathmessage.notify: players with this permission will only recive the death messages
 villager-death-message:
   enabled: true
+  check-permissions: true
   black-list-worlds: []      
 
 # Adding some more features to armor stand and giving players more control over them
@@ -502,6 +536,7 @@ villager-death-message:
   # tweakin.command.removepose: permission to use remove pose command
 better-armorstands:
   enabled: false  
+  check-permissions: true
   black-list-worlds: []
   # if set to false armor swaping between armor stand and player will be disabled
   armor-swap: true
@@ -517,6 +552,7 @@ better-armorstands:
   # tweakin.armorstandwand.use: permission to use the wand
 armorstand-wand:
   enabled: false
+  check-permissions: true
   craftable: true  
   
 # NOTE: only works with mobs that were name tagged after this tweak was enabled
@@ -525,6 +561,7 @@ armorstand-wand:
   # tweakin.shearnametag.use: Permission to use this tweak
 shear-name-tag:
   enabled: false  
+  check-permissions: true
   black-list-worlds: []
 
 # Lectern book page will reset to 0 when player closes it
@@ -539,6 +576,7 @@ lectern-page-reset:
   # tweakin.craftingtableonstick.use: permission to use the item
 crafting-table-on-stick:
   enabled: false
+  check-permissions: true
   craftable: true
   # if set to true player will able to use open crafting interface by just middle clicking crafting table item in inventory
   works-with-crafting-table: false
@@ -549,6 +587,7 @@ crafting-table-on-stick:
   # tweakin.infinitefirework.use: permission to use the item
 infinite-firework:
   enabled: false  
+  check-permissions: true
   craftable: true
   # weather or not randomized firework will be dispensed via dispenser
   dispenser-usable: true

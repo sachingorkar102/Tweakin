@@ -54,7 +54,7 @@ public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
     }
 
     public void discoverRecipes(Player player){
-        if(player.hasPermission("tweakin.autorecipeunlock")){
+        if(hasPermission(player, "tweakin.autorecipeunlock")){
             for (NamespacedKey namespacedKey : recipes) {
                 if(!player.hasDiscoveredRecipe(namespacedKey)){
                     player.discoverRecipe(namespacedKey);

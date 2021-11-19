@@ -103,7 +103,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             ArmorStand as = (ArmorStand) e.getRightClicked();
             ItemStack clickedItem = player.getInventory().getItem(e.getHand());
             // security checks
-            if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !player.hasPermission("tweakin.betterarmorstands.uuidlockbypass")){
+            if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !hasPermission(player, "tweakin.betterarmorstands.uuidlockbypass")){
                 player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
             }
             else if(as.getPersistentDataContainer().has(TConstants.ARMORSTAND_EDITED, PersistentDataType.INTEGER)){
@@ -119,15 +119,15 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
                 clickedItem.setAmount(clickedItem.getAmount()-1);
             }
             // wand checks
-            else if(wandItem.registered && clickedItem != null && wandItem.isSimilar(clickedItem) && player.hasPermission("tweakin.armorstandwand.use") && player.isSneaking()){
+            else if(wandItem.registered && clickedItem != null && wandItem.isSimilar(clickedItem) && hasPermission(player,"tweakin.armorstandwand.use") && player.isSneaking()){
                 e.setCancelled(true);
-                ASGuiHolder.openGui(player, as);
+                ASGuiHolder.openGui(player, as,this);
             }
             // replacement for setMarker
             else if(as.getPersistentDataContainer().has(TConstants.INTERACTABLE_AS, PersistentDataType.INTEGER)){
                 e.setCancelled(true);;
             }
-            else if(e.getHand()==EquipmentSlot.HAND && player.isSneaking() && getConfig().getBoolean("armor-swap") && player.hasPermission("tweakin.betterarmorstands.armorswap")){
+            else if(e.getHand()==EquipmentSlot.HAND && player.isSneaking() && getConfig().getBoolean("armor-swap") && hasPermission(player,"tweakin.betterarmorstands.armorswap")){
                 e.setCancelled(true);
                 for(EquipmentSlot slot : EquipmentSlot.values()){
                     ItemStack asItem = as.getEquipment().getItem(slot);
@@ -209,7 +209,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             }
             ArmorStand as = (ArmorStand) map.get(map.firstKey());
             if(canBuild(player, as)){
-                ASGuiHolder.openGui(player, as);
+                ASGuiHolder.openGui(player, as,this);
             }
         }
         else{
@@ -225,7 +225,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             if(en != null && !en.isDead()){
                 ArmorStand as = (ArmorStand) en;
                 if(canBuild(player, as)){
-                    ASGuiHolder.openGui(player, as);
+                    ASGuiHolder.openGui(player, as,this);
                 }
 
             }
