@@ -1,6 +1,7 @@
 package com.github.sachin.tweakin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -118,9 +119,21 @@ public abstract class TweakItem extends BaseTweak {
 
     }
 
-    private RecipeChoice getIngredient(String str,boolean exact){
+    public static RecipeChoice getIngredient(String str,boolean exact){
         if(str == null) return null;
-        Optional<Material> opMat = Enums.getIfPresent(Material.class, str);
+        if(str.contains("|")){
+            List<String> l = Arrays.asList(str.split("\\|"));
+            List<Material> mats = new ArrayList<>();
+            for(String s : l){
+                Optional<Material> opMat2 = Enums.getIfPresent(Material.class, s.toUpperCase());
+                if(opMat2.isPresent()){
+
+                    mats.add(opMat2.get());
+                }
+            }
+            return new MaterialChoice(mats);
+        }
+        Optional<Material> opMat = Enums.getIfPresent(Material.class, str.toUpperCase());
         if(opMat.isPresent()){
             if(exact){
                 return new ExactChoice(new ItemStack(opMat.get()));
@@ -144,6 +157,7 @@ public abstract class TweakItem extends BaseTweak {
                 return new MaterialChoice(mats);
             }
         }
+        
         return null;
     }
 

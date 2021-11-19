@@ -10,7 +10,9 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
@@ -28,18 +30,20 @@ import org.bukkit.util.EulerAngle;
 
 public class Test {
     public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{
+        List<String> l = Arrays.asList("OAK_LOG|STRIPPED_OAK_LOG|BIRCH_LOG|STRIPPED_BIRCH_LOG|SPRUCE_LOG|STRIPPED_SPRUCE_LOG|JUNGLE_LOG|STRIPPED_JUNGLE_LOG|ACACIA_LOG|STRIPPED_ACACIA_LOG|DARK_OAK_LOG|STRIPPED_DARK_OAK_LOG|CRIMSON_STEM|WARPED_STEM|STRIPPED_CRIMSON_STEM|STRIPPED_WARPED_STEM".split("\\|"));
+        System.out.println(l);
         // System.out.println(Math.toDegrees(1));
         // Gson gson = new Gson();
         // System.out.println(gson.toJson(new PresetPose("test", "test", new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1),new EulerAngle(1,1,1), new EulerAngle(1,1,1))));;
-        Map<Integer,String> map = new HashMap<>();
-        map.put(2, "Hello");
-        map.put(5, "Hello");
-        map.put(3, "Hello");
-        map.put(6, "Hello");
-        map.put(8, "Hello");
-        map.put(1, "Hellossss");
+        // Map<Integer,String> map = new HashMap<>();
+        // map.put(2, "Hello");
+        // map.put(5, "Hello");
+        // map.put(3, "Hello");
+        // map.put(6, "Hello");
+        // map.put(8, "Hello");
+        // map.put(1, "Hellossss");
         
-        System.out.println();
+        // System.out.println();
         // Class<?> miscItemsClass = Class.forName("com.github.sachin.tweakin.utils.MiscItems");
         // Field f = miscItemsClass.getField("ENABLED_BUTTON");
         // f.get(new ItemStack(Material.ACACIA_BOAT));

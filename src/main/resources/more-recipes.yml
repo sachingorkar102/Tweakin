@@ -1,37 +1,154 @@
-back-to-blocks-slab-edition: true
-back-to-blocks-stair-edition: true
-easy-dispenser: true
-easy-repeater: true
-easy-minecarts: true
-compact-recipes: true
-compat-shulker-box-recipe: true
-easy-stone-tools: true
-more-stonecutter-recipes: true
-rotten-flesh-to-leather: true
+back-to-blocks-slab-edition: false
+back-to-blocks-stair-edition: false
+easy-dispenser: false
+easy-repeater: false
+easy-minecarts: false
+compact-recipes: false
+compat-shulker-box-recipe: false
+easy-stone-tools: false
+more-stonecutter-recipes: false
+rotten-flesh-to-leather: false
+black-dye-recipe-coal-edition: false
+black-dye-recipe-charcoal-edition: false
+concrete-powder-to-glass: false
+craftable-horse-armor: false
+craftable-coral-blocks-two-by-two: false
+craftable-coral-blocks-three-by-three: false
+more-blocks:
+  trapdoor: 12
+  bark: 4
+  stairs: 8
+  bricks: 4
 universal-dyeing:
   wool:
-    single: true
-    sorounded: true
+    single: false
+    sorounded: false
   concrete:
-    single: true
-    sorounded: true
+    single: false
+    sorounded: false
   concrete_powder:
-    single: true
-    sorounded: true
+    single: false
+    sorounded: false
   terracotta:
-    single: true
-    sorounded: true    
+    single: false
+    sorounded: false    
   stained_glass:
-    single: true
-    sorounded: true
+    single: false
+    sorounded: false
   bed:
-    single: true
-    sorounded: true
+    single: false
+    sorounded: false
   stained_glass_pane:
-    single: true
-    sorounded: true
+    single: false
+    sorounded: false
   carpet:
-    single: true
-    sorounded: true
+    single: false
+    sorounded: false
+
+
+simple-recipes:
+  sandstone-dyeing:
+    enabled: false
+    result: RED_SANDSTONE
+    type: shaped
+    pattern:
+      - "SR"
+      - " S"
+    keys:
+      R: RED_DYE
+      S: SANDSTONE  
+  craftable-enchanted-golden-apple:
+    enabled: false
+    type: shaped
+    result: GOLDEN_APPLE
+    pattern:
+      - "GGG"
+      - "GAG"
+      - "GGG"
+    keys:
+      G: GOLD_BLOCK
+      A: APPLE    
+  craftable-name-tag:
+    enabled: false
+    result: NAME_TAG
+    type: shaped
+    pattern:
+      - " IS"
+      - " PI"
+      - "P  "
+    keys:
+      I: IRON_INGOT
+      P: PAPER
+      S: STRING
+  craftable-bundle-rabbit-hide-edition:
+    enabled: false
+    result: BUNDLE
+    type: shaped
+    pattern:
+      - "SRS"
+      - "R R"
+      - "RRR"
+    keys:
+      S: STRING
+      R: RABBIT_HIDE
+  craftable-bundle-leather-edition:
+    enabled: false
+    result: BUNDLE
+    type: shaped
+    pattern:
+      - "SRS"
+      - "R R"
+      - "RRR"
+    keys:
+      S: STRING
+      R: LEATHER
+  logs-to-chest:
+    enabled: false
+    result: CHEST
+    amount: 4
+    type: shaped
+    pattern:
+      - "LLL"
+      - "L L"
+      - "LLL"
+    keys:
+      L: OAK_LOG|STRIPPED_OAK_LOG|BIRCH_LOG|STRIPPED_BIRCH_LOG|SPRUCE_LOG|STRIPPED_SPRUCE_LOG|JUNGLE_LOG|STRIPPED_JUNGLE_LOG|ACACIA_LOG|STRIPPED_ACACIA_LOG|DARK_OAK_LOG|STRIPPED_DARK_OAK_LOG|CRIMSON_STEM|WARPED_STEM|STRIPPED_CRIMSON_STEM|STRIPPED_WARPED_STEM                        
+  craftable-blackstone:
+    enabled: false
+    result: BLACKSTONE
+    type: shaped
+    pattern:
+      - "CB"
+      - "BC"
+    keys:
+      B: BASALT
+      C: COAL|CHARCOAL
+  craftable-gravel:
+    enabled: false
+    result: GRAVEL
+    type: shaped
+    pattern:
+      - "FF"
+      - "FF"
+    keys:
+      F: FLINT
+  uncraftable-packed-ice:
+    enabled: false
+    result: ICE
+    amount: 9
+    type: shapeless
+    ingredients: [PACKED_ICE]
+  uncraftable-blue-ice:  
+    enabled: false
+    result: PACKED_ICE
+    amount: 9
+    type: shapeless
+    ingredients: [BLUE_ICE]
+  uncraftable-wool:
+    enabled: false
+    result: STRING
+    amount: 4
+    type: shapeless
+    ingredients: [WOOL]  
 
 

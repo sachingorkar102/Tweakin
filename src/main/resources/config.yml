@@ -562,6 +562,7 @@ infinite-firework:
   max-effects: 2
 
 # adds some useful recipes
+# to configure each recipe check out more-recipes.yml
 more-recipes:
   enabled: false  
   
