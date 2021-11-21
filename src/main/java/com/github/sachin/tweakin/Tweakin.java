@@ -16,6 +16,7 @@ import com.github.sachin.tweakin.gui.GuiListener;
 import com.github.sachin.tweakin.manager.TweakManager;
 import com.github.sachin.tweakin.modules.lapisintable.LapisData;
 import com.github.sachin.tweakin.modules.mobheads.Head;
+import com.github.sachin.tweakin.modules.morerecipes.MoreRecipesTweak;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 import com.github.sachin.tweakin.utils.MiscItems;
@@ -150,10 +151,15 @@ public final class Tweakin extends JavaPlugin {
                         if(tweak.shouldEnable()){
                             map.put(tweak.getName(), 1);
                         }
+                        
                     }
                     return map;
                 }
             }));
+
+            ((MoreRecipesTweak)tweakManager.getTweakFromName("more-recipes")).addBstatsGraph(metrics);
+
+
         }
     }
 
@@ -192,6 +198,10 @@ public final class Tweakin extends JavaPlugin {
 
     public WGFlagManager getWGFlagManager() {
         return wgFlagManager;
+    }
+
+    public Metrics getMetrics() {
+        return metrics;
     }
 
     

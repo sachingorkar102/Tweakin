@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.bstats.Metrics;
+import com.github.sachin.tweakin.bstats.Metrics.AdvancedPie;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.BackToBlocksSlabs;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.BackToBlocksStairs;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.BlackDyeRecipe;
@@ -192,6 +195,107 @@ public class MoreRecipesTweak extends BaseTweak implements Listener{
             baseRecipes.add(new CraftableCoralBlocks.ThreeByThree(this));
         }
         return baseRecipes;
+    }
+
+    public void addBstatsGraph(Metrics metrics){
+        metrics.addCustomChart(new AdvancedPie("Enabled-Recipes", new Callable<Map<String, Integer>>() {
+            @Override
+            public Map<String, Integer> call() throws Exception {
+                Map<String, Integer> map = new HashMap<>();
+                for(BaseRecipe recipe : baseRecipes){
+                    if(recipe instanceof UniversalDyeing){
+                        continue;
+                    }
+                    if(recipeFile.getBoolean(recipe.name,true)){
+                        map.put(recipe.name, 1);
+                    }
+        
+                }
+                return map;
+            }
+        }));
+
+        metrics.addCustomChart(new AdvancedPie("Universal-Dyeing-Recipes-Single", new Callable<Map<String, Integer>>() {
+            @Override
+            public Map<String, Integer> call() throws Exception {
+                Map<String, Integer> map = new HashMap<>();
+                for(BaseRecipe recipe : baseRecipes){
+                    if(recipe instanceof UniversalDyeing){
+                        ConfigurationSection section = recipeFile.getConfigurationSection(recipe.name);
+                        if(section.getBoolean("bed.single")){
+                            map.put("bed",1);
+                        }
+                        if(section.getBoolean("wool.single")){
+                            map.put("wool",1);
+                        }
+                        if(section.getBoolean("carpet.single")){
+                            map.put("carpet",1);
+                        }
+                        if(section.getBoolean("concrete.single")){
+                            map.put("concrete",1);
+                        }
+                        if(section.getBoolean("concrete_powder.single")){
+                            map.put("concrete_powder",1);
+                        }
+                        if(section.getBoolean("terracotta")){
+                            map.put("terracotta",1);
+
+                        }
+                        if(section.getBoolean("stained_glass.single")){
+                            map.put("stained_glass", 1);
+                        }
+                        if(section.getBoolean("stained_glass_pane.single")){
+                            map.put("stained_glass_pane", 1);
+                        }
+
+                    }
+                    
+        
+                }
+                return map;
+            }
+        }));
+
+        metrics.addCustomChart(new AdvancedPie("Universal-Dyeing-Recipes-Sorounded", new Callable<Map<String, Integer>>() {
+            @Override
+            public Map<String, Integer> call() throws Exception {
+                Map<String, Integer> map = new HashMap<>();
+                for(BaseRecipe recipe : baseRecipes){
+                    if(recipe instanceof UniversalDyeing){
+                        ConfigurationSection section = recipeFile.getConfigurationSection(recipe.name);
+                        if(section.getBoolean("bed.sorounded")){
+                            map.put("bed",1);
+                        }
+                        if(section.getBoolean("wool.sorounded")){
+                            map.put("wool",1);
+                        }
+                        if(section.getBoolean("carpet.sorounded")){
+                            map.put("carpet",1);
+                        }
+                        if(section.getBoolean("concrete.sorounded")){
+                            map.put("concrete",1);
+                        }
+                        if(section.getBoolean("concrete_powder.sorounded")){
+                            map.put("concrete_powder",1);
+                        }
+                        if(section.getBoolean("terracotta")){
+                            map.put("terracotta",1);
+
+                        }
+                        if(section.getBoolean("stained_glass.sorounded")){
+                            map.put("stained_glass", 1);
+                        }
+                        if(section.getBoolean("stained_glass_pane.sorounded")){
+                            map.put("stained_glass_pane", 1);
+                        }
+                        
+                    }
+                    
+        
+                }
+                return map;
+            }
+        }));
     }
 
     
