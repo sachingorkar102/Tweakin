@@ -16,8 +16,11 @@ first-install: true
 # its bstats
 metrics: true
 
-# weather or not to show 
+# weather or not to show a message of all tweaks being disabled
 op-notifications: true
+
+# if set to false no permission checks will be made for core commands like /tw reload,/tw toggle,/tw tweak-list etc., and only op will able to use them
+check-permissions-for-core-commands: true
 
 
 # Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
