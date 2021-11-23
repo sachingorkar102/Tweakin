@@ -60,7 +60,7 @@ simple-recipes:
   craftable-enchanted-golden-apple:
     enabled: false
     type: shaped
-    result: GOLDEN_APPLE
+    result: ENCHANTED_GOLDEN_APPLE
     pattern:
       - "GGG"
       - "GAG"
