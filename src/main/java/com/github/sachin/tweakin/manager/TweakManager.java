@@ -21,6 +21,7 @@ import com.github.sachin.tweakin.modules.bettersignedit.BetterSignEditTweak;
 import com.github.sachin.tweakin.modules.bossspawnsounds.BroadCastSoundTweak;
 import com.github.sachin.tweakin.modules.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.modules.burnvinetip.BurnVineTipTweak;
+import com.github.sachin.tweakin.modules.cauldronconcrete.CauldronConcreteTweak;
 import com.github.sachin.tweakin.modules.compassworkeverywhere.CompassEveryWhereTweak;
 import com.github.sachin.tweakin.modules.confetticreepers.ConfettiCreepers;
 import com.github.sachin.tweakin.modules.coordinatehud.CoordinateHUDTweak;
@@ -200,7 +201,7 @@ public class TweakManager {
                 tweakList.add(new BetterSignEditTweak(plugin));
             }
             else{
-                plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds, better-sign-edit and no-potion-glint...");
+                plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds, better-sign-edit...");
             }
             tweakList.add(new HoeHarvestingTweak(plugin));
             tweakList.add(new VillagerFollowEmraldTweak(plugin));
@@ -219,6 +220,12 @@ public class TweakManager {
             // tweakList.add(new NoPotionGlintTweak(plugin));
             tweakList.add(new InfiniteFireworkItem(plugin));
             tweakList.add(new MoreRecipesTweak(plugin));
+            if(plugin.isRunningPaper){
+                tweakList.add(new CauldronConcreteTweak(plugin));
+            }
+            else{
+                plugin.getLogger().info("Not running PaperMC as server software, ignoring cauldron concrete tweak...");
+            }
             tweakList.add(new AutoRecipeUnlockTweak(plugin));
         }
         return tweakList;

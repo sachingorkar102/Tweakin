@@ -607,5 +607,9 @@ infinite-firework:
 # to configure each recipe check out more-recipes.yml
 more-recipes:
   enabled: false  
-  
-  
+
+# REQUIRES PaperMC as server software 
+# Dropping concrete powder in water filled cauldron will instantly turn it into concrete block
+cauldron-concrete:
+  enabled: false
+  black-list-worlds: []  

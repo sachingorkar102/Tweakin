@@ -229,8 +229,10 @@ public class MoreRecipesTweak extends BaseTweak implements Listener{
     }
 
     private void addRecipe(NamespacedKey key,Recipe recipe){
-        Bukkit.addRecipe(recipe);
-        simpleRecipes.add(key);
+        if(Bukkit.getRecipe(key) == null){
+            Bukkit.addRecipe(recipe);
+            simpleRecipes.add(key);
+        }
     }
 
     public FileConfiguration getRecipeFile() {
