@@ -39,12 +39,21 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.CraftingInventory;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.StonecutterInventory;
+import org.bukkit.inventory.StonecuttingRecipe;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class MoreRecipesTweak extends BaseTweak implements Listener{
 
@@ -57,6 +66,63 @@ public class MoreRecipesTweak extends BaseTweak implements Listener{
     public MoreRecipesTweak(Tweakin plugin) {
         super(plugin, "more-recipes");
         
+    }
+
+    public List<BaseRecipe> getBaseRecipes() {
+        if(baseRecipes == null) baseRecipes = new ArrayList<>();
+        if(baseRecipes.isEmpty()){
+            
+            baseRecipes.add(new BackToBlocksSlabs(this));
+            baseRecipes.add(new BackToBlocksStairs(this));
+            baseRecipes.add(new EasyDispenser(this));
+            baseRecipes.add(new EasyRepeaters(this));
+            baseRecipes.add(new EasyMinecarts(this));
+            baseRecipes.add(new CompactRecipes(this));
+            baseRecipes.add(new CompatShulkerRecipe(this));
+            baseRecipes.add(new EasyStoneTools(this));
+            baseRecipes.add(new MoreStoneCutterRecipes(this));
+            baseRecipes.add(new RottenFleshToLeather(this));
+            baseRecipes.add(new UniversalDyeing(this));
+            baseRecipes.add(new BlackDyeRecipe.Charcoal(this));
+            baseRecipes.add(new BlackDyeRecipe.Coal(this));
+            baseRecipes.add(new PowderToGlass(this));
+            baseRecipes.add(new MoreBlocks(this));
+            baseRecipes.add(new CraftableHorseArmor(this));
+            baseRecipes.add(new CraftableCoralBlocks.TwoByTwo(this));
+            baseRecipes.add(new CraftableCoralBlocks.ThreeByThree(this));
+        }
+        return baseRecipes;
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent event) {
+        if (event.getBlock().getType() == Material.CRAFTING_TABLE) {
+            event.setCancelled(true);
+            Player player = event.getPlayer();
+            // CraftingInventory inv = (CraftingInventory) player.openWorkbench(null, true).getTopInventory();
+            Inventory inv = player.openInventory(Bukkit.createInventory(player, InventoryType.STONECUTTER, "Stonecutter")).getTopInventory();
+            // player.openInventory(inv);
+            new BukkitRunnable() {
+                int count =0;
+                List<NamespacedKey> recipes = baseRecipes.get(8).getRecipes();
+                @Override
+                public void run() {
+                    if(count==recipes.size()){
+                        cancel();
+                        return;
+                    }
+                    // ShapelessRecipe recipe = (ShapelessRecipe) Bukkit.getRecipe(recipes.get(count));
+                    // ShapedRecipe recipe = (ShapedRecipe) Bukkit.getRecipe(recipes.get(count));
+                    StonecuttingRecipe recipe = (StonecuttingRecipe) Bukkit.getRecipe(recipes.get(count));
+                    inv.setItem(0, recipe.getInput());
+                    count++;
+                }
+            }.runTaskTimer(plugin, 0, 10);
+            // for(NamespacedKey key : baseRecipes.get(0).getRecipes()){
+                
+            //     ShapedRecipe recipe = (ShapedRecipe) Bukkit.getRecipe(key);
+            // }
+        }
     }
 
     @Override
@@ -171,31 +237,7 @@ public class MoreRecipesTweak extends BaseTweak implements Listener{
         return recipeFile;
     }
 
-    public List<BaseRecipe> getBaseRecipes() {
-        if(baseRecipes == null) baseRecipes = new ArrayList<>();
-        if(baseRecipes.isEmpty()){
-            
-            baseRecipes.add(new BackToBlocksSlabs(this));
-            baseRecipes.add(new BackToBlocksStairs(this));
-            baseRecipes.add(new EasyDispenser(this));
-            baseRecipes.add(new EasyRepeaters(this));
-            baseRecipes.add(new EasyMinecarts(this));
-            baseRecipes.add(new CompactRecipes(this));
-            baseRecipes.add(new CompatShulkerRecipe(this));
-            baseRecipes.add(new EasyStoneTools(this));
-            baseRecipes.add(new MoreStoneCutterRecipes(this));
-            baseRecipes.add(new RottenFleshToLeather(this));
-            baseRecipes.add(new UniversalDyeing(this));
-            baseRecipes.add(new BlackDyeRecipe.Charcoal(this));
-            baseRecipes.add(new BlackDyeRecipe.Coal(this));
-            baseRecipes.add(new PowderToGlass(this));
-            baseRecipes.add(new MoreBlocks(this));
-            baseRecipes.add(new CraftableHorseArmor(this));
-            baseRecipes.add(new CraftableCoralBlocks.TwoByTwo(this));
-            baseRecipes.add(new CraftableCoralBlocks.ThreeByThree(this));
-        }
-        return baseRecipes;
-    }
+    
 
     public void addBstatsGraph(Metrics metrics){
         metrics.addCustomChart(new AdvancedPie("Enabled-Recipes", new Callable<Map<String, Integer>>() {

@@ -49,7 +49,7 @@ public class BackToBlocksStairs extends BaseRecipe{
         StairRecipe(Material.RED_NETHER_BRICK_STAIRS,Material.RED_NETHER_BRICKS);
         StairRecipe(Material.POLISHED_ANDESITE_STAIRS,Material.POLISHED_ANDESITE);
         StairRecipe(Material.BLACKSTONE_STAIRS,Material.BLACKSTONE);
-        StairRecipe(Material.POLISHED_BLACKSTONE_BRICK_STAIRS,Material.POLISHED_BLACKSTONE_BRICK_STAIRS);
+        StairRecipe(Material.POLISHED_BLACKSTONE_BRICK_STAIRS,Material.POLISHED_BLACKSTONE_BRICKS);
         StairRecipe(Material.POLISHED_BLACKSTONE_STAIRS,Material.POLISHED_BLACKSTONE);
         if(instance.getPlugin().isPost1_17()){
             StairRecipe(Material.COBBLED_DEEPSLATE_STAIRS,Material.COBBLED_DEEPSLATE);
@@ -60,7 +60,7 @@ public class BackToBlocksStairs extends BaseRecipe{
             StairRecipe(Material.OXIDIZED_CUT_COPPER_STAIRS,Material.OXIDIZED_CUT_COPPER);
             StairRecipe(Material.POLISHED_DEEPSLATE_STAIRS,Material.POLISHED_DEEPSLATE);
             StairRecipe(Material.WAXED_CUT_COPPER_STAIRS,Material.WAXED_CUT_COPPER);
-            StairRecipe(Material.WAXED_EXPOSED_CUT_COPPER_STAIRS,Material.WAXED_EXPOSED_CUT_COPPER_STAIRS);
+            StairRecipe(Material.WAXED_EXPOSED_CUT_COPPER_STAIRS,Material.WAXED_EXPOSED_CUT_COPPER);
             StairRecipe(Material.WAXED_OXIDIZED_CUT_COPPER_STAIRS,Material.WAXED_OXIDIZED_CUT_COPPER);
             StairRecipe(Material.WAXED_WEATHERED_CUT_COPPER_STAIRS,Material.WAXED_WEATHERED_CUT_COPPER);
             StairRecipe(Material.WEATHERED_CUT_COPPER_STAIRS,Material.WEATHERED_CUT_COPPER);
