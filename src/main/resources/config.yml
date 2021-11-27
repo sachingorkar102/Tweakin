@@ -256,7 +256,6 @@ rotation-wrench:
     - DISPENSER
     - _STAIRS$
     - _TERRACOTTA$
-    - _TERRACOTTA$
     - COMPARATOR
     - REPEATER
     - CHEST

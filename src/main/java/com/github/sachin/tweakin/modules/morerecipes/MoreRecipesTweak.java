@@ -55,7 +55,7 @@ import org.bukkit.inventory.StonecutterInventory;
 import org.bukkit.inventory.StonecuttingRecipe;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class MoreRecipesTweak extends BaseTweak implements Listener{
+public class MoreRecipesTweak extends BaseTweak{
 
     private FileConfiguration recipeFile;
     private final String RECIPE_FILE_NAME = "more-recipes.yml";
@@ -94,36 +94,36 @@ public class MoreRecipesTweak extends BaseTweak implements Listener{
         return baseRecipes;
     }
 
-    @EventHandler
-    public void onBreak(BlockBreakEvent event) {
-        if (event.getBlock().getType() == Material.CRAFTING_TABLE) {
-            event.setCancelled(true);
-            Player player = event.getPlayer();
-            // CraftingInventory inv = (CraftingInventory) player.openWorkbench(null, true).getTopInventory();
-            Inventory inv = player.openInventory(Bukkit.createInventory(player, InventoryType.STONECUTTER, "Stonecutter")).getTopInventory();
-            // player.openInventory(inv);
-            new BukkitRunnable() {
-                int count =0;
-                List<NamespacedKey> recipes = baseRecipes.get(8).getRecipes();
-                @Override
-                public void run() {
-                    if(count==recipes.size()){
-                        cancel();
-                        return;
-                    }
-                    // ShapelessRecipe recipe = (ShapelessRecipe) Bukkit.getRecipe(recipes.get(count));
-                    // ShapedRecipe recipe = (ShapedRecipe) Bukkit.getRecipe(recipes.get(count));
-                    StonecuttingRecipe recipe = (StonecuttingRecipe) Bukkit.getRecipe(recipes.get(count));
-                    inv.setItem(0, recipe.getInput());
-                    count++;
-                }
-            }.runTaskTimer(plugin, 0, 10);
-            // for(NamespacedKey key : baseRecipes.get(0).getRecipes()){
+    // @EventHandler
+    // public void onBreak(BlockBreakEvent event) {
+    //     if (event.getBlock().getType() == Material.CRAFTING_TABLE) {
+    //         event.setCancelled(true);
+    //         Player player = event.getPlayer();
+    //         // CraftingInventory inv = (CraftingInventory) player.openWorkbench(null, true).getTopInventory();
+    //         Inventory inv = player.openInventory(Bukkit.createInventory(player, InventoryType.STONECUTTER, "Stonecutter")).getTopInventory();
+    //         // player.openInventory(inv);
+    //         new BukkitRunnable() {
+    //             int count =0;
+    //             List<NamespacedKey> recipes = baseRecipes.get(8).getRecipes();
+    //             @Override
+    //             public void run() {
+    //                 if(count==recipes.size()){
+    //                     cancel();
+    //                     return;
+    //                 }
+    //                 // ShapelessRecipe recipe = (ShapelessRecipe) Bukkit.getRecipe(recipes.get(count));
+    //                 // ShapedRecipe recipe = (ShapedRecipe) Bukkit.getRecipe(recipes.get(count));
+    //                 StonecuttingRecipe recipe = (StonecuttingRecipe) Bukkit.getRecipe(recipes.get(count));
+    //                 inv.setItem(0, recipe.getInput());
+    //                 count++;
+    //             }
+    //         }.runTaskTimer(plugin, 0, 10);
+    //         // for(NamespacedKey key : baseRecipes.get(0).getRecipes()){
                 
-            //     ShapedRecipe recipe = (ShapedRecipe) Bukkit.getRecipe(key);
-            // }
-        }
-    }
+    //         //     ShapedRecipe recipe = (ShapedRecipe) Bukkit.getRecipe(key);
+    //         // }
+    //     }
+    // }
 
     @Override
     public void register() {
