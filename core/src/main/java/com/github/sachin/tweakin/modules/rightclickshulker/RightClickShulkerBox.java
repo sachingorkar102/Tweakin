@@ -44,7 +44,7 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
                 e.setCancelled(true);
             }
         }
-        if(e.getCurrentItem() != null && e.getClickedInventory() instanceof PlayerInventory && e.getAction()==InventoryAction.NOTHING && e.getClick()==ClickType.MIDDLE){
+        if(e.getCurrentItem() != null && e.getClickedInventory() instanceof PlayerInventory && e.getClick().toString().equals(getConfig().getString("hotkey"))){
             if(e.getCurrentItem().getType().toString().endsWith("_BOX") && hasPermission(player,"tweakin.shulkerboxclick")){
                 e.setCancelled(true);
                 ItemStack item = e.getCurrentItem().clone();

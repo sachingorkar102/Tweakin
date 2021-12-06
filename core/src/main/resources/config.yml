@@ -29,7 +29,7 @@ armor-right-click:
   enabled: false
   check-permissions: true
 
-# Middle clicking a shulker box in inventory will display its contents as if player opened the shulker itself
+# Using hot on a shulker box in inventory will display its contents as if player opened the shulker itself
 # Permission: 
   # tweakin.shulkerboxclick: permission to allow opening of shulker box
   # tweakin.enderchestclick: permission to allow opening of enderchest
@@ -41,6 +41,8 @@ shulker-box-preview:
   enderchest: true  
   # if set to true, players will not able to alter items of shulker box they open via this feature
   preview-only: false
+ # hotkey used to see the preview
+  hotkey: SHIFT_RIGHT
 
 # Create nether portals with any shape,size and with any blocks, remember this only applies to nether portals
 # Permission: tweakin.customportal.use
@@ -580,6 +582,7 @@ crafting-table-on-stick:
   craftable: true
   # if set to true player will able to use open crafting interface by just using hotkey on crafting table item in inventory
   works-with-crafting-table: false
+  # hotkey used to open the gui
   hotkey: SHIFT_RIGHT
 
 # Allows to create randomized firework shows rather than painfully crafting unique firework effect
