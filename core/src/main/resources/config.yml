@@ -310,14 +310,12 @@ confetti-creepers:
 # Items can only be destroyed if the lava bucket is in player's inventory
 # Permissions:
   # tweakin.lavabuckettrashcan.dragdrop: permission for player to use drag and drop(destroy) feature of trash can
-  # tweakin.lavabuckettrashcan.gui: permission for player to use trash can gui (Disabled Temp.)
 lava-bucket-trash-can:
   enabled: false
   check-permissions: true
   # item lore that will be shown when player fills up a lava bucket (keep empty to disable it)
   help-lore:
     - "&eRight Click a item onto bucket to destroy it."
-    - "&eRight Click in air to open Trash Can gui"
   # List of materials that cant be destroyed with this method,
   # Pro tip: 
     # use NAME$ to take those names into account which end with "NAME" eg. "SHULKER_BOX$"
