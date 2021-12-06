@@ -573,15 +573,16 @@ lectern-page-reset:
 
 # REQUIRES Resource pack for crafting table on stick item sprite
 # As name suggests crafting table and stick combined in crafting table gives crafting-table-on-stick
-# Middle Clicking the item in inventory will open a 3x3 crafting interface
+# using the hotkey on item in inventory will open a 3x3 crafting interface
 # Permissions:
   # tweakin.craftingtableonstick.use: permission to use the item
 crafting-table-on-stick:
   enabled: false
   check-permissions: true
   craftable: true
-  # if set to true player will able to use open crafting interface by just middle clicking crafting table item in inventory
+  # if set to true player will able to use open crafting interface by just using hotkey on crafting table item in inventory
   works-with-crafting-table: false
+  hotkey: SHIFT_RIGHT
 
 # Allows to create randomized firework shows rather than painfully crafting unique firework effect
 # Note: these fireworks cant be used for elytra flight

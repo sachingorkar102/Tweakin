@@ -102,12 +102,14 @@ public class RotationWrenchItem extends TweakItem implements Listener{
         Block relativeBlock = block.getRelative(e.getBlockFace());
         if(relativeBlock.getType() != Material.AIR) return;
         if(cooldownPlayers.contains(player)) return;
+        ItemStack item = e.getItem().clone();
         if(block.getBlockData() instanceof Directional){
             Directional directional = (Directional) block.getBlockData();
             BlockFace currentFace = directional.getFacing();
             List<BlockFace> rotations = new ArrayList<>(directional.getFaces());
             boolean placed = getPlugin().getNmsHelper().placeItem(player,relativeBlock.getLocation(), new ItemStack(block.getType()), e.getBlockFace(),null,false);
             if(placed){
+
                 success = true;
                 e.setCancelled(true);
                 relativeBlock.setType(Material.AIR);
@@ -144,6 +146,9 @@ public class RotationWrenchItem extends TweakItem implements Listener{
             
         }
         if(success){
+            if(plugin.is1_18()){
+                player.getInventory().setItemInMainHand(item);
+            }
             cooldownPlayers.add(player);
             new BukkitRunnable(){
 

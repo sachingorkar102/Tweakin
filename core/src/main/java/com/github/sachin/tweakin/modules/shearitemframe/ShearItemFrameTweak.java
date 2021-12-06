@@ -36,13 +36,23 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
         if(player.isSneaking() || !hasPermission(player,"tweakin.shearitemframe.use")) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(flag != null && !flag.queryFlag(player, e.getRightClicked().getLocation())) return;
-        ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
+        ItemStack item = e.getPlayer().getInventory().getItemInMainHand().clone();
         if(item.getType() != Material.SHEARS) return;
         ItemFrame frame = (ItemFrame) e.getRightClicked();
         if(frame.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) return;
         if(!frame.getItem().getType().isAir()){
             boolean placed = plugin.getNmsHelper().placeItem(player, frame.getLocation(), new ItemStack(Material.DIRT), frame.getAttachedFace(),null,false);
             if(placed){
+                if(plugin.is1_18()){
+                    player.getInventory().setItemInMainHand(item);
+//                    new BukkitRunnable(){
+//                        @Override
+//                        public void run() {
+//
+//                        }
+//                    }.runTaskLater(plugin,1);
+                }
+
                 frame.getLocation().getBlock().setType(Material.AIR);
                 frame.setVisible(false);
                 player.getWorld().playSound(frame.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);

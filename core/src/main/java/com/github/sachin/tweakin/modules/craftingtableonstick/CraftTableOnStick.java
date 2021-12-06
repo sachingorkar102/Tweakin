@@ -34,8 +34,10 @@ public class CraftTableOnStick extends TweakItem implements Listener{
     @EventHandler
     public void onRightClick(InventoryClickEvent e){
         Player player = (Player) e.getWhoClicked();
-        if(e.getCurrentItem() == null || e.getClick() != ClickType.MIDDLE) return;
+        System.out.println(e.getClick());
+        if(e.getCurrentItem() == null || !e.getClick().toString().equals(getConfig().getString("hotkey"))) return;
         if((isSimilar(e.getCurrentItem()) || (getConfig().getBoolean("works-with-crafting-table") && e.getCurrentItem().getType()==Material.CRAFTING_TABLE)) && e.getClickedInventory() instanceof PlayerInventory && hasPermission(player,Permissions.CRATINGTABLE_ON_STICK_USE)){
+            e.setCancelled(true);
             new BukkitRunnable(){
                 @Override
                 public void run() {

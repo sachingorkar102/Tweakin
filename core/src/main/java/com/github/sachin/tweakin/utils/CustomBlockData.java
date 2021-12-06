@@ -22,7 +22,7 @@ public class CustomBlockData implements PersistentDataContainer{
         this.location = location;
         this.chunk = location.getBlock().getChunk();
         int x = location.getBlockX() & 0x000F;
-        int y = location.getBlockY() & 0x00FF;
+        int y = location.getBlockY();
         int z = location.getBlockZ() & 0x000F;
         this.key = Tweakin.getKey(String.format("x%dy%dz%d", x, y, z));
         this.pdc = getPersistentDataContainer();

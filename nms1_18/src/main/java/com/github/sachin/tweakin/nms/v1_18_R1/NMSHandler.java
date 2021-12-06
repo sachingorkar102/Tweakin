@@ -145,8 +145,10 @@ public class NMSHandler extends NMSHelper {
         ServerPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         UseOnContext context = new UseOnContext(nmsPlayer, InteractionHand.MAIN_HAND, new BlockHitResult(new Vec3(0.5F, 1F, 0.5F), Direction.UP, pos, false));
         InteractionResult res = nmsItem.useOn(context,InteractionHand.MAIN_HAND);
+
         if(res==InteractionResult.CONSUME){
             player.swingMainHand();
+
             if(playSound){
                 player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
             }
