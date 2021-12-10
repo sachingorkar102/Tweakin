@@ -1,10 +1,14 @@
 package com.github.sachin.tweakin.modules.infinitybucket;
 
+import java.util.Map;
+
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
+import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Directional;
 import org.bukkit.enchantments.Enchantment;
@@ -24,8 +28,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Map;
-
 // tweakin.infinitybucket.craft,tweakin.infinitybucket.use
 public class InfinityWaterBucketTweak extends TweakItem implements Listener{
 
@@ -41,6 +43,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
                 e.setCancelled(true);
                 Directional directional = (Directional) e.getBlock().getBlockData();
                 Block relative = e.getBlock().getRelative(directional.getFacing());
+                if(e.getBlock().getWorld().getEnvironment()==Environment.NETHER) return;
                 if(relative.getType() == Material.AIR){
                     relative.getWorld().playSound(relative.getLocation(), Sound.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1, 1);
                     relative.setType(Material.WATER, true);
@@ -81,7 +84,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
         if(isSimilar(e.getItem()) && e.getAction()==Action.RIGHT_CLICK_BLOCK && e.useItemInHand()!=Result.DENY){
             Player player = e.getPlayer();
             e.setCancelled(true);
-            if(!hasPermission(player,"tweakin.infinitybucket.use")) return;
+            if(!hasPermission(player,"tweakin.infinitybucket.use") || player.getWorld().getEnvironment()==Environment.NETHER) return;
             Block block = e.getClickedBlock().getRelative(e.getBlockFace());
             block.setType(Material.WATER,true);
         }
