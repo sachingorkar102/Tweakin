@@ -110,8 +110,6 @@ fast-leaf-decay:
   black-list-worlds: []
   # maximum duration leaves will stay (in seconds)
   duration: 10
-  # weather or not to run checks for nearby leaf blocks in async fashion
-  use-async: true
 
 # Ladders are slightly tweaked to improve your laddering experience:
   # Right clicking a ladder with another one will place it, allowing you to drop ladders down without risking falling to your death.
