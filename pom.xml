@@ -6,7 +6,7 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>3.8.3</version>
+    <version>3.8.6</version>
     <modules>
         <module>nms1_17</module>
         <module>nms1_18</module>
