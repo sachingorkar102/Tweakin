@@ -52,13 +52,11 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener {
         for (Location location : leavesLocations) {
             Bukkit.getScheduler().scheduleSyncDelayedTask(getPlugin(), () -> {
                 Block block = location.getBlock();
-                if (block.getType().name().endsWith("LEAVES")) {
                     LeavesDecayEvent event = new LeavesDecayEventForChecking(block);
                     Bukkit.getPluginManager().callEvent(event);
                     if (!event.isCancelled()) {
                         block.breakNaturally();
                     }
-                }
             }, ThreadLocalRandom.current().nextInt(duration));
         }
     }
