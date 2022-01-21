@@ -11,7 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.LeavesDecayEvent;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +84,7 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener {
     }
 
     private static class LeavesDecayEventForChecking extends LeavesDecayEvent {
-        public LeavesDecayEventForChecking(@NotNull Block block) {
+        public LeavesDecayEventForChecking(Block block) {
             super(block);
         }
     }
