@@ -23,7 +23,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <finalName>Tweakin-3.8.5</finalName>
+                    <finalName>Tweakin-4.0.0</finalName>
                 </configuration>
             </plugin>
             <plugin>
@@ -75,6 +75,12 @@
         <dependency>
             <groupId>com.github.sachin</groupId>
             <artifactId>nms1_17</artifactId>
+            <version>3.8.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sachin</groupId>
+            <artifactId>nms1_19</artifactId>
             <version>3.8.3</version>
             <scope>compile</scope>
         </dependency>

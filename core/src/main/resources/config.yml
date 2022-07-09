@@ -520,7 +520,7 @@ armored-elytra:
 # Permission: 
   # tweakin.villagerdeathmessage.notify: players with this permission will only recive the death messages
 villager-death-message:
-  enabled: true
+  enabled: false
   check-permissions: true
   black-list-worlds: []      
 
