@@ -127,7 +127,7 @@ public class RotationWrenchItem extends TweakItem implements Listener{
             Orientable orientable = (Orientable) block.getBlockData();
             List<Axis> axises = new ArrayList<>(orientable.getAxes());
             Axis currentFace = orientable.getAxis();
-            boolean placed = getPlugin().getNmsHelper().placeItem(player, relativeBlock.getLocation(), new ItemStack(Material.DIRT), e.getBlockFace(),null,false);
+            boolean placed = getPlugin().getNmsHelper().placeItem(player, relativeBlock.getLocation(), new ItemStack(Material.BARRIER), e.getBlockFace(),null,false);
             if(placed){
                 success = true;
                 relativeBlock.setType(Material.AIR);

@@ -16,6 +16,8 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
@@ -148,7 +150,11 @@ public class NMSHandler extends NMSHelper {
 
         if(res==InteractionResult.CONSUME){
             player.swingMainHand();
-
+            BlockPos placedPos = context.getClickedPos().relative(context.getClickedFace());
+            Block placedBlock = player.getWorld().getBlockAt(placedPos.getX(),placedPos.getY(),placedPos.getZ());
+            if (placedBlock.getType()==Material.BARRIER){
+                placedBlock.setType(Material.AIR);
+            }
             if(playSound){
                 player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
             }

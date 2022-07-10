@@ -1,35 +1,11 @@
 package com.github.sachin.tweakin.nms.v1_18_R1;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.UUID;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.modules.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 import com.github.sachin.tweakin.utils.PaperUtils;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-
-import org.bukkit.Location;
-import org.bukkit.block.BlockFace;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
-import org.bukkit.entity.Axolotl;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Goat;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.persistence.PersistentDataType;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -45,6 +21,26 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.persistence.PersistentDataType;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class NMSHandler extends NMSHelper {
 
@@ -121,7 +117,7 @@ public class NMSHandler extends NMSHelper {
     }
 
     @Override
-    public org.bukkit.inventory.ItemStack getItem() {
+    public ItemStack getItem() {
         nmsItem.save(compound);
         return CraftItemStack.asBukkitCopy(nmsItem);
     }
@@ -148,7 +144,11 @@ public class NMSHandler extends NMSHelper {
 
         if(res==InteractionResult.CONSUME){
             player.swingMainHand();
-
+            BlockPos placedPos = context.getClickedPos().relative(context.getClickedFace());
+            Block placedBlock = player.getWorld().getBlockAt(placedPos.getX(),placedPos.getY(),placedPos.getZ());
+            if (placedBlock.getType()== Material.BARRIER){
+                placedBlock.setType(Material.AIR);
+            }
             if(playSound){
                 player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
             }

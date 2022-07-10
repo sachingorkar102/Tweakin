@@ -74,6 +74,12 @@
         </dependency>
         <dependency>
             <groupId>com.github.sachin</groupId>
+            <artifactId>nms1_18_R2</artifactId>
+            <version>3.8.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sachin</groupId>
             <artifactId>nms1_17</artifactId>
             <version>3.8.3</version>
             <scope>compile</scope>
