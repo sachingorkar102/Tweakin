@@ -163,10 +163,10 @@ public final class Tweakin extends JavaPlugin {
     }
 
     public boolean isPost1_17(){
-        return Arrays.asList("v1_17_R1","v1_18_R1").contains(version);
+        return Arrays.asList("v1_17_R1","v1_18_R1","v1_18_R2","v1_19_R1").contains(version);
     }
 
-    public boolean is1_18() {return version.equals("v1_18_R1");}
+    public boolean is1_18() {return Arrays.asList("v1_18_R1","v1_18_R2","v1_19_R1").contains(version);}
 
     public List<Player> getPlacedPlayers() {
         return placedPlayers;
