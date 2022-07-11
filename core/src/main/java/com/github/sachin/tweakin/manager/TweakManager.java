@@ -10,6 +10,7 @@ import com.github.sachin.tweakin.modules.betterarmorstands.BetterArmorStandTweak
 import com.github.sachin.tweakin.modules.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.modules.bettergrindstone.BetterGrindStoneTweak;
 import com.github.sachin.tweakin.modules.betterladder.BetterLadderTweak;
+import com.github.sachin.tweakin.modules.betterrecoverycompass.BetterRecoveryCompassTweak;
 import com.github.sachin.tweakin.modules.bettersignedit.BetterSignEditTweak;
 import com.github.sachin.tweakin.modules.bossspawnsounds.BroadCastSoundTweak;
 import com.github.sachin.tweakin.modules.bottledcloud.BottledCloudItem;
@@ -225,6 +226,9 @@ public class TweakManager {
                 plugin.getLogger().info("Not running PaperMC as server software, ignoring cauldron concrete tweak...");
             }
             tweakList.add(new AutoRecipeUnlockTweak(plugin));
+            if(plugin.isPost1_19()){
+                tweakList.add(new BetterRecoveryCompassTweak(plugin));
+            }
         }
         return tweakList;
     }

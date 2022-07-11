@@ -613,4 +613,18 @@ more-recipes:
 # Dropping concrete powder in water filled cauldron will instantly turn it into concrete block
 cauldron-concrete:
   enabled: false
-  black-list-worlds: []  
+  black-list-worlds: []
+
+# only available for versions after 1.19
+# allows you to craft your death location map from recovery compass by placing
+  # recovery compass at top slot of cartography table and
+  # a empty map at bottom slot of cartography table
+#  Permissions:
+  # tweakin.betterrecoverycompass.use: permission to combine compass and map in cartography table
+better-recovery-compass:
+  enabled: false
+  check-permissions: true
+  # Ranging from 0 to 4, specifies the scaling of map, 0 being small size and 4 being large size map
+  zoom: 2
+  # weather or not show the biome outlines such found in treasure maps
+  show-biome-preview: true

@@ -101,6 +101,7 @@ infinite-firework:
   display: "&eInfinite Firework"
   options:
     enchanted: true
+
       
 
 plate-enabled:

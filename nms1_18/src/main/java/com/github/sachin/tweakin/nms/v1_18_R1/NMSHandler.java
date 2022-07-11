@@ -221,6 +221,11 @@ public class NMSHandler extends NMSHelper {
         }
     }
 
+    @Override
+    public ItemStack createMap(Location dist,byte zoom,boolean biomePreview) {
+        return null;
+    }
+
     public GameProfile makeProfile(String b64) {
         UUID id = new UUID(b64.substring(b64.length() - 20).hashCode(),b64.substring(b64.length() - 10).hashCode());
         GameProfile profile = new GameProfile(id, "someName");

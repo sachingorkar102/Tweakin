@@ -15,11 +15,18 @@ import com.github.sachin.tweakin.utils.PaperUtils;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.EmptyMapItem;
+import net.minecraft.world.item.MapItem;
+import net.minecraft.world.level.saveddata.maps.MapDecoration;
+import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
+import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
@@ -187,6 +194,18 @@ public class NMSHandler extends NMSHelper {
                 }
             }
         }
+    }
+
+    @Override
+    public ItemStack createMap(Location dist,byte zoom,boolean biomePreview){
+        BlockPos loc = new BlockPos(dist.getBlockX(),dist.getBlockY(),dist.getBlockZ());
+        ServerLevel level = ((CraftWorld) dist.getWorld()).getHandle();
+        net.minecraft.world.item.ItemStack mapItem = MapItem.create(level,dist.getBlockX(),dist.getBlockZ(),zoom,true,true);
+        MapItemSavedData.addTargetDecoration(mapItem,loc,"+", MapDecoration.Type.RED_X);
+        if(biomePreview){
+            MapItem.renderBiomePreviewMap(level,mapItem);
+        }
+        return CraftItemStack.asBukkitCopy(mapItem);
     }
 
     @Override

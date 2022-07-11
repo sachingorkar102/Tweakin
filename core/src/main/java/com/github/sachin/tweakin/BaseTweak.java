@@ -80,8 +80,10 @@ public abstract class BaseTweak {
     public boolean hasPermission(Player player,String permission){
         if(config.getBoolean("check-permissions",true)){
             return player.hasPermission(permission);
+
         }
         else{
+
             return true;
         }
     }

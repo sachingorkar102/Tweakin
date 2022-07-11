@@ -56,4 +56,6 @@ public abstract class NMSHelper {
 
     public abstract void applyHeadTexture(SkullMeta meta,String b64);
 
+    public abstract ItemStack createMap(Location dist,byte zoom,boolean biomePreview);
+
 }
