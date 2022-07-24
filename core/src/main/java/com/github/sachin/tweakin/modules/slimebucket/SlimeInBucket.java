@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.slimebucket;
 
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -82,7 +83,7 @@ public class SlimeInBucket extends TweakItem implements Listener{
         if(slime.getSize() != 1) return;
         if(getBlackListWorlds().contains(slime.getWorld().getName()))return;
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.slimebucket.pickup")) return;
+        if(!hasPermission(player, Permissions.SLIMEBUCKET_PICKUP)) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
         ItemStack item = player.getInventory().getItemInMainHand();
         if(item == null) return;
@@ -120,7 +121,7 @@ public class SlimeInBucket extends TweakItem implements Listener{
         public void run() {
             if(enabled.isEmpty()) return;
             enabled.forEach(player -> {
-                if(getBlackListWorlds().contains(player.getWorld().getName()) || !hasPermission(player,"tweakin.slimebucket.detect")) return;
+                if(getBlackListWorlds().contains(player.getWorld().getName()) || !hasPermission(player, Permissions.SLIMEBUCKET_DETECT)) return;
                 int model = 0;
                 Location loc = player.getLocation();
                 if(loc.getChunk().isSlimeChunk() && getConfig().getInt("max-y-level") > loc.getBlockY()){

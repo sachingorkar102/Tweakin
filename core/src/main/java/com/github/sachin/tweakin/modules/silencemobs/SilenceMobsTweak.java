@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.silencemobs;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -59,12 +60,12 @@ public class SilenceMobsTweak extends BaseTweak implements Listener{
         ItemMeta meta = clickedItem.getItemMeta();
         if(meta == null) return;
         boolean fired = false;
-        if(silenceNames.contains(meta.getDisplayName()) && !entity.isSilent() && hasPermission(player,"tweakin.silencemobs.silence")){
+        if(silenceNames.contains(meta.getDisplayName()) && !entity.isSilent() && hasPermission(player, Permissions.SILENCEMOBS_SILENCE)){
             entity.setSilent(true);
             player.sendMessage(getTweakManager().getMessageManager().getMessage("mob-silenced").replace("%name%", entity.getType().toString()));
             fired = true;
         }
-        else if(unsilenceNames.contains(meta.getDisplayName()) && entity.isSilent() && hasPermission(player,"tweakin.silencemobs.unsilence")){
+        else if(unsilenceNames.contains(meta.getDisplayName()) && entity.isSilent() && hasPermission(player, Permissions.SILENCEMOBS_UNSILENCE)){
             entity.setSilent(false);
             player.sendMessage(getTweakManager().getMessageManager().getMessage("mob-unsilenced").replace("%name%", entity.getType().toString()));
             fired = true;

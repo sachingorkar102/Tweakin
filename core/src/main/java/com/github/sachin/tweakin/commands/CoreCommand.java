@@ -42,7 +42,7 @@ public class CoreCommand extends BaseCommand{
     @CommandCompletion("@tweakinposes")
     public void onRemovePose(CommandSender sender,String[] args){
         if(args.length != 1) return;
-        if(!hasPermission(sender,"tweakin.command.removepose")){
+        if(!hasPermission(sender,"command.removepose")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
@@ -62,7 +62,7 @@ public class CoreCommand extends BaseCommand{
     @Subcommand("addpose")
     public void onAddPose(Player player,String[] args){
         if(args.length != 2) return;
-        if(!hasPermission(player,"tweakin.command.addpose")){
+        if(!hasPermission(player,"command.addpose")){
             player.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
@@ -94,7 +94,7 @@ public class CoreCommand extends BaseCommand{
 
     @Subcommand("reload")
     public void onReloadCommand(CommandSender sender){
-        if(!hasPermission(sender,"tweakin.command.reload")){
+        if(!hasPermission(sender,"command.reload")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
@@ -106,7 +106,7 @@ public class CoreCommand extends BaseCommand{
     @Subcommand("toggle")
     @CommandCompletion("@tweaklist")
     public void onConfigureCommand(CommandSender sender,String[] args){
-        if(!hasPermission(sender,"tweakin.command.toggle")){
+        if(!hasPermission(sender,"command.toggle")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
@@ -137,7 +137,7 @@ public class CoreCommand extends BaseCommand{
     @Subcommand("give")
     @CommandCompletion("@players @tweakitems @nothing")
     public void onGiveCommand(CommandSender sender,String[] args){
-        if(!hasPermission(sender,"tweakin.command.give")){
+        if(!hasPermission(sender,"command.give")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
@@ -165,7 +165,7 @@ public class CoreCommand extends BaseCommand{
 
     @Subcommand("tweak-list")
     public void onList(CommandSender sender){
-        if(!hasPermission(sender,"tweakin.command.list")){
+        if(!hasPermission(sender,"command.list")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
@@ -196,7 +196,7 @@ public class CoreCommand extends BaseCommand{
     @Subcommand("givehead")
     @CommandCompletion("@players @tweakinheads @nothing")
     public void onGiveHeadCommand(CommandSender sender,String[] args){
-        if(!hasPermission(sender,"tweakin.command.givehead")){
+        if(!hasPermission(sender,"command.givehead")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }

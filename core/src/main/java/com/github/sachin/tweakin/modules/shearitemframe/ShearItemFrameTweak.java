@@ -2,10 +2,12 @@ package com.github.sachin.tweakin.modules.shearitemframe;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,7 +35,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
     public void onShear(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof ItemFrame)) return;
         Player player = e.getPlayer();
-        if(player.isSneaking() || !hasPermission(player,"tweakin.shearitemframe.use")) return;
+        if(player.isSneaking() || !hasPermission(player, Permissions.SHEARITEMFRAME)) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(flag != null && !flag.queryFlag(player, e.getRightClicked().getLocation())) return;
         ItemStack item = e.getPlayer().getInventory().getItemInMainHand().clone();
@@ -41,7 +43,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
         ItemFrame frame = (ItemFrame) e.getRightClicked();
         if(frame.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) return;
         if(!frame.getItem().getType().isAir()){
-            boolean placed = plugin.getNmsHelper().placeItem(player, frame.getLocation(), new ItemStack(Material.DIRT), frame.getAttachedFace(),null,false);
+            boolean placed = plugin.getNmsHelper().placeItem(player, frame.getLocation(), new ItemStack(Material.BARRIER), frame.getAttachedFace(),null,false);
             if(placed){
                 if(plugin.is1_18()){
                     player.getInventory().setItemInMainHand(item);
@@ -53,7 +55,10 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
 //                    }.runTaskLater(plugin,1);
                 }
 
-                frame.getLocation().getBlock().setType(Material.AIR);
+                Block frameBlock = frame.getLocation().getBlock();
+                if(frameBlock.getType()==Material.BARRIER){
+                    frameBlock.setType(Material.AIR);
+                }
                 frame.setVisible(false);
                 player.getWorld().playSound(frame.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
                 frame.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);

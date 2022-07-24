@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.compassworkeverywhere;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
@@ -27,7 +28,7 @@ public class CompassEveryWhereTweak extends BaseTweak implements Listener{
     @EventHandler(priority = EventPriority.MONITOR)
     public void onSetBedSpawn(PlayerInteractEvent e){
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.compasstrack")) return;
+        if(!hasPermission(player, Permissions.COMPASSTRACK)) return;
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getHand() != EquipmentSlot.HAND) return;
         if(!e.getClickedBlock().getType().toString().endsWith("BED")) return;
         if(e.getItem() == null) return;

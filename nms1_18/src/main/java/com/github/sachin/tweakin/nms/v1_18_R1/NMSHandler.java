@@ -1,6 +1,39 @@
 package com.github.sachin.tweakin.nms.v1_18_R1;
 
-import java.awt.*;
+import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.modules.betterflee.AnimalFleeTweak;
+import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
+import com.github.sachin.tweakin.utils.PaperUtils;
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.persistence.PersistentDataType;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -8,43 +41,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.modules.betterflee.AnimalFleeTweak;
-import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
-
-import com.github.sachin.tweakin.utils.PaperUtils;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
-import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
-import org.bukkit.Location;
-import org.bukkit.block.BlockFace;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
-import org.bukkit.entity.*;
-import org.bukkit.inventory.ItemStack;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.persistence.PersistentDataType;
 
 public class NMSHandler extends NMSHelper {
 
@@ -121,7 +117,7 @@ public class NMSHandler extends NMSHelper {
     }
 
     @Override
-    public org.bukkit.inventory.ItemStack getItem() {
+    public ItemStack getItem() {
         nmsItem.save(compound);
         return CraftItemStack.asBukkitCopy(nmsItem);
     }
@@ -148,7 +144,11 @@ public class NMSHandler extends NMSHelper {
 
         if(res==InteractionResult.CONSUME){
             player.swingMainHand();
-
+            BlockPos placedPos = context.getClickedPos().relative(context.getClickedFace());
+            Block placedBlock = player.getWorld().getBlockAt(placedPos.getX(),placedPos.getY(),placedPos.getZ());
+            if (placedBlock.getType()== Material.BARRIER){
+                placedBlock.setType(Material.AIR);
+            }
             if(playSound){
                 player.getWorld().playSound(location, location.getBlock().getBlockData().getSoundGroup().getPlaceSound(), 1F, 1F);
             }
@@ -219,6 +219,11 @@ public class NMSHandler extends NMSHelper {
                 ex2.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public ItemStack createMap(Location dist,byte zoom,boolean biomePreview) {
+        return null;
     }
 
     public GameProfile makeProfile(String b64) {

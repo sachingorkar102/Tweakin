@@ -12,6 +12,8 @@
         <module>nms1_18</module>
         <module>core</module>
         <module>compiler</module>
+        <module>nms1_19</module>
+        <module>nms1_18_R2</module>
     </modules>
     <packaging>pom</packaging>
 

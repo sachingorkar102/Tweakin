@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.rightclickarmor;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -29,7 +30,7 @@ public class RightClickArmor extends BaseTweak implements Listener {
     public void armorClickInAir(PlayerInteractEvent e){
         if(e.getAction() != Action.RIGHT_CLICK_AIR || e.getItem() == null || e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.armorclick")) return;
+        if(!hasPermission(player, Permissions.ARMORCLICK)) return;
         ItemStack item = e.getItem();
         String itemName = item.getType().toString();
         PlayerInventory inv = player.getInventory();
@@ -65,7 +66,7 @@ public class RightClickArmor extends BaseTweak implements Listener {
         if(e.getClick() != ClickType.RIGHT) return;
         if(e.getClickedInventory() != null && e.getClickedInventory().getType()==InventoryType.PLAYER){
             Player player = (Player) e.getWhoClicked();
-            if(!hasPermission(player,"tweakin.armorclick")) return;
+            if(!hasPermission(player, Permissions.ARMORCLICK)) return;
             if(e.getCurrentItem() == null) return;
             ItemStack item = e.getCurrentItem().clone();
             String itemName = item.getType().name();

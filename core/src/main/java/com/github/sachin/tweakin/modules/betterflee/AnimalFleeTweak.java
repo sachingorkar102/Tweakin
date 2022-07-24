@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.betterflee;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -32,7 +33,7 @@ public class AnimalFleeTweak extends BaseTweak implements Listener{
             if(e.getDamager() instanceof Player){
                 Player player = (Player) e.getDamager();
                 
-                if(hasPermission(player,"tweakin.fleemobs.bypass")) return;
+                if(hasPermission(player, Permissions.FLEEMOBS)) return;
                 Entity attacked = e.getEntity();
                 if(getConfig().getStringList("fleeable-mobs").contains(attacked.getType().toString())){
                     if(attacked.getPersistentDataContainer().has(key, PersistentDataType.INTEGER) && getConfig().getBoolean("ignore-breeded")){

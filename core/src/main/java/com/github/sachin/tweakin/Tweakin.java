@@ -13,11 +13,14 @@ import com.github.sachin.tweakin.modules.morerecipes.MoreRecipesTweak;
 import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 import com.github.sachin.tweakin.utils.MiscItems;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.permissions.DefaultPermissions;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -41,6 +44,8 @@ public final class Tweakin extends JavaPlugin {
     public boolean isFirstInstall;
     private MiscItems miscItems;
     public final Map<String,Integer> placedBlocksMap = new HashMap<>();
+
+    private List<Permission> permissions;
     private List<Player> placedPlayers = new ArrayList<>();
 
 
@@ -88,6 +93,27 @@ public final class Tweakin extends JavaPlugin {
         this.replacements = commandManager.getCommandReplacements();
         this.tweakManager = new TweakManager(this);
         tweakManager.load();
+        Permissions.reload();
+        Tweakin.getPlugin().getLogger().info("Registering permissions");
+        this.permissions = Arrays.asList(Permissions.BETTERRECOVERYCOMPASS_USE, Permissions.ARMOREDELYTRA_CRAFT, Permissions.AUTORECIPEUNLOCK, Permissions.BETTERARMORSTAND_PARENT
+                , Permissions.BETTERARMORSTAND_COMMAND, Permissions.BETTERARMORSTAND_UUIDBYPASS, Permissions.BETTERARMORSTAND_ARMORSWAP, Permissions.ARMORSTANDWAND
+                , Permissions.FLEEMOBS, Permissions.BETTER_GRINDSTONE, Permissions.BETTERLADDER_PARENT, Permissions.BETTERLADDER_QUICKCLIMB, Permissions.BETTERLADDER_DROPDOWN
+                , Permissions.BETTERSIGNEDIT, Permissions.BOTTLED_CLOUD_PARENT, Permissions.BOTTLEDCLOUD_USE, Permissions.BOTTLEDCLOUD_PICKUP, Permissions.BURNVINETIP_USE
+                , Permissions.COMPASSTRACK, Permissions.HUD_PARENT, Permissions.HUD_COMPASSBYPASS, Permissions.HUD_COMMAND, Permissions.CRAFTINGTABLE_USE, Permissions.CUSTOMPORTAL_USE
+                , Permissions.INFIFIREWORK_USE, Permissions.INFBUCKET_PARENT, Permissions.INFIBUCKET_CRAFT, Permissions.INFIBUCKET_USE, Permissions.LAVATRASHCAN, Permissions.MOBHEADS
+                , Permissions.NETHERCOORDS, Permissions.PAT_DOG, Permissions.PAT_CAT, Permissions.POISONPOTATO, Permissions.REACHAROUND_PARENT, Permissions.REACHAROUND_HIGHLIGHT
+                , Permissions.REACHAROUND_VERT, Permissions.REACHAROUND_HORI, Permissions.REACHAROUND_TOGGLE,
+                Permissions.ARMORCLICK,Permissions.SHULKERBOX_CLICK,Permissions.ENDERCHEST_CLICK,Permissions.ROTATION_WRENCH,Permissions.SHEARITEMFRAME,Permissions.SHEARNAMETAG,
+                Permissions.SILENCEMOBS_PARENT,Permissions.SILENCEMOBS_SILENCE,Permissions.SILENCEMOBS_UNSILENCE,Permissions.SLIMEBUCKET_PARENT,
+                Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG);
+
+
+        for(Permission perm : this.permissions){
+            if(perm != null){
+                Bukkit.getServer().getPluginManager().addPermission(perm);
+            }
+        }
+        Tweakin.getPlugin().getLogger().info("Registered "+permissions.size()+" permissions");
         ConfigurationSerialization.registerClass(LapisData.class,"LapisData");
         
         commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
@@ -163,10 +189,12 @@ public final class Tweakin extends JavaPlugin {
     }
 
     public boolean isPost1_17(){
-        return Arrays.asList("v1_17_R1","v1_18_R1").contains(version);
+        return Arrays.asList("v1_17_R1","v1_18_R1","v1_18_R2","v1_19_R1").contains(version);
     }
 
-    public boolean is1_18() {return version.equals("v1_18_R1");}
+    public boolean is1_18() {return Arrays.asList("v1_18_R1","v1_18_R2","v1_19_R1").contains(version);}
+
+    public boolean isPost1_19() {return Arrays.asList("v1_19_R1").contains(version);}
 
     public List<Player> getPlacedPlayers() {
         return placedPlayers;

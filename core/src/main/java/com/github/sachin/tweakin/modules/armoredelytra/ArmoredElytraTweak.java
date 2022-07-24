@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.InventoryUtils;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -105,7 +106,7 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
     public void onElytraCombine(PrepareAnvilEvent e){
         if(e.getView().getBottomInventory().getHolder() instanceof Player){
             Player player = (Player) e.getView().getBottomInventory().getHolder();
-            if(!hasPermission(player, "tweakin.armoredelytra.craft")) return;
+            if(!hasPermission(player, Permissions.ARMOREDELYTRA_CRAFT)) return;
             new BukkitRunnable(){
                 @Override
                 public void run() {

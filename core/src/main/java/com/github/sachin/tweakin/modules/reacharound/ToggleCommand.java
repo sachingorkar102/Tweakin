@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.reacharound;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitTask;
@@ -17,7 +18,7 @@ public class ToggleCommand extends BaseCommand{
     
     @CommandAlias("%reacharoundalias")
     public void onCommand(Player player){
-        if(!instance.hasPermission(player,"tweakin.reacharound.togglecommand")){
+        if(!instance.hasPermission(player, Permissions.REACHAROUND_TOGGLE)){
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("no-permission"));
             return;
         }

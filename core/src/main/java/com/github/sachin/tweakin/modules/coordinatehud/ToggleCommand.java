@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.coordinatehud;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -18,7 +19,7 @@ public class ToggleCommand extends BaseCommand{
 
     @CommandAlias("%togglehudalias")
     public void onCommand(Player player){
-        if(!instance.hasPermission(player,"tweakin.coordinatehud")){
+        if(!instance.hasPermission(player, Permissions.HUD_COMMAND)){
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("no-permission"));
             return;
         }

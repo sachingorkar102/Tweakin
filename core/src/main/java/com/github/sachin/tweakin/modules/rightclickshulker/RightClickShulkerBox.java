@@ -2,13 +2,13 @@ package com.github.sachin.tweakin.modules.rightclickshulker;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Material;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
@@ -45,7 +45,7 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
             }
         }
         if(e.getCurrentItem() != null && e.getClickedInventory() instanceof PlayerInventory && e.getClick().toString().equals(getConfig().getString("hotkey"))){
-            if(e.getCurrentItem().getType().toString().endsWith("_BOX") && hasPermission(player,"tweakin.shulkerboxclick")){
+            if(e.getCurrentItem().getType().toString().endsWith("_BOX") && hasPermission(player, Permissions.SHULKERBOX_CLICK)){
                 e.setCancelled(true);
                 ItemStack item = e.getCurrentItem().clone();
                 BlockStateMeta im = (BlockStateMeta) item.getItemMeta();
@@ -60,7 +60,7 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
                 ShulkerGui gui = new ShulkerGui(player, shulker,e.getSlot(),item,displayName);
                 gui.open();
             }
-            else if(e.getCurrentItem().getType()==Material.ENDER_CHEST && hasPermission(player,"tweakin.enderchestclick")){
+            else if(e.getCurrentItem().getType()==Material.ENDER_CHEST && hasPermission(player, Permissions.ENDERCHEST_CLICK)){
                 e.setCancelled(true);
                 new BukkitRunnable(){
                     @Override

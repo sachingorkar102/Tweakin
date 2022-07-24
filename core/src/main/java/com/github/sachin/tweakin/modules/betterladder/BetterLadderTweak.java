@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.betterladder;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -35,7 +36,7 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
         Player player = e.getPlayer();
         Block clickedLadder = e.getClickedBlock(); 
         if(e.getItem() == null){
-            if(!hasPermission(player,"tweakin.betterladder.quickclimb") || !getConfig().getBoolean("quickclimb",true)) return;
+            if(!hasPermission(player, Permissions.BETTERLADDER_QUICKCLIMB) || !getConfig().getBoolean("quickclimb",true)) return;
             if(!player.isSneaking()) return;
             Vector face = player.getEyeLocation().getDirection().clone();
             if(clickedLadder.getRelative(BlockFace.DOWN).getType() != Material.LADDER){
@@ -56,7 +57,7 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
             }
         }
         else if(e.getItem().getType() == Material.LADDER){
-            if(!hasPermission(player,"tweakin.betterladder.dropdown") || !getConfig().getBoolean("dropdown",true)) return;
+            if(!hasPermission(player, Permissions.BETTERLADDER_DROPDOWN) || !getConfig().getBoolean("dropdown",true)) return;
             Block downLadder = getLadderBlock(clickedLadder);
             
             if(downLadder == null) return;

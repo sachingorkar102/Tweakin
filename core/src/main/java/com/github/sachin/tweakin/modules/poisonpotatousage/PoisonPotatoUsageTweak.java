@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.poisonpotatousage;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.*;
 import org.bukkit.entity.Breedable;
 import org.bukkit.entity.EntityType;
@@ -42,7 +43,7 @@ public class PoisonPotatoUsageTweak extends BaseTweak implements Listener{
     public void onPotatoFeed(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof Breedable) || e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.posionpotato.use")) return;
+        if(!hasPermission(player, Permissions.POISONPOTATO)) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(blackListAnimals.contains(e.getRightClicked().getType())) return;
         if(player.getInventory().getItemInMainHand() == null) return;

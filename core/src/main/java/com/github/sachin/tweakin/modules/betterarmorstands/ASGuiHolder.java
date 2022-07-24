@@ -1,6 +1,7 @@
 package com.github.sachin.tweakin.modules.betterarmorstands;
 
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
 import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.Bukkit;
@@ -29,7 +30,7 @@ public class ASGuiHolder implements InventoryHolder{
     }
 
     public static void openGui(Player player,ArmorStand as,BetterArmorStandTweak instance){
-        if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !instance.hasPermission(player,"tweakin.betterarmorstands.uuidlockbypass")){
+        if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !instance.hasPermission(player, Permissions.BETTERARMORSTAND_UUIDBYPASS)){
             player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
             return;
             

@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.shearnametag;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -38,7 +39,7 @@ public class ShearNameTagTweak extends BaseTweak implements Listener{
         if(item.getType() == Material.NAME_TAG && !(entity instanceof ArmorStand) && !entity.getPersistentDataContainer().has(TConstants.NAMETAGED_MOB,PersistentDataType.INTEGER)){
             entity.getPersistentDataContainer().set(TConstants.NAMETAGED_MOB, PersistentDataType.INTEGER, 1);
         }
-        else if(item.getType() == Material.SHEARS && player.isSneaking() && hasPermission(player,"tweakin.shearnametag.use") && entity.getPersistentDataContainer().has(TConstants.NAMETAGED_MOB, PersistentDataType.INTEGER)){
+        else if(item.getType() == Material.SHEARS && player.isSneaking() && hasPermission(player, Permissions.SHEARNAMETAG) && entity.getPersistentDataContainer().has(TConstants.NAMETAGED_MOB, PersistentDataType.INTEGER)){
             e.setCancelled(true);
             entity.getPersistentDataContainer().remove(TConstants.NAMETAGED_MOB);
             ItemStack nameTag = new ItemStack(Material.NAME_TAG);
