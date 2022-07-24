@@ -10,7 +10,7 @@
 # Read the text above each module for more info that module like commands and permissions(if any)
 # if you found any issue/bug, join me up on discord: https://discord.gg/tTHs4jKu6f
 
-# dont touch this one
+# do not touch this one
 first-install: true
 
 # its bstats
@@ -21,6 +21,15 @@ op-notifications: true
 
 # if set to false no permission checks will be made for core commands like /tw reload,/tw toggle,/tw tweak-list etc., and only op will able to use them
 check-permissions-for-core-commands: true
+
+# Sets the default value of the permission.
+# this will apply to all tweaks which have permissions
+# Valid values are;
+  # TRUE: default will always grant the player the permission.
+  # FALSE: default will not grant the player the permission.
+  # OP: default will be true if the player is op.
+  # NOT_OP: is the opposite behavior of op.
+default-permissions: TRUE
 
 
 # Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
@@ -624,7 +633,12 @@ cauldron-concrete:
 better-recovery-compass:
   enabled: false
   check-permissions: true
-  # Ranging from 0 to 4, specifies the scaling of map, 0 being small size and 4 being large size map
+  # Ranging from 0 to 4 where,
+    # 0: CLOSEST
+    # 1: CLOSE
+    # 2: NORMAL
+    # 3: FAR
+    # 4: FARTHEST
   zoom: 2
   # weather or not show the biome outlines such found in treasure maps
   show-biome-preview: true

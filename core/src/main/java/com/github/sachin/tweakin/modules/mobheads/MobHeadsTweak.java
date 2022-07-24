@@ -5,6 +5,7 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 import com.github.sachin.tweakin.utils.CustomBlockData;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.google.common.base.Enums;
 import com.google.common.base.Optional;
 import org.bukkit.Material;
@@ -128,7 +129,7 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
                     boolean requirePlayerKill = getConfig().getBoolean("require-player-kill");
                     if(requirePlayerKill && killed.getKiller() != null){
                         Player killer = killed.getKiller();
-                        if(!hasPermission(killer,"tweakin.mobheads.drops")) return;
+                        if(!hasPermission(killer, Permissions.MOBHEADS)) return;
                         ItemStack item1 = killer.getInventory().getItemInMainHand();
                         ItemStack item2 = killer.getInventory().getItemInOffHand();
                         if(item1 != null){

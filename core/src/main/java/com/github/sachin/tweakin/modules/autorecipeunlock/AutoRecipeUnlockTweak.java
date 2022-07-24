@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.autorecipeunlock;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -51,7 +52,7 @@ public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
     }
 
     public void discoverRecipes(Player player){
-        if(hasPermission(player, "tweakin.autorecipeunlock")){
+        if(hasPermission(player, Permissions.AUTORECIPEUNLOCK)){
             for (NamespacedKey namespacedKey : recipes) {
                 if(!player.hasDiscoveredRecipe(namespacedKey)){
                     player.discoverRecipe(namespacedKey);

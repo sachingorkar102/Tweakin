@@ -2,7 +2,7 @@ package com.github.sachin.tweakin.modules.betterrecoverycompass;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
-import org.bukkit.Bukkit;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -12,13 +12,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.CartographyInventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.CompassMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 // Permission: tweakin.betterrecoverycompass.use
 public class BetterRecoveryCompassTweak extends BaseTweak implements Listener {
 
-    private byte zoom;
+    private byte scale;
     private boolean biomepreview;
 
     public BetterRecoveryCompassTweak(Tweakin plugin) {
@@ -28,11 +27,11 @@ public class BetterRecoveryCompassTweak extends BaseTweak implements Listener {
     @Override
     public void reload() {
         super.reload();
-        this.zoom = (byte)getConfig().getInt("zoom",2);
+        this.scale = (byte)getConfig().getInt("zoom",2);
         this.biomepreview = getConfig().getBoolean("show-biome-preview",true);
     }
 
-    private boolean getMap(Player player,CartographyInventory inv){
+    private void generateMap(Player player,CartographyInventory inv){
         ItemStack map = inv.getItem(1);
         ItemStack compass = inv.getItem(0);
         if(map != null && map.getType()==Material.MAP
@@ -41,19 +40,18 @@ public class BetterRecoveryCompassTweak extends BaseTweak implements Listener {
             if (player.getLastDeathLocation() != null) {
                 Location loc = player.getLastDeathLocation();
                 if (loc.getWorld().getUID() == player.getWorld().getUID()) {
-                    inv.setItem(2, getPlugin().getNmsHelper().createMap(loc, zoom, biomepreview));
-                    return true;
+                    inv.setItem(2, getPlugin().getNmsHelper().createMap(loc, scale, biomepreview));
+
                 }
             }
         }
-        return false;
     }
 
     @EventHandler
     public void cartographyInvClickEvent(InventoryClickEvent e){
         if(e.getInventory().getType()!= InventoryType.CARTOGRAPHY) return;
         Player player = (Player) e.getWhoClicked();
-        if(!hasPermission(player,"tweakin.betterrecoverycompass.use")) return;
+        if(!hasPermission(player, Permissions.BETTERRECOVERYCOMPASS_USE)) return;
         CartographyInventory inv = (CartographyInventory) e.getInventory();
         ItemStack compass = e.getCursor();
         ItemStack slotCompass = inv.getItem(0);
@@ -69,7 +67,7 @@ public class BetterRecoveryCompassTweak extends BaseTweak implements Listener {
         new BukkitRunnable(){
             @Override
             public void run() {
-                getMap(player,inv);
+                generateMap(player,inv);
             }
         }.runTaskLater(getPlugin(),1);
 

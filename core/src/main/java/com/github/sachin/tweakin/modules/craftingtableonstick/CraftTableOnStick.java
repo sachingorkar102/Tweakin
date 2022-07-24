@@ -7,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -35,7 +34,7 @@ public class CraftTableOnStick extends TweakItem implements Listener{
     public void onRightClick(InventoryClickEvent e){
         Player player = (Player) e.getWhoClicked();
         if(e.getCurrentItem() == null || !e.getClick().toString().equals(getConfig().getString("hotkey"))) return;
-        if((isSimilar(e.getCurrentItem()) || (getConfig().getBoolean("works-with-crafting-table") && e.getCurrentItem().getType()==Material.CRAFTING_TABLE)) && e.getClickedInventory() instanceof PlayerInventory && hasPermission(player,Permissions.CRATINGTABLE_ON_STICK_USE)){
+        if((isSimilar(e.getCurrentItem()) || (getConfig().getBoolean("works-with-crafting-table") && e.getCurrentItem().getType()==Material.CRAFTING_TABLE)) && e.getClickedInventory() instanceof PlayerInventory && hasPermission(player, Permissions.CRAFTINGTABLE_USE)){
             e.setCancelled(true);
             new BukkitRunnable(){
                 @Override

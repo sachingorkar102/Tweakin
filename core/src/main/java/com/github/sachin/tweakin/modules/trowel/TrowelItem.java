@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.trowel;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.modules.reacharound.ReachAroundTweak;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -52,7 +53,7 @@ public class TrowelItem extends TweakItem implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.trowel.use")) return;
+        if(!hasPermission(player, Permissions.TROWEL)) return;
         if(!hasItem(player, EquipmentSlot.HAND)) return;
         e.setCancelled(true);
         if(players.contains(player)) return;

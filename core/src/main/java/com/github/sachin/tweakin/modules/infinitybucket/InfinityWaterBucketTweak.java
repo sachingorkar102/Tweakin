@@ -5,6 +5,7 @@ import java.util.Map;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -57,7 +58,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
     public void onAnvilUse(PrepareAnvilEvent e){
         if(e.getView().getBottomInventory().getHolder() instanceof Player){
             Player player = (Player) e.getView().getBottomInventory().getHolder();
-            if(!hasPermission(player,"tweakin.infinitybucket.craft")) return;
+            if(!hasPermission(player, Permissions.INFIBUCKET_CRAFT)) return;
             AnvilInventory inv = e.getInventory();
             
             ItemStack slot1 = inv.getItem(0);
@@ -84,7 +85,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
         if(isSimilar(e.getItem()) && e.getAction()==Action.RIGHT_CLICK_BLOCK && e.useItemInHand()!=Result.DENY){
             Player player = e.getPlayer();
             e.setCancelled(true);
-            if(!hasPermission(player,"tweakin.infinitybucket.use") || player.getWorld().getEnvironment()==Environment.NETHER) return;
+            if(!hasPermission(player, Permissions.INFIBUCKET_USE) || player.getWorld().getEnvironment()==Environment.NETHER) return;
             Block block = e.getClickedBlock().getRelative(e.getBlockFace());
             block.setType(Material.WATER,true);
         }

@@ -48,18 +48,18 @@ import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
 import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmraldTweak;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
+import org.bukkit.util.permissions.DefaultPermissions;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TweakManager {
 
@@ -68,6 +68,7 @@ public class TweakManager {
     private List<BaseTweak> tweakList = new ArrayList<>();
     private List<TweakItem> registeredItems = new ArrayList<>();
     private Map<BaseTweak,Boolean> guiMap = new HashMap<>();
+
     private FileConfiguration recipeConfig;
     
 
@@ -106,8 +107,10 @@ public class TweakManager {
             e.printStackTrace();
         }
         plugin.reloadConfig();
+
         FirstInstallListener listener = new FirstInstallListener();
         if(plugin.isFirstInstall){
+            plugin.isFirstInstall = false;
             sendConsoleMessage("&a-----------Tweakin------------");
             sendConsoleMessage("&eThank you for installing &6Tweakin!!");
             sendConsoleMessage("&eTweakin is installed on server for the first time..");
@@ -165,6 +168,7 @@ public class TweakManager {
             }
         }
         plugin.getLogger().info("Registered "+registered+" tweaks successfully");
+
         Bukkit.getOnlinePlayers().forEach(p -> p.updateCommands());
     }
     public List<BaseTweak> getTweakList() {
@@ -203,7 +207,12 @@ public class TweakManager {
                 plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds, better-sign-edit...");
             }
             tweakList.add(new HoeHarvestingTweak(plugin));
-            tweakList.add(new VillagerFollowEmraldTweak(plugin));
+            if(plugin.isRunningPaper){
+                tweakList.add(new VillagerFollowEmraldTweak(plugin));
+            }
+            else{
+                plugin.getLogger().info("Not running PaperMC as server software, ignoring villager follow emerald tweak...");
+            }
             tweakList.add(new AnimalFleeTweak(plugin));
             tweakList.add(new ShearItemFrameTweak(plugin));
             tweakList.add(new SnowBallKnockBackTweak(plugin));

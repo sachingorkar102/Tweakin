@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.swingthroughgrass;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -43,7 +44,7 @@ public class SwingThroughGrassTweak extends BaseTweak implements Listener{
         if(!e.getClickedBlock().isPassable()) return;
         if(e.getAction() != Action.LEFT_CLICK_BLOCK) return;
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.swingthroughgrass")) return;
+        if(!hasPermission(player, Permissions.SWINGGRASS)) return;
         Predicate<Entity> p = new EntityTest<>(player);
         // RayTraceResult raytrace = player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 3.5,0,p);
         RayTraceResult raytrace = player.getWorld().rayTrace(player.getEyeLocation(), player.getEyeLocation().getDirection(), 3.5, FluidCollisionMode.NEVER, true, 0,p);

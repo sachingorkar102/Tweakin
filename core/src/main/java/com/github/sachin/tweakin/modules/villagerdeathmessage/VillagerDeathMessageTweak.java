@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.villagerdeathmessage;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -40,7 +41,7 @@ public class VillagerDeathMessageTweak extends BaseTweak implements Listener{
             .replace("%z%", String.valueOf(loc.getBlockZ()))
             .replace("%world-type%", world);
             for(Player player : Bukkit.getOnlinePlayers()){
-                if(hasPermission(player, "tweakin.villagerdeathmessage.notify")){
+                if(hasPermission(player, Permissions.VIL_DTH_MSG)){
                     player.sendMessage(message);
                 }
             }

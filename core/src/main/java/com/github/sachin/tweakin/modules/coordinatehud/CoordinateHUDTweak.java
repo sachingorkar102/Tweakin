@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.coordinatehud;
 import co.aikar.commands.BaseCommand;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.google.common.base.Enums;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
@@ -133,7 +134,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
         @Override
         public void run() {
             CoordinateHUDTweak.this.enabled.forEach(player -> {
-                if(!player.getInventory().contains(Material.COMPASS) && getConfig().getBoolean("have-compass",false) && !hasPermission(player,"tweakin.coordniatehud.compassbypass")){
+                if(!player.getInventory().contains(Material.COMPASS) && getConfig().getBoolean("have-compass",false) && !hasPermission(player, Permissions.HUD_COMPASSBYPASS)){
                     return;
                 }
                 long time = (player.getWorld().getTime() + 6000) % 24000;

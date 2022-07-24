@@ -7,6 +7,7 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Sign;
@@ -61,7 +62,7 @@ public class BetterSignEditTweak extends BaseTweak implements Listener{
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getHand() != EquipmentSlot.HAND || e.getItem() != null) return;
         Player player = e.getPlayer();
         if(!player.isSneaking()) return;
-        if(!e.getClickedBlock().getType().toString().endsWith("_SIGN") || !hasPermission(player,"tweakin.bettersignedit.use") || getBlackListWorlds().contains(player.getWorld().getName())) return;
+        if(!e.getClickedBlock().getType().toString().endsWith("_SIGN") || !hasPermission(player, Permissions.BETTERSIGNEDIT) || getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(flag != null && !flag.queryFlag(player,e.getClickedBlock().getLocation())){
             return;
         }

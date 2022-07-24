@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.bettergrindstone;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.compat.AdvancedEnchantments;
 import com.github.sachin.tweakin.utils.compat.ExcellentEnchantsCompat;
 import org.bukkit.Material;
@@ -55,7 +56,7 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     inv.setItem(1, new ItemStack(Material.BOOK));
                 }
             }
-            if(!hasPermission(player,"tweakin.bettergrindstone")) return;
+            if(!hasPermission(player, Permissions.BETTER_GRINDSTONE)) return;
             new BukkitRunnable(){
                 @Override
                 public void run() {
@@ -69,20 +70,30 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                             NBTItem nbti = new NBTItem(weapon);
                             if(nbti.hasKey("armored-elytra")) return;
                             ItemStack enchantedBook = new ItemStack(Material.ENCHANTED_BOOK);
+                            EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
                             if(AdvancedEnchantments.isPluginEnabled){
-                                AdvancedEnchantments.applyEnchantments(enchantedBook, weapon);
+                                enchantedBook =  AdvancedEnchantments.applyEnchantments(enchantedBook, weapon);
                             }
-                            
+                            else if(ExcellentEnchantsCompat.isEnabled){
+                                ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
+                            }
                             else{
-                                EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
                                 for(Enchantment ench : weapon.getEnchantments().keySet()){
                                     enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
-                                }
-                                enchantedBook.setItemMeta(enchMeta);
-                                if(ExcellentEnchantsCompat.isEnabled){
-                                    ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
+                                    enchantedBook.setItemMeta(enchMeta);
                                 }
                             }
+                            
+//                            else{
+//                                EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
+//                                for(Enchantment ench : weapon.getEnchantments().keySet()){
+//                                    enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
+//                                }
+//                                enchantedBook.setItemMeta(enchMeta);
+//                                if(ExcellentEnchantsCompat.isEnabled){
+//                                    ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
+//                                }
+//                            }
                             inv.setItem(2, enchantedBook);
                         }
                         

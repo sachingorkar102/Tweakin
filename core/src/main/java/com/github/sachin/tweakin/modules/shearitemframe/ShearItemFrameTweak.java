@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.shearitemframe;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -34,7 +35,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
     public void onShear(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof ItemFrame)) return;
         Player player = e.getPlayer();
-        if(player.isSneaking() || !hasPermission(player,"tweakin.shearitemframe.use")) return;
+        if(player.isSneaking() || !hasPermission(player, Permissions.SHEARITEMFRAME)) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(flag != null && !flag.queryFlag(player, e.getRightClicked().getLocation())) return;
         ItemStack item = e.getPlayer().getInventory().getItemInMainHand().clone();

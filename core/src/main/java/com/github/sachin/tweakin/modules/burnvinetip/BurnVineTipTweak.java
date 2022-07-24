@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.burnvinetip;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.CustomBlockData;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -46,7 +47,7 @@ public class BurnVineTipTweak extends BaseTweak implements Listener{
         if(e.getItem().getType() != Material.FLINT_AND_STEEL) return;
         Block block = e.getClickedBlock();
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.burnvinetip.use")) return;
+        if(!hasPermission(player, Permissions.BURNVINETIP_USE)) return;
         if(getBlackListWorlds().contains(block.getWorld().getName())) return;
         if(block.getRelative(BlockFace.DOWN).getType() == Material.VINE) return;
         CustomBlockData blockData = new CustomBlockData(block.getLocation());

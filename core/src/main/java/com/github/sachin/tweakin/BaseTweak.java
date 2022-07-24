@@ -10,6 +10,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.permissions.Permission;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,13 +78,23 @@ public abstract class BaseTweak {
         return new ArrayList<>();
     }
 
-    public boolean hasPermission(Player player,String permission){
+//    NOT IN USE replaced with get permission class param
+//    public boolean hasPermission(Player player,String permission){
+//        if(config.getBoolean("check-permissions",true)){
+//            return player.hasPermission(permission);
+//
+//        }
+//        else{
+//
+//            return true;
+//        }
+//    }
+
+    public boolean hasPermission(Player player, Permission permission){
         if(config.getBoolean("check-permissions",true)){
             return player.hasPermission(permission);
-
         }
         else{
-
             return true;
         }
     }

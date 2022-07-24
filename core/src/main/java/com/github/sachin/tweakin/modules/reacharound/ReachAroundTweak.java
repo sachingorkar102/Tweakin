@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -141,7 +142,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     }
 
     public void creatPlayerTask(Player player){
-        if(getConfig().getBoolean("show-highlight",true) && hasPermission(player,"tweakin.reacharound.highlight")){
+        if(getConfig().getBoolean("show-highlight",true) && hasPermission(player, Permissions.REACHAROUND_HIGHLIGHT)){
             ReachAroundRunnable runnable = new ReachAroundRunnable(this, player);
             BukkitTask task = runnable.runTaskTimer(getPlugin(), 60, 2);
             this.currentTasks.put(player.getUniqueId(), task);
@@ -227,7 +228,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     }
 
     public Location getPlayerVerticalReachAround(Player player){
-        if(!hasPermission(player,"tweakin.reacharound.vertical")){
+        if(!hasPermission(player, Permissions.REACHAROUND_VERT)){
             return null;
         }
         Vector vec = new Vector(0, 0.5, 0);
@@ -249,7 +250,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
 
 
     public Location getPlayerHorizonTalReachAround(Player player){
-        if(!hasPermission(player,"tweakin.reacharound.horizontal")){
+        if(!hasPermission(player, Permissions.REACHAROUND_HORI)){
             return null;
         }
         Location playerLoc = player.getLocation();

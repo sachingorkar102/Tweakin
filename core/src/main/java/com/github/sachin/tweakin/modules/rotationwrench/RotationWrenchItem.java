@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.rotationwrench;
 
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Axis;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -94,7 +95,7 @@ public class RotationWrenchItem extends TweakItem implements Listener{
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
         
-        if(!hasPermission(player,"tweakin.rotationwrench.use")) return;
+        if(!hasPermission(player, Permissions.ROTATION_WRENCH)) return;
         if(!hasItem(player, e.getHand())) return;
         Block block = e.getClickedBlock();
         if(!matchString(block.getType().toString(), rotateableMaterials)) return;

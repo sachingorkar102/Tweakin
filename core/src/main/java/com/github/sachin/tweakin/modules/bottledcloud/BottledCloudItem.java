@@ -3,7 +3,7 @@ package com.github.sachin.tweakin.modules.bottledcloud;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.CustomBlockData;
-import com.github.sachin.tweakin.utils.ItemBuilder;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.BlockFace;
@@ -58,7 +58,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
     @EventHandler
     public void onRightClick(PlayerInteractEvent e){
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.bottledcloud.use")) return;
+        if(!hasPermission(player, Permissions.BOTTLEDCLOUD_USE)) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(!hasItem(player, EquipmentSlot.HAND)) return;
         if(e.getAction() == Action.RIGHT_CLICK_BLOCK) e.setCancelled(true);
@@ -91,7 +91,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
     public void onGlassBottleClick(PlayerInteractEvent e){
         Player player = e.getPlayer();
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
-        if(!hasPermission(player,"tweakin.bottledcloud.pickup")) return;
+        if(!hasPermission(player, Permissions.BOTTLEDCLOUD_PICKUP)) return;
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;

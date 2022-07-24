@@ -2,12 +2,12 @@ package com.github.sachin.tweakin.modules.customportals;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
-import org.bukkit.Axis;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import com.github.sachin.tweakin.utils.Permissions;
+import org.bukkit.*;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Orientable;
 import org.bukkit.entity.Player;
@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.ArrayList;
@@ -111,7 +112,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
         Player player = e.getPlayer();
         
         if(player.getWorld().getEnvironment() == Environment.THE_END) return;
-        if(!hasPermission(player,"tweakin.customportal.use")) return;
+        if(!hasPermission(player, Permissions.CUSTOMPORTAL_USE)) return;
         Block clickedBlock = e.getClickedBlock();
         List<Material> validPortalMaterials = getValidPortalMaterials();
         if(!validPortalMaterials.contains(e.getClickedBlock().getType())) return;

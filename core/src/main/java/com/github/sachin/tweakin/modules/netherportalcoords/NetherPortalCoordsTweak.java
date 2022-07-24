@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.netherportalcoords;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
+import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -53,7 +54,7 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
         ItemStack item = e.getItem().clone();
         ItemMeta meta = item.getItemMeta();
         Player player = e.getPlayer();
-        if(!hasPermission(player,"tweakin.netherportalcoords")) return;
+        if(!hasPermission(player, Permissions.NETHERCOORDS)) return;
         if(isUntrackedCompass(item) && e.getAction() == Action.RIGHT_CLICK_AIR){
             if(player.isSneaking()){
                 player.getInventory().setItemInMainHand(new ItemStack(Material.COMPASS));
