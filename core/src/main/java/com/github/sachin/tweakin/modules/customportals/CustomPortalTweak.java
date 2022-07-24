@@ -125,10 +125,10 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
 
         Block block = clickedBlock.getRelative(e.getBlockFace());
         PortalBounds bounds = new PortalBounds(block.getLocation(), facingEast);
-
+        World world = player.getWorld();
         if (checkBlock(block, validPortalMaterials, checked, faces, bounds)) {
             e.setCancelled(true);
-            buildPortal(checked, facingEast);
+            buildPortal(checked, facingEast, world,player);
             return;
         }
         facingEast = !facingEast;
@@ -137,7 +137,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
         checked.clear();
         if (checkBlock(block, validPortalMaterials, checked, faces, bounds)) {
             e.setCancelled(true);
-            buildPortal(checked, facingEast);
+            buildPortal(checked, facingEast,world,player);
             return;
         }
     }
@@ -160,14 +160,25 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
         return true;
     }
 
-    private void buildPortal(Set<Block> portalBlocks, boolean facingEast) {
+    private void buildPortal(Set<Block> portalBlocks, boolean facingEast,World world,Player creator) {
+        List<BlockState> blocks = new ArrayList<>();
         for (Block b : portalBlocks) {
             b.setType(Material.NETHER_PORTAL);
             BlockData bd = b.getBlockData();
             Orientable orientable = (Orientable) bd;
             orientable.setAxis(facingEast ? Axis.Z : Axis.X);
             b.setBlockData(orientable);
+            blocks.add(b.getState());
         }
+
+        PortalCreateEvent event = new PortalCreateEvent(blocks,world,creator, PortalCreateEvent.CreateReason.FIRE);
+        Bukkit.getPluginManager().callEvent(event);
+        if(event.isCancelled()){
+            for(BlockState b : blocks){
+                b.setType(Material.AIR);
+            }
+        }
+
     }
 
     private BlockFace[] getRelativeBlockFaces(boolean facingEast) {
