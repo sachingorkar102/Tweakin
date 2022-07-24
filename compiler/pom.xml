@@ -5,7 +5,7 @@
     <parent>
         <artifactId>Tweakin</artifactId>
         <groupId>com.github.sachin</groupId>
-        <version>3.8.3</version>
+        <version>3.8.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,7 +23,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <finalName>Tweakin-4.1.2</finalName>
+                   <finalName>Tweakin-4.1.2</finalName>
                 </configuration>
             </plugin>
             <plugin>
@@ -63,13 +63,13 @@
         <dependency>
             <groupId>com.github.sachin</groupId>
             <artifactId>core</artifactId>
-            <version>3.8.3</version>
+            <version>3.8.6</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.sachin</groupId>
             <artifactId>nms1_18</artifactId>
-            <version>3.8.3</version>
+            <version>3.8.6</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>com.github.sachin</groupId>
             <artifactId>nms1_17</artifactId>
-            <version>3.8.3</version>
+            <version>3.8.6</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
