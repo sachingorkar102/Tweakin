@@ -88,6 +88,7 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                             ItemMeta meta = elytra.getItemMeta();
                             Damageable damage = (Damageable) meta;
                             damage.setDamage(((Damageable)item.getItemMeta()).getDamage());
+
                             elytra.setItemMeta(meta);
                             Location loc = e.getBlock().getLocation().clone().add(0.5,0.9,0.5);
                             i.getWorld().dropItem(loc, chest);
@@ -181,7 +182,9 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                             nbti.setString(ELYTRA_KEY, InventoryUtils.serializeItem(item2));
                             combinedElytra = nbti.getItem();
                             ItemMeta elytraMeta = combinedElytra.getItemMeta();
-                            elytraMeta.setDisplayName(inv.getRenameText());
+                            if(!elytraMeta.hasDisplayName()){
+                                elytraMeta.setDisplayName(inv.getRenameText());
+                            }
                             combinedElytra.setItemMeta(elytraMeta);
                             inv.setRepairCost(getConfig().getInt("cost",10));
                             inv.setItem(2, combinedElytra);

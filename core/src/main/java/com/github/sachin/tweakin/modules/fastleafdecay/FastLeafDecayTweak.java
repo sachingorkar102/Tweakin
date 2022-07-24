@@ -30,10 +30,10 @@ public class FastLeafDecayTweak extends BaseTweak implements Listener {
     public void reload() {
         super.reload();
         this.duration = getConfig().getInt("duration", 10) * 20;
-        //Remove unused option
-        if (getConfig().isSet("use-async")) {
-            getConfig().set("use-async", null);
-        }
+//        //Remove unused option
+//        if (getConfig().isSet("use-async")) {
+//            getConfig().set("use-async", null);
+//        }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
