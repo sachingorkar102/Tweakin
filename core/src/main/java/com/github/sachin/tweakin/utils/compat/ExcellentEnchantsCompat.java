@@ -40,7 +40,7 @@ public class ExcellentEnchantsCompat {
             Map<su.nightexpress.excellentenchants.api.enchantment.ExcellentEnchant,Integer> enchs = su.nightexpress.excellentenchants.manager.EnchantManager.getItemCustomEnchants(weapon);
             try {
                 for(su.nightexpress.excellentenchants.api.enchantment.ExcellentEnchant ench : enchs.keySet()){
-                    addEnchant.invoke( null,book,ench,enchs.get(ench),true);    
+                    addEnchant.invoke( null,book,ench,enchs.get(ench),true);
                 }
                 su.nightexpress.excellentenchants.manager.EnchantManager.updateItemLoreEnchants(book);
             } catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {

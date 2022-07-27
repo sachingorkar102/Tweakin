@@ -42,7 +42,7 @@ public abstract class NMSHelper {
 
     public abstract boolean placeItem(Player player,Location location,ItemStack item,BlockFace hitFace,String tweakName,boolean playSound);
 
-    public abstract void spawnVillager(Villager villager);
+    public abstract void spawnVillager(Villager villager,boolean update);
     
     public abstract void avoidPlayer(Entity entity,Player player,ConfigurationSection config);
 

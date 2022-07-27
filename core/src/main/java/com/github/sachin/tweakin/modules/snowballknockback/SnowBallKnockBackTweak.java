@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.snowballknockback;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.TConstants;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -11,6 +12,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.UUID;
 
 public class SnowBallKnockBackTweak extends BaseTweak implements Listener{
 
@@ -31,6 +34,17 @@ public class SnowBallKnockBackTweak extends BaseTweak implements Listener{
                 if(getBlackListWorlds().contains(hitEntity.getWorld().getName())) return;
                 if(flag != null && !flag.queryFlag(hitEntity.getLocation())){
                     return;
+                }
+                if(hitEntity instanceof Player){
+                    UUID uuid = hitEntity.getUniqueId();
+                    boolean isActualPlayer = false;
+                    for(Player player : Bukkit.getOnlinePlayers()){
+                        if(player.getUniqueId().equals(uuid)){
+                            isActualPlayer = true;
+                            break;
+                        }
+                    }
+                    if(!isActualPlayer) return;
                 }
                 hitEntity.setVelocity(e.getEntity().getVelocity().multiply(getConfig().getDouble("modifier")));
 

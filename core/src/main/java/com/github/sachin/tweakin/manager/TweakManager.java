@@ -36,7 +36,7 @@ import com.github.sachin.tweakin.modules.patdogs.PatDogTweak;
 import com.github.sachin.tweakin.modules.poisonpotatousage.PoisonPotatoUsageTweak;
 import com.github.sachin.tweakin.modules.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.modules.rightclickarmor.RightClickArmor;
-import com.github.sachin.tweakin.modules.rightclickshulker.RightClickShulkerBox;
+import com.github.sachin.tweakin.modules.shulkerboxpreview.ShulkerBoxPreview;
 import com.github.sachin.tweakin.modules.rotationwrench.RotationWrenchItem;
 import com.github.sachin.tweakin.modules.shearitemframe.ShearItemFrameTweak;
 import com.github.sachin.tweakin.modules.shearnametag.ShearNameTagTweak;
@@ -48,14 +48,11 @@ import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
 import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmraldTweak;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
-import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permission;
-import org.bukkit.util.permissions.DefaultPermissions;
 
 import java.io.File;
 import java.io.IOException;
@@ -174,7 +171,7 @@ public class TweakManager {
     public List<BaseTweak> getTweakList() {
         if(tweakList.isEmpty()){
             tweakList.add(new RightClickArmor(plugin));
-            tweakList.add(new RightClickShulkerBox(plugin));
+            tweakList.add(new ShulkerBoxPreview(plugin));
             tweakList.add(new NoteBlockHeadsTweak(plugin));
 
             tweakList.add(new ReachAroundTweak(plugin));

@@ -1,5 +1,6 @@
 package com.github.sachin.tweakin.modules.villagerfollowemerald;
 
+import com.destroystokyo.paper.event.entity.EntityAddToWorldEvent;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.TConstants;
@@ -14,32 +15,33 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
 
-    public final VillagerJoinWorldEvent villagerJoinWorldEvent;
-
     public VillagerFollowEmraldTweak(Tweakin plugin) {
         super(plugin, "villager-follow-emerald");
-        this.villagerJoinWorldEvent = new VillagerJoinWorldEvent();
-    }
-
-    @Override
-    public void register() {
-        super.register();
-        villagerJoinWorldEvent.registerEvents();
-    }
-
-    @Override
-    public void unregister() {
-        super.unregister();
-        villagerJoinWorldEvent.unRegisterEvents();
     }
 
     @EventHandler
-    public void onClick(EntitySpawnEvent e){
-        if(e.getEntity() instanceof Villager && !getBlackListWorlds().contains(e.getEntity().getWorld().getName())){
-            plugin.getNmsHelper().spawnVillager((Villager)e.getEntity());
-            e.getEntity().getPersistentDataContainer().set(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER, 1);
+    public void onVillagerJoinWorld(EntityAddToWorldEvent e){
+        if(!(e.getEntity() instanceof Villager)) return;
+        if(getBlackListWorlds().contains(e.getEntity().getWorld().getName())) return;
+        Villager vil = (Villager) e.getEntity();
+
+        if(!vil.getPersistentDataContainer().has(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER)){
+            plugin.getNmsHelper().spawnVillager(vil,false);
+            vil.getPersistentDataContainer().set(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER, 1);
         }
+        else{
+            plugin.getNmsHelper().spawnVillager(vil,true);
+        }
+
     }
+
+//    @EventHandler
+//    public void onClick(EntitySpawnEvent e){
+//        if(e.getEntity() instanceof Villager && !getBlackListWorlds().contains(e.getEntity().getWorld().getName())){
+//            plugin.getNmsHelper().spawnVillager((Villager)e.getEntity());
+//            e.getEntity().getPersistentDataContainer().set(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER, 1);
+//        }
+//    }
     
 
 

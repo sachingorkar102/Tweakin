@@ -184,7 +184,7 @@ public class NMSHandler extends NMSHelper{
 
     }
     @Override
-    public void spawnVillager(Villager villager) {
+    public void spawnVillager(Villager villager,boolean update) {
         EntityVillager vil = (EntityVillager) ((CraftEntity)villager).getHandle();
         vil.bP.a(2, new FollowPathFinder(vil));
 

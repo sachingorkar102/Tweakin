@@ -1,4 +1,4 @@
-package com.github.sachin.tweakin.modules.rightclickshulker;
+package com.github.sachin.tweakin.modules.shulkerboxpreview;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
@@ -18,11 +18,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 // permission: tweakin.shulkerboxclick,tweakin.enderchestclick
-public class RightClickShulkerBox extends BaseTweak implements Listener{
+public class ShulkerBoxPreview extends BaseTweak implements Listener{
 
 
 
-    public RightClickShulkerBox(Tweakin plugin) {
+    public ShulkerBoxPreview(Tweakin plugin) {
         super(plugin, "shulker-box-preview");
     }
 
@@ -30,7 +30,9 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
     public void shulkerGuiCloseEvent(InventoryCloseEvent e){
         if(e.getInventory().getHolder() instanceof ShulkerGui){
             ShulkerGui gui = (ShulkerGui) e.getInventory().getHolder();
-            gui.update();
+            gui.update(true);
+
+
         }
     }
 
@@ -39,7 +41,8 @@ public class RightClickShulkerBox extends BaseTweak implements Listener{
         Player player = (Player) e.getWhoClicked();
         if(e.getView().getTopInventory().getHolder() instanceof ShulkerGui){
             ShulkerGui gui = (ShulkerGui) e.getView().getTopInventory().getHolder();
-            gui.update();
+            gui.update(false);
+
             if((e.getClick() == ClickType.NUMBER_KEY && gui.getSlot() == e.getHotbarButton()) || getConfig().getBoolean("preview-only") || (e.getCurrentItem() != null && e.getCurrentItem().getType().name().endsWith("SHULKER_BOX"))){
                 e.setCancelled(true);
             }

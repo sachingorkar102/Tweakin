@@ -158,8 +158,9 @@ public class NMSHandler extends NMSHelper {
     }
 
 
+
     @Override
-    public void spawnVillager(Villager villager) {
+    public void spawnVillager(Villager villager,boolean update) {
         net.minecraft.world.entity.npc.Villager vil = (net.minecraft.world.entity.npc.Villager) ((CraftEntity)villager).getHandle();
         vil.goalSelector.addGoal(2,new TemptGoal(vil, 0.6, Ingredient.of(Items.EMERALD_BLOCK), false));
     }
