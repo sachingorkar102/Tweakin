@@ -4,6 +4,7 @@ import co.aikar.commands.BaseCommand;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.compat.PlaceHolderApiCompat;
 import com.google.common.base.Enums;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
@@ -155,6 +156,9 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                 .replace("%time%", hours+":"+extra)
                 ;
 
+                if(getConfig().getBoolean("placeholderapi-support",false) && PlaceHolderApiCompat.isEnabled){
+                    message = PlaceHolderApiCompat.parse(player,message);
+                }
 
                 if(getConfig().getBoolean("show-speed",true)){
                     if(player.isInsideVehicle()){

@@ -100,48 +100,40 @@ public class RotationWrenchItem extends TweakItem implements Listener{
         Block block = e.getClickedBlock();
         if(!matchString(block.getType().toString(), rotateableMaterials)) return;
         boolean success = false;
-        Block relativeBlock = block.getRelative(e.getBlockFace());
-        if(relativeBlock.getType() != Material.AIR) return;
         if(cooldownPlayers.contains(player)) return;
         ItemStack item = e.getItem().clone();
+        if(plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,block.getLocation(),block.getType())) return;
         if(block.getBlockData() instanceof Directional){
             Directional directional = (Directional) block.getBlockData();
             BlockFace currentFace = directional.getFacing();
             List<BlockFace> rotations = new ArrayList<>(directional.getFaces());
-            boolean placed = getPlugin().getNmsHelper().placeItem(player,relativeBlock.getLocation(), new ItemStack(block.getType()), e.getBlockFace(),null,false);
-            if(placed){
 
-                success = true;
-                e.setCancelled(true);
-                relativeBlock.setType(Material.AIR);
-                if(rotations.indexOf(currentFace) == rotations.size()-1){
-                    directional.setFacing(rotations.get(0));
-                    
-                }else{
-                    directional.setFacing(rotations.get(rotations.indexOf(currentFace)+1));
-                }
-                block.setBlockData(directional);
-                block.getState().update(true,true);
+            success = true;
+            e.setCancelled(true);
+            if(rotations.indexOf(currentFace) == rotations.size()-1){
+                directional.setFacing(rotations.get(0));
+
+            }else{
+                directional.setFacing(rotations.get(rotations.indexOf(currentFace)+1));
             }
+            block.setBlockData(directional);
+            block.getState().update(true,true);
         }
         else if( block.getBlockData() instanceof Orientable){
             Orientable orientable = (Orientable) block.getBlockData();
             List<Axis> axises = new ArrayList<>(orientable.getAxes());
             Axis currentFace = orientable.getAxis();
-            boolean placed = getPlugin().getNmsHelper().placeItem(player, relativeBlock.getLocation(), new ItemStack(Material.BARRIER), e.getBlockFace(),null,false);
-            if(placed){
-                success = true;
-                relativeBlock.setType(Material.AIR);
-                if(axises.indexOf(currentFace) == axises.size()-1){
-                    orientable.setAxis(axises.get(0));
-                }
-                else {
-                    orientable.setAxis(axises.get(axises.indexOf(currentFace)+1));
-                }
-                
-                block.setBlockData(orientable);
-                block.getState().update(true, true);
+            success = true;
+            if(axises.indexOf(currentFace) == axises.size()-1){
+                orientable.setAxis(axises.get(0));
             }
+            else {
+                orientable.setAxis(axises.get(axises.indexOf(currentFace)+1));
+            }
+
+            block.setBlockData(orientable);
+            block.getState().update(true, true);
+
 
             
             

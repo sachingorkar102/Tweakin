@@ -189,6 +189,8 @@ coordinate-hud:
   text: "&eXYZ: &f%x%,%y%,%z%  &e%direction%     %time%"
   # at which position the hud should display, valid vaules: ACTIONBAR,BOSSBAR
   hud-type: ACTIONBAR
+  # if set to true, the text will be passed through placeholderapi if it is present
+  placeholderapi-support: false
   # Only works if hud-type is set to BOSSBAR
   boss-bar:
     # Valid colors: PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
@@ -261,6 +263,7 @@ rotation-wrench:
     # use ^NAME to take those names into acccount which start with "NAME" eg. "^NETHERITE"
   rotatable-materials:
     - _PISTON$
+    - PISTON
     - OBSERVER
     - DISPENSER
     - _STAIRS$
@@ -284,9 +287,9 @@ bottled-cloud:
   check-permissions: true
   black-list-worlds: []
   # minimium height for glass bottle to pickup cloud
-  minimum-height: 126
+  minimum-height: 190
   # maximum height for glass bottle to pickup cloud
-  maximum-height: 132
+  maximum-height: 210
 
 
 # Optionally use resource pack to change the item sprite [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
@@ -640,3 +643,11 @@ better-recovery-compass:
   zoom: 2
   # weather or not show the biome outlines such found in treasure maps
   show-biome-preview: true
+
+# allows to repair a broken anvil block to be repaired by right clicking with iron block
+anvil-repair:
+  enabled: false
+  check-permissions: true
+  black-list-worlds: []
+  # list of valid repairable blocks
+  repairable-blocks: [IRON_BLOCK]

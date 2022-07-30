@@ -11,9 +11,11 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.MagmaCube;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockDispenseEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -97,7 +99,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
         if(e.getItem() == null) return;
         ItemStack item = e.getItem();
         if(!e.getItem().isSimilar(new ItemStack(Material.GLASS_BOTTLE))) return;
-        if(player.getLocation().getBlockY() > miniHeight && player.getLocation().getBlockY() < maxHeight){
+        if(player.getLocation().getBlockY() >= miniHeight && player.getLocation().getBlockY() <= maxHeight){
             giveCloudItem(player, item);
             e.setCancelled(true);
         }
@@ -158,6 +160,13 @@ public class BottledCloudItem extends TweakItem implements Listener{
         }
 
     }
+
+//    @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = true)
+//    public void oncloudEntitySpawnEvent(EntitySpawnEvent e){
+//        if(e.isCancelled()){
+//
+//        }
+//    }
 
     @Override
     public void onDisable() {

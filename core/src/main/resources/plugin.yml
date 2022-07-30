@@ -1,10 +1,10 @@
 name: Tweakin
-version: 4.1.3
+version: 4.2.0
 main: com.github.sachin.tweakin.Tweakin
 api-version: 1.16
 api: []
 authors: [ sachingorkar ]
-softdepend: [ProtocolLib,Spartan,WorldGuard,ExcellentEnchants]
+softdepend: [ProtocolLib,Spartan,WorldGuard,ExcellentEnchants,Enchantssquared,GriefPrevention]
 description: A modular plugin with the objective of improving the vanilla gameplay experience
 
 

@@ -66,6 +66,7 @@ public class BetterSignEditTweak extends BaseTweak implements Listener{
         if(flag != null && !flag.queryFlag(player,e.getClickedBlock().getLocation())){
             return;
         }
+
         Sign sign = (Sign) e.getClickedBlock().getState();
         sign.getPersistentDataContainer().set(key, PersistentDataType.STRING, "");
         

@@ -14,6 +14,9 @@ import com.github.sachin.tweakin.nbtapi.NBTAPI;
 import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 import com.github.sachin.tweakin.utils.MiscItems;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.compat.grief.BaseGriefCompat;
+import com.github.sachin.tweakin.utils.compat.grief.GriefPreventionCompat;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
@@ -36,6 +39,8 @@ public final class Tweakin extends JavaPlugin {
     public boolean isWorldGuardEnabled;
     private String version;
     private PaperCommandManager commandManager;
+
+    public BaseGriefCompat griefCompat;
     public CommandReplacements replacements;
     private TweakManager tweakManager;
     private NMSHelper nmsHelper;
@@ -73,6 +78,9 @@ public final class Tweakin extends JavaPlugin {
         } catch (ClassNotFoundException e) {
             this.isRunningPaper = false;
         }
+        if(isPluginEnabled(TConstants.GRIEF_PREVENTION)){
+            this.griefCompat = new GriefPreventionCompat();
+        }
         this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
         getLogger().info("Running "+version+" ...");
         NBTAPI nbtapi = new NBTAPI();
@@ -105,7 +113,7 @@ public final class Tweakin extends JavaPlugin {
                 , Permissions.REACHAROUND_VERT, Permissions.REACHAROUND_HORI, Permissions.REACHAROUND_TOGGLE,
                 Permissions.ARMORCLICK,Permissions.SHULKERBOX_CLICK,Permissions.ENDERCHEST_CLICK,Permissions.ROTATION_WRENCH,Permissions.SHEARITEMFRAME,Permissions.SHEARNAMETAG,
                 Permissions.SILENCEMOBS_PARENT,Permissions.SILENCEMOBS_SILENCE,Permissions.SILENCEMOBS_UNSILENCE,Permissions.SLIMEBUCKET_PARENT,
-                Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG);
+                Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG,Permissions.ANVIL_REPAIR);
 
 
         for(Permission perm : this.permissions){
@@ -152,6 +160,10 @@ public final class Tweakin extends JavaPlugin {
             }));
         }
         
+    }
+
+    public boolean isPluginEnabled(String name){
+        return this.getServer().getPluginManager().isPluginEnabled(name);
     }
 
     public String getVersion() {

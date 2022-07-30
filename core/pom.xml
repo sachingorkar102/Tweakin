@@ -83,6 +83,14 @@
             <url>https://hub.jeff-media.com/nexus/repository/jeff-media-public/</url>
         </repository>
 
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
 
     </repositories>
 
@@ -150,6 +158,30 @@
             <version>8.6.4</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/AdvancedEnchantments-8.7.4.jar</systemPath>
+        </dependency>
+
+<!--        EnchantsSquared-->
+        <dependency>
+            <groupId>EnchantsSquared</groupId>
+            <artifactId>enchantssquared</artifactId>
+            <version>1.6.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/EnchantsSquared.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.TechFortress</groupId>
+            <artifactId>GriefPrevention</artifactId>
+            <version>16.18</version>
+            <scope>provided</scope>
+        </dependency>
+
+<!--        PAPI-->
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.2</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

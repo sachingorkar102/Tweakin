@@ -2,6 +2,7 @@ package com.github.sachin.tweakin;
 
 import co.aikar.commands.BaseCommand;
 import com.github.sachin.tweakin.manager.TweakManager;
+import com.github.sachin.tweakin.utils.compat.grief.BaseGriefCompat;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -19,6 +20,8 @@ public abstract class BaseTweak {
 
     protected final Tweakin plugin;
     private final TweakManager tweakManager;
+
+
     private boolean shouldEnable;
     private ConfigurationSection config;
     private final String configKey;

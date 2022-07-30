@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.modules.anvilrepair.AnvilRepairTweak;
 import com.github.sachin.tweakin.modules.armoredelytra.ArmoredElytraTweak;
 import com.github.sachin.tweakin.modules.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.modules.betterarmorstands.BetterArmorStandTweak;
@@ -235,6 +236,7 @@ public class TweakManager {
             if(plugin.isPost1_19()){
                 tweakList.add(new BetterRecoveryCompassTweak(plugin));
             }
+            tweakList.add(new AnvilRepairTweak(plugin));
         }
         return tweakList;
     }

@@ -16,8 +16,11 @@ public class TConstants {
 
     public static final String BSE_FLAG = "tweakin-better-sign-edit";                                                            
     public static final String SIF_FLAG = "tweakin-shear-item-frame";  
-    public static final String SBK_FLAG = "tweakin-snowball-knockback";   
-    
+    public static final String SBK_FLAG = "tweakin-snowball-knockback";
+
+    public static final String GRIEF_PREVENTION = "GriefPrevention";
+    public static final String PAPI = "PlaceholderAPI";
+
     
     public static final NamespacedKey UUID_LOCK_KEY = Tweakin.getKey("bas-uuid-lock");
     public static final NamespacedKey ARMORSTAND_EDITED = Tweakin.getKey("bas-armorstand-edited");

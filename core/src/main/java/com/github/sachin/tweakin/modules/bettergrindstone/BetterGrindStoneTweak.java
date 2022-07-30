@@ -5,6 +5,7 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.compat.AdvancedEnchantments;
+import com.github.sachin.tweakin.utils.compat.EnchantsSquaredCompat;
 import com.github.sachin.tweakin.utils.compat.ExcellentEnchantsCompat;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -80,6 +81,9 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                             }
                             if(ExcellentEnchantsCompat.isEnabled){
                                 ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
+                            }
+                            if(EnchantsSquaredCompat.isEnabled){
+                                EnchantsSquaredCompat.applyEnchants(enchantedBook,weapon);
                             }
 
 //                            else{
