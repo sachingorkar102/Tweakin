@@ -51,6 +51,7 @@ public enum Head {
     ELDER_GUARDIAN,
     ENDER_DRAGON("ENDER_DRAGON",Material.DRAGON_HEAD),
     ENDERMAN,
+    ENDERMITE,
     EVOKER,
     RED_FOX("FOX",(fox)-> ((Fox)fox).getFoxType()==Type.RED),
     SNOW_FOX("FOX",(fox)-> ((Fox)fox).getFoxType()==Type.SNOW),
@@ -208,6 +209,7 @@ public enum Head {
 
     private Head(String entityType,Predicate<Entity> check){
         this.check = check;
+
         this.section = MobHeadsTweak.headConfig.getConfigurationSection(toString().toLowerCase());
         this.lootingMul = section.getDouble("looting",0.0);
         this.chance = section.getDouble("chance",0);
