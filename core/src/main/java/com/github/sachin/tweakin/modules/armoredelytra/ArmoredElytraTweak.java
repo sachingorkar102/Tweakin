@@ -5,20 +5,19 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.InventoryUtils;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.TConstants;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.EquipmentSlot;
@@ -41,6 +40,21 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
     public ArmoredElytraTweak(Tweakin plugin) {
         super(plugin, "armored-elytra");
         
+    }
+
+    @EventHandler
+    public void onAnvilDestroyItem(EntityDamageByEntityEvent e){
+        if(!(e.getDamager() instanceof FallingBlock)) return;
+        FallingBlock block = (FallingBlock) e.getDamager();
+        if(!TConstants.ANVILS.contains(block.getBlockData().getMaterial())) return;
+        if(e.getEntity().getType() == EntityType.DROPPED_ITEM){
+            Item item = (Item) e.getEntity();
+            if(item.getItemStack().getType() == Material.ELYTRA){
+                if(isSimilar(item.getItemStack())){
+                    e.setCancelled(true);
+                }
+            }
+        }
     }
 
     @EventHandler
@@ -73,7 +87,7 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
     @EventHandler
     public void onAnvilDrop(EntityChangeBlockEvent e){
         
-        if(e.getTo() == Material.ANVIL || e.getTo() == Material.CHIPPED_ANVIL || e.getTo() == Material.DAMAGED_ANVIL){
+        if(TConstants.ANVILS.contains(e.getTo())){
             List<Entity> list = plugin.getNmsHelper().getEntitiesWithinRadius(1, e.getEntity());
         
             for(Entity en : list){
