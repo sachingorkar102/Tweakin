@@ -15,14 +15,18 @@ public class NBTAPI {
         instance = this;
     }
 
-    public boolean loadVersions(@Nonnull JavaPlugin plugin,String version){
-
+    public boolean loadVersions(@Nonnull JavaPlugin plugin,String version,String mcVersion){
+        String newVersion = version;
+        if(mcVersion.equals("1.19")){
+            newVersion = "v1_19_R1";
+        }
+        else if(mcVersion.equals("1.19.1") || mcVersion.equals("1.19.2")){
+            newVersion = "v1_19_R11";
+        }
         try {
-            //abstractNmsHandler = (AbstractNMSHandler) Class.forName(packageName + ".internal.nms." + internalsName + ".NMSHandler").newInstance();
-            NMSHelper = (NMSHelper) Class.forName("com.github.sachin.tweakin.nms."+version+".NMSHandler").getDeclaredConstructor().newInstance(null);
+            NMSHelper = (NMSHelper) Class.forName("com.github.sachin.tweakin.nms."+newVersion+".NMSHandler").getDeclaredConstructor().newInstance(null);
             return true;
         } catch (final ClassNotFoundException | InstantiationException | IllegalAccessException | ClassCastException | NoSuchMethodException | InvocationTargetException exception) {
-//            plugin.getLogger().severe("The included JeffLib version (" + version + ")does not fully support the Minecraft version you are currently running:");
             exception.printStackTrace();
             return false;
         }

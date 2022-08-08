@@ -15,6 +15,7 @@ import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 import com.github.sachin.tweakin.utils.MiscItems;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.compat.VulcanListenerCompat;
 import com.github.sachin.tweakin.utils.compat.grief.BaseGriefCompat;
 import com.github.sachin.tweakin.utils.compat.grief.GriefPreventionCompat;
 import org.bukkit.Bukkit;
@@ -38,6 +39,8 @@ public final class Tweakin extends JavaPlugin {
     private WGFlagManager wgFlagManager;
     public boolean isWorldGuardEnabled;
     private String version;
+
+    private String mcVersion;
     private PaperCommandManager commandManager;
 
     public BaseGriefCompat griefCompat;
@@ -81,11 +84,22 @@ public final class Tweakin extends JavaPlugin {
         if(isPluginEnabled(TConstants.GRIEF_PREVENTION)){
             this.griefCompat = new GriefPreventionCompat();
         }
+        if(isPluginEnabled(TConstants.VULCAN)){
+            new VulcanListenerCompat().registerEvents();
+            getLogger().info("Running Vulcan, registering listener for reacharound");
+        }
+        int currentMajor = Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[0]);
+        int currentMinor = Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[1].split("-")[0]);
+        int currentPatch = Bukkit.getBukkitVersion().chars().filter(ch -> ch == '.').count() == 2 ? 0 : Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[2].split("-")[0]);
+        mcVersion = currentMajor+"."+currentMinor;
+        if(currentPatch>0){
+            mcVersion = mcVersion+"."+currentPatch;
+        }
         this.version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
-        getLogger().info("Running "+version+" ...");
+        getLogger().info("Running "+mcVersion+" minecraft version...");
         NBTAPI nbtapi = new NBTAPI();
-        if(!nbtapi.loadVersions(this,version)){
-            getLogger().warning("Running incompataible version, stopping tweakin");
+        if(!nbtapi.loadVersions(this,version,mcVersion)){
+            getLogger().warning("Running incompataible minecraft version, stopping tweakin");
             this.isEnabled = false;
             this.getServer().getPluginManager().disablePlugin(this);
             return;
@@ -113,7 +127,8 @@ public final class Tweakin extends JavaPlugin {
                 , Permissions.REACHAROUND_VERT, Permissions.REACHAROUND_HORI, Permissions.REACHAROUND_TOGGLE,
                 Permissions.ARMORCLICK,Permissions.SHULKERBOX_CLICK,Permissions.ENDERCHEST_CLICK,Permissions.ROTATION_WRENCH,Permissions.SHEARITEMFRAME,Permissions.SHEARNAMETAG,
                 Permissions.SILENCEMOBS_PARENT,Permissions.SILENCEMOBS_SILENCE,Permissions.SILENCEMOBS_UNSILENCE,Permissions.SLIMEBUCKET_PARENT,
-                Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG,Permissions.ANVIL_REPAIR);
+                Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG,Permissions.ANVIL_REPAIR
+                ,Permissions.WATER_EX);
 
 
         for(Permission perm : this.permissions){

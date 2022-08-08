@@ -32,6 +32,7 @@ public class Permissions {
     }
 
 
+    public static final Permission WATER_EX = get("waterextinguish.use");
     public static final Permission ANVIL_REPAIR = get("anvilrepair.use");
     public static final Permission BETTERRECOVERYCOMPASS_USE = get("betterrecoverycompass.use");
     public static final Permission ARMOREDELYTRA_CRAFT = get("armoredelytra.craft");

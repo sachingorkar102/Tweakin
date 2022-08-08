@@ -1,6 +1,7 @@
 package com.github.sachin.tweakin.utils;
 
 import com.github.sachin.tweakin.Tweakin;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 
 import java.util.Arrays;
@@ -13,6 +14,8 @@ public class TConstants {
                                                                 28,29,30,31,32,33,34,
                                                                 37,38,39,40,41,42,43);
 
+    public static final List<Material> ANVILS = Arrays.asList(Material.ANVIL,Material.CHIPPED_ANVIL,Material.DAMAGED_ANVIL);
+
 
     public static final String BSE_FLAG = "tweakin-better-sign-edit";                                                            
     public static final String SIF_FLAG = "tweakin-shear-item-frame";  
@@ -20,6 +23,7 @@ public class TConstants {
 
     public static final String GRIEF_PREVENTION = "GriefPrevention";
     public static final String PAPI = "PlaceholderAPI";
+    public static final String VULCAN = "Vulcan";
 
     
     public static final NamespacedKey UUID_LOCK_KEY = Tweakin.getKey("bas-uuid-lock");

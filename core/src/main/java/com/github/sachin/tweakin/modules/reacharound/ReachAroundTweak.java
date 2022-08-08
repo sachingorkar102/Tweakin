@@ -31,6 +31,8 @@ import java.util.*;
 public class ReachAroundTweak extends BaseTweak implements Listener{
 
     private Map<UUID,BukkitTask> currentTasks = new HashMap<>();
+
+    public static final List<UUID> reachAroundPlacers = new ArrayList<>();
     private int color;
     final NamespacedKey key = new NamespacedKey(getPlugin(), "reacharound");
     final NamespacedKey firstKey = new NamespacedKey(getPlugin(), "reacharound-firstjoin");
@@ -185,7 +187,9 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         if(loc != null){
             // BlockPlaceEvent event = new BlockPlaceEvent(loc.getBlock(), loc.getBlock().getState(), placedAgainst, itemInHand, thePlayer, canBuild, hand)
             plugin.addPlacedPlayer(player);
+            reachAroundPlacers.add(player.getUniqueId());
             boolean placed = getPlugin().getNmsHelper().placeItem(player, loc,e.getItem(),BlockFace.UP,getName(),true);
+            reachAroundPlacers.remove(player.getUniqueId());
             if(placed && player.getGameMode() != GameMode.CREATIVE && !plugin.is1_18()){
                 item.setAmount(item.getAmount()-1);
             }
