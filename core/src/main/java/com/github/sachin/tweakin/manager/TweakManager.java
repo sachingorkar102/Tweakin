@@ -48,6 +48,7 @@ import com.github.sachin.tweakin.modules.swingthroughgrass.SwingThroughGrassTwea
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
 import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmraldTweak;
+import com.github.sachin.tweakin.modules.waterextinguish.WaterExtinguishTweak;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -237,12 +238,23 @@ public class TweakManager {
                 tweakList.add(new BetterRecoveryCompassTweak(plugin));
             }
             tweakList.add(new AnvilRepairTweak(plugin));
+            tweakList.add(new WaterExtinguishTweak(plugin));
+            sort();
         }
         return tweakList;
     }
 
     public void registerTweak(BaseTweak tweak){
         tweakList.add(tweak);
+    }
+
+    private void sort(){
+        TreeMap<String,BaseTweak> treeMap = new TreeMap<>(Comparator.naturalOrder());
+        for(BaseTweak tweak : tweakList){
+            treeMap.put(tweak.getName(),tweak);
+        }
+        tweakList.clear();
+        tweakList.addAll(treeMap.values());
     }
 
     private void sendConsoleMessage(String message){
