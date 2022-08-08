@@ -651,3 +651,16 @@ anvil-repair:
   black-list-worlds: []
   # list of valid repairable blocks
   repairable-blocks: [IRON_BLOCK]
+
+# extinguish a player on fire when a splash water bottle is thrown near him
+# Permissions:
+  # tweakin.waterextinguish.use: permission to use this tweak
+water-extinguish:
+  enabled: false
+  check-permissions: false
+  black-list-worlds: []
+  # weather or not the tweak works on entities other than player
+  works-on-entities: true
+  # range of effect in blocks
+  range: 2
+
