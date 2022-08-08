@@ -18,6 +18,9 @@ import com.mojang.authlib.properties.Property;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.EmptyMapItem;
 import net.minecraft.world.item.MapItem;
+import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.saveddata.maps.MapDecoration;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
 import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
@@ -138,6 +141,18 @@ public class NMSHandler extends NMSHelper {
     @Override
     public void removeKey(String key) {
         compound.remove(key);
+    }
+
+    @Override
+    public void placeWater(Block block) {
+        Location loc = block.getLocation();
+        BlockPos blockPos = new BlockPos(loc.getBlockX(),loc.getBlockY(),loc.getBlockZ());
+        ServerLevel level = ((CraftWorld) block.getWorld()).getHandle();
+        BlockState iBlockData = level.getBlockState(blockPos);
+        net.minecraft.world.level.block.Block nmsBlock = iBlockData.getBlock();
+        if(nmsBlock instanceof LiquidBlockContainer){
+            ((LiquidBlockContainer)nmsBlock).placeLiquid(level,blockPos,iBlockData, Fluids.WATER.getSource(false));
+        }
     }
 
     @Override

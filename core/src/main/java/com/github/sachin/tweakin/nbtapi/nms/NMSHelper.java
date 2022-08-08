@@ -1,6 +1,7 @@
 package com.github.sachin.tweakin.nbtapi.nms;
 
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
@@ -37,6 +38,8 @@ public abstract class NMSHelper {
     public abstract ItemStack getItem();
     
     public abstract void removeKey(String key);
+
+    public abstract void placeWater(Block block);
 
     public abstract void attack(Player player,Entity target);
 

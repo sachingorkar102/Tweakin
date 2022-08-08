@@ -12,6 +12,7 @@ import org.bukkit.SoundCategory;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Directional;
+import org.bukkit.block.data.Waterlogged;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Fish;
 import org.bukkit.entity.Player;
@@ -83,11 +84,20 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
     @EventHandler
     public void onBucketUse(PlayerInteractEvent e){
         if(isSimilar(e.getItem()) && e.getAction()==Action.RIGHT_CLICK_BLOCK && e.useItemInHand()!=Result.DENY){
+
             Player player = e.getPlayer();
             e.setCancelled(true);
             if(!hasPermission(player, Permissions.INFIBUCKET_USE) || player.getWorld().getEnvironment()==Environment.NETHER) return;
             Block block = e.getClickedBlock().getRelative(e.getBlockFace());
-            block.setType(Material.WATER,true);
+            if(plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,block.getLocation(),Material.WATER_BUCKET)) return;
+            if(!block.isEmpty() && block.getBlockData() instanceof Waterlogged){
+                // idk, the BlockState#update method was not working so sorted to using nms
+                plugin.getNmsHelper().placeWater(block);
+            }
+            else{
+                block.setType(Material.WATER,true);
+            }
+
         }
     }
 
