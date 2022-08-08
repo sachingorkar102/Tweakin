@@ -116,7 +116,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
         Block clickedBlock = e.getClickedBlock();
         List<Material> validPortalMaterials = getValidPortalMaterials();
         if(!validPortalMaterials.contains(e.getClickedBlock().getType())) return;
-        if(clickedBlock.getRelative(e.getBlockFace()).getType() != Material.AIR && clickedBlock.getRelative(e.getBlockFace()).getType() != Material.CAVE_AIR) return;
+        if(clickedBlock.getRelative(e.getBlockFace()).getType() != Material.AIR) return;
 
         boolean facingEast = player.getFacing() == BlockFace.EAST || player.getFacing() == BlockFace.WEST;
 
@@ -145,7 +145,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
     private boolean checkBlock(Block block, List<Material> validPortalMaterials, Set<Block> checked, BlockFace[] faces, PortalBounds bounds) {
         if (validPortalMaterials.contains(block.getType()) || checked.contains(block))
             return true;
-        if (block.getType() != Material.AIR && block.getType() != Material.FIRE && block.getType() != Material.CAVE_AIR)
+        if (block.getType() != Material.AIR && block.getType() != Material.FIRE)
             return false;
         checked.add(block);
         if (bounds.updateBounds(block.getLocation()))
