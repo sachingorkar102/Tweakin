@@ -1,7 +1,8 @@
 package com.github.sachin.tweakin.modules.waterextinguish;
 
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Config;
+import com.github.sachin.tweakin.utils.Tweak;
 import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -11,21 +12,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PotionSplashEvent;
 
+@Tweak(name = "water-extinguish")
 public class WaterExtinguishTweak extends BaseTweak implements Listener {
 
-    private boolean extinguishEntities;
-    private int range;
+    @Config(key = "works-on-entities")
+    private boolean extinguishEntities = true;
 
-    public WaterExtinguishTweak(Tweakin plugin) {
-        super(plugin, "water-extinguish");
-    }
-
-    @Override
-    public void reload() {
-        super.reload();
-        extinguishEntities = getConfig().getBoolean("works-on-entities",true);
-        range = getConfig().getInt("range",2);
-    }
+    @Config(key = "range")
+    private int range = 2;
 
     @EventHandler
     public void onWaterSplash(PotionSplashEvent e){

@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.silencemobs;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Permission: tweakin.silencemobs.silence,tweakin.silencemobs.unsilence
+@Tweak(name = "silence-mobs")
 public class SilenceMobsTweak extends BaseTweak implements Listener{
 
     private List<String> silenceNames = new ArrayList<>();
@@ -25,25 +27,12 @@ public class SilenceMobsTweak extends BaseTweak implements Listener{
     private List<String> blackListAnimals = new ArrayList<>(); 
 
 
-    public SilenceMobsTweak(Tweakin plugin) {
-        super(plugin, "silence-mobs");
-    }
-
     @Override
     public void reload() {
         super.reload();
         this.silenceNames = getConfig().getStringList("silence-names");
         this.unsilenceNames = getConfig().getStringList("unsilence-names");
         this.blackListAnimals = getConfig().getStringList("black-list-mobs");
-        if(blackListAnimals == null){
-            this.blackListAnimals = new ArrayList<>();
-        }
-        if(unsilenceNames == null){
-            this.unsilenceNames = new ArrayList<>();
-        }
-        if(silenceNames == null){
-            this.silenceNames = new ArrayList<>();
-        }
     }
 
 

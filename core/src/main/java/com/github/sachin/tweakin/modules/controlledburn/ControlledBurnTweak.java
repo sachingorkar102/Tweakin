@@ -10,9 +10,6 @@ import org.bukkit.event.block.BlockSpreadEvent;
 
 public class ControlledBurnTweak extends BaseTweak implements Listener{
 
-    public ControlledBurnTweak(Tweakin plugin) {
-        super(plugin, "controlled-burn");
-    }
 
     @Override
     public void register() {

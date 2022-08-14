@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.poisonpotatousage;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.*;
 import org.bukkit.entity.Breedable;
 import org.bukkit.entity.EntityType;
@@ -18,14 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Permission: tweakin.posionpotato.use
+@Tweak(name = "poison-potato-usage")
 public class PoisonPotatoUsageTweak extends BaseTweak implements Listener{
 
     private double chance;
     private List<EntityType> blackListAnimals = new ArrayList<>();
-
-    public PoisonPotatoUsageTweak(Tweakin plugin) {
-        super(plugin, "poison-potato-usage");
-    }
 
     @Override
     public void reload() {

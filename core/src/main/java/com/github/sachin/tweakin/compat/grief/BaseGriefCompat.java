@@ -1,4 +1,4 @@
-package com.github.sachin.tweakin.utils.compat.grief;
+package com.github.sachin.tweakin.compat.grief;
 
 import com.github.sachin.tweakin.Tweakin;
 import org.bukkit.Location;
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 public abstract class BaseGriefCompat {
 
-    private final Tweakin plugin = Tweakin.getPlugin();
+    protected final Tweakin plugin = Tweakin.getPlugin();
     private final String name;
 
     private final boolean isEnabled;
@@ -20,4 +20,8 @@ public abstract class BaseGriefCompat {
 
 
     public abstract boolean canBuild(Player player, Location location, Material type);
+
+    public String getName() {
+        return name;
+    }
 }

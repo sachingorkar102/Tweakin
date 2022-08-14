@@ -2,7 +2,9 @@ package com.github.sachin.tweakin.modules.rotationwrench;
 
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Config;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Axis;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -22,21 +24,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Tweak(name = "rotation-wrench")
 public class RotationWrenchItem extends TweakItem implements Listener{
 
+    @Config(key = "rotatable-materials")
     private List<String> rotateableMaterials = new ArrayList<>();
     private List<Player> cooldownPlayers = new ArrayList<>();
 
-    public RotationWrenchItem(Tweakin plugin) {
-        super(plugin,"rotation-wrench");
-        
-    }
-
-    @Override
-    public void reload() {
-        super.reload();
-        this.rotateableMaterials = getConfig().getStringList("rotatable-materials");
-    }
 
     @Override
     public void register() {

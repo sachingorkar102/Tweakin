@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
@@ -28,12 +29,8 @@ import org.bukkit.util.Vector;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
-
+@Tweak(name = "infinite-firework")
 public class InfiniteFireworkItem extends TweakItem implements Listener{
-
-    public InfiniteFireworkItem(Tweakin plugin) {
-        super(plugin, "infinite-firework");
-    }
 
     @Override
     public void register() {

@@ -2,9 +2,10 @@ package com.github.sachin.tweakin.modules.coordinatehud;
 
 import co.aikar.commands.BaseCommand;
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Config;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.compat.PlaceHolderApiCompat;
+import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.compat.PlaceHolderApiCompat;
 import com.google.common.base.Enums;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
@@ -28,6 +29,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
+@Tweak(name = "coordinate-hud")
 public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     final List<Player> enabled = new ArrayList<>();
@@ -38,20 +40,17 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
     final List<EntityType> validVehicles = Arrays.asList(EntityType.HORSE,EntityType.MINECART,EntityType.BOAT,EntityType.MULE,EntityType.DONKEY,EntityType.STRIDER,EntityType.LLAMA,EntityType.PIG,EntityType.SKELETON_HORSE);
     private BaseCommand command;
     private HUDRunnable runnable;
-    private Long intervalTicks;
-    public boolean isBossBar = false;
 
-    public CoordinateHUDTweak(Tweakin plugin) {
-        super(plugin, "coordinate-hud");
-    }
 
-    @Override
-    public void reload() {
-        super.reload();
-        this.intervalTicks = getConfig().getLong("interval-ticks",2L);
-        this.isBossBar = getConfig().getString("hud-type","ACTIONBAR").equals("BOSSBAR");
+    @Config(key = "interval-ticks") private int intervalTicks;
+    @Config(key = "hud-type") private String msgType = "ACTIONBAR";
 
-    }
+    @Config(key = "boss-bar.color") private String color = "YELLOW";
+
+    @Config(key = "boss-bar.style") private String style = "SEGMENTED_6";
+
+    @Config(key = "enable-on-first-join") private boolean enableOnFirstJoin = true;
+
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
@@ -60,17 +59,17 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
     }
     
     public void addPlayerToHud(Player player){
-        if(!player.getPersistentDataContainer().has(firstKey, PersistentDataType.INTEGER) && getConfig().getBoolean("enable-on-first-join",true)){
+        if(!player.getPersistentDataContainer().has(firstKey, PersistentDataType.INTEGER) && enableOnFirstJoin){
             enabled.add(player);
             player.getPersistentDataContainer().set(firstKey, PersistentDataType.INTEGER, 1);
             player.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
-            if(isBossBar){
+            if(isBossBar()){
                 createBossBar(player);
             }
         }
         else if(player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
             enabled.add(player);
-            if(isBossBar){
+            if(isBossBar()){
                 createBossBar(player);
             }
     
@@ -78,8 +77,12 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
         
     }
 
+    public boolean isBossBar(){
+        return msgType.equals("BOSSBAR");
+    }
+
     public void createBossBar(Player player){
-        BossBar bar = Bukkit.createBossBar("", Enums.getIfPresent(BarColor.class, getConfig().getString("boss-bar.color")).or(BarColor.YELLOW), Enums.getIfPresent(BarStyle.class, getConfig().getString("boss-bar.style")).or(BarStyle.SEGMENTED_6));
+        BossBar bar = Bukkit.createBossBar("", Enums.getIfPresent(BarColor.class, color).or(BarColor.YELLOW), Enums.getIfPresent(BarStyle.class, style).or(BarStyle.SEGMENTED_6));
         bar.addPlayer(player);
         
         bars.put(player.getUniqueId(), bar);
@@ -160,6 +163,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                     message = PlaceHolderApiCompat.parse(player,message);
                 }
 
+
                 if(getConfig().getBoolean("show-speed",true)){
                     if(player.isInsideVehicle()){
                         EntityType vechType = player.getVehicle().getType();
@@ -170,7 +174,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                     }
                 }
                 message = ChatColor.translateAlternateColorCodes('&', message);
-                if(getConfig().getString("hud-type","ACTIONBAR").equals("BOSSBAR")){
+                if(isBossBar()){
                     if(bars.containsKey(player.getUniqueId())){
                         bars.get(player.getUniqueId()).setTitle(message);
                     }

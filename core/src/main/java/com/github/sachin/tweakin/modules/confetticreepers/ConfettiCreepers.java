@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.confetticreepers;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
@@ -17,13 +18,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Tweak(name = "confetti-creepers")
 public class ConfettiCreepers extends BaseTweak implements Listener{
 
     private FireworkEffect.Builder builder;
 
-    public ConfettiCreepers(Tweakin plugin) {
-        super(plugin, "confetti-creepers");
-    }
 
     @Override
     public void reload() {

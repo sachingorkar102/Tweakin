@@ -1,7 +1,8 @@
 package com.github.sachin.tweakin.modules.anvilrepair;
 
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Config;
+import com.github.sachin.tweakin.utils.Tweak;
 import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -21,13 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Permission: tweakin.anvilrepair.use
+@Tweak(name = "anvil-repair")
 public class AnvilRepairTweak extends BaseTweak implements Listener {
 
 
-
-    public AnvilRepairTweak(Tweakin plugin) {
-        super(plugin,"anvil-repair");
-    }
+    @Config(key = "repairable-blocks")
+    private List<String> repairableBlocks = new ArrayList<>();
 
     @EventHandler
     public void onAnvilBlockClick(PlayerInteractEvent e){
@@ -38,7 +38,7 @@ public class AnvilRepairTweak extends BaseTweak implements Listener {
         Block anvil = e.getClickedBlock();
         Material type = anvil.getType();
 
-        if(item != null && getConfig().getStringList("repairable-blocks").contains(item.getType().toString())){
+        if(item != null && repairableBlocks.contains(item.getType().toString())){
             if(type == Material.CHIPPED_ANVIL || type == Material.DAMAGED_ANVIL){
                 e.setUseInteractedBlock(Event.Result.DENY);
                 BlockFace currentFace = ((Directional)anvil.getBlockData()).getFacing();

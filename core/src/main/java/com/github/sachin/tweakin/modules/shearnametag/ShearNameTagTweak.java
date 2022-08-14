@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
@@ -18,11 +19,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+@Tweak(name = "shear-name-tag")
 public class ShearNameTagTweak extends BaseTweak implements Listener{
-
-    public ShearNameTagTweak(Tweakin plugin) {
-        super(plugin, "shear-name-tag");
-    }
 
 
 

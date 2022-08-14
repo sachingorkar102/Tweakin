@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.shulkerboxpreview;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Material;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
@@ -18,13 +19,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 // permission: tweakin.shulkerboxclick,tweakin.enderchestclick
+@Tweak(name = "shulker-box-preview")
 public class ShulkerBoxPreview extends BaseTweak implements Listener{
 
 
 
-    public ShulkerBoxPreview(Tweakin plugin) {
-        super(plugin, "shulker-box-preview");
-    }
 
     @EventHandler
     public void shulkerGuiCloseEvent(InventoryCloseEvent e){

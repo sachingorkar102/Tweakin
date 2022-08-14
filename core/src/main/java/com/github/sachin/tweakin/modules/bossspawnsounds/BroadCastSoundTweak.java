@@ -4,14 +4,17 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Tweak;
 
+@Tweak(name = "broadcast-sound-nerf")
 public class BroadCastSoundTweak extends BaseTweak {
 
     private ProtocolManager manager;
     private SoundPacketListener listener;
 
-    public BroadCastSoundTweak(Tweakin plugin) {
-        super(plugin, "broadcast-sound-nerf");
+
+    @Override
+    public void onLoad() {
         initProtocolLib();
     }
 

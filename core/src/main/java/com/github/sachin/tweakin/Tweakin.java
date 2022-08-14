@@ -5,6 +5,7 @@ import co.aikar.commands.PaperCommandManager;
 import com.github.sachin.tweakin.bstats.Metrics;
 import com.github.sachin.tweakin.bstats.Metrics.AdvancedPie;
 import com.github.sachin.tweakin.commands.CoreCommand;
+import com.github.sachin.tweakin.compat.grief.*;
 import com.github.sachin.tweakin.gui.GuiListener;
 import com.github.sachin.tweakin.manager.TweakManager;
 import com.github.sachin.tweakin.modules.lapisintable.LapisData;
@@ -15,16 +16,13 @@ import com.github.sachin.tweakin.nbtapi.nms.NMSHelper;
 import com.github.sachin.tweakin.utils.MiscItems;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
-import com.github.sachin.tweakin.utils.compat.VulcanListenerCompat;
-import com.github.sachin.tweakin.utils.compat.grief.BaseGriefCompat;
-import com.github.sachin.tweakin.utils.compat.grief.GriefPreventionCompat;
+import com.github.sachin.tweakin.compat.VulcanListenerCompat;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.permissions.DefaultPermissions;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -81,9 +79,7 @@ public final class Tweakin extends JavaPlugin {
         } catch (ClassNotFoundException e) {
             this.isRunningPaper = false;
         }
-        if(isPluginEnabled(TConstants.GRIEF_PREVENTION)){
-            this.griefCompat = new GriefPreventionCompat();
-        }
+        checkGriefCompat();
         if(isPluginEnabled(TConstants.VULCAN)){
             new VulcanListenerCompat().registerEvents();
             getLogger().info("Running Vulcan, registering listener for reacharound");
@@ -175,6 +171,26 @@ public final class Tweakin extends JavaPlugin {
             }));
         }
         
+    }
+
+    private void checkGriefCompat(){
+        if(!getConfig().getBoolean("grief-plugin-support")) return;
+        if(isPluginEnabled(TConstants.GRIEF_PREVENTION)){
+            this.griefCompat = new GriefPreventionCompat();
+        }
+        else if(isPluginEnabled(TConstants.LANDS)){
+            this.griefCompat = new LandsCompat();
+        }
+        else if(isPluginEnabled(TConstants.RESIDENCE)){
+            this.griefCompat = new ResidenceCompat();
+        }
+        else if(isPluginEnabled(TConstants.CRASHCLAIM)){
+            this.griefCompat = new CrashClaimCompat();
+        }
+        else if(isPluginEnabled(TConstants.TOWNY)){
+            this.griefCompat = new TownyCompat();
+        }
+
     }
 
     public boolean isPluginEnabled(String name){

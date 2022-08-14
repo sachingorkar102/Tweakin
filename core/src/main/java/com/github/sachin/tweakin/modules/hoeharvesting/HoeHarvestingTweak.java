@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.hoeharvesting;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -17,13 +18,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Random;
 
 
+@Tweak(name = "hoe-harvesting")
 public class HoeHarvestingTweak extends BaseTweak implements Listener{
 
     private final Random RANDOM = new Random();
-
-    public HoeHarvestingTweak(Tweakin plugin) {
-        super(plugin, "hoe-harvesting");
-    }
 
     private int getRange(String itemType){
         switch (itemType) {

@@ -1,4 +1,4 @@
-package com.github.sachin.tweakin.utils.compat;
+package com.github.sachin.tweakin.compat;
 
 import com.github.sachin.tweakin.Tweakin;
 import org.bukkit.inventory.ItemStack;

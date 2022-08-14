@@ -4,9 +4,10 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.compat.AdvancedEnchantments;
-import com.github.sachin.tweakin.utils.compat.EnchantsSquaredCompat;
-import com.github.sachin.tweakin.utils.compat.ExcellentEnchantsCompat;
+import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.compat.AdvancedEnchantments;
+import com.github.sachin.tweakin.compat.EnchantsSquaredCompat;
+import com.github.sachin.tweakin.compat.ExcellentEnchantsCompat;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -24,14 +25,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 
 // Permission: tweakin.bettergrindstone
+@Tweak(name = "better-grindstone")
 public class BetterGrindStoneTweak extends BaseTweak implements Listener{
 
     private final NamespacedKey key = Tweakin.getKey("ignore-better-grindstone");
 
-    public BetterGrindStoneTweak(Tweakin plugin) {
-        super(plugin, "better-grindstone");
-        
-    }
 
     @EventHandler
     public void onItemEnchant(EnchantItemEvent e){
@@ -86,16 +84,6 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                                 EnchantsSquaredCompat.applyEnchants(enchantedBook,weapon);
                             }
 
-//                            else{
-//                                EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
-//                                for(Enchantment ench : weapon.getEnchantments().keySet()){
-//                                    enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
-//                                }
-//                                enchantedBook.setItemMeta(enchMeta);
-//                                if(ExcellentEnchantsCompat.isEnabled){
-//                                    ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
-//                                }
-//                            }
                             inv.setItem(2, enchantedBook);
                         }
                         

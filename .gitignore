@@ -117,3 +117,4 @@ buildNumber.properties
 run/
 .vscode/sftp.json
 push.sh
+/core/lib/

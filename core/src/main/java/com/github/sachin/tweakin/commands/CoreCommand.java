@@ -20,6 +20,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Description("core command for tweakin")
 @CommandAlias("tw|tweakin")
 public class CoreCommand extends BaseCommand{
@@ -169,21 +172,27 @@ public class CoreCommand extends BaseCommand{
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
+        List<String> enabled = new ArrayList<>();
+        List<String> disabled = new ArrayList<>();
+        for(BaseTweak t : plugin.getTweakManager().getTweakList()){
+            if(t.registered){
+                enabled.add(t.getName());
+            }
+            else{
+                disabled.add(t.getName());
+            }
+        }
         StringBuilder builder = new StringBuilder();
         builder.append("\n");
         builder.append(ChatColor.YELLOW+"--------==Tweak-List==--------\n");
-        builder.append(ChatColor.translateAlternateColorCodes('&', "&a&lEnabled Tweaks")+"\n");
-        for(BaseTweak t : plugin.getTweakManager().getTweakList()){
-            if(t.registered){
-                builder.append(ChatColor.GREEN+t.getName()+ChatColor.RESET+", ");
-            }
+        builder.append(ChatColor.translateAlternateColorCodes('&', "&a&lEnabled Tweaks("+enabled.size()+")")+"\n");
+        for(String s : enabled){
+            builder.append(ChatColor.GREEN+s+ChatColor.RESET+", ");
         }
         builder.append("\n");
-        builder.append(ChatColor.translateAlternateColorCodes('&', "&c&lDisabled Tweaks")+"\n");
-        for(BaseTweak t : plugin.getTweakManager().getTweakList()){
-            if(!t.registered){
-                builder.append(ChatColor.RED+t.getName()+ChatColor.RESET+", ");
-            }
+        builder.append(ChatColor.translateAlternateColorCodes('&', "&c&lDisabled Tweaks("+disabled.size()+")")+"\n");
+        for(String s : disabled){
+            builder.append(ChatColor.RED+s+ChatColor.RESET+", ");
         }
         builder.append("\n");
         builder.append(ChatColor.YELLOW+"------------------------------");

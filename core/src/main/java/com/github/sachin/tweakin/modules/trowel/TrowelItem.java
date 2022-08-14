@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.modules.reacharound.ReachAroundTweak;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -25,13 +26,11 @@ import java.util.List;
 import java.util.Random;
 
 // Permission: tweakin.trowel.use
+@Tweak(name = "trowel")
 public class TrowelItem extends TweakItem implements Listener{
 
     private List<Player> players = new ArrayList<>();
 
-    public TrowelItem(Tweakin plugin) {
-        super(plugin, "trowel");
-    }
 
     @Override
     public void register() {

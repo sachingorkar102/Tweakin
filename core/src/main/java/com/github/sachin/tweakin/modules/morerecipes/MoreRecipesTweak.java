@@ -9,6 +9,7 @@ import com.github.sachin.tweakin.modules.morerecipes.recipes.*;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.BlackDyeRecipe.Charcoal;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.universaldyeing.UniversalDyeing;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
+import com.github.sachin.tweakin.utils.Tweak;
 import com.google.common.base.Enums;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+@Tweak(name = "more-recipes")
 public class MoreRecipesTweak extends BaseTweak{
 
     private FileConfiguration recipeFile;
@@ -34,10 +36,6 @@ public class MoreRecipesTweak extends BaseTweak{
     private List<BaseRecipe> baseRecipes;
 
 
-    public MoreRecipesTweak(Tweakin plugin) {
-        super(plugin, "more-recipes");
-        
-    }
 
     public List<BaseRecipe> getBaseRecipes() {
         if(baseRecipes == null) baseRecipes = new ArrayList<>();

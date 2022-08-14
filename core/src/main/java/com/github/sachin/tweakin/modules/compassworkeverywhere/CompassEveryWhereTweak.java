@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.compassworkeverywhere;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
@@ -18,11 +19,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+@Tweak(name = "compass-work-everywhere")
 public class CompassEveryWhereTweak extends BaseTweak implements Listener{
-
-    public CompassEveryWhereTweak(Tweakin plugin) {
-        super(plugin, "compass-work-everywhere");
-    }
 
 
     @EventHandler(priority = EventPriority.MONITOR)

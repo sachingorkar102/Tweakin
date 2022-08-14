@@ -2,7 +2,8 @@ package com.github.sachin.tweakin;
 
 import co.aikar.commands.BaseCommand;
 import com.github.sachin.tweakin.manager.TweakManager;
-import com.github.sachin.tweakin.utils.compat.grief.BaseGriefCompat;
+import com.github.sachin.tweakin.utils.Config;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -13,13 +14,18 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.permissions.Permission;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * When inheriting BaseTweak, remember to add a @Tweak annotation above your tweak class
+ */
 public abstract class BaseTweak {
 
     protected final Tweakin plugin;
-    private final TweakManager tweakManager;
+    private TweakManager tweakManager;
 
 
     private boolean shouldEnable;
@@ -27,9 +33,14 @@ public abstract class BaseTweak {
     private final String configKey;
     public boolean registered;
 
-    public BaseTweak(Tweakin plugin,String configKey){
-        this.plugin = plugin;
-        this.configKey = configKey;
+
+    public BaseTweak(){
+        this.plugin = Tweakin.getPlugin();
+        this.configKey = getClass().getAnnotation(Tweak.class).name();
+        load();
+    }
+
+    protected void load(){
         this.tweakManager = plugin.getTweakManager();
         this.config = plugin.getConfig().getConfigurationSection(configKey);
         if(config == null || !config.contains("enabled")){
@@ -42,7 +53,26 @@ public abstract class BaseTweak {
         this.shouldEnable = config.getBoolean("enabled",true);
     }
 
-    
+
+    public void reload() {
+        this.config = plugin.getConfig().getConfigurationSection(configKey);
+        this.shouldEnable = config.getBoolean("enabled");
+
+//        reloads the field having @Config annotation
+        for(Field field : getClass().getDeclaredFields()){
+            Config ann = field.getDeclaredAnnotation(Config.class);
+            if(ann == null) continue;
+            if(!config.contains(ann.key())) continue;
+            try {
+                field.setAccessible(true);
+                Object value = config.get(ann.key(),field.get(this));
+
+                field.set(this,value);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 
     public BaseTweak getInstance(){
         return this;
@@ -53,7 +83,7 @@ public abstract class BaseTweak {
     public TweakManager getTweakManager() {
         return tweakManager;
     }
-    
+
     public boolean shouldEnable() {
         return shouldEnable;
     }
@@ -81,17 +111,6 @@ public abstract class BaseTweak {
         return new ArrayList<>();
     }
 
-//    NOT IN USE replaced with get permission class param
-//    public boolean hasPermission(Player player,String permission){
-//        if(config.getBoolean("check-permissions",true)){
-//            return player.hasPermission(permission);
-//
-//        }
-//        else{
-//
-//            return true;
-//        }
-//    }
 
     public boolean hasPermission(Player player, Permission permission){
         if(config.getBoolean("check-permissions",true)){
@@ -127,7 +146,7 @@ public abstract class BaseTweak {
         return false;
     }
 
-    
+
 
 
     protected void registerEvents(Listener listener) {
@@ -164,10 +183,6 @@ public abstract class BaseTweak {
         registered = false;
     }
 
-    public void reload() {
-        this.config = plugin.getConfig().getConfigurationSection(configKey);
-        this.shouldEnable = config.getBoolean("enabled");
-    }
 
     public void onDisable(){}
 

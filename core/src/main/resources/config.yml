@@ -13,15 +13,20 @@
 # do not touch this one
 first-install: true
 
+
 # its bstats
 metrics: true
+
 
 # weather or not to show a message of all tweaks being disabled
 op-notifications: true
 
+
 # if set to false no permission checks will be made for core commands like /tw reload,/tw toggle,/tw tweak-list etc., and only op will able to use them
 check-permissions-for-core-commands: true
 
+
+# WORK IN PROGRESS
 # Sets the default value of the permission.
 # this will apply to all tweaks which have permissions
 # Valid values are;
@@ -32,11 +37,20 @@ check-permissions-for-core-commands: true
 default-permissions: TRUE
 
 
-# Right clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
+# REQUIRES WorldGuard Plugin installed
+# determines the default world guard flag value for tweaks having custom world guard flags, eg. better-sign-edit,shear-item-frame,snowball-knockback
+default-worldguard-flag-value: true
+
+# allow to make checks for build permission via any one of the following grief/protection plugin(if installed)
+# Grief Prevention,Lands,CrashClaim,Residence,Towny.
+grief-plugin-support: true
+
+# Right-Clicking an armor item in an inventory will swap it for whatever armor you're currently holding.
 # Permission: tweakin.armorclick
 armor-right-click:
   enabled: false
   check-permissions: true
+
 
 # Using hot on a shulker box in inventory will display its contents as if player opened the shulker itself
 # Permission: 
@@ -53,6 +67,7 @@ shulker-box-preview:
  # hotkey used to see the preview
   hotkey: SHIFT_RIGHT
 
+
 # Create nether portals with any shape,size and with any blocks, remember this only applies to nether portals
 # Permission: tweakin.customportal.use
 custom-shaped-portals:
@@ -67,6 +82,7 @@ custom-shaped-portals:
     - OBSIDIAN
     - CRYING_OBSIDIAN
 
+
 # Note Blocks with heads attached to their side will emit the respective mob's sound instead of a note.
 # The mob sound's pitch is based on the note block pitch.
 # only vanilla mob heads will work
@@ -77,6 +93,7 @@ noteblock-mob-sounds:
   # list of heads which will be ignored
   # DRAGON_WALL_HEAD,ZOMBIE_WALL_HEAD,WITHER_SKELETON_WALL_SKULL,SKELETON_WALL_SKULL
   black-list-heads: []
+
 
 # REQUIRES: ProtocolLib 
 # Reacharound Placing allows you to place blocks behind the block you're looking at.
@@ -112,6 +129,7 @@ reach-around:
   # transparency of highlight
   transparency: 50
 
+
 # Leaves decay much faster when no logs are nearby, or when the leaves are not player placed  
 fast-leaf-decay:
   enabled: false
@@ -119,6 +137,7 @@ fast-leaf-decay:
   black-list-worlds: []
   # maximum duration leaves will stay (in seconds)
   duration: 10
+
 
 # Ladders are slightly tweaked to improve your laddering experience:
   # Right clicking a ladder with another one will place it, allowing you to drop ladders down without risking falling to your death.
@@ -133,6 +152,7 @@ better-ladder:
   # Universal toggle for quickclimb ladder feature
   quickclimb: true
 
+
 # Also called Better Enchanting Table
 # Lapis placed in enchanting table will stay there
 # item placed in enchanting slot will display above the enchanting table
@@ -143,11 +163,13 @@ lapis-in-table:
   store-item: true
   black-list-worlds: []
 
+
 # All recipes will be unlocked when player joins server
 # Permission: tweakin.autorecipeunlock
 auto-recipe-unlock:
   enabled: false
   check-permissions: true
+
 
 # Helps to sync nether portals between overworld and nether
 # right clicking a nether portal block while holding compass will display the calculated coordinates in compass
@@ -160,11 +182,13 @@ nether-portal-coords:
   world-pairs:
     world: world_nether
 
+
 # Does what it says, allows player to attack mobs through grass or any other passable block
 # Permission: tweakin.swingthroughgrass
 swing-through-grass:
   enabled: false
   check-permissions: true
+
 
 # displays coordinate hud,direction and ingame time at actionbar
 # Permission: 
@@ -220,6 +244,7 @@ burn-vine-tip:
   check-permissions: true
   black-list-worlds: []
 
+
 # silence mobs using a name tag
 # Permission: tweakin.silencemobs.*, tweakin.silencemobs.silence, tweakin.silencemobs.unsilence
 silence-mobs:
@@ -248,6 +273,7 @@ silence-mobs:
     - "Unmute me"
     - "unmute me"
 
+
 # Optionally use Resource pack to change the sprite of item [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # Adds a wrench which allows to rotate any rotatable block listed in rotatable-materials.
 # Permission: tweakin.rotationwrench.use
@@ -272,6 +298,7 @@ rotation-wrench:
     - REPEATER
     - CHEST
     - _LOG$
+
 
 # Optionally use Resource pack to change the sprite of item [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # Using a Glass Bottle at the cloud levels (126-132 by default) will get you a Bottled Cloud.
@@ -306,6 +333,7 @@ trowel:
   # Note: max uses of the item depends on what base material you are using example iron_hoe has 250 max durability meaning trowel will have 250 max uses
   take-damage: true
 
+
 # Creepers will no longer explode, instead they will turn into twinkling fireworks
 confetti-creepers:
   enabled: false
@@ -316,7 +344,8 @@ confetti-creepers:
   # list of colors that will be included in fire work
   # visit https://www.shodor.org/stella2java/rgbint.html to convert your rgb colors to integers
   colors: [11743532,15435844,14602026,4312372,6719955,8073150,14188952]     
-  
+
+
 # Items can now be right clicked onto a Lava Bucket to destroy them forever.
 # Shulker Boxes and items that are immune to fire (eg. Netherite) can not be destroyed this way.
 # Items can only be destroyed if the lava bucket is in player's inventory
@@ -335,6 +364,7 @@ lava-bucket-trash-can:
   black-list-materials:
     - "SHULKER_BOX$"
     - "^NETHERITE"
+
 
 # Use of Resource pack is important [https://github.com/sachingorkar102/Tweakin-Resource-Pack]
 # disable this if you dont use resource packs on server.
@@ -357,7 +387,6 @@ slime-in-bucket:
   model-detected: 104
   # what interval in ticks the runnable should run
   interval-ticks: 20
-  
 
 
 # You can pat the dogs. Sneak-Right click them with an empty hand to perform this glorious act.
@@ -373,6 +402,7 @@ pat-dogs:
   # weather or not cats can be patted too.
   pat-cats: false
 
+
 # compass can now work in nether and end too,
 # pointing towards the portal you entered from, this will only work if you have a compass in main_hand
 # right clicking the bed with compass in main_hand will start pointing towards bed location
@@ -385,6 +415,7 @@ compass-work-everywhere:
   nether: true
   # weather or not compass will work in end
   end: true
+
 
 # REQUIRES ProtocolLib 
 # A tweak to silence these nasty server wide broadcast sounds:
@@ -403,6 +434,7 @@ better-sign-edit:
   enabled: false
   check-permissions: true
   black-list-worlds: []
+
 
 # Breaking grass or crops with a hoe (while sneaking) will break a 3x3 of them. A Diamond & Netherite Hoe will break a 5x5 instead.
 # If you put Fortune on the hoe, it'll also apply that effect to everything it breaks.
@@ -430,11 +462,11 @@ hoe-harvesting:
   # if set to false player will able to hoe-harvest even without sneaking 
   require-sneaking: true  
 
-
 # Holding an Emerald Block causes nearby villagers to follow the player, much like animals do for food items. 
 villager-follow-emerald:
   enabled: false
   black-list-worlds: []
+
 
 # Animals will flee in groups on melee attacks, adding some stratagy to killing them 
 # Already breeded animals by player will not flee away
@@ -457,6 +489,7 @@ animal-flee:
   # list of animals that will flee on hit
   fleeable-mobs: [COW,MUSHROOM_COW,SHEEP,PIG,LLAMA,MULE,HORSE]
 
+
 # Item frame containing item in them can be made invisible if right clicked with shears
 # Permission: tweakin.shearitemframe.use
 # Worldguard flag: tweakin-shear-item-frame [enabled by default]
@@ -464,6 +497,7 @@ shear-item-frame:
   enabled: false
   check-permissions: true
   black-list-worlds: []
+
 
 # Snowballs and eggs will apply more knockback to entity on hit and also deal damage
 # Worldguard flag: tweakin-snowball-knockback [default to true]
@@ -474,6 +508,7 @@ snowball-knockback:
   black-list-worlds: []
   # how much damage entity should take, set to 0 to disable it
   damage: 0.5
+
 
 # Water Buckets can now be given Infinity through an Anvil.
 # Permissions:
@@ -486,7 +521,6 @@ infinity-water-bucket:
   cost: 2
   # weather or not dispensers can use infinity bucket like players
   dispenser-usable: true
-  
 
 # mobs have a chance to drop there heads on death,
 # each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes in heads.yml to take place)
@@ -498,6 +532,7 @@ mob-heads:
   black-list-worlds: []
   # if set to false mobs will not drop heads if they are not killed by player
   require-player-kill: true  
+
 
 # You can put an enchanted item and a book into the grindstone, and you will get the enchantments onto the book,
 # destroying your enchanted item in the process
@@ -524,7 +559,6 @@ armored-elytra:
   combineable-materials: [LEATHER_CHESTPLATE,IRON_CHESTPLATE,DIAMOND_CHESTPLATE,NETHERITE_CHESTPLATE,GOLDEN_CHESTPLATE,CHAINMAIL_CHESTPLATE]
   
 
-
 # a message a broadcasted to all players when a villager dies
 # the message is configurable in messages.yml
 # Permission: 
@@ -533,6 +567,7 @@ villager-death-message:
   enabled: false
   check-permissions: true
   black-list-worlds: []      
+
 
 # Adding some more features to armor stand and giving players more control over them
 # /armorstand or /as can be used to edit a armorstand player is looking at with a gui
@@ -558,6 +593,7 @@ better-armorstands:
   # Pro tip: use | to add more then one aliases
   alias: as|armorstand|editarmorstand
 
+
 # REQUIRES better-armorstands to be enabled
 # A wand item to use to edit armor stands, rather then using /armorstand command
 # Permissions:
@@ -566,7 +602,8 @@ armorstand-wand:
   enabled: false
   check-permissions: true
   craftable: true  
-  
+
+
 # NOTE: only works with mobs that were name tagged after this tweak was enabled
 # Shift+Right click a name tagged mob with shears to remove the name and get the nametag back 
 # Permissions:
@@ -576,10 +613,12 @@ shear-name-tag:
   check-permissions: true
   black-list-worlds: []
 
+
 # Lectern book page will reset to 0 when player closes it
 lectern-page-reset:
   enabled: false
   black-list-worlds: []
+
 
 # REQUIRES Resource pack for crafting table on stick item sprite
 # As name suggests crafting table and stick combined in crafting table gives crafting-table-on-stick
@@ -594,6 +633,7 @@ crafting-table-on-stick:
   works-with-crafting-table: false
   # hotkey used to open the gui
   hotkey: SHIFT_RIGHT
+
 
 # Allows to create randomized firework shows rather than painfully crafting unique firework effect
 # Note: these fireworks cant be used for elytra flight
@@ -619,11 +659,13 @@ infinite-firework:
 more-recipes:
   enabled: false  
 
+
 # REQUIRES PaperMC as server software 
 # Dropping concrete powder in water filled cauldron will instantly turn it into concrete block
 cauldron-concrete:
   enabled: false
   black-list-worlds: []
+
 
 # only available for versions after 1.19
 # allows you to craft your death location map from recovery compass by placing
@@ -644,6 +686,7 @@ better-recovery-compass:
   # weather or not show the biome outlines such found in treasure maps
   show-biome-preview: true
 
+
 # allows to repair a broken anvil block to be repaired by right clicking with iron block
 anvil-repair:
   enabled: false
@@ -651,6 +694,7 @@ anvil-repair:
   black-list-worlds: []
   # list of valid repairable blocks
   repairable-blocks: [IRON_BLOCK]
+
 
 # extinguish a player on fire when a splash water bottle is thrown near him
 # Permissions:

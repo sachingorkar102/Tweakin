@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import com.google.common.base.Enums;
 import com.google.common.base.Optional;
 import org.bukkit.Material;
@@ -33,14 +34,17 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 // Permission: tweakin.mobheads.drops
+@Tweak(name = "mob-heads")
 public class MobHeadsTweak extends BaseTweak implements Listener{
 
     public static FileConfiguration headConfig;
     private final NamespacedKey key = Tweakin.getKey("mob-head-enum");
     private HeadManager manager;
 
-    public MobHeadsTweak(Tweakin plugin) {
-        super(plugin, "mob-heads");
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
         File file = new File(plugin.getDataFolder(),"heads.yml");
         if(!file.exists()){
             plugin.saveResource("heads.yml", false);
@@ -53,10 +57,6 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
         headConfig = YamlConfiguration.loadConfiguration(file);
         this.manager = new HeadManager(this);
     }
-    
-
-
-
 
     @EventHandler
     public void onHeadDrops(ItemSpawnEvent e){

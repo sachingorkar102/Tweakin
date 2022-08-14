@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.fastleafdecay;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Tag;
@@ -16,24 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+@Tweak(name = "fast-leaf-decay")
 public class FastLeafDecayTweak extends BaseTweak implements Listener {
 
     private int duration;
-
-
-    public FastLeafDecayTweak(Tweakin plugin) {
-        super(plugin, "fast-leaf-decay");
-    }
-
 
     @Override
     public void reload() {
         super.reload();
         this.duration = getConfig().getInt("duration", 10) * 20;
-//        //Remove unused option
-//        if (getConfig().isSet("use-async")) {
-//            getConfig().set("use-async", null);
-//        }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)

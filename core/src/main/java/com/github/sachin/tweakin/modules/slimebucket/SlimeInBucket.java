@@ -2,7 +2,9 @@ package com.github.sachin.tweakin.modules.slimebucket;
 
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,14 +27,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashSet;
 import java.util.Set;
 
+@Tweak(name = "slime-in-bucket")
 public class SlimeInBucket extends TweakItem implements Listener{
 
     private SlimeRunnable runnable;
     private final Set<Player> enabled = new HashSet<>();
-
-    public SlimeInBucket(Tweakin plugin) {
-        super(plugin, "slime-in-bucket");
-    }
 
     @Override
     public void register() {
@@ -91,7 +90,13 @@ public class SlimeInBucket extends TweakItem implements Listener{
         e.setCancelled(true);
         player.swingMainHand();
         item.setAmount(item.getAmount()-1);
-        player.getInventory().addItem(getItem());
+        ItemStack slimeBucket = getItem().clone();
+        if(slime.getCustomName() != null){
+            NBTItem nbtItem = new NBTItem(slimeBucket);
+            nbtItem.setString("tweakin-slime-name",slime.getCustomName());
+            slimeBucket = nbtItem.getItem();
+        }
+        player.getInventory().addItem(slimeBucket);
         slime.remove();
     }
 
@@ -104,15 +109,15 @@ public class SlimeInBucket extends TweakItem implements Listener{
         Block clickedBlock = e.getClickedBlock();
         Block relative = clickedBlock.getRelative(e.getBlockFace());
         if(relative.getType() != Material.AIR) return;
-        boolean placed = getPlugin().getNmsHelper().placeItem(player, relative.getLocation(), new ItemStack(Material.DIRT), e.getBlockFace(),null,false);
-        if(placed){
-            e.setCancelled(true);
-            relative.setType(Material.AIR);
-            Slime slime = player.getWorld().spawn(relative.getLocation().add(0.5,0.5,0.5), Slime.class);
-            slime.setSize(1);
-            e.getItem().setAmount(e.getItem().getAmount()-1);
-            player.getInventory().addItem(new ItemStack(Material.BUCKET));
+        Slime slime = player.getWorld().spawn(relative.getLocation().add(0.5,0.5,0.5), Slime.class);
+        ItemStack slimeBucket = player.getInventory().getItem(EquipmentSlot.HAND);
+        NBTItem nbtItem = new NBTItem(slimeBucket);
+        if(nbtItem.hasKey("tweakin-slime-name")){
+            slime.setCustomName(nbtItem.getString("tweakin-slime-name"));
         }
+        slime.setSize(1);
+        e.getItem().setAmount(e.getItem().getAmount()-1);
+        player.getInventory().addItem(new ItemStack(Material.BUCKET));
     }
 
     private class SlimeRunnable extends BukkitRunnable{

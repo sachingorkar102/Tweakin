@@ -5,6 +5,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -28,6 +29,7 @@ import java.util.*;
 
 
 // permissions tweakin.reacharound.vertical, tweakin.reacharound.horizontal, tweakin.reacharound.highlight
+@Tweak(name = "reach-around")
 public class ReachAroundTweak extends BaseTweak implements Listener{
 
     private Map<UUID,BukkitTask> currentTasks = new HashMap<>();
@@ -40,41 +42,28 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     private ToggleCommand command;
 
 
-    public ReachAroundTweak(Tweakin plugin) {
-        super(plugin, "reach-around");
-        this.command = new ToggleCommand(this);
-        
-    }
 
-    
+    @Override
+    public void onLoad() {
+        this.command = new ToggleCommand(this);
+    }
 
     public List<String> getBlackListWorlds() {
         return blackListWorlds;
     }
 
 
-    
 
     @Override
     public void register() {
-        if(isPluginEnabled("ProtocolLib")){
-            registerCommands(command);
-            registerEvents(this);
-            registered = true;
-        }
-        else{
-            getPlugin().getLogger().info("ProtocolLib not found, ignoring reach-around...");
-            registered = false;
-        }
+        super.register();
+        registerCommands(command);
     }
 
     @Override
     public void unregister() {
-        if(registered){
-            unregisterCommands(command);
-            unregisterEvents(this);
-            registered = false;
-        }
+        super.unregister();
+        unregisterCommands(command);
     }
 
     @Override

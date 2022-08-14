@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.autorecipeunlock;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -15,13 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Permission: tweakin.autorecipeunlock
+@Tweak(name = "auto-recipe-unlock")
 public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
 
     private List<NamespacedKey> recipes = new ArrayList<>();
 
-    public AutoRecipeUnlockTweak(Tweakin plugin) {
-        super(plugin, "auto-recipe-unlock");
-    }
 
     @Override
     public void register() {

@@ -5,6 +5,7 @@ import com.github.sachin.tweakin.Message;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.Tweak;
 import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -30,6 +31,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 // tweakin.betterarmorstands.armorswap,tweakin.betterarmorstands.uuidlockbypass,tweakin.betterarmorstands.command
+@Tweak(name = "better-armorstands")
 public class BetterArmorStandTweak extends BaseTweak implements Listener{
 
     private ArmorStandCommand command;
@@ -38,15 +40,16 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
     private Message messageManager;
     protected final Map<UUID,UUID> cachedAsList = new HashMap<>();
 
-    public BetterArmorStandTweak(Tweakin plugin) {
-        super(plugin, "better-armorstands");
-        this.wandItem = new ArmorStandWandItem(plugin,this);
-        getTweakManager().registerTweak(wandItem);
+    public BetterArmorStandTweak() {
+        super();
+        this.wandItem = new ArmorStandWandItem(this);
+        getTweakManager().addTweak(wandItem);
         this.poseManager = new PoseManager(this);
         this.command = new ArmorStandCommand(this);
         this.messageManager = plugin.getTweakManager().getMessageManager();
     }
-    
+
+
     public PoseManager getPoseManager() {
         return poseManager;
     }

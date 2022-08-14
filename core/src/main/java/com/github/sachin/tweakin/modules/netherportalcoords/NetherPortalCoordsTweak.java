@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 // Permission: tweakin.netherportalcoords
+@Tweak(name = "nether-portal-coords")
 public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
 
     private Map<String,String> worldPairs;
@@ -31,9 +33,6 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
         
     }
 
-    public NetherPortalCoordsTweak(Tweakin plugin) {
-        super(plugin, "nether-portal-coords");
-    }
 
     @Override
     public void reload() {

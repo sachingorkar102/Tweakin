@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.cauldronconcrete;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Tweak;
 import com.google.common.base.Enums;
 import io.papermc.paper.event.entity.EntityInsideBlockEvent;
 import org.bukkit.Material;
@@ -11,11 +12,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
+@Tweak(name = "cauldron-concrete")
 public class CauldronConcreteTweak extends BaseTweak implements Listener{
-
-    public CauldronConcreteTweak(Tweakin plugin) {
-        super(plugin, "cauldron-concrete");
-    }
 
     @EventHandler
     public void onPowderDrop(EntityInsideBlockEvent e){

@@ -25,6 +25,13 @@ public class TConstants {
     public static final String PAPI = "PlaceholderAPI";
     public static final String VULCAN = "Vulcan";
 
+    public static final String LANDS = "Lands";
+    public static final String RESIDENCE = "Residence";
+
+    public static final String CRASHCLAIM = "CrashClaim";
+
+    public static final String TOWNY = "Towny";
+
     
     public static final NamespacedKey UUID_LOCK_KEY = Tweakin.getKey("bas-uuid-lock");
     public static final NamespacedKey ARMORSTAND_EDITED = Tweakin.getKey("bas-armorstand-edited");
@@ -35,4 +42,5 @@ public class TConstants {
     public static final NamespacedKey INFINITE_FIREWORK_KEY = Tweakin.getKey("infinite-firework-key");
 
     public static final NamespacedKey SHULKER_DUPE_KEY = Tweakin.getKey("shulker-dupe-prevent-key");
+
 }

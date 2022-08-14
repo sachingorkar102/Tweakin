@@ -13,9 +13,6 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 // Permission: tweakin.tradernotify
 public class TraderNotifyTweak extends BaseTweak implements Listener{
 
-    public TraderNotifyTweak(Tweakin plugin) {
-        super(plugin, "trader-notify");
-    }
 /*
 # a message will be broadcasted to all players when a wandering trader spawns near a player
 # the message is configurable in messages.yml, optionally use placeholders like %x%,%y%,%z% and %world-type% to specidy accurate location

@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.lavabucketcan;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,11 +21,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+@Tweak(name = "lava-bucket-trash-can")
 public class LavaBucketTrashCan extends BaseTweak implements Listener{
-
-    public LavaBucketTrashCan(Tweakin plugin) {
-        super(plugin, "lava-bucket-trash-can");
-    }
 
 
     @EventHandler

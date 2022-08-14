@@ -9,6 +9,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -25,19 +26,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 // tweakin.bettersignedit.use
+@Tweak(name = "better-sign-edit")
 public class BetterSignEditTweak extends BaseTweak implements Listener{
 
     public ProtocolManager manager;
     private UpdateSignListener listener;
     private BSEFlag flag;
-    public final NamespacedKey key;
+    public final NamespacedKey key = Tweakin.getKey("sign-edited");
     public List<Player> lines = new ArrayList<>();
 
-    public BetterSignEditTweak(Tweakin plugin) {
-        super(plugin,"better-sign-edit");
+
+    @Override
+    public void onLoad() {
         this.manager = ProtocolLibrary.getProtocolManager();
         this.listener = new UpdateSignListener(plugin,this);
-        this.key = new NamespacedKey(plugin, "sign-edited");
         if(plugin.isWorldGuardEnabled){
             this.flag = (BSEFlag) plugin.getWGFlagManager().getFlag(TConstants.BSE_FLAG);
         }

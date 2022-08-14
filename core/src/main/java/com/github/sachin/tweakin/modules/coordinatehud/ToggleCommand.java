@@ -25,7 +25,7 @@ public class ToggleCommand extends BaseCommand{
         }
         if(instance.enabled.remove(player)){
             player.getPersistentDataContainer().remove(instance.key);
-            if(instance.isBossBar){
+            if(instance.isBossBar()){
                 instance.removeBossBar(player);
             }
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("hud-disabled"));
@@ -33,7 +33,7 @@ public class ToggleCommand extends BaseCommand{
         else{
             player.getPersistentDataContainer().set(instance.key,PersistentDataType.INTEGER, 1);
             instance.enabled.add(player);
-            if(instance.isBossBar){
+            if(instance.isBossBar()){
                 instance.createBossBar(player);
             }
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("hud-enabled"));

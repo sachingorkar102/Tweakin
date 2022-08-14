@@ -78,6 +78,8 @@ public class TweakManager {
 
     public void load(){
         plugin.getLogger().info("Loading tweakin...");
+        addCoreTweaks();
+        sort();
         reload(false);
     }
 
@@ -128,7 +130,7 @@ public class TweakManager {
         }
         this.messageManager = new Message(plugin);
         messageManager.reload();
-        for (BaseTweak t : getTweakList()) {
+        for (BaseTweak t : tweakList) {
             try {
                 t.reload();
                 if(unregister){
@@ -170,83 +172,72 @@ public class TweakManager {
 
         Bukkit.getOnlinePlayers().forEach(p -> p.updateCommands());
     }
-    public List<BaseTweak> getTweakList() {
-        if(tweakList.isEmpty()){
-            tweakList.add(new RightClickArmor(plugin));
-            tweakList.add(new ShulkerBoxPreview(plugin));
-            tweakList.add(new NoteBlockHeadsTweak(plugin));
 
-            tweakList.add(new ReachAroundTweak(plugin));
-            tweakList.add(new FastLeafDecayTweak(plugin));
-            tweakList.add(new BetterLadderTweak(plugin));
-            tweakList.add(new LapisInTableTweak(plugin));
-            tweakList.add(new CustomPortalTweak(plugin));
-            // tweakList.add(new ControlledBurnTweak(plugin)); work in progress
-            
-            tweakList.add(new NetherPortalCoordsTweak(plugin));
-            tweakList.add(new SwingThroughGrassTweak(plugin));
-            tweakList.add(new CoordinateHUDTweak(plugin));
-            tweakList.add(new PoisonPotatoUsageTweak(plugin));
-            tweakList.add(new BurnVineTipTweak(plugin));
-            tweakList.add(new SilenceMobsTweak(plugin));
-            tweakList.add(new RotationWrenchItem(plugin));
-            tweakList.add(new BottledCloudItem(plugin));
-            tweakList.add(new TrowelItem(plugin));
-            tweakList.add(new ConfettiCreepers(plugin));
-            tweakList.add(new LavaBucketTrashCan(plugin));
-            tweakList.add(new SlimeInBucket(plugin));
-            // tweakList.add(new BetterElytraRocketTweak(plugin)); could not done
-            tweakList.add(new PatDogTweak(plugin));
-            tweakList.add(new CompassEveryWhereTweak(plugin));
-            if(plugin.isProtocolLibEnabled){
-                tweakList.add(new BroadCastSoundTweak(plugin));
-                tweakList.add(new BetterSignEditTweak(plugin));
-            }
-            else{
-                plugin.getLogger().info("ProtocolLib not found,ignoring boss-spawn-sounds, better-sign-edit...");
-            }
-            tweakList.add(new HoeHarvestingTweak(plugin));
-            if(plugin.isRunningPaper){
-                tweakList.add(new VillagerFollowEmraldTweak(plugin));
-            }
-            else{
-                plugin.getLogger().info("Not running PaperMC as server software, ignoring villager follow emerald tweak...");
-            }
-            tweakList.add(new AnimalFleeTweak(plugin));
-            tweakList.add(new ShearItemFrameTweak(plugin));
-            tweakList.add(new SnowBallKnockBackTweak(plugin));
-            tweakList.add(new InfinityWaterBucketTweak(plugin));
-            tweakList.add(new MobHeadsTweak(plugin));
-            tweakList.add(new BetterGrindStoneTweak(plugin));
-            tweakList.add(new ArmoredElytraTweak(plugin));
-            tweakList.add(new VillagerDeathMessageTweak(plugin));
-            tweakList.add(new BetterArmorStandTweak(plugin));
-            tweakList.add(new ShearNameTagTweak(plugin));
-            tweakList.add(new LecternPageResetTweak(plugin));
-            tweakList.add(new CraftTableOnStick(plugin));
-            // tweakList.add(new NoPotionGlintTweak(plugin));
-            tweakList.add(new InfiniteFireworkItem(plugin));
-            tweakList.add(new MoreRecipesTweak(plugin));
-            if(plugin.isRunningPaper){
-                tweakList.add(new CauldronConcreteTweak(plugin));
-            }
-            else{
-                plugin.getLogger().info("Not running PaperMC as server software, ignoring cauldron concrete tweak...");
-            }
-            tweakList.add(new AutoRecipeUnlockTweak(plugin));
-            if(plugin.isPost1_19()){
-                tweakList.add(new BetterRecoveryCompassTweak(plugin));
-            }
-            tweakList.add(new AnvilRepairTweak(plugin));
-            tweakList.add(new WaterExtinguishTweak(plugin));
-            sort();
+    private void addCoreTweaks(){
+        tweakList.add(new RightClickArmor());
+        tweakList.add(new ShulkerBoxPreview());
+        tweakList.add(new NoteBlockHeadsTweak());
+
+        tweakList.add(new FastLeafDecayTweak());
+        tweakList.add(new BetterLadderTweak());
+        tweakList.add(new LapisInTableTweak());
+        tweakList.add(new CustomPortalTweak());
+        tweakList.add(new NetherPortalCoordsTweak());
+        tweakList.add(new SwingThroughGrassTweak());
+        tweakList.add(new CoordinateHUDTweak());
+        tweakList.add(new PoisonPotatoUsageTweak());
+        tweakList.add(new BurnVineTipTweak());
+        tweakList.add(new SilenceMobsTweak());
+        tweakList.add(new RotationWrenchItem());
+        tweakList.add(new BottledCloudItem());
+        tweakList.add(new TrowelItem());
+        tweakList.add(new ConfettiCreepers());
+        tweakList.add(new LavaBucketTrashCan());
+        tweakList.add(new SlimeInBucket());
+        tweakList.add(new PatDogTweak());
+        tweakList.add(new CompassEveryWhereTweak());
+        tweakList.add(new HoeHarvestingTweak());
+        tweakList.add(new AnimalFleeTweak());
+        tweakList.add(new ShearItemFrameTweak());
+        tweakList.add(new SnowBallKnockBackTweak());
+        tweakList.add(new InfinityWaterBucketTweak());
+        tweakList.add(new MobHeadsTweak());
+        tweakList.add(new BetterGrindStoneTweak());
+        tweakList.add(new ArmoredElytraTweak());
+        tweakList.add(new VillagerDeathMessageTweak());
+        tweakList.add(new BetterArmorStandTweak());
+        tweakList.add(new ShearNameTagTweak());
+        tweakList.add(new LecternPageResetTweak());
+        tweakList.add(new CraftTableOnStick());
+        tweakList.add(new InfiniteFireworkItem());
+        tweakList.add(new MoreRecipesTweak());
+        tweakList.add(new AutoRecipeUnlockTweak());
+        tweakList.add(new AnvilRepairTweak());
+        tweakList.add(new WaterExtinguishTweak());
+        if(plugin.isProtocolLibEnabled){
+            tweakList.add(new BroadCastSoundTweak());
+            tweakList.add(new BetterSignEditTweak());
+            tweakList.add(new ReachAroundTweak());
         }
+        else{
+            plugin.getLogger().severe("Not running ProtocolLib, ignoring boss-spawn-sounds, better-sign-edit, reach-around...");
+        }
+        if(plugin.isRunningPaper){
+            tweakList.add(new CauldronConcreteTweak());
+            tweakList.add(new VillagerFollowEmraldTweak());
+        }
+        else{
+            plugin.getLogger().severe("Not running PaperMC as server software, ignoring cauldron concrete and villager follow emerald tweak...");
+        }
+        if(plugin.isPost1_19()){
+            tweakList.add(new BetterRecoveryCompassTweak());
+        }
+    }
+
+    public List<BaseTweak> getTweakList() {
         return tweakList;
     }
 
-    public void registerTweak(BaseTweak tweak){
-        tweakList.add(tweak);
-    }
 
     private void sort(){
         TreeMap<String,BaseTweak> treeMap = new TreeMap<>(Comparator.naturalOrder());
@@ -287,6 +278,10 @@ public class TweakManager {
             list.add(t.getName());
         }
         return list;
+    }
+
+    public void addTweak(BaseTweak tweak){
+        tweakList.add(tweak);
     }
 
 

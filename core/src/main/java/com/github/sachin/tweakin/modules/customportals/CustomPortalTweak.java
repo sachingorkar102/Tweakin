@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.customportals;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.*;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
@@ -25,12 +26,10 @@ import java.util.Set;
 
 
 // permission: tweakin.customportal.use
+@Tweak(name = "custom-shaped-portals")
 public class CustomPortalTweak extends BaseTweak implements Listener {
 
 
-    public CustomPortalTweak(Tweakin plugin) {
-        super(plugin, "custom-shaped-portals");
-    }
 
     // A little helper class which contains info about portal boundaries and does all the work to check if we exceed these.
     private class PortalBounds {

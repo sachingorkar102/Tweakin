@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -19,13 +20,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+@Tweak(name = "shear-item-frame")
 public class ShearItemFrameTweak extends BaseTweak implements Listener{
 
     private final NamespacedKey key = Tweakin.getKey("tweakin-frame");
     private SIFFlag flag;
 
-    public ShearItemFrameTweak(Tweakin plugin) {
-        super(plugin, "shear-item-frame");
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
         if(plugin.isWorldGuardEnabled){
             this.flag = (SIFFlag) plugin.getWGFlagManager().getFlag(TConstants.SIF_FLAG);
         }
@@ -35,6 +39,7 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
     public void onShear(PlayerInteractEntityEvent e){
         if(!(e.getRightClicked() instanceof ItemFrame)) return;
         Player player = e.getPlayer();
+        if(plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,e.getRightClicked().getLocation(), Material.SHEARS)) return;
         if(player.isSneaking() || !hasPermission(player, Permissions.SHEARITEMFRAME)) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(flag != null && !flag.queryFlag(player, e.getRightClicked().getLocation())) return;
@@ -43,26 +48,10 @@ public class ShearItemFrameTweak extends BaseTweak implements Listener{
         ItemFrame frame = (ItemFrame) e.getRightClicked();
         if(frame.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)) return;
         if(!frame.getItem().getType().isAir()){
-            boolean placed = plugin.getNmsHelper().placeItem(player, frame.getLocation(), new ItemStack(Material.BARRIER), frame.getAttachedFace(),null,false);
-            if(placed){
-                if(plugin.is1_18()){
-                    player.getInventory().setItemInMainHand(item);
-//                    new BukkitRunnable(){
-//                        @Override
-//                        public void run() {
-//
-//                        }
-//                    }.runTaskLater(plugin,1);
-                }
+            frame.setVisible(false);
+            player.getWorld().playSound(frame.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
+            frame.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
 
-                Block frameBlock = frame.getLocation().getBlock();
-                if(frameBlock.getType()==Material.BARRIER){
-                    frameBlock.setType(Material.AIR);
-                }
-                frame.setVisible(false);
-                player.getWorld().playSound(frame.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
-                frame.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
-            }
         }
     }
 

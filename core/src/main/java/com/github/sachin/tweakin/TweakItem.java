@@ -28,8 +28,9 @@ public abstract class TweakItem extends BaseTweak {
 
     
 
-    public TweakItem(Tweakin plugin, String configKey) {
-        super(plugin, configKey);
+
+    public TweakItem() {
+        super();
     }
 
     @Override

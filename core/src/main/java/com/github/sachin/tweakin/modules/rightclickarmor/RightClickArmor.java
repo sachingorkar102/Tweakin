@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.rightclickarmor;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,13 +19,11 @@ import org.bukkit.inventory.PlayerInventory;
 
 
 // permission: tweakin.armorclick
+@Tweak(name = "armor-right-click")
 public class RightClickArmor extends BaseTweak implements Listener {
 
 
 
-    public RightClickArmor(Tweakin plugin) {
-        super(plugin,"armor-right-click");
-    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void armorClickInAir(PlayerInteractEvent e){

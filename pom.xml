@@ -9,7 +9,7 @@
     <version>3.8.6</version>
     <modules>
         <module>core</module>
-        <module>compiler</module>
+        <module>dist</module>
         <module>nms1_19</module>
         <module>nms1_19_1</module>
         <module>nms1_18_R2</module>

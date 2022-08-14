@@ -1,8 +1,7 @@
-package com.github.sachin.tweakin.utils.compat.grief;
+package com.github.sachin.tweakin.compat.grief;
 
 import com.github.sachin.tweakin.utils.TConstants;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
-import me.ryanhamshire.GriefPrevention.TextMode;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;

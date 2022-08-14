@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.swingthroughgrass;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -17,25 +18,10 @@ import java.util.function.Predicate;
 
 
 // permission: tweakin.swingthroughgrass
+@Tweak(name = "swing-through-grass")
 public class SwingThroughGrassTweak extends BaseTweak implements Listener{
 
 
-
-    public SwingThroughGrassTweak(Tweakin plugin) {
-        super(plugin, "swing-through-grass");
-    }
-
-    @Override
-    public void register() {
-        registerEvents(this);
-        registered = true;
-    }
-
-    @Override
-    public void unregister() {
-        unregisterEvents(this);
-        registered = false;
-    }
 
     @EventHandler
     public void onSwordSwing(PlayerInteractEvent e){

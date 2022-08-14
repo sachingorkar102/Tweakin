@@ -27,7 +27,7 @@ public abstract class BaseFlag {
 
 
     public void register(){
-        this.flag = new StateFlag(flagName,true);
+        this.flag = new StateFlag(flagName,plugin.getConfig().getBoolean("default-worldguard-flag-value"));
         try {
             manager.getRegistry().register(flag);
             plugin.getLogger().info("Worldguard flag: "+flagName+ " registered successfully");

@@ -2,14 +2,14 @@ package com.github.sachin.tweakin.modules.bottledcloud;
 
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Config;
 import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.MagmaCube;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -31,16 +31,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Permission: tweakin.bottledcloud.pickup,tweakin.bottledcloud.use
+@Tweak(name = "bottled-cloud")
 public class BottledCloudItem extends TweakItem implements Listener{
 
     private ItemStack cloudItem;
     private NamespacedKey placedBlock;
     public Map<Location,CloudEntity> clouds = new HashMap<>();
-    private int miniHeight;
-    private int maxHeight;
+    @Config(key = "minimum-height")
+    private int miniHeight = 126;
+    @Config(key = "maximum-height")
+    private int maxHeight = 132;
 
-    public BottledCloudItem(Tweakin plugin) {
-        super(plugin, "bottled-cloud");
+
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
         this.cloudItem = new ItemStack(Material.PLAYER_HEAD);
         this.placedBlock = new NamespacedKey(plugin, "cloud-occupied");
         ItemMeta meta = cloudItem.getItemMeta();
@@ -48,14 +54,6 @@ public class BottledCloudItem extends TweakItem implements Listener{
         plugin.getNmsHelper().applyHeadTexture(skullMeta, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzY2YTVjOTg5MjhmYTVkNGI1ZDViOGVmYjQ5MDE1NWI0ZGRhMzk1NmJjYWE5MzcxMTc3ODE0NTMyY2ZjIn19fQ==");
         cloudItem.setItemMeta(meta);
     }
-
-    @Override
-    public void reload() {
-        super.reload();
-        miniHeight = getConfig().getInt("minimum-height",126);
-        maxHeight = getConfig().getInt("maximum-height",132);
-    }
-
 
     @EventHandler
     public void onRightClick(PlayerInteractEvent e){
@@ -161,12 +159,13 @@ public class BottledCloudItem extends TweakItem implements Listener{
 
     }
 
-//    @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = true)
-//    public void oncloudEntitySpawnEvent(EntitySpawnEvent e){
-//        if(e.isCancelled()){
-//
-//        }
-//    }
+    @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = true)
+    public void oncloudEntitySpawnEvent(EntitySpawnEvent e){
+        Entity entity = e.getEntity();
+        if(e.isCancelled() && entity.getType()== EntityType.MAGMA_CUBE && entity.getPersistentDataContainer().has(placedBlock,PersistentDataType.INTEGER)){
+            e.setCancelled(false);
+        }
+    }
 
     @Override
     public void onDisable() {
@@ -199,6 +198,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
             cube.setAI(false);
             cube.setInvulnerable(true);
             cube.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(200);
+            cube.getPersistentDataContainer().set(placedBlock,PersistentDataType.INTEGER,1);
             cube.setSilent(true);
             this.ticker = new CloudTicker(this);
             this.data = new CustomBlockData(loc);

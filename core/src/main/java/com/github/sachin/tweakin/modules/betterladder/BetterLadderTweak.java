@@ -4,6 +4,7 @@ package com.github.sachin.tweakin.modules.betterladder;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -19,11 +20,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 // permission: tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
+@Tweak(name = "better-ladder")
 public class BetterLadderTweak extends BaseTweak implements Listener{
-
-    public BetterLadderTweak(Tweakin plugin) {
-        super(plugin, "better-ladder");
-    }
 
 
     @EventHandler
@@ -65,10 +63,11 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
                 if(plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,downLadder.getLocation(),Material.LADDER)){
                     return;
                 }
+                player.swingMainHand();
                 downLadder.getLocation().getBlock().setType(Material.LADDER);
                 downLadder.getLocation().getBlock().setBlockData(e.getClickedBlock().getBlockData());
                 ItemStack ladder = player.getInventory().getItemInMainHand();
-
+                player.getWorld().playSound(downLadder.getLocation(),Sound.BLOCK_LADDER_PLACE,1,1);
                 if(player.getGameMode() != GameMode.CREATIVE){
                     ladder.setAmount(ladder.getAmount()-1);
                 }

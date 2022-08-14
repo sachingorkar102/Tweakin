@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.villagerdeathmessage;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -13,11 +14,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 // Permission: tweakin.villagerdeathmessage.notify
+@Tweak(name = "villager-death-message")
 public class VillagerDeathMessageTweak extends BaseTweak implements Listener{
-
-    public VillagerDeathMessageTweak(Tweakin plugin) {
-        super(plugin, "villager-death-message");
-    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     @SuppressWarnings("deprecation")

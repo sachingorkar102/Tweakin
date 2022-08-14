@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -19,14 +20,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 // Permission: tweakin.burnvinetip.use
+@Tweak(name = "burn-vine-tip")
 public class BurnVineTipTweak extends BaseTweak implements Listener{
 
-    private NamespacedKey key;
-
-    public BurnVineTipTweak(Tweakin plugin) {
-        super(plugin, "burn-vine-tip");
-        this.key = new NamespacedKey(plugin,"stop-vine-growth");
-    }
+    private final NamespacedKey key = Tweakin.getKey("stop-vine-growth");
 
 
     @EventHandler

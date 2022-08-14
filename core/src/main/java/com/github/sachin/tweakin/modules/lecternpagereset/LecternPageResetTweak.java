@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.lecternpagereset;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.block.Lectern;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,11 +10,8 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.LecternInventory;
 
+@Tweak(name = "lectern-page-reset")
 public class LecternPageResetTweak extends BaseTweak implements Listener{
-
-    public LecternPageResetTweak(Tweakin plugin) {
-        super(plugin, "lectern-page-reset");
-    }
 
 
     @EventHandler

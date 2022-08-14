@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.noteblock;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -13,17 +14,12 @@ import org.bukkit.event.block.NotePlayEvent;
 
 import java.util.*;
 
+@Tweak(name = "noteblock-mob-sounds")
 public class NoteBlockHeadsTweak extends BaseTweak implements Listener{
 
-    private List<BlockFace> validFaces = new ArrayList<>();
+    private final List<BlockFace> VALID_FACES = Arrays.asList(BlockFace.DOWN,BlockFace.UP,BlockFace.EAST,BlockFace.WEST,BlockFace.NORTH,BlockFace.SOUTH);;
     private Map<String,Sound> allowedHeads;
 
-    public NoteBlockHeadsTweak(Tweakin plugin) {
-        super(plugin, "noteblock-mob-sounds");
-        validFaces = Arrays.asList(BlockFace.DOWN,BlockFace.UP,BlockFace.EAST,BlockFace.WEST,BlockFace.NORTH,BlockFace.SOUTH);
-        // allowedHeads = Arrays.asList("CREEPER_WALL_HEAD","SKELETON_WALL_SKULL","ZOMBIE_WALL_HEAD","DRAGON_WALL_HEAD","WITHER_SKELETON_WALL_SKULL");
-        // createAllowedHeads();
-    }
 
     @EventHandler
     @SuppressWarnings("deprecation")
@@ -31,7 +27,7 @@ public class NoteBlockHeadsTweak extends BaseTweak implements Listener{
         Block block = e.getBlock();
         if(getBlackListWorlds().contains(block.getWorld().getName())) return;
         Sound sound = null;
-        for(BlockFace b : validFaces){
+        for(BlockFace b : VALID_FACES){
             Block blockSide = block.getRelative(b);
             sound = getSound(blockSide.getType());
             if(sound != null) break;

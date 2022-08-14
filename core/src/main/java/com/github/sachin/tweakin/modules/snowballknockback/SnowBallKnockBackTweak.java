@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.snowballknockback;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -15,12 +16,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 
+@Tweak(name = "snowball-knockback")
 public class SnowBallKnockBackTweak extends BaseTweak implements Listener{
 
     private SBKFlag flag;
 
-    public SnowBallKnockBackTweak(Tweakin plugin) {
-        super(plugin, "snowball-knockback");
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
         if(plugin.isWorldGuardEnabled){
             this.flag = (SBKFlag) plugin.getWGFlagManager().getFlag(TConstants.SBK_FLAG);
         }

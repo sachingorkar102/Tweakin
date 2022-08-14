@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.patdogs;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -16,11 +17,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
+@Tweak(name = "pat-dogs")
 public class PatDogTweak extends BaseTweak implements Listener{
 
-    public PatDogTweak(Tweakin plugin) {
-        super(plugin, "pat-dogs");
-    }
 
     @EventHandler
     public void onPat(PlayerInteractEntityEvent e){

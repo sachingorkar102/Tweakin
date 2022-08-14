@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.lapisintable;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.CustomBlockData;
+import com.github.sachin.tweakin.utils.Tweak;
 import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@Tweak(name = "lapis-in-table")
 public class LapisInTableTweak extends BaseTweak implements Listener{
 
     private Map<Location,LapisData> data = new HashMap<>();
@@ -44,13 +46,12 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
     private File lapisFile;
     private Map<Player,Location> invMap = new HashMap<>();
 
-	public LapisInTableTweak(Tweakin plugin) {
-        super(plugin, "lapis-in-table");
+
+    @Override
+    public void onLoad() {
         this.lapisFile = new File(getPlugin().getDataFolder().getAbsolutePath()+"/"+"data/lapis-data.yml");
-        
         loadLapisData();
-        
-	}
+    }
 
     @Override
     public void register() {
@@ -73,7 +74,12 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
     }
 
     public void loadLapisData(){
-        data.clear();
+        if(data == null){
+            this.data = new HashMap<>();
+        }
+        else{
+            data.clear();
+        }
         if(this.lapisFile.exists()){
             FileConfiguration yml = YamlConfiguration.loadConfiguration(this.lapisFile);
             for(String config : yml.getKeys(false)){

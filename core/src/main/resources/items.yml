@@ -60,7 +60,7 @@ rotation-wrench:
     model: 100 
 slime-in-bucket:
   id: SLIME_BALL
-  display: "Slime In A Bucket"
+  display: "&aSlime In A Bucket"
   lore:
     - "&eSlime will start jumping once inside a slime chunk"
     - "&eLeft click on block to release the slime"         

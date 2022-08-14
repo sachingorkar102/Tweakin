@@ -2,7 +2,9 @@ package com.github.sachin.tweakin.modules.betterrecoverycompass;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
+import com.github.sachin.tweakin.utils.Config;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,21 +17,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 // Permission: tweakin.betterrecoverycompass.use
+@Tweak(name = "better-recovery-compass")
 public class BetterRecoveryCompassTweak extends BaseTweak implements Listener {
 
-    private byte scale;
-    private boolean biomepreview;
-
-    public BetterRecoveryCompassTweak(Tweakin plugin) {
-        super(plugin, "better-recovery-compass");
-    }
-
-    @Override
-    public void reload() {
-        super.reload();
-        this.scale = (byte)getConfig().getInt("zoom",2);
-        this.biomepreview = getConfig().getBoolean("show-biome-preview",true);
-    }
+    @Config(key = "zoom")
+    private int scale = 2;
+    @Config(key = "show-biome-preview")
+    private boolean biomepreview = true;
 
     private void generateMap(Player player,CartographyInventory inv){
         ItemStack map = inv.getItem(1);
@@ -40,7 +34,7 @@ public class BetterRecoveryCompassTweak extends BaseTweak implements Listener {
             if (player.getLastDeathLocation() != null) {
                 Location loc = player.getLastDeathLocation();
                 if (loc.getWorld().getUID() == player.getWorld().getUID()) {
-                    inv.setItem(2, getPlugin().getNmsHelper().createMap(loc, scale, biomepreview));
+                    inv.setItem(2, getPlugin().getNmsHelper().createMap(loc, (byte) scale, biomepreview));
 
                 }
             }

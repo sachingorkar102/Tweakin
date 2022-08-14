@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.betterflee;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -16,14 +17,12 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Arrays;
 
+@Tweak(name = "animal-flee")
 // tweakin.fleemobs.bypass
 public class AnimalFleeTweak extends BaseTweak implements Listener{
 
     public static final NamespacedKey key = Tweakin.getKey("animal-flee-flag");
 
-    public AnimalFleeTweak(Tweakin plugin) {
-        super(plugin, "animal-flee");
-    }
 
 
     @EventHandler

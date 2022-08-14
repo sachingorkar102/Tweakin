@@ -4,6 +4,7 @@ import com.destroystokyo.paper.event.entity.EntityAddToWorldEvent;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -13,11 +14,8 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+@Tweak(name = "villager-follow-emerald")
 public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
-
-    public VillagerFollowEmraldTweak(Tweakin plugin) {
-        super(plugin, "villager-follow-emerald");
-    }
 
     @EventHandler
     public void onVillagerJoinWorld(EntityAddToWorldEvent e){

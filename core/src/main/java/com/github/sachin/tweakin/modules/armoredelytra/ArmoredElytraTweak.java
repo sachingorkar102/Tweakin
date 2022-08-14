@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.InventoryUtils;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -32,15 +33,12 @@ import java.util.Map;
 import java.util.UUID;
 
 // Permission: tweakin.armoredelytra.craft
+@Tweak(name = "armored-elytra")
 public class ArmoredElytraTweak extends TweakItem implements Listener{
 
     private final String CHEST_KEY = "armored-elytra-chestplate";
     private final String ELYTRA_KEY = "armored-elytra-elytra";
 
-    public ArmoredElytraTweak(Tweakin plugin) {
-        super(plugin, "armored-elytra");
-        
-    }
 
     @EventHandler
     public void onAnvilDestroyItem(EntityDamageByEntityEvent e){

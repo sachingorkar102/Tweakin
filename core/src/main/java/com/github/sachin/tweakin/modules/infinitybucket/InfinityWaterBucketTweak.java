@@ -6,6 +6,7 @@ import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -31,11 +32,9 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 // tweakin.infinitybucket.craft,tweakin.infinitybucket.use
+@Tweak(name = "infinity-water-bucket")
 public class InfinityWaterBucketTweak extends TweakItem implements Listener{
 
-	public InfinityWaterBucketTweak(Tweakin plugin) {
-		super(plugin, "infinity-water-bucket");
-	}
 
     @EventHandler
     public void onDispenseItem(BlockDispenseEvent e){

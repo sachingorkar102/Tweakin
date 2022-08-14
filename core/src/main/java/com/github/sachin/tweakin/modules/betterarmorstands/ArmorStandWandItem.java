@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.betterarmorstands;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.Tweak;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,12 +11,13 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
+@Tweak(name = "armorstand-wand")
 public class ArmorStandWandItem extends TweakItem implements Listener{
 
     private BetterArmorStandTweak instance;
 
-    public ArmorStandWandItem(Tweakin plugin,BetterArmorStandTweak instance) {
-        super(plugin, "armorstand-wand");
+    public ArmorStandWandItem(BetterArmorStandTweak instance) {
+        super();
         this.instance = instance;
     }
 
