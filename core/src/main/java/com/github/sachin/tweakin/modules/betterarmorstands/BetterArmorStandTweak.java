@@ -2,10 +2,9 @@ package com.github.sachin.tweakin.modules.betterarmorstands;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
-import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

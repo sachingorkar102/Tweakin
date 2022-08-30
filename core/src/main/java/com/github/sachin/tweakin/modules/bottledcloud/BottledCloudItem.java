@@ -1,11 +1,10 @@
 package com.github.sachin.tweakin.modules.bottledcloud;
 
 import com.github.sachin.tweakin.TweakItem;
-import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.utils.Config;
+import com.github.sachin.tweakin.utils.annotations.Config;
 import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.BlockFace;

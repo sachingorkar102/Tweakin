@@ -3,7 +3,7 @@ package com.github.sachin.tweakin.modules.lapisintable;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.CustomBlockData;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -186,14 +186,16 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
             CustomBlockData data = new CustomBlockData(invMap.get(player));
             if(hasEnchantItem(data)){
                 Item item = (Item) Bukkit.getEntity(UUID.fromString(data.get(entityItemKey, PersistentDataType.STRING)));
-                new BukkitRunnable(){
-                    public void run() {
-                        ItemStack enchantItem = e.getInventory().getItem(0);
-                        if(enchantItem != null && !enchantItem.getType().isAir()){
-                            item.setItemStack(enchantItem);
-                        }
-                    };
-                }.runTaskLater(plugin, 2);
+                if(item != null){
+                    new BukkitRunnable(){
+                        public void run() {
+                            ItemStack enchantItem = e.getInventory().getItem(0);
+                            if(enchantItem != null && !enchantItem.getType().isAir()){
+                                item.setItemStack(enchantItem);
+                            }
+                        };
+                    }.runTaskLater(plugin, 2);
+                }
             }
             
         }

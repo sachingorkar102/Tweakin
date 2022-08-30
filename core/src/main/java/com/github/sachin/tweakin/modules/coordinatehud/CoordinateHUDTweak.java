@@ -2,9 +2,9 @@ package com.github.sachin.tweakin.modules.coordinatehud;
 
 import co.aikar.commands.BaseCommand;
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.utils.Config;
+import com.github.sachin.tweakin.utils.annotations.Config;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import com.github.sachin.tweakin.compat.PlaceHolderApiCompat;
 import com.google.common.base.Enums;
 import net.md_5.bungee.api.ChatColor;

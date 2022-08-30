@@ -1,9 +1,8 @@
 package com.github.sachin.tweakin.modules.snowballknockback;
 
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.TConstants;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;

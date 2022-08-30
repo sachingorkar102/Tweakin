@@ -1,8 +1,8 @@
 package com.github.sachin.tweakin.modules.waterextinguish;
 
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.utils.Config;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Config;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;

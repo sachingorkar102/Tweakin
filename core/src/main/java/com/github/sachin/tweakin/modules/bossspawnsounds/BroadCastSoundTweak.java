@@ -3,8 +3,7 @@ package com.github.sachin.tweakin.modules.bossspawnsounds;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 
 @Tweak(name = "broadcast-sound-nerf")
 public class BroadCastSoundTweak extends BaseTweak {

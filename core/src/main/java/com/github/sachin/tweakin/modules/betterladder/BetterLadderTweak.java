@@ -2,9 +2,8 @@ package com.github.sachin.tweakin.modules.betterladder;
 
 
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;

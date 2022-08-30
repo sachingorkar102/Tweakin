@@ -1,8 +1,7 @@
 package com.github.sachin.tweakin.modules.cauldronconcrete;
 
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import com.google.common.base.Enums;
 import io.papermc.paper.event.entity.EntityInsideBlockEvent;
 import org.bukkit.Material;

@@ -1,10 +1,9 @@
 package com.github.sachin.tweakin.modules.slimebucket;
 
 import com.github.sachin.tweakin.TweakItem;
-import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;

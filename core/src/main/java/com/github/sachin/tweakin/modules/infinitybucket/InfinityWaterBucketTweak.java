@@ -3,10 +3,9 @@ package com.github.sachin.tweakin.modules.infinitybucket;
 import java.util.Map;
 
 import com.github.sachin.tweakin.TweakItem;
-import com.github.sachin.tweakin.Tweakin;
 
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;

@@ -4,7 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

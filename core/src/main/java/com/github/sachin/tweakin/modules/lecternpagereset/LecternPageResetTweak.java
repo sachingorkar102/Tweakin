@@ -1,8 +1,7 @@
 package com.github.sachin.tweakin.modules.lecternpagereset;
 
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.block.Lectern;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

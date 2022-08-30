@@ -212,6 +212,14 @@
             <systemPath>${project.basedir}/lib/CrashClaim.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>MythicMobs</groupId>
+            <artifactId>mythicmobs</artifactId>
+            <version>2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/MythicMobs-5.1.2.jar</systemPath>
+        </dependency>
+
 <!--        LandsAPI-->
         <dependency>
             <groupId>com.github.angeschossen</groupId>

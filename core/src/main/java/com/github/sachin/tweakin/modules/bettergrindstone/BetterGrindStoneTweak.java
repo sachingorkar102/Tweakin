@@ -4,7 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import com.github.sachin.tweakin.compat.AdvancedEnchantments;
 import com.github.sachin.tweakin.compat.EnchantsSquaredCompat;
 import com.github.sachin.tweakin.compat.ExcellentEnchantsCompat;

@@ -1,10 +1,9 @@
 package com.github.sachin.tweakin.modules.infinitefirework;
 
 import com.github.sachin.tweakin.TweakItem;
-import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;

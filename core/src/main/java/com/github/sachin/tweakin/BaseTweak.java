@@ -2,12 +2,9 @@ package com.github.sachin.tweakin;
 
 import co.aikar.commands.BaseCommand;
 import com.github.sachin.tweakin.manager.TweakManager;
-import com.github.sachin.tweakin.utils.Config;
-import com.github.sachin.tweakin.utils.Tweak;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Tag;
+import com.github.sachin.tweakin.utils.annotations.Config;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
+import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -49,7 +46,6 @@ public abstract class BaseTweak {
             return;
         }
         this.onLoad();
-        this.reload();
         this.shouldEnable = config.getBoolean("enabled",true);
     }
 
@@ -109,6 +105,14 @@ public abstract class BaseTweak {
             }
         }
         return new ArrayList<>();
+    }
+
+    public boolean containsWorld(World world){
+        return containsWorld(world.getName());
+    }
+
+    public boolean containsWorld(String worldName){
+        return getBlackListWorlds().contains(worldName);
     }
 
 

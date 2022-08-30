@@ -1,9 +1,8 @@
 package com.github.sachin.tweakin.modules.compassworkeverywhere;
 
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;

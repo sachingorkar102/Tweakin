@@ -8,6 +8,7 @@ import com.github.sachin.tweakin.modules.anvilrepair.AnvilRepairTweak;
 import com.github.sachin.tweakin.modules.armoredelytra.ArmoredElytraTweak;
 import com.github.sachin.tweakin.modules.autorecipeunlock.AutoRecipeUnlockTweak;
 import com.github.sachin.tweakin.modules.betterarmorstands.BetterArmorStandTweak;
+import com.github.sachin.tweakin.modules.betterbonemeal.BetterBoneMealTweak;
 import com.github.sachin.tweakin.modules.betterflee.AnimalFleeTweak;
 import com.github.sachin.tweakin.modules.bettergrindstone.BetterGrindStoneTweak;
 import com.github.sachin.tweakin.modules.betterladder.BetterLadderTweak;
@@ -214,6 +215,7 @@ public class TweakManager {
         tweakList.add(new AutoRecipeUnlockTweak());
         tweakList.add(new AnvilRepairTweak());
         tweakList.add(new WaterExtinguishTweak());
+        tweakList.add(new BetterBoneMealTweak());
         if(plugin.isProtocolLibEnabled){
             tweakList.add(new BroadCastSoundTweak());
             tweakList.add(new BetterSignEditTweak());

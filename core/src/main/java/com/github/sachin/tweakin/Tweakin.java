@@ -124,7 +124,7 @@ public final class Tweakin extends JavaPlugin {
                 Permissions.ARMORCLICK,Permissions.SHULKERBOX_CLICK,Permissions.ENDERCHEST_CLICK,Permissions.ROTATION_WRENCH,Permissions.SHEARITEMFRAME,Permissions.SHEARNAMETAG,
                 Permissions.SILENCEMOBS_PARENT,Permissions.SILENCEMOBS_SILENCE,Permissions.SILENCEMOBS_UNSILENCE,Permissions.SLIMEBUCKET_PARENT,
                 Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG,Permissions.ANVIL_REPAIR
-                ,Permissions.WATER_EX);
+                ,Permissions.WATER_EX,Permissions.BETTER_BONEMEAL);
 
 
         for(Permission perm : this.permissions){

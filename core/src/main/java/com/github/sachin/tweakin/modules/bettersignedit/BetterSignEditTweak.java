@@ -9,7 +9,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;

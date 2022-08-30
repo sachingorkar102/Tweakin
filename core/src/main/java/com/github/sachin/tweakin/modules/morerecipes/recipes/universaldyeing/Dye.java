@@ -1,6 +1,7 @@
 package com.github.sachin.tweakin.modules.morerecipes.recipes.universaldyeing;
 
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 
 public enum Dye {
     
@@ -26,15 +27,16 @@ public enum Dye {
 
     ;
 
-    public Material dye;
-    public Material wool;
-    public Material concrete;
-    public Material stainedGlass;
-    public Material stainedGlassPane;
-    public Material concretePowder;
-    public Material terracotta;
-    public Material bed;
-    public Material carpet;
+    public final Material dye;
+    public final Material wool;
+    public final Material concrete;
+    public final Material stainedGlass;
+    public final Material stainedGlassPane;
+    public final Material concretePowder;
+    public final Material terracotta;
+    public final Material bed;
+    public final Material carpet;
+
 
 
 

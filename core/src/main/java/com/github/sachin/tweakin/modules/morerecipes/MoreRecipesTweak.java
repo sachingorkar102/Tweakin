@@ -9,7 +9,7 @@ import com.github.sachin.tweakin.modules.morerecipes.recipes.*;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.BlackDyeRecipe.Charcoal;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.universaldyeing.UniversalDyeing;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import com.google.common.base.Enums;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

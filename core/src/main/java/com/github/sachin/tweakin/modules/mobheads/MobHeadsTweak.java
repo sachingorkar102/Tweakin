@@ -6,7 +6,7 @@ import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.Permissions;
-import com.github.sachin.tweakin.utils.Tweak;
+import com.github.sachin.tweakin.utils.annotations.Tweak;
 import com.google.common.base.Enums;
 import com.google.common.base.Optional;
 import org.bukkit.Material;
