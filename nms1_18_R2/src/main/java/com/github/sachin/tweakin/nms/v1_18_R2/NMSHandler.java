@@ -209,6 +209,11 @@ public class NMSHandler extends NMSHelper {
     }
 
     @Override
+    public boolean matchFrogVariant(Entity entity, String variant) {
+        return false;
+    }
+
+    @Override
     public boolean isScreamingGoat(Entity entity) {
         return ((Goat)entity).isScreaming();
     }

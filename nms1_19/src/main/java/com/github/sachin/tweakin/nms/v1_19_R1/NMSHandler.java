@@ -33,11 +33,7 @@ import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
-import org.bukkit.entity.Axolotl;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Goat;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -231,6 +227,12 @@ public class NMSHandler extends NMSHelper {
     @Override
     public boolean matchAxoltlVariant(Entity entity, String color) {
         return ((Axolotl)entity).getVariant().toString().equals(color);
+    }
+
+
+    @Override
+    public boolean matchFrogVariant(Entity entity, String variant) {
+        return ((Frog)entity).getVariant().toString().equals(variant);
     }
 
     @Override

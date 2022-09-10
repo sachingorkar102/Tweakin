@@ -922,6 +922,43 @@ zombiefied_piglin:
   looting: 0.001
   display: "Zombiefied Piglin Head"
 
+warden:
+  texture: YjJmMzg3OWI3MzcxMjc0ODVlYjM1ZGRlZTc0OGQwNmNmOTE0YjE5M2Q5Nzc1M2FlMzRlOTIyMzA4NDI4MzFmYiJ9fX0=
+  chance: 1
+  looting: 1
+  display: "Warden Head"
+
+cold_frog:
+  texture: NzY4Nzc4OTNlOTIwZmY1ZGZhNGI1ZmJkMTRkYWJlZTJlNjMwOGE2Zjk3YzNhMTliMDhlMjQxYTI5ZWI5YTVjMyJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Cold Frog Head"
+
+temperate_frog:
+  texture: YTUwZDEwNzNkNDFmMTkzNDA1ZDk1YjFkOTQxZjlmZTFhN2ZmMDgwZTM4MTU1ZDdiYjc4MGJiYmQ4ZTg2ZjcwZCJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Temperate Frog Head"
+
+warm_frog:
+  texture: ZDViMGRhNDM5NzViODNjMzMyMjc4OGRkYTMxNzUwNjMzMzg0M2FlYmU1NTEyNzg3Y2IyZTNkNzY5ZWQyYjM4MiJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Warm Frog Head"
+
+tadpole:
+  texture: M2RhZjE2NTNiNWY1OWI1ZWM1YTNmNzk2MDljYjQyMzM1NzlmZWYwN2U2OTNiNjE3NDllMDkwMDE0OWVkZjU2MyJ9fX0=
+  chance: 0.1
+  looting: 0.01
+  display: "Tadpole Head"
+
+allay:
+  texture: Y2MwMzg5MTc3ZGJhYTkyZjBkNWZmZGY4NDg4NjJjN2Y5YjM2ZGYyMjJmYmZkNzM3ZTI2MzlkYzMwNTllMGNmMyJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Allay Head"
+
+
 
 
 

@@ -61,4 +61,5 @@ public abstract class NMSHelper {
 
     public abstract ItemStack createMap(Location dist,byte zoom,boolean biomePreview);
 
+    public abstract boolean matchFrogVariant(Entity entity, String variant);
 }

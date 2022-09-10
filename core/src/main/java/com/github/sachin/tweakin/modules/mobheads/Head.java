@@ -185,6 +185,8 @@ public enum Head {
     ZOMBIE_SHEPHERD("ZOMBIE_VILLAGER",(vil)->((ZombieVillager)vil).getVillagerProfession()==Villager.Profession.SHEPHERD),
     ZOMBIE_TOOLSMITH("ZOMBIE_VILLAGER",(vil)->((ZombieVillager)vil).getVillagerProfession()==Villager.Profession.TOOLSMITH),
     ZOMBIE_WEAPONSMITH("ZOMBIE_VILLAGER",(vil)->((ZombieVillager)vil).getVillagerProfession()==Villager.Profession.WEAPONSMITH),
+
+//    1.18+
     BLUE_AXOLOTL("AXOLOTL",(entity)->Tweakin.getPlugin().getNmsHelper().matchAxoltlVariant(entity, "BLUE")),
     WILD_AXOLOTL("AXOLOTL",(entity)->Tweakin.getPlugin().getNmsHelper().matchAxoltlVariant(entity, "WILD")),
     GOLD_AXOLOTL("AXOLOTL",(entity)->Tweakin.getPlugin().getNmsHelper().matchAxoltlVariant(entity, "GOLD")),
@@ -193,6 +195,14 @@ public enum Head {
     GLOW_SQUID,
     GOAT("GOAT",(entity)->!Tweakin.getPlugin().getNmsHelper().isScreamingGoat(entity)),
     SCREAMING_GOAT("GOAT",(entity)->Tweakin.getPlugin().getNmsHelper().isScreamingGoat(entity)),
+
+//    1.19+
+    WARDEN,
+    COLD_FROG("FROG",(entity) -> Tweakin.getPlugin().getNmsHelper().matchFrogVariant(entity,"COLD")),
+    TEMPERATE_FROG("FROG",(entity) -> Tweakin.getPlugin().getNmsHelper().matchFrogVariant(entity,"TEMPERATE")),
+    WARM_FROG("FROG",(entity) -> Tweakin.getPlugin().getNmsHelper().matchFrogVariant(entity,"WARM")),
+    TADPOLE,
+    ALLAY
     ;
 
 
