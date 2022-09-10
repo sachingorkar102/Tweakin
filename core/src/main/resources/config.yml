@@ -708,10 +708,15 @@ water-extinguish:
   # range of effect in blocks
   range: 2
 
-
+# allows use of bonemeal on cactus, netherwart and surgarcane (lilypad will be added soon)
+# Pemissions:
+  # tweakin.betterbonemeal.use: permission to use this tweak
 better-bone-meal:
   enabled: false
   check-permissions: false
   black-list-worlds: []
-  growable-blocks: [CACTUS,LILYPAD,SUGARCANE]
+  # valid blocks CACTUS, NETHERWART and SUGARCANE
+  growable-blocks: [CACTUS,SUGARCANE,NETHERWART]
+  # weather or not dispenser can use bonemeal on such blocks
   dispenser-usable: true
+

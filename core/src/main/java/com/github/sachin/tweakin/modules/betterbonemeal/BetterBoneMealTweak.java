@@ -8,6 +8,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Dispenser;
+import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.Directional;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,19 +36,20 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
     private boolean hasSugarCane;
     private boolean hasCactus;
     private boolean hasLilyPad;
+    private boolean hasNetherWart;
 
     @Override
     public void reload() {
         super.reload();
         hasSugarCane = growableBlocks.contains("SUGARCANE");
         hasCactus = growableBlocks.contains("CACTUS");
-        hasLilyPad = growableBlocks.contains("LILYPAD");
+        hasNetherWart = growableBlocks.contains("NETHERWART");
 
     }
 
     @EventHandler
     public void onDispenserDispenseBonemeal(BlockDispenseEvent e){
-        if(e.getBlock().getType()==Material.DISPENSER && e.getItem().getType()==Material.BONE_MEAL && dispenserUsable){
+        if(e.getBlock().getType()==Material.DISPENSER && e.getItem().getType()==Material.BONE_MEAL && dispenserUsable && !containsWorld(e.getBlock().getWorld())){
             Directional directional = (Directional) e.getBlock().getBlockData();
             Block relative = e.getBlock().getRelative(directional.getFacing());
             boolean growed = applyBoneMeal(relative,e.getItem(),null);
@@ -76,16 +78,16 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
         ItemStack item = e.getItem();
         Player player = e.getPlayer();
         if(item != null && item.getType()== Material.BONE_MEAL){
-            if((plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,block.getLocation(),item.getType())) || !hasPermission(player, Permissions.BETTER_BONEMEAL)) return;
+            if((plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,block.getLocation(),item.getType())) || !hasPermission(player, Permissions.BETTER_BONEMEAL) || containsWorld(player.getWorld())) return;
             boolean growed = applyBoneMeal(block,item,player);
             if(growed){
                 if(player.getGameMode() != GameMode.CREATIVE){
                     item.setAmount(item.getAmount()-1);
-                    if(e.getHand()== EquipmentSlot.HAND){
-                        player.swingMainHand();
-                    }else{
-                        player.swingOffHand();
-                    }
+                }
+                if(e.getHand()== EquipmentSlot.HAND){
+                    player.swingMainHand();
+                }else{
+                    player.swingOffHand();
                 }
             }
 //            if(block.getType()==Material.LILY_PAD && hasLilyPad){
@@ -114,6 +116,15 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
                 topperBlock.setType(Material.CACTUS);
                 playBoneMealEffect(block);
                 return true;
+            }
+            else if(block.getType()==Material.NETHER_WART && hasNetherWart){
+                Ageable ageable = (Ageable) block.getBlockData();
+                if(ageable.getAge()<ageable.getMaximumAge()){
+                    ageable.setAge(ageable.getAge()+1);
+                    block.setBlockData(ageable);
+                    playBoneMealEffect(block);
+                    return true;
+                }
             }
         }
         return false;
