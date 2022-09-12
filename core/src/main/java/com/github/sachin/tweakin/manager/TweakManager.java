@@ -23,10 +23,12 @@ import com.github.sachin.tweakin.modules.confetticreepers.ConfettiCreepers;
 import com.github.sachin.tweakin.modules.coordinatehud.CoordinateHUDTweak;
 import com.github.sachin.tweakin.modules.craftingtableonstick.CraftTableOnStick;
 import com.github.sachin.tweakin.modules.customportals.CustomPortalTweak;
+import com.github.sachin.tweakin.modules.elytrabombing.ElytraBombingTweak;
 import com.github.sachin.tweakin.modules.fastleafdecay.FastLeafDecayTweak;
 import com.github.sachin.tweakin.modules.hoeharvesting.HoeHarvestingTweak;
 import com.github.sachin.tweakin.modules.infinitefirework.InfiniteFireworkItem;
 import com.github.sachin.tweakin.modules.infinitybucket.InfinityWaterBucketTweak;
+import com.github.sachin.tweakin.modules.jumpyboats.JumpyBoatsTweak;
 import com.github.sachin.tweakin.modules.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.modules.lavabucketcan.LavaBucketTrashCan;
 import com.github.sachin.tweakin.modules.lecternpagereset.LecternPageResetTweak;
@@ -216,13 +218,15 @@ public class TweakManager {
         tweakList.add(new AnvilRepairTweak());
         tweakList.add(new WaterExtinguishTweak());
         tweakList.add(new BetterBoneMealTweak());
+        tweakList.add(new ElytraBombingTweak());
         if(plugin.isProtocolLibEnabled){
             tweakList.add(new BroadCastSoundTweak());
             tweakList.add(new BetterSignEditTweak());
             tweakList.add(new ReachAroundTweak());
+            tweakList.add(new JumpyBoatsTweak());
         }
         else{
-            plugin.getLogger().severe("Not running ProtocolLib, ignoring boss-spawn-sounds, better-sign-edit, reach-around...");
+            plugin.getLogger().severe("Not running ProtocolLib, ignoring boss-spawn-sounds, better-sign-edit, reach-around, jumpy-boats...");
         }
         if(plugin.isRunningPaper){
             tweakList.add(new CauldronConcreteTweak());

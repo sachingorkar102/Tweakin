@@ -720,3 +720,27 @@ better-bone-meal:
   # weather or not dispenser can use bonemeal on such blocks
   dispenser-usable: true
 
+# makes the boat jump like a horse when jump button is pressed
+# Permissions:
+  # tweakin.jumpyboats.use: permission to make boats jump
+jumpy-boats:
+  enabled: false
+  check-permissions: false
+  black-list-worlds: []
+  # how high boat should jump (change at your own risk)
+  jump-modifier: 0.32
+  # cooldown in ticks to make a boat jump (change at your own risk)
+  cooldown: 15
+
+# use tnt while you are flying with elytra by right-clicking with igniter-item(flint and steel or fire charge),
+# and having a tnt block in your inventory
+# Permissions:
+  # tweakin.elytrabombing.use: permission to use this tweak
+elytra-bombing:
+  enabled: false
+  check-permissions: false
+  black-list-worlds: []
+  # list of igniter items that will be in main/off hand
+  igniter-items: [FLINT_AND_STEEL,FIRE_CHARGE]
+  # cooldown in ticks for using tnt
+  cooldown: 60

@@ -27,6 +27,7 @@ public class UpdateSignListener extends PacketAdapter{
     @Override
     public void onPacketReceiving(PacketEvent event) {
         PacketContainer packet = event.getPacket();
+
         Player player = event.getPlayer();
         BlockPosition pos = packet.getBlockPositionModifier().read(0);
         Block block = player.getWorld().getBlockAt(pos.getX(), pos.getY(), pos.getZ());

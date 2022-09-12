@@ -12,3 +12,4 @@ To sync a fork from upstream:
 * git fetch upstream
 * git merge upstream/master
 * git push origin master
+

@@ -1,15 +1,21 @@
 package com.github.sachin.tweakin.modules.betterbonemeal;
 
+import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.utils.annotations.Config;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import io.lumine.mythic.api.mobs.MythicMob;
+import io.lumine.mythic.bukkit.BukkitAdapter;
+import io.lumine.mythic.bukkit.MythicBukkit;
+import io.lumine.mythic.core.mobs.ActiveMob;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Dispenser;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.Directional;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,6 +29,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Tweak(name = "better-bone-meal")
 public class BetterBoneMealTweak extends BaseTweak implements Listener {
@@ -46,6 +53,8 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
         hasNetherWart = growableBlocks.contains("NETHERWART");
 
     }
+
+
 
     @EventHandler
     public void onDispenserDispenseBonemeal(BlockDispenseEvent e){
@@ -106,6 +115,7 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
 
     private boolean applyBoneMeal(Block block,ItemStack item, @Nullable Player player){
         Block topperBlock = isGrowable(getTopBlock(block));
+
         if(topperBlock != null){
             if(block.getType()==Material.SUGAR_CANE && hasSugarCane){
                 topperBlock.setType(Material.SUGAR_CANE);

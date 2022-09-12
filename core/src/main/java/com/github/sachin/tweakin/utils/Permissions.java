@@ -11,6 +11,8 @@ import java.util.*;
 
 public class Permissions {
 
+
+
     private static PermissionDefault defaultValue = PermissionDefault.TRUE;
 
     public static void reload(){
@@ -32,6 +34,8 @@ public class Permissions {
     }
 
 
+    public static final Permission ELYTRABOMBING = get("elytrabombing.use");
+    public static final Permission JUMPYBOATS = get("jumpyboats.use");
     public static final Permission BETTER_BONEMEAL = get("betterbonemeal.use");
     public static final Permission WATER_EX = get("waterextinguish.use");
     public static final Permission ANVIL_REPAIR = get("anvilrepair.use");

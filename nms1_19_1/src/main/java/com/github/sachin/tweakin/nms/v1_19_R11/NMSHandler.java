@@ -16,9 +16,16 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.PlayerRideable;
+import net.minecraft.world.entity.PlayerRideableJumping;
+import net.minecraft.world.entity.ai.control.JumpControl;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.animal.horse.Horse;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.EmptyMapItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MapItem;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -193,6 +200,7 @@ public class NMSHandler extends NMSHelper {
             vil.goalSelector.removeGoal(goal);
         }
         vil.goalSelector.addGoal(2,goal);
+
     }
 
     @Override
@@ -298,5 +306,6 @@ public class NMSHandler extends NMSHelper {
             }
         }
     }
+
 }
 
