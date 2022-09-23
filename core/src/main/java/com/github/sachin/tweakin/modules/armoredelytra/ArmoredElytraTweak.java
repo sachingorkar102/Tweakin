@@ -1,6 +1,9 @@
 package com.github.sachin.tweakin.modules.armoredelytra;
 
 import com.github.sachin.tweakin.TweakItem;
+import com.github.sachin.tweakin.compat.AdvancedEnchantments;
+import com.github.sachin.tweakin.compat.EnchantsSquaredCompat;
+import com.github.sachin.tweakin.compat.ExcellentEnchantsCompat;
 import com.github.sachin.tweakin.nbtapi.NBTItem;
 import com.github.sachin.tweakin.utils.InventoryUtils;
 import com.github.sachin.tweakin.utils.Permissions;
@@ -187,6 +190,14 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                             combinedElytra.setItemMeta(meta);
                             for(Enchantment ench : enchants.keySet()){
                                 combinedElytra.addUnsafeEnchantment(Enchantment.getByKey(ench.getKey()), enchants.get(ench));
+                            }
+                            if(ExcellentEnchantsCompat.isEnabled){
+                                ExcellentEnchantsCompat.applyEnchantMents(item1, combinedElytra);
+                                ExcellentEnchantsCompat.applyEnchantMents(item2, combinedElytra);
+                            }
+                            if(EnchantsSquaredCompat.isEnabled){
+                                EnchantsSquaredCompat.applyEnchants(item1,combinedElytra);
+                                EnchantsSquaredCompat.applyEnchants(item2,combinedElytra);
                             }
                             NBTItem nbti = new NBTItem(combinedElytra);
                             nbti.setString(CHEST_KEY, InventoryUtils.serializeItem(item1));
