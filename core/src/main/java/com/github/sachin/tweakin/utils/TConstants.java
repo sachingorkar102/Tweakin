@@ -25,10 +25,14 @@ public class TConstants {
     public static final String PAPI = "PlaceholderAPI";
     public static final String VULCAN = "Vulcan";
 
+    public static final String ITEMSADDER = "ItemsAdder";
+
     public static final String LANDS = "Lands";
     public static final String RESIDENCE = "Residence";
 
     public static final String CRASHCLAIM = "CrashClaim";
+
+    public static final String COMBATLOGX = "CombatLogX";
 
     public static final String TOWNY = "Towny";
 
@@ -41,6 +45,11 @@ public class TConstants {
     public static final NamespacedKey VILLAGER_FOLLOW_KEY = Tweakin.getKey("villager-already-set");
     public static final NamespacedKey INFINITE_FIREWORK_KEY = Tweakin.getKey("infinite-firework-key");
 
+    public static final NamespacedKey TRANSFER_MOUNT_KEY = Tweakin.getKey("transfer-mount-armorstand-key");
+
+    public static final NamespacedKey COMBATX_TAG_KEY = Tweakin.getKey("combat-logx-taf-key");
+
     public static final NamespacedKey SHULKER_DUPE_KEY = Tweakin.getKey("shulker-dupe-prevent-key");
+
 
 }

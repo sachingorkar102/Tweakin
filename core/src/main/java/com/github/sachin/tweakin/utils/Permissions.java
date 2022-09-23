@@ -24,6 +24,11 @@ public class Permissions {
         return perm;
     }
 
+    private static Permission get(String permission,PermissionDefault defaultValue){
+        Permission perm = new Permission("tweakin."+permission,defaultValue);
+        return perm;
+    }
+
     private static Permission get(String parent, List<String> children){
         Map<String,Boolean> childMap = new HashMap<>();
         for(String str : children){
@@ -49,7 +54,7 @@ public class Permissions {
     public static final Permission BETTERARMORSTAND_ARMORSWAP = get("betterarmorstands.armorswap");
 
     public static final Permission ARMORSTANDWAND = get("armorstandwand.use");
-    public static final Permission FLEEMOBS = get("fleemobs.bypass");
+    public static final Permission FLEEMOBS = get("fleemobs.bypass",PermissionDefault.FALSE);
     public static final Permission BETTER_GRINDSTONE = get("bettergrindstone");
 
     public static final Permission BETTERLADDER_PARENT = get("betterladder.*",Arrays.asList("quickclimb","dropdown"));

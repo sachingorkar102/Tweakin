@@ -5,6 +5,7 @@ import co.aikar.commands.PaperCommandManager;
 import com.github.sachin.tweakin.bstats.Metrics;
 import com.github.sachin.tweakin.bstats.Metrics.AdvancedPie;
 import com.github.sachin.tweakin.commands.CoreCommand;
+import com.github.sachin.tweakin.compat.CombatLogXCompat;
 import com.github.sachin.tweakin.compat.grief.*;
 import com.github.sachin.tweakin.gui.GuiListener;
 import com.github.sachin.tweakin.manager.TweakManager;
@@ -79,10 +80,14 @@ public final class Tweakin extends JavaPlugin {
         } catch (ClassNotFoundException e) {
             this.isRunningPaper = false;
         }
-        checkGriefCompat();
+        registerGriefCompat();
         if(isPluginEnabled(TConstants.VULCAN)){
             new VulcanListenerCompat().registerEvents();
             getLogger().info("Running Vulcan, registering listener for reacharound");
+        }
+        if(isPluginEnabled(TConstants.COMBATLOGX)){
+            new CombatLogXCompat().registerEvents();
+            getLogger().info("Running CombatLogX, registering listener for better-ladders");
         }
         int currentMajor = Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[0]);
         int currentMinor = Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[1].split("-")[0]);
@@ -173,7 +178,7 @@ public final class Tweakin extends JavaPlugin {
         
     }
 
-    private void checkGriefCompat(){
+    private void registerGriefCompat(){
         if(!getConfig().getBoolean("grief-plugin-support")) return;
         if(isPluginEnabled(TConstants.GRIEF_PREVENTION)){
             this.griefCompat = new GriefPreventionCompat();
