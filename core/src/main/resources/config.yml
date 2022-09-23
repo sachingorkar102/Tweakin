@@ -179,8 +179,8 @@ nether-portal-coords:
   enabled: false
   check-permissions: false
   # pairs of valid overworld|nether
-  world-pairs:
-    world: world_nether
+  # example: [myworld|myworld_nether,survival|survival_nether]
+  world-pairs: [world|world_nether]
 
 
 # Does what it says, allows player to attack mobs through grass or any other passable block
@@ -471,7 +471,7 @@ villager-follow-emerald:
 # Animals will flee in groups on melee attacks, adding some stratagy to killing them 
 # Already breeded animals by player will not flee away
 # Permission: 
-  # tweakin.fleemobs.bypass: mobs will not flee if player has this permission
+  # tweakin.fleemobs.bypass: mobs will not flee if player has this permission (default to false)
 animal-flee:
   enabled: false
   check-permissions: false
@@ -479,7 +479,7 @@ animal-flee:
   # if set to true breeded animals by player will not flee away
   ignore-breeded: false
   # after how much time the animal will forget player and stop fleeing (in seconds)
-  cooldown: 60
+  cooldown: 10
   # the speed at which animals will run
   sprint-speed: 1.7
   # maximum radius at which mobs will try to run away from player

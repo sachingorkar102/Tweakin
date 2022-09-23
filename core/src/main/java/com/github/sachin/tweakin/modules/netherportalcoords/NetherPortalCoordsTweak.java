@@ -37,8 +37,14 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
     public void reload() {
         super.reload();
         this.worldPairs = new HashMap<>();
-        for(String key : getConfig().getConfigurationSection("world-pairs").getKeys(false)){
-            this.worldPairs.put(key, getConfig().getString("world-pairs."+key));
+        if(getConfig().isList("world-pairs")){
+            for(String pair : getConfig().getStringList("world-pairs")){
+                String[] pairs = pair.split("\\|");
+                worldPairs.put(pairs[0],pairs[1]);
+            }
+        }
+        else{
+            plugin.getLogger().severe("Update your world-pairs to a list instead of a config section in nether-portal-coords tweak");
         }
     }
 
