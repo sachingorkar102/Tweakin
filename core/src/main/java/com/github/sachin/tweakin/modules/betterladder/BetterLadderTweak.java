@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.betterladder;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -16,6 +17,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.Vector;
 
 // permission: tweakin.betterladder.dropdown, tweakin.betterladder.quickclimb
@@ -31,7 +33,8 @@ public class BetterLadderTweak extends BaseTweak implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getClickedBlock().getType() != Material.LADDER) return;
         Player player = e.getPlayer();
-        Block clickedLadder = e.getClickedBlock(); 
+        Block clickedLadder = e.getClickedBlock();
+        if(player.getPersistentDataContainer().has(TConstants.COMBATX_TAG_KEY, PersistentDataType.INTEGER)) return;
         if(e.getItem() == null){
             if(!hasPermission(player, Permissions.BETTERLADDER_QUICKCLIMB) || !getConfig().getBoolean("quickclimb",true)) return;
             if(!player.isSneaking()) return;
