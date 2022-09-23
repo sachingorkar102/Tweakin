@@ -16,6 +16,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.item.EmptyMapItem;
 import net.minecraft.world.item.MapItem;
 import net.minecraft.world.level.block.LiquidBlockContainer;
@@ -57,6 +58,7 @@ import net.minecraft.world.phys.Vec3;
 public class NMSHandler extends NMSHelper {
 
 
+
     private net.minecraft.world.item.ItemStack nmsItem;
     private CompoundTag compound;
 
@@ -64,6 +66,7 @@ public class NMSHandler extends NMSHelper {
 
     public NMSHandler(ItemStack item){
         if(item==null) return;
+
         this.nmsItem = CraftItemStack.asNMSCopy(item);
         this.compound = nmsItem.getOrCreateTag();
     }
@@ -191,22 +194,23 @@ public class NMSHandler extends NMSHelper {
             vil.goalSelector.removeGoal(goal);
         }
         vil.goalSelector.addGoal(2,goal);
+
     }
 
     @Override
     public void avoidPlayer(Entity entity, Player player, ConfigurationSection config) {
         Animal animal = (Animal) ((CraftEntity)entity).getHandle();
         List<Animal> list = animal.getLevel().getEntitiesOfClass(Animal.class,animal.getBoundingBox().inflate(5));
-        if(Tweakin.getPlugin().isRunningPaper){
-            PaperUtils.removePanicGoal(entity);
-        }
+        animal.goalSelector.removeGoal(new PanicGoal(animal, 2.0));
         if(!list.isEmpty()){
             for (Animal en : list) {
                 Entity bEn = en.getBukkitEntity();
 
                 if(bEn.getType() == entity.getType()){
                     if(bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && config.getBoolean("ignore-breeded")) continue;
-                    en.goalSelector.addGoal(1, new FleePathFinder<ServerPlayer>(en, ServerPlayer.class, config.getInt("max-radius"), config.getDouble("walk-speed"), config.getDouble("sprint-speed"), (pl) -> pl.getUUID() == player.getUniqueId(), config.getInt("cooldown")));
+                    FleePathFinder<ServerPlayer> goal = new FleePathFinder<ServerPlayer>(en, ServerPlayer.class, config.getInt("max-radius"), config.getDouble("walk-speed"), config.getDouble("sprint-speed"), (pl) -> pl.getUUID() == player.getUniqueId(), config.getInt("cooldown"));
+                    en.goalSelector.removeGoal(goal);
+                    en.goalSelector.addGoal(1, goal);
                 }
             }
         }
@@ -228,7 +232,6 @@ public class NMSHandler extends NMSHelper {
     public boolean matchAxoltlVariant(Entity entity, String color) {
         return ((Axolotl)entity).getVariant().toString().equals(color);
     }
-
 
     @Override
     public boolean matchFrogVariant(Entity entity, String variant) {
@@ -277,24 +280,41 @@ public class NMSHandler extends NMSHelper {
 
 
     private static class FleePathFinder<T extends net.minecraft.world.entity.LivingEntity> extends AvoidEntityGoal<T>{
-        private int tick = 0;
-        private final int cooldown;
+
+        private int cooldown;
+
+        private final int finalCoolDown;
+
 
         public FleePathFinder(PathfinderMob entity, Class<T> avoider, float maxDis, double walkSpeedModifier, double sprintSpeedModifier,
                               Predicate<net.minecraft.world.entity.LivingEntity> condition, int cooldown) {
             super(entity, avoider, maxDis, walkSpeedModifier, sprintSpeedModifier, condition);
-            this.cooldown = cooldown*20;
+            this.finalCoolDown = cooldown*20;
+            this.cooldown = finalCoolDown;
         }
 
         @Override
         public boolean canUse() {
-            if(tick > cooldown){
+            if(cooldown==0){
                 return false;
             }
             else{
-                tick++;
+                cooldown--;
                 return super.canUse();
             }
         }
+
+        @Override
+        public boolean canContinueToUse() {
+            if(cooldown==0){
+                this.cooldown = this.finalCoolDown;
+            }
+            if(cooldown==finalCoolDown){
+                return false;
+            }
+            return super.canContinueToUse();
+        }
     }
+
 }
+

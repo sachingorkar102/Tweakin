@@ -28,7 +28,7 @@ public class AnimalFleeTweak extends BaseTweak implements Listener{
     @EventHandler
     public void onAnimalDamage(EntityDamageByEntityEvent e){
         if(e.getCause() == DamageCause.ENTITY_ATTACK || e.getCause() == DamageCause.ENTITY_SWEEP_ATTACK){
-            if(getBlackListWorlds().contains(e.getEntity().getWorld().getName())) return;
+            if(containsWorld(e.getEntity().getWorld())) return;
             if(e.getDamager() instanceof Player){
                 Player player = (Player) e.getDamager();
                 

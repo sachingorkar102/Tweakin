@@ -19,6 +19,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.PlayerRideable;
 import net.minecraft.world.entity.PlayerRideableJumping;
 import net.minecraft.world.entity.ai.control.JumpControl;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.vehicle.Boat;
@@ -207,16 +210,16 @@ public class NMSHandler extends NMSHelper {
     public void avoidPlayer(Entity entity, Player player, ConfigurationSection config) {
         Animal animal = (Animal) ((CraftEntity)entity).getHandle();
         List<Animal> list = animal.getLevel().getEntitiesOfClass(Animal.class,animal.getBoundingBox().inflate(5));
-        if(Tweakin.getPlugin().isRunningPaper){
-            PaperUtils.removePanicGoal(entity);
-        }
+        animal.goalSelector.removeGoal(new PanicGoal(animal, 2.0));
         if(!list.isEmpty()){
             for (Animal en : list) {
                 Entity bEn = en.getBukkitEntity();
 
                 if(bEn.getType() == entity.getType()){
                     if(bEn.getPersistentDataContainer().has(AnimalFleeTweak.key, PersistentDataType.INTEGER) && config.getBoolean("ignore-breeded")) continue;
-                    en.goalSelector.addGoal(1, new FleePathFinder<ServerPlayer>(en, ServerPlayer.class, config.getInt("max-radius"), config.getDouble("walk-speed"), config.getDouble("sprint-speed"), (pl) -> pl.getUUID() == player.getUniqueId(), config.getInt("cooldown")));
+                    FleePathFinder<ServerPlayer> goal = new FleePathFinder<ServerPlayer>(en, ServerPlayer.class, config.getInt("max-radius"), config.getDouble("walk-speed"), config.getDouble("sprint-speed"), (pl) -> pl.getUUID() == player.getUniqueId(), config.getInt("cooldown"));
+                    en.goalSelector.removeGoal(goal);
+                    en.goalSelector.addGoal(1, goal);
                 }
             }
         }
@@ -286,24 +289,39 @@ public class NMSHandler extends NMSHelper {
 
 
     private static class FleePathFinder<T extends net.minecraft.world.entity.LivingEntity> extends AvoidEntityGoal<T>{
-        private int tick = 0;
-        private final int cooldown;
+
+        private int cooldown;
+
+        private final int finalCoolDown;
+
 
         public FleePathFinder(PathfinderMob entity, Class<T> avoider, float maxDis, double walkSpeedModifier, double sprintSpeedModifier,
                               Predicate<net.minecraft.world.entity.LivingEntity> condition, int cooldown) {
             super(entity, avoider, maxDis, walkSpeedModifier, sprintSpeedModifier, condition);
-            this.cooldown = cooldown*20;
+            this.finalCoolDown = cooldown*20;
+            this.cooldown = finalCoolDown;
         }
 
         @Override
         public boolean canUse() {
-            if(tick > cooldown){
+            if(cooldown==0){
                 return false;
             }
             else{
-                tick++;
+                cooldown--;
                 return super.canUse();
             }
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            if(cooldown==0){
+                this.cooldown = this.finalCoolDown;
+            }
+            if(cooldown==finalCoolDown){
+                return false;
+            }
+            return super.canContinueToUse();
         }
     }
 
