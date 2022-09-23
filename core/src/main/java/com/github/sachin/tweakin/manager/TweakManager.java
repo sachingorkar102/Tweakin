@@ -111,7 +111,8 @@ public class TweakManager {
             e.printStackTrace();
         }
         plugin.reloadConfig();
-
+        this.messageManager = new Message(plugin);
+        messageManager.reload();
         FirstInstallListener listener = new FirstInstallListener();
         if(plugin.isFirstInstall){
             plugin.isFirstInstall = false;
@@ -131,8 +132,7 @@ public class TweakManager {
             }
 
         }
-        this.messageManager = new Message(plugin);
-        messageManager.reload();
+
         for (BaseTweak t : tweakList) {
             try {
                 t.reload();
@@ -267,7 +267,7 @@ public class TweakManager {
     }
 
     public Message getMessageManager() {
-        return messageManager;
+        return this.messageManager;
     }
 
     public List<TweakItem> getRegisteredItems() {

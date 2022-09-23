@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.betterarmorstands;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.Message;
+import com.github.sachin.tweakin.compat.ItemsAdderCompat;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
@@ -9,6 +10,7 @@ import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -96,6 +98,9 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         if(e.getRightClicked() instanceof ArmorStand){
             ArmorStand as = (ArmorStand) e.getRightClicked();
             ItemStack clickedItem = player.getInventory().getItem(e.getHand());
+            if(isItemsAdderArmorStand(as)){
+                return;
+            }
             // security checks
             if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !hasPermission(player, Permissions.BETTERARMORSTAND_UUIDBYPASS)){
                 player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
@@ -132,6 +137,11 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
                 }
             }
 
+        }
+        else if(e.getRightClicked() instanceof Boat){
+            if(player.getPersistentDataContainer().has(TConstants.TRANSFER_MOUNT_KEY,DataType.UUID)){
+
+            }
         }
     }
 
@@ -199,6 +209,9 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         if(!stands.isEmpty()){
             TreeMap<Integer,Entity> map = new TreeMap<>();
             for(Entity en : stands){
+                if(isItemsAdderArmorStand((ArmorStand)en)){
+                    continue;
+                }
                 map.put((int)Math.round(en.getLocation().distanceSquared(player.getLocation())),en);
             }
             ArmorStand as = (ArmorStand) map.get(map.firstKey());
@@ -218,6 +231,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             Entity en = Bukkit.getEntity(uuid);
             if(en != null && !en.isDead()){
                 ArmorStand as = (ArmorStand) en;
+                if(isItemsAdderArmorStand(as)){return;}
                 if(canBuild(player, as)){
                     ASGuiHolder.openGui(player, as,this);
                 }
@@ -241,6 +255,10 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         return !event.isCancelled();
     }
 
+
+    public boolean isItemsAdderArmorStand(ArmorStand as){
+        return ItemsAdderCompat.isEnabled && ItemsAdderCompat.isCustomFurniture(as);
+    }
 
     
 }

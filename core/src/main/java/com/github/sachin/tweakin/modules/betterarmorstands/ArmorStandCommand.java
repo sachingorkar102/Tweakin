@@ -17,14 +17,9 @@ public class ArmorStandCommand extends BaseCommand{
 
     private BetterArmorStandTweak instance;
     private final Tweakin plugin = Tweakin.getPlugin();
-    private Message messageManager;
-    
-
 
     public ArmorStandCommand(BetterArmorStandTweak instance){
         this.instance = instance;
-        
-        this.messageManager = instance.getTweakManager().getMessageManager();
         plugin.replacements.addReplacement("tweakinarmorstandcommand", instance.getConfig().getString("alias","as|armorstand"));
     }
 
@@ -33,6 +28,7 @@ public class ArmorStandCommand extends BaseCommand{
     @CommandCompletion("last|near")
     public void onCommand(Player player,String[] args){
         if(instance.getBlackListWorlds().contains(player.getWorld().getName())) return;
+        Message messageManager = instance.getTweakManager().getMessageManager();
         if(!instance.hasPermission(player, Permissions.BETTERARMORSTAND_COMMAND)){
             player.sendMessage(messageManager.getMessage("no-permission"));
             return;
@@ -41,6 +37,9 @@ public class ArmorStandCommand extends BaseCommand{
             RayTraceResult result = player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 5, (entity)-> (entity instanceof ArmorStand));
             if(result != null && result.getHitEntity() != null){
                 ArmorStand as = (ArmorStand) result.getHitEntity();
+                if(instance.isItemsAdderArmorStand(as)){
+                    return;
+                }
                 if(canBuild(player, as)){
                     ASGuiHolder.openGui(player, as,instance);
                 }
