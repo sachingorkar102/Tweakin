@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -43,6 +44,12 @@ public class ShearNameTagTweak extends BaseTweak implements Listener{
             ItemMeta meta = nameTag.getItemMeta();
             meta.setDisplayName(entity.getCustomName());
             nameTag.setItemMeta(meta);
+            if(e.getHand()== EquipmentSlot.HAND){
+                player.swingMainHand();
+            }
+            else{
+                player.swingOffHand();
+            }
             player.getWorld().dropItemNaturally(entity.getLocation(), nameTag);
             player.getWorld().playSound(entity.getLocation(), Sound.ENTITY_SHEEP_SHEAR, 1, 1);
             if(entity instanceof ArmorStand){

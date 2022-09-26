@@ -23,7 +23,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                   <finalName>Tweakin-4.4.0</finalName>
+                   <finalName>Tweakin-4.5.1</finalName>
                 </configuration>
             </plugin>
             <plugin>
