@@ -719,6 +719,8 @@ better-bone-meal:
   growable-blocks: [CACTUS,SUGARCANE,NETHERWART]
   # weather or not dispenser can use bonemeal on such blocks
   dispenser-usable: true
+  # the limit at witch you can bone meal blocks
+  growth-limit: 5
 
 # makes the boat jump like a horse when jump button is pressed
 # Permissions:

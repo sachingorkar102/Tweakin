@@ -40,6 +40,9 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
     @Config(key = "dispenser-usable")
     private boolean dispenserUsable = true;
 
+    @Config(key = "growth-limit")
+    private int growthLimit = 10;
+
     private boolean hasSugarCane;
     private boolean hasCactus;
     private boolean hasLilyPad;
@@ -114,8 +117,12 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
     }
 
     private boolean applyBoneMeal(Block block,ItemStack item, @Nullable Player player){
-        Block topperBlock = isGrowable(getTopBlock(block));
-
+        Block baseBlock = getTopBlock(block);
+        Block topperBlock = isGrowable(baseBlock);
+        int height = getHeightFromDown(baseBlock,0);
+        if(growthLimit==height+1){
+            return false;
+        }
         if(topperBlock != null){
             if(block.getType()==Material.SUGAR_CANE && hasSugarCane){
                 topperBlock.setType(Material.SUGAR_CANE);
@@ -154,9 +161,22 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
         return blocks;
     }
 
+
+    private int getHeightFromDown(Block block,int fromDown){
+        Block blockBelow = block.getRelative(BlockFace.DOWN);
+        if(blockBelow.getType()==block.getType()){
+            fromDown++;
+            return getHeightFromDown(blockBelow,fromDown);
+        }
+        return fromDown;
+    }
+
+
+
     private void playBoneMealEffect(Block block){
         block.getWorld().playEffect(block.getLocation(),Effect.BONE_MEAL_USE,0);
     }
+
 
     private Block getTopBlock(Block block){
         Block upperBlock = block.getRelative(BlockFace.UP);
