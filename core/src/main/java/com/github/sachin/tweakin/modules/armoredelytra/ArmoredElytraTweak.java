@@ -126,19 +126,21 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                 @Override
                 public void run() {
                     AnvilInventory inv = e.getInventory();
-                    ItemStack item1 = inv.getItem(0);
-                    ItemStack item2 = inv.getItem(1);
+                    ItemStack item1 = inv.getItem(0); // chestplate
+                    ItemStack item2 = inv.getItem(1); // elytra
                     if(item1 != null && item2 != null){
                         if(getConfig().getStringList("combineable-materials").contains(item1.getType().toString()) && item2.getType() == Material.ELYTRA){
                             if(isSimilar(item2)) return;
                             ItemStack combinedElytra = getItem().clone();
                             ItemMeta meta = combinedElytra.getItemMeta();
+                            ItemMeta chestPlateMeta = item1.getItemMeta();
                             Map<Enchantment,Integer> enchants = new HashMap<>();
                             int armor = 0;
                             int toughness = 0;
                             double knockbackres = 0.0;
+
                             switch(item1.getType()){
-        
+
                                 case LEATHER_CHESTPLATE:
                                     armor = 3;
                                     break;
@@ -157,10 +159,30 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                                     armor = 8;
                                     toughness = 3;
                                     knockbackres = 0.1;
-                                    break;            
+                                    break;
                                 default:
                                     break;
-                                    
+
+                            }
+                            if(chestPlateMeta.hasAttributeModifiers()){
+                                if(chestPlateMeta.getAttributeModifiers(Attribute.GENERIC_ARMOR) != null){
+                                    armor=0;
+                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(Attribute.GENERIC_ARMOR)){
+                                        armor = (int) modifier.getAmount();
+                                    }
+                                }
+                                if(chestPlateMeta.getAttributeModifiers(Attribute.GENERIC_ARMOR_TOUGHNESS) != null){
+                                    toughness=0;
+                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(Attribute.GENERIC_ARMOR_TOUGHNESS)){
+                                        toughness = (int) modifier.getAmount();
+                                    }
+                                }
+                                if(chestPlateMeta.getAttributeModifiers(Attribute.GENERIC_KNOCKBACK_RESISTANCE) != null){
+                                    knockbackres=0;
+                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(Attribute.GENERIC_KNOCKBACK_RESISTANCE)){
+                                        knockbackres = (int) modifier.getAmount();
+                                    }
+                                }
                             }
                             if(armor != 0){
                                 AttributeModifier mod = new AttributeModifier(UUID.randomUUID(), "generic.armor", armor, Operation.ADD_NUMBER, EquipmentSlot.CHEST);
