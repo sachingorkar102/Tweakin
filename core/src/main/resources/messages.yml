@@ -41,3 +41,5 @@ pose-removed: "&ePose removed successfully"
 armorstand-editor-gui-title: "Armor Stand Editor"
 armorstand-poses-gui-title: "Armor Stand Poses"
 lava-bucket-trash-can-gui: "Trash Can"
+
+help-command-format: "%syntax%&f: &6[%perm%] &f%description%"

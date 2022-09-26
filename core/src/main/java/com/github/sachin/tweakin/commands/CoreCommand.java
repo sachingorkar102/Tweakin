@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,30 @@ public class CoreCommand extends BaseCommand{
 
     private Message messageManager;
 
+    @Default
+    public void onHelp(CommandSender sender,String[] args){
+        if(args.length==0){
+            onHelp(sender);
+        }
+    }
+
+    public void onHelp(CommandSender sender){
+        StringBuilder builder = new StringBuilder();
+        for(Method method : CoreCommand.class.getDeclaredMethods()){
+            if(method.isAnnotationPresent(CommandInfo.class)){
+                CommandInfo info = method.getAnnotation(CommandInfo.class);
+                String command = plugin.getTweakManager().getMessageManager().getMessageWithoutPrefix("help-command-format")
+                        .replace("%syntax%",info.syntax())
+                        .replace("%perm%",info.perm())
+                        .replace("%description%",info.description());
+                builder.append(ChatColor.translateAlternateColorCodes('&',command));
+                builder.append("\n");
+            }
+        }
+        sender.sendMessage(builder.toString());
+    }
+
+
 
     public CoreCommand(Tweakin plugin){
         this.plugin = plugin;
@@ -40,8 +65,15 @@ public class CoreCommand extends BaseCommand{
         
     }
 
+    @Subcommand("help")
+    @CommandInfo(syntax = "&a/tweakin help",perm = "tweakin.command.help",description="shows all tweakin commands, which you are looking at")
+    public void onHelpCommand(CommandSender sender,String[] args){
+        onHelp(sender);
+    }
+
     // /tweakin removepose [pose-name]
     @Subcommand("removepose")
+    @CommandInfo(syntax = "&a/tweakin removepose &7[pose]",perm="tweakin.command.removepose",description = "removes a armorstand pose from list")
     @CommandCompletion("@tweakinposes")
     public void onRemovePose(CommandSender sender,String[] args){
         if(args.length != 1) return;
@@ -63,6 +95,7 @@ public class CoreCommand extends BaseCommand{
 
     // /tweakin addpose [id] [display]
     @Subcommand("addpose")
+    @CommandInfo(syntax = "&a/tweakin addpose &7[id] [display]",perm = "tweakin.command.addpose",description = "adds the pose of armorstand you are looking at to list")
     public void onAddPose(Player player,String[] args){
         if(args.length != 2) return;
         if(!hasPermission(player,"command.addpose")){
@@ -95,7 +128,9 @@ public class CoreCommand extends BaseCommand{
     
 
 
+//    /tweakin reload
     @Subcommand("reload")
+    @CommandInfo(syntax = "&a/tweakin reload",perm = "tweakin.command.reload",description = "reloads all config files")
     public void onReloadCommand(CommandSender sender){
         if(!hasPermission(sender,"command.reload")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
@@ -106,8 +141,10 @@ public class CoreCommand extends BaseCommand{
     }
 
 
+//    /tweakin toggle (tweak-name)
     @Subcommand("toggle")
     @CommandCompletion("@tweaklist")
+    @CommandInfo(syntax = "&a/tweakin toggle &7(tweak)",perm = "tweakin.command.toggle",description = "toggles a tweak if specified or opens a gui")
     public void onConfigureCommand(CommandSender sender,String[] args){
         if(!hasPermission(sender,"command.toggle")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
@@ -137,8 +174,10 @@ public class CoreCommand extends BaseCommand{
     }
 
 
+//    /tweakin give [player] [item] (amount)
     @Subcommand("give")
     @CommandCompletion("@players @tweakitems @nothing")
+    @CommandInfo(syntax = "&a/tweakin give &7[player] [item] (amount)",perm = "tweakin.command.give",description = "gives specified player a tweakin item")
     public void onGiveCommand(CommandSender sender,String[] args){
         if(!hasPermission(sender,"command.give")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
@@ -167,6 +206,7 @@ public class CoreCommand extends BaseCommand{
     }
 
     @Subcommand("tweak-list")
+    @CommandInfo(syntax = "&a/tweakin tweak-list",perm = "tweakin.command.list",description = "lists enabled and disabled tweaks")
     public void onList(CommandSender sender){
         if(!hasPermission(sender,"command.list")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
@@ -201,9 +241,10 @@ public class CoreCommand extends BaseCommand{
     }
 
 
-    // /tw givehead [playername] [head-name] [amount]
+    // /tw givehead [player] [head] (amount)
     @Subcommand("givehead")
     @CommandCompletion("@players @tweakinheads @nothing")
+    @CommandInfo(syntax = "&a/tweakin givehead &7[player] [head] (amount)",perm = "tweakin.command.givehead",description = "gives specified player a mob head")
     public void onGiveHeadCommand(CommandSender sender,String[] args){
         if(!hasPermission(sender,"command.givehead")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
