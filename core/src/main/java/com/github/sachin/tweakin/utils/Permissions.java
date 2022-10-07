@@ -38,7 +38,9 @@ public class Permissions {
         return parentPerm;
     }
 
+    public static final Permission CHICKEN_SHEARING = get("chickenshearing.use");
 
+    public static final Permission CAULDRON_CONCRETE = get("cauldronconcrete.use");
     public static final Permission ELYTRABOMBING = get("elytrabombing.use");
     public static final Permission JUMPYBOATS = get("jumpyboats.use");
     public static final Permission BETTER_BONEMEAL = get("betterbonemeal.use");
