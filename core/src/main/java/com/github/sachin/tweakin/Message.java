@@ -40,5 +40,9 @@ public class Message {
         return ChatColor.translateAlternateColorCodes('&', messages.getString(key,""));
     }
 
+    public String getPrefix(){
+        return getMessageWithoutPrefix("prefix");
+    }
+
     
 }

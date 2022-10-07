@@ -138,11 +138,6 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             }
 
         }
-        else if(e.getRightClicked() instanceof Boat){
-            if(player.getPersistentDataContainer().has(TConstants.TRANSFER_MOUNT_KEY,DataType.UUID)){
-
-            }
-        }
     }
 
     @EventHandler

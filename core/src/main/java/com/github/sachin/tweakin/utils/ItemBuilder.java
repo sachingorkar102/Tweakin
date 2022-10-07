@@ -16,6 +16,8 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.block.banner.PatternType;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.*;
@@ -23,10 +25,7 @@ import org.bukkit.inventory.meta.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ItemBuilder {
@@ -250,6 +249,38 @@ public class ItemBuilder {
         }
 
         return false;
+    }
+
+    public static ItemStack damageItem(int amount, ItemStack item, Random random, Player player){
+        ItemMeta meta = item.getItemMeta();
+        if(!(meta instanceof Damageable) || amount < 0) return item;
+        int m = item.getEnchantmentLevel(Enchantment.DURABILITY);
+        int k = 0;
+        for (int l = 0; m > 0 && l < amount; l++) {
+            if (random.nextInt(m +1) > 0){
+                k++;
+            }
+        }
+        amount -= k;
+        if(player != null){
+            PlayerItemDamageEvent damageEvent = new PlayerItemDamageEvent(player, item, amount);
+            Tweakin.getPlugin().getServer().getPluginManager().callEvent(damageEvent);
+            if(amount != damageEvent.getDamage() || damageEvent.isCancelled()){
+                damageEvent.getPlayer().updateInventory();
+            }
+            else if(damageEvent.isCancelled()){
+                return item;
+            }
+            amount = damageEvent.getDamage();
+
+        }
+        if (amount <= 0)
+            return item;
+
+        Damageable damageable = (Damageable) meta;
+        damageable.setDamage(damageable.getDamage()+amount);
+        item.setItemMeta(meta);
+        return item;
     }
 
     

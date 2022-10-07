@@ -110,7 +110,7 @@ public enum GuiItems {
         @Override
         public void handleClick(InventoryClickEvent e,ArmorStand as,ClickType click,Inventory inv,int slot,Location loc,double changedValue,EulerAngle angle) {
             
-            inv.setItem(slot, GLOWING_DI.item);
+            inv.setItem(slot, GRAVITY_DI.item);
             as.setGravity(false);
         }
     },
@@ -438,16 +438,7 @@ public enum GuiItems {
             PresetPoseGui gui = new PresetPoseGui(player, as);
             gui.openPage();
         }
-    },
-//    TRANSFER_MOUNT("transfer-mount"){
-//        @Override
-//        public void handleClick(InventoryClickEvent e, ArmorStand as, ClickType click, Inventory inv, int slot, Location loc, double changedValue, EulerAngle angle) {
-//            Player player = (Player) e.getWhoClicked();
-//            player.getPersistentDataContainer().set(TConstants.TRANSFER_MOUNT_KEY,DataType.UUID,as.getUniqueId());
-//            player.closeInventory();
-//            player.sendMessage("Right click a boat or minecart to mount the armorstand on it or punch a block to cancel the action");
-//        }
-//    }
+    }
     ;
 
 

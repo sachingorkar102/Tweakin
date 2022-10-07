@@ -45,6 +45,8 @@ public final class Tweakin extends JavaPlugin {
     public BaseGriefCompat griefCompat;
     public CommandReplacements replacements;
     private TweakManager tweakManager;
+
+    private Message messageManager;
     private NMSHelper nmsHelper;
     private boolean isEnabled;
     public boolean isProtocolLibEnabled;
@@ -107,6 +109,7 @@ public final class Tweakin extends JavaPlugin {
             
         }
         reloadMiscItems();
+        reloadMessageManager();
         this.getServer().getPluginManager().registerEvents(new GuiListener(plugin), plugin);
         this.isProtocolLibEnabled = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
         this.nmsHelper = nbtapi.getNMSHelper();
@@ -129,7 +132,8 @@ public final class Tweakin extends JavaPlugin {
                 Permissions.ARMORCLICK,Permissions.SHULKERBOX_CLICK,Permissions.ENDERCHEST_CLICK,Permissions.ROTATION_WRENCH,Permissions.SHEARITEMFRAME,Permissions.SHEARNAMETAG,
                 Permissions.SILENCEMOBS_PARENT,Permissions.SILENCEMOBS_SILENCE,Permissions.SILENCEMOBS_UNSILENCE,Permissions.SLIMEBUCKET_PARENT,
                 Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG,Permissions.ANVIL_REPAIR
-                ,Permissions.WATER_EX,Permissions.BETTER_BONEMEAL,Permissions.JUMPYBOATS);
+                ,Permissions.WATER_EX,Permissions.BETTER_BONEMEAL,Permissions.JUMPYBOATS,Permissions.CAULDRON_CONCRETE
+                ,Permissions.CHICKEN_SHEARING);
 
 
         for(Permission perm : this.permissions){
@@ -158,10 +162,19 @@ public final class Tweakin extends JavaPlugin {
         this.miscItems = new MiscItems(this);
     }
 
+    public void reloadMessageManager(){
+        this.messageManager = new Message(plugin);
+        messageManager.reload();
+    }
+
     @Override
     public void onDisable() {
         if(!isEnabled) return;
-        
+        for(Permission perm : this.permissions){
+            if(perm != null){
+                Bukkit.getServer().getPluginManager().removePermission(perm);
+            }
+        }
         for(BaseTweak t : tweakManager.getTweakList()){
             if(t.registered){
                 t.onDisable();
@@ -262,6 +275,10 @@ public final class Tweakin extends JavaPlugin {
 
     public TweakManager getTweakManager() {
         return tweakManager;
+    }
+
+    public Message getMessageManager() {
+        return messageManager;
     }
 
     public static NamespacedKey getKey(String key){

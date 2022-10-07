@@ -9,6 +9,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.permissions.Permission;
 
 import java.lang.reflect.Field;
@@ -138,6 +139,15 @@ public abstract class BaseTweak {
 
         }
         return false;
+    }
+
+    public void swingHand(EquipmentSlot hand,Player player){
+        if(hand==EquipmentSlot.HAND){
+            player.swingMainHand();
+        }
+        else if(hand==EquipmentSlot.OFF_HAND){
+            player.swingOffHand();
+        }
     }
 
     public boolean matchTag(Material mat,List<String> matcher){

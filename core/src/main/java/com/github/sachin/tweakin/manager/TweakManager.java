@@ -18,6 +18,7 @@ import com.github.sachin.tweakin.modules.bossspawnsounds.BroadCastSoundTweak;
 import com.github.sachin.tweakin.modules.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.modules.burnvinetip.BurnVineTipTweak;
 import com.github.sachin.tweakin.modules.cauldronconcrete.CauldronConcreteTweak;
+import com.github.sachin.tweakin.modules.chickenshearing.ChickenShearingTweak;
 import com.github.sachin.tweakin.modules.compassworkeverywhere.CompassEveryWhereTweak;
 import com.github.sachin.tweakin.modules.confetticreepers.ConfettiCreepers;
 import com.github.sachin.tweakin.modules.coordinatehud.CoordinateHUDTweak;
@@ -77,6 +78,7 @@ public class TweakManager {
 
     public TweakManager(Tweakin plugin){
         this.plugin = plugin;
+        this.messageManager = plugin.getMessageManager();
     }
 
     public void load(){
@@ -111,8 +113,11 @@ public class TweakManager {
             e.printStackTrace();
         }
         plugin.reloadConfig();
-        this.messageManager = new Message(plugin);
-        messageManager.reload();
+        if(unregister){
+            plugin.reloadMessageManager();
+        }
+        this.messageManager = plugin.getMessageManager();
+
         FirstInstallListener listener = new FirstInstallListener();
         if(plugin.isFirstInstall){
             plugin.isFirstInstall = false;
@@ -219,6 +224,7 @@ public class TweakManager {
         tweakList.add(new WaterExtinguishTweak());
         tweakList.add(new BetterBoneMealTweak());
         tweakList.add(new ElytraBombingTweak());
+        tweakList.add(new ChickenShearingTweak());
         if(plugin.isProtocolLibEnabled){
             tweakList.add(new BroadCastSoundTweak());
             tweakList.add(new BetterSignEditTweak());

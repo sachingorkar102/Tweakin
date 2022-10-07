@@ -662,8 +662,11 @@ more-recipes:
 
 # REQUIRES PaperMC as server software 
 # Dropping concrete powder in water filled cauldron will instantly turn it into concrete block
+# Permissions:
+  # tweakin.cauldronconcrete.use: permission to use this tweak
 cauldron-concrete:
   enabled: false
+  check-permissions: false
   black-list-worlds: []
 
 
@@ -688,6 +691,8 @@ better-recovery-compass:
 
 
 # allows to repair a broken anvil block to be repaired by right clicking with iron block
+# Permissions:
+  # tweakin.anvilrepair.use: permission to use this tweak
 anvil-repair:
   enabled: false
   check-permissions: false
@@ -746,3 +751,16 @@ elytra-bombing:
   igniter-items: [FLINT_AND_STEEL,FIRE_CHARGE]
   # cooldown in ticks for using tnt
   cooldown: 60
+
+# allows to shear a chicken and obtain its feathers, however this will damage the chicken
+# Permissions:
+  # tweakin.chickenshearing.use: permission to shear a chicken
+chicken-shearing:
+  enabled: false
+  check-permissions: false
+  black-list-worlds: []
+  # amount of damage to be done on chicken when sheared
+  # eg. 1-2 means random number picked from 1 to 2
+  damage: 1-2
+  # cooldown in ticks for using shears
+  cooldown: 10
