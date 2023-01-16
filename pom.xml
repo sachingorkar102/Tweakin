@@ -12,6 +12,7 @@
         <module>dist</module>
         <module>nms1_19</module>
         <module>nms1_19_1</module>
+        <module>nms1_19_3</module>
         <module>nms1_18_R2</module>
         <module>nms1_17_R1</module>
     </modules>
