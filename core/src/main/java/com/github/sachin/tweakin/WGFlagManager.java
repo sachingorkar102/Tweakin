@@ -9,6 +9,7 @@ import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class WGFlagManager {
 
@@ -35,11 +36,16 @@ public class WGFlagManager {
     }
 
 
-    public void registerFlags(){
-            
-        registeredFlags.put(TConstants.BSE_FLAG, new BSEFlag(plugin));
-        registeredFlags.put(TConstants.SIF_FLAG, new SIFFlag(plugin));
-        registeredFlags.put(TConstants.SBK_FLAG, new SBKFlag(plugin));
+    public boolean registerFlags(){
+        try {
+            registeredFlags.put(TConstants.BSE_FLAG, new BSEFlag(plugin));
+            registeredFlags.put(TConstants.SIF_FLAG, new SIFFlag(plugin));
+            registeredFlags.put(TConstants.SBK_FLAG, new SBKFlag(plugin));
+        } catch (Throwable t) {
+            plugin.getLogger().log(Level.WARNING, "Unable to initialize flags support:", t);
+            return false;
+        }
+        return true;
     }
     public BaseFlag getFlag(String name){
         return registeredFlags.get(name);

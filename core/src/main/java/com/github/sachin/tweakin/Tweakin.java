@@ -57,15 +57,16 @@ public final class Tweakin extends JavaPlugin {
     private List<Permission> permissions;
     private List<Player> placedPlayers = new ArrayList<>();
 
-
     @Override
     public void onLoad() {
         plugin = this;
-        isWorldGuardEnabled = Bukkit.getPluginManager().getPlugin("WorldGuard") != null;
-        if(isWorldGuardEnabled){
+
+        if(Bukkit.getPluginManager().getPlugin("WorldGuard") != null){
             wgFlagManager = new WGFlagManager(this);
             plugin.getLogger().info("Found WorldGuard, initializing flags support");
-            wgFlagManager.registerFlags();
+            if (wgFlagManager.registerFlags()) {
+                isWorldGuardEnabled = true;
+            }
         }
     }
 
