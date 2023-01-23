@@ -41,7 +41,10 @@ public class ShulkerBoxPreview extends BaseTweak implements Listener{
             ShulkerGui gui = (ShulkerGui) e.getView().getTopInventory().getHolder();
             gui.update(false);
 
-            if((e.getClick() == ClickType.NUMBER_KEY && gui.getSlot() == e.getHotbarButton()) || getConfig().getBoolean("preview-only") || (e.getCurrentItem() != null && e.getCurrentItem().getType().name().endsWith("SHULKER_BOX"))){
+            if(((e.getClick() == ClickType.NUMBER_KEY && gui.getSlot() == e.getHotbarButton())
+                    || (e.getClick() == ClickType.SWAP_OFFHAND && gui.getSlot() == 40))
+                    || getConfig().getBoolean("preview-only")
+                    || (e.getCurrentItem() != null && e.getCurrentItem().getType().name().endsWith("SHULKER_BOX"))){
                 e.setCancelled(true);
             }
         }

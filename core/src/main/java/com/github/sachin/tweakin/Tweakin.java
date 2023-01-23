@@ -57,15 +57,16 @@ public final class Tweakin extends JavaPlugin {
     private List<Permission> permissions;
     private List<Player> placedPlayers = new ArrayList<>();
 
-
     @Override
     public void onLoad() {
         plugin = this;
-        isWorldGuardEnabled = Bukkit.getPluginManager().getPlugin("WorldGuard") != null;
-        if(isWorldGuardEnabled){
+
+        if(Bukkit.getPluginManager().getPlugin("WorldGuard") != null){
             wgFlagManager = new WGFlagManager(this);
             plugin.getLogger().info("Found WorldGuard, initializing flags support");
-            wgFlagManager.registerFlags();
+            if (wgFlagManager.registerFlags()) {
+                isWorldGuardEnabled = true;
+            }
         }
     }
 
@@ -250,12 +251,12 @@ public final class Tweakin extends JavaPlugin {
     }
 
     public boolean isPost1_17(){
-        return Arrays.asList("v1_17_R1","v1_18_R1","v1_18_R2","v1_19_R1").contains(version);
+        return Arrays.asList("v1_17_R1","v1_18_R1","v1_18_R2","v1_19_R1","v1_19_R11","v1_19_R2").contains(version);
     }
 
-    public boolean is1_18() {return Arrays.asList("v1_18_R1","v1_18_R2","v1_19_R1").contains(version);}
+    public boolean is1_18() {return Arrays.asList("v1_18_R1","v1_18_R2","v1_19_R1","v1_19_R11","v1_19_R2").contains(version);}
 
-    public boolean isPost1_19() {return Arrays.asList("v1_19_R1").contains(version);}
+    public boolean isPost1_19() {return Arrays.asList("v1_19_R1","v1_19_R11","v1_19_R2").contains(version);}
 
     public List<Player> getPlacedPlayers() {
         return placedPlayers;
