@@ -17,17 +17,8 @@ public class NBTAPI {
 
     public boolean loadVersions(@Nonnull JavaPlugin plugin,String version,String mcVersion){
         String newVersion = version;
-        if(mcVersion.equals("1.19")){
-            newVersion = "v1_19_R1";
-        }
-        else if(mcVersion.equals("1.19.1") || mcVersion.equals("1.19.2")){
+        if (mcVersion.equals("1.19.1") || mcVersion.equals("1.19.2")) {
             newVersion = "v1_19_R11";
-        }
-        else if(mcVersion.equals("1.19.3")){
-            newVersion = "v1_19_R2";
-        }
-        else if(mcVersion.equals("1.19.4")){
-            newVersion = "v1_19_R3";
         }
         try {
             NMSHelper = (NMSHelper) Class.forName("com.github.sachin.tweakin.nms."+newVersion+".NMSHandler").getDeclaredConstructor().newInstance(null);
