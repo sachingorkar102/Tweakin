@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>Tweakin</artifactId>
@@ -9,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>nms1_19_1</artifactId>
+    <artifactId>nms1_19_R2</artifactId>
     <packaging>jar</packaging>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -40,7 +38,7 @@
             <plugin>
                 <groupId>net.md-5</groupId>
                 <artifactId>specialsource-maven-plugin</artifactId>
-                <version>1.2.2</version>
+                <version>1.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -49,9 +47,9 @@
                         </goals>
                         <id>remap-obf</id>
                         <configuration>
-                            <srgIn>org.spigotmc:minecraft-server:1.19.1-R0.1-SNAPSHOT:txt:maps-mojang</srgIn>
+                            <srgIn>org.spigotmc:minecraft-server:1.19.3-R0.1-SNAPSHOT:txt:maps-mojang</srgIn>
                             <reverse>true</reverse>
-                            <remappedDependencies>org.spigotmc:spigot:1.19.1-R0.1-SNAPSHOT:jar:remapped-mojang
+                            <remappedDependencies>org.spigotmc:spigot:1.19.3-R0.1-SNAPSHOT:jar:remapped-mojang
                             </remappedDependencies>
                             <remappedArtifactAttached>true</remappedArtifactAttached>
                             <remappedClassifierName>remapped-obf</remappedClassifierName>
@@ -67,8 +65,8 @@
                             <inputFile>
                                 ${project.build.directory}/${project.artifactId}-${project.version}-remapped-obf.jar
                             </inputFile>
-                            <srgIn>org.spigotmc:minecraft-server:1.19.1-R0.1-SNAPSHOT:csrg:maps-spigot</srgIn>
-                            <remappedDependencies>org.spigotmc:spigot:1.19.1-R0.1-SNAPSHOT:jar:remapped-obf
+                            <srgIn>org.spigotmc:minecraft-server:1.19.3-R0.1-SNAPSHOT:csrg:maps-spigot</srgIn>
+                            <remappedDependencies>org.spigotmc:spigot:1.19.3-R0.1-SNAPSHOT:jar:remapped-obf
                             </remappedDependencies>
                         </configuration>
                     </execution>
@@ -77,16 +75,14 @@
         </plugins>
     </build>
 
-
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1.19.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
+            <version>1.19.3-R0.1-SNAPSHOT</version>
             <classifier>remapped-mojang</classifier>
+            <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.github.sachin</groupId>
             <artifactId>core</artifactId>
@@ -94,4 +90,5 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
 </project>

@@ -26,6 +26,9 @@ public class TConstants {
     public static final String VULCAN = "Vulcan";
 
     public static final String ITEMSADDER = "ItemsAdder";
+    public static final String ECOENCHANTS = "EcoEnchants";
+
+
 
     public static final String LANDS = "Lands";
     public static final String RESIDENCE = "Residence";

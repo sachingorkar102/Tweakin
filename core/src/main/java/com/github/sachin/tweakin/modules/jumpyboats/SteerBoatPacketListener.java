@@ -24,6 +24,7 @@ public class SteerBoatPacketListener extends PacketAdapter {
         this.instance = instance;
     }
 
+
     @Override
     public void onPacketReceiving(PacketEvent e) {
         PacketContainer packet = e.getPacket();
