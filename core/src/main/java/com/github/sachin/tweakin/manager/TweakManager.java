@@ -182,7 +182,7 @@ public class TweakManager {
     }
 
     private void addCoreTweaks(){
-        tweakList.add(new RightClickArmor());
+
         tweakList.add(new ShulkerBoxPreview());
         tweakList.add(new NoteBlockHeadsTweak());
 
@@ -226,7 +226,9 @@ public class TweakManager {
         tweakList.add(new ElytraBombingTweak());
         tweakList.add(new ChickenShearingTweak());
         if(plugin.isProtocolLibEnabled){
-            tweakList.add(new BroadCastSoundTweak());
+            if(plugin.isPost1_19_3()){
+                tweakList.add(new BroadCastSoundTweak());
+            }
             tweakList.add(new BetterSignEditTweak());
             tweakList.add(new ReachAroundTweak());
             tweakList.add(new JumpyBoatsTweak());
@@ -243,6 +245,9 @@ public class TweakManager {
         }
         if(plugin.isPost1_19()){
             tweakList.add(new BetterRecoveryCompassTweak());
+        }
+        if(!plugin.isPost1_19_3()){
+            tweakList.add(new RightClickArmor());
         }
     }
 

@@ -132,7 +132,7 @@ public class RotationWrenchItem extends TweakItem implements Listener{
             
         }
         if(success){
-            if(plugin.is1_18()){
+            if(plugin.isPost1_18()){
                 player.getInventory().setItemInMainHand(item);
             }
             cooldownPlayers.add(player);

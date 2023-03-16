@@ -71,7 +71,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
 //        this.color = getColor(getConfig().getString("color","255,255,255"), getConfig().getInt("transparency",100));
         if(plugin.isPost1_17()){
             this.color = getColor("0,16,0", getConfig().getInt("transparency",100));
-            plugin.getLogger().info("Using 0,16,0 as color for reach-around, due to 1.17 green channel bug,which is still present in 1.18");
+            plugin.getLogger().info("Using 0,16,0 as color for reach-around, due to other color channels being removed after 1.17");
         }
         else{
             this.color = getColor(getConfig().getString("color","255,255,255"), getConfig().getInt("transparency",100));
@@ -178,7 +178,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             reachAroundPlacers.add(player.getUniqueId());
             boolean placed = getPlugin().getNmsHelper().placeItem(player, loc,e.getItem(),BlockFace.UP,getName(),true);
             reachAroundPlacers.remove(player.getUniqueId());
-            if(placed && player.getGameMode() != GameMode.CREATIVE && !plugin.is1_18()){
+            if(placed && player.getGameMode() != GameMode.CREATIVE && !plugin.isPost1_18()){
                 item.setAmount(item.getAmount()-1);
             }
         }
