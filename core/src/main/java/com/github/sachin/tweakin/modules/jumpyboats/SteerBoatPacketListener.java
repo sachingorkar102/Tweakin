@@ -6,8 +6,10 @@ import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
@@ -40,8 +42,13 @@ public class SteerBoatPacketListener extends PacketAdapter {
             }
             int i = cooldowns.getOrDefault(uuid,0);
             if(i==0){
-                if(isJumping && !instance.containsWorld(player.getWorld()) && instance.hasPermission(player, Permissions.JUMPYBOATS)){
-                    boat.setVelocity(boat.getVelocity().clone().add(new Vector(0,instance.getConfig().getDouble("jump-modifier"),0)));
+                if(isJumping && !instance.containsWorld(player.getWorld())){
+                    new BukkitRunnable(){
+                        @Override
+                        public void run() {
+                            boat.setVelocity(boat.getVelocity().clone().add(new Vector(0,instance.getConfig().getDouble("jump-modifier"),0)));
+                        }
+                    }.runTaskLater(plugin,0);
                     cooldowns.put(uuid,instance.getConfig().getInt("cooldown"));
 
                 }
