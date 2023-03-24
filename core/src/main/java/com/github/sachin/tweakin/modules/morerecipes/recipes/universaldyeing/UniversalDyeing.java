@@ -23,6 +23,8 @@ public class UniversalDyeing extends BaseRecipe{
     private static final List<Material> stainedGlasses = new ArrayList<>();
     private static final List<Material> STAINED_GLASS_PANES = new ArrayList<>();
 
+    private static final List<Material> CANDLES = new ArrayList<>();
+
     static{
         for(Dye dye : Dye.values()){
             CONCRETES.add(dye.concrete);
@@ -30,6 +32,7 @@ public class UniversalDyeing extends BaseRecipe{
             TERRACOTTAS.add(dye.terracotta);
             stainedGlasses.add(dye.stainedGlass);
             STAINED_GLASS_PANES.add(dye.stainedGlassPane);
+            CANDLES.add(dye.candle);
         }
     }
     
@@ -68,6 +71,9 @@ public class UniversalDyeing extends BaseRecipe{
             if(config.getBoolean("carpet.single")){
                 addSingleShapelessRecipe(dye.dye, dye.carpet, new ArrayList<>(Tag.CARPETS.getValues()));
             }
+            if(config.getBoolean("candle.single")){
+                addSingleShapelessRecipe(dye.dye,dye.candle,new ArrayList<>(Tag.CANDLES.getValues()));
+            }
 
 
             // sorounded
@@ -94,6 +100,9 @@ public class UniversalDyeing extends BaseRecipe{
             }
             if(config.getBoolean("carpet.sorounded")){
                 addSoroundedShapedRecipe(dye.dye, dye.carpet, new ArrayList<>(Tag.CARPETS.getValues()));
+            }
+            if(config.getBoolean("candle.sorounded")){
+                addSoroundedShapedRecipe(dye.dye,dye.candle,new ArrayList<>(Tag.CANDLES.getValues()));
             }
 
         }

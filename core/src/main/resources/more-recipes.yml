@@ -44,6 +44,9 @@ universal-dyeing:
   carpet:
     single: false
     sorounded: false
+  candle:
+    single: false
+    sorounded: false
 
 
 simple-recipes:
