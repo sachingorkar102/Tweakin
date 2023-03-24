@@ -764,3 +764,10 @@ chicken-shearing:
   damage: 1-2
   # cooldown in ticks for using shears
   cooldown: 10
+  # weather or not a sheared chicken should drop feathers on death
+  drop-feathers-on-death: false
+
+# when a waxed copper block is unwaxed, it will drop honeycomb
+recyclable-wax:
+  enabled: false
+  black-list-worlds: []

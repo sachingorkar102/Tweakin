@@ -40,6 +40,7 @@ import com.github.sachin.tweakin.modules.noteblock.NoteBlockHeadsTweak;
 import com.github.sachin.tweakin.modules.patdogs.PatDogTweak;
 import com.github.sachin.tweakin.modules.poisonpotatousage.PoisonPotatoUsageTweak;
 import com.github.sachin.tweakin.modules.reacharound.ReachAroundTweak;
+import com.github.sachin.tweakin.modules.recyclablewax.RecyclableWaxTweak;
 import com.github.sachin.tweakin.modules.rightclickarmor.RightClickArmor;
 import com.github.sachin.tweakin.modules.shulkerboxpreview.ShulkerBoxPreview;
 import com.github.sachin.tweakin.modules.rotationwrench.RotationWrenchItem;
@@ -225,6 +226,7 @@ public class TweakManager {
         tweakList.add(new BetterBoneMealTweak());
         tweakList.add(new ElytraBombingTweak());
         tweakList.add(new ChickenShearingTweak());
+        tweakList.add(new RecyclableWaxTweak());
         if(plugin.isProtocolLibEnabled){
             if(plugin.isPost1_19_3()){
                 tweakList.add(new BroadCastSoundTweak());
