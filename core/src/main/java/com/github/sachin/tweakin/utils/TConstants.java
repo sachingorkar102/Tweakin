@@ -54,5 +54,7 @@ public class TConstants {
 
     public static final NamespacedKey SHULKER_DUPE_KEY = Tweakin.getKey("shulker-dupe-prevent-key");
 
+    public static final NamespacedKey SHEARED_CHICKEN_KEY = Tweakin.getKey("sheared-chicken");
+
 
 }
