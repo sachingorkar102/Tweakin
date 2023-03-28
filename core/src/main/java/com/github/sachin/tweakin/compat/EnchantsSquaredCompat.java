@@ -9,6 +9,12 @@ public class EnchantsSquaredCompat {
 
     static {
         isEnabled = Tweakin.getPlugin().getServer().getPluginManager().isPluginEnabled("Enchantssquared");
+        if(isEnabled){
+            try {
+                me.athlaeos.enchantssquared.EnchantsSquared.setGrindstonesEnabled(false);
+                Tweakin.getPlugin().getLogger().info("Disabling GrindStone Listener by EnchantsSquared");
+            }catch (Exception ignored){}
+        }
     }
 
     public static void applyEnchants(ItemStack book,ItemStack weapon){
