@@ -766,6 +766,8 @@ chicken-shearing:
   cooldown: 10
   # weather or not a sheared chicken should drop feathers on death
   drop-feathers-on-death: false
+  # weather or not a dispenser can shear a chicken or not
+  dispenser-usable: true
 
 # when a waxed copper block is unwaxed, it will drop honeycomb
 recyclable-wax:
