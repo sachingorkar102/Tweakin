@@ -1,0 +1,120 @@
+sandstone-dyeing:
+  enabled: false
+  result: RED_SANDSTONE
+  type: shaped
+  pattern:
+    - "SR"
+    - " S"
+  keys:
+    R: RED_DYE
+    S: SANDSTONE
+craftable-enchanted-golden-apple:
+  enabled: false
+  type: shaped
+  result: ENCHANTED_GOLDEN_APPLE
+  pattern:
+    - "GGG"
+    - "GAG"
+    - "GGG"
+  keys:
+    G: GOLD_BLOCK
+    A: APPLE
+craftable-name-tag:
+  enabled: false
+  result: NAME_TAG
+  type: shaped
+  pattern:
+    - " IS"
+    - " PI"
+    - "P  "
+  keys:
+    I: IRON_INGOT
+    P: PAPER
+    S: STRING
+craftable-bundle-rabbit-hide-edition:
+  enabled: false
+  result: BUNDLE
+  type: shaped
+  pattern:
+    - "SRS"
+    - "R R"
+    - "RRR"
+  keys:
+    S: STRING
+    R: RABBIT_HIDE
+craftable-bundle-leather-edition:
+  enabled: false
+  result: BUNDLE
+  type: shaped
+  pattern:
+    - "SRS"
+    - "R R"
+    - "RRR"
+  keys:
+    S: STRING
+    R: LEATHER
+logs-to-chest:
+  enabled: false
+  result: CHEST
+  amount: 4
+  type: shaped
+  pattern:
+    - "LLL"
+    - "L L"
+    - "LLL"
+  keys:
+    L: OAK_LOG|STRIPPED_OAK_LOG|BIRCH_LOG|STRIPPED_BIRCH_LOG|SPRUCE_LOG|STRIPPED_SPRUCE_LOG|JUNGLE_LOG|STRIPPED_JUNGLE_LOG|ACACIA_LOG|STRIPPED_ACACIA_LOG|DARK_OAK_LOG|STRIPPED_DARK_OAK_LOG|CRIMSON_STEM|WARPED_STEM|STRIPPED_CRIMSON_STEM|STRIPPED_WARPED_STEM
+craftable-blackstone:
+  enabled: false
+  result: BLACKSTONE
+  type: shaped
+  pattern:
+    - "CB"
+    - "BC"
+  keys:
+    B: BASALT
+    C: COAL|CHARCOAL
+craftable-gravel:
+  enabled: false
+  result: GRAVEL
+  type: shaped
+  pattern:
+    - "FF"
+    - "FF"
+  keys:
+    F: FLINT
+uncraftable-packed-ice:
+  enabled: false
+  result: ICE
+  amount: 9
+  type: shapeless
+  ingredients: [PACKED_ICE]
+uncraftable-blue-ice:
+  enabled: false
+  result: PACKED_ICE
+  amount: 9
+  type: shapeless
+  ingredients: [BLUE_ICE]
+uncraftable-wool:
+  enabled: false
+  result: STRING
+  amount: 4
+  type: shapeless
+  ingredients: [WOOL]
+craftable-trident:
+  enabled: false
+  result: TRIDENT
+  type: shaped
+  pattern:
+    - " PP"
+    - " SP"
+    - "S  "
+  keys:
+    P: PRISMARINE_SHARD
+    S: STICK
+uncraftable-netherwart:
+  enabled: false
+  result: NETHER_WART
+  type: shapeless
+  amount: 9
+  ingredients: [NETHER_WART_BLOCK]

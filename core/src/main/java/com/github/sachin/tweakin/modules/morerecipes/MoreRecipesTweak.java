@@ -9,6 +9,7 @@ import com.github.sachin.tweakin.modules.morerecipes.recipes.*;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.BlackDyeRecipe.Charcoal;
 import com.github.sachin.tweakin.modules.morerecipes.recipes.universaldyeing.UniversalDyeing;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
+import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import com.google.common.base.Enums;
 import org.bukkit.Bukkit;
@@ -21,17 +22,14 @@ import org.bukkit.inventory.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 @Tweak(name = "more-recipes")
 public class MoreRecipesTweak extends BaseTweak{
 
     private FileConfiguration recipeFile;
-    private final String RECIPE_FILE_NAME = "more-recipes.yml";
+    private FileConfiguration customRecipeFile;
     private final List<NamespacedKey> simpleRecipes = new ArrayList<>();
     private List<BaseRecipe> baseRecipes;
 
@@ -137,22 +135,29 @@ public class MoreRecipesTweak extends BaseTweak{
     }
     
     public void saveRecipeFile(){
-        File file = new File(plugin.getDataFolder(), RECIPE_FILE_NAME);
-        if(!file.exists()) {
-            plugin.saveResource(RECIPE_FILE_NAME, false);
+        File recipeFile = new File(plugin.getDataFolder(), TConstants.RECIPE_FILE);
+        File customRecipeFile = new File(plugin.getDataFolder(),TConstants.CUSTOM_RECIPE_FILE);
+        if(!recipeFile.exists()) {
+            plugin.saveResource(TConstants.RECIPE_FILE, false);
+        }
+        if(!customRecipeFile.exists()){
+            plugin.saveResource(TConstants.CUSTOM_RECIPE_FILE,false);
         }
         try {
-            ConfigUpdater.update(plugin, RECIPE_FILE_NAME, file,new ArrayList<>(), false);
+            ConfigUpdater.update(plugin, TConstants.RECIPE_FILE, recipeFile,new ArrayList<>(), false);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        recipeFile = YamlConfiguration.loadConfiguration(file);
+        this.recipeFile = YamlConfiguration.loadConfiguration(recipeFile);
+        this.customRecipeFile = YamlConfiguration.loadConfiguration(customRecipeFile);
     }
 
     public int registerSimpleRecipes(){
         int registeredRecipes = 0;
-        for(String key : getRecipeFile().getConfigurationSection("simple-recipes").getKeys(false)){
-            ConfigurationSection recipe = getRecipeFile().getConfigurationSection("simple-recipes."+key);
+        this.customRecipeFile = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(),TConstants.CUSTOM_RECIPE_FILE));
+        for(String key : customRecipeFile.getKeys(false)){
+            if(!customRecipeFile.isConfigurationSection(key)) continue;
+            ConfigurationSection recipe = customRecipeFile.getConfigurationSection(key);
             ItemStack result = new ItemStack(Enums.getIfPresent(Material.class, recipe.getString("result","AIR").toUpperCase()).get());
             if(!recipe.getBoolean("enabled",true)) continue;
             if(result.getType()==Material.AIR) continue;
