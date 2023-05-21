@@ -438,6 +438,8 @@ better-sign-edit:
 
 # Breaking grass or crops with a hoe (while sneaking) will break a 3x3 of them. A Diamond & Netherite Hoe will break a 5x5 instead.
 # If you put Fortune on the hoe, it'll also apply that effect to everything it breaks.
+# Permission:
+  # tweakin.hoeharvesting.use: permission to use this tweak
 hoe-harvesting:
   enabled: false
   check-permissions: false

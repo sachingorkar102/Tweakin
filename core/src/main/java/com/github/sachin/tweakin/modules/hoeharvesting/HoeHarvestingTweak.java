@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.hoeharvesting;
 
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.utils.ItemBuilder;
+import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -45,6 +46,7 @@ public class HoeHarvestingTweak extends BaseTweak implements Listener{
     public void onHarvest(BlockBreakEvent e){
         Player player = e.getPlayer();
         if(!player.isSneaking() && getConfig().getBoolean("require-sneaking")) return;
+        if(!hasPermission(player, Permissions.HOE_HARVESTING)) return;
         ItemStack item = player.getInventory().getItemInMainHand();
         Location breakedBlock = e.getBlock().getLocation();
         
