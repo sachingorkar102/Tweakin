@@ -38,6 +38,9 @@ public class TConstants {
     public static final String COMBATLOGX = "CombatLogX";
 
     public static final String TOWNY = "Towny";
+    public static final String RECIPE_FILE = "more-recipes.yml";
+
+    public static final String CUSTOM_RECIPE_FILE = "custom-recipes.yml";
 
     
     public static final NamespacedKey UUID_LOCK_KEY = Tweakin.getKey("bas-uuid-lock");

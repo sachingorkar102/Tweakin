@@ -52,7 +52,7 @@ public class ChickenShearingTweak extends BaseTweak implements Listener {
 
     @EventHandler
     public void onDispenseItem(BlockDispenseEvent e){
-        if(e.getBlock().getType() == Material.DISPENSER && dispenserUsable){
+        if(e.getBlock().getType() == Material.DISPENSER && dispenserUsable && !containsWorld(e.getBlock().getWorld())){
 
             if(e.getItem().getType()==Material.SHEARS){
 

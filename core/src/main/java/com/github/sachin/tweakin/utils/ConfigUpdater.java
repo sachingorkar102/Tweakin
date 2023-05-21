@@ -62,7 +62,7 @@ public class ConfigUpdater {
         FileConfiguration oldConfig = YamlConfiguration.loadConfiguration(toUpdate);
         FileConfiguration newConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource(resourceName)));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(toUpdate), StandardCharsets.UTF_8));
-        ignoredSections = oldConfig.getStringList("ignored-sections");
+//        ignoredSections = oldConfig.getStringList("ignored-sections");
         if(ignoredSections == null){
             ignoredSections = new ArrayList<>();
         }

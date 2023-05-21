@@ -52,6 +52,7 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
             if(item.getItemStack().getType() == Material.ELYTRA){
                 if(isSimilar(item.getItemStack())){
                     e.setCancelled(true);
+
                 }
             }
         }
@@ -59,6 +60,7 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
 
     @EventHandler
     public void onItemBurn(EntityDamageByBlockEvent e){
+
         if(e.getDamager() == null) return;
         if(e.getDamager().getType() != Material.LAVA) return;
         if(e.getEntity().getType() == EntityType.DROPPED_ITEM){

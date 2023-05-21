@@ -118,5 +118,7 @@ public class Permissions {
 
     public static final Permission VIL_DTH_MSG = get("villagerdeathmessage.notify");
 
+    public static final Permission HOE_HARVESTING = get("hoeharvesting.use");
+
 
 }

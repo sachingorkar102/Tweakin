@@ -108,6 +108,7 @@ public final class Tweakin extends JavaPlugin {
             return;
             
         }
+
         reloadMiscItems();
         reloadMessageManager();
         this.getServer().getPluginManager().registerEvents(new GuiListener(plugin), plugin);
@@ -133,7 +134,7 @@ public final class Tweakin extends JavaPlugin {
                 Permissions.SILENCEMOBS_PARENT,Permissions.SILENCEMOBS_SILENCE,Permissions.SILENCEMOBS_UNSILENCE,Permissions.SLIMEBUCKET_PARENT,
                 Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG,Permissions.ANVIL_REPAIR
                 ,Permissions.WATER_EX,Permissions.BETTER_BONEMEAL,Permissions.JUMPYBOATS,Permissions.CAULDRON_CONCRETE
-                ,Permissions.CHICKEN_SHEARING);
+                ,Permissions.CHICKEN_SHEARING,Permissions.HOE_HARVESTING);
 
 
         for(Permission perm : this.permissions){
