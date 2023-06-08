@@ -202,7 +202,9 @@ public enum Head {
     TEMPERATE_FROG("FROG",(entity) -> Tweakin.getPlugin().getNmsHelper().matchFrogVariant(entity,"TEMPERATE")),
     WARM_FROG("FROG",(entity) -> Tweakin.getPlugin().getNmsHelper().matchFrogVariant(entity,"WARM")),
     TADPOLE,
-    ALLAY
+    ALLAY,
+    CAMEL,
+    SNIFFER
     ;
 
 
@@ -219,7 +221,7 @@ public enum Head {
 
     private Head(String entityType,Predicate<Entity> check){
         this.check = check;
-
+        
         this.section = MobHeadsTweak.headConfig.getConfigurationSection(toString().toLowerCase());
         this.lootingMul = section.getDouble("looting",0.0);
         this.chance = section.getDouble("chance",0);

@@ -958,6 +958,18 @@ allay:
   looting: 0.01
   display: "Allay Head"
 
+camel:
+  texture: ZTY3ZDQ1OTczNDAxNjZlMTk3OGE2NjhhMDZiZjU3NTZjMTdiNGNiNWI0MGFiOGZmMjQ0MDkzYjZiOGJjNzVkMyJ9fX0=
+  chance: 1
+  looting: 1
+  display: "Camel Head"
+
+sniffer:
+  texture: Yzg0YTdlN2ZlMTk3YjdlNzQxOWI1MWQ0NmNjMjMzNTUxYjllYzg5OWRlMWFmZTdmNjUzZTRmOGZiMjZhNjg2ZSJ9fX0=
+  chance: 1
+  looting: 1
+  display: "Sniffer Head"
+
 
 
 
