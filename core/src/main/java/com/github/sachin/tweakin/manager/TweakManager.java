@@ -174,7 +174,11 @@ public class TweakManager {
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a------------------------------"));
                     }
                 });
-                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------\n&eAll tweaks seems to be disabled, use &6/tw toggle &eor &6/tw &6toggle [tweak-name]\n&eto enable some!!\n&cDo not use &6config.yml &cto toggle tweaks\n&a------------------------------"));
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&a-----------Tweakin------------"));
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&eAll tweaks seems to be disabled, use &6/tw toggle &eor &6/tw &6toggle [tweak-name]"));
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&eto enable some!!"));
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&cDo not use &6config.yml &cto toggle tweaks"));
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&a------------------------------"));
             }
         }
         plugin.getLogger().info("Registered "+registered+" tweaks successfully");
