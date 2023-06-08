@@ -1,6 +1,7 @@
 package com.github.sachin.tweakin;
 
 import com.github.sachin.tweakin.modules.bettersignedit.BSEFlag;
+import com.github.sachin.tweakin.modules.reacharound.RAFlag;
 import com.github.sachin.tweakin.modules.shearitemframe.SIFFlag;
 import com.github.sachin.tweakin.modules.snowballknockback.SBKFlag;
 import com.github.sachin.tweakin.utils.TConstants;
@@ -40,6 +41,7 @@ public class WGFlagManager {
         registeredFlags.put(TConstants.BSE_FLAG, new BSEFlag(plugin));
         registeredFlags.put(TConstants.SIF_FLAG, new SIFFlag(plugin));
         registeredFlags.put(TConstants.SBK_FLAG, new SBKFlag(plugin));
+        registeredFlags.put(TConstants.RA_FLAG,new RAFlag(plugin));
     }
     public BaseFlag getFlag(String name){
         return registeredFlags.get(name);

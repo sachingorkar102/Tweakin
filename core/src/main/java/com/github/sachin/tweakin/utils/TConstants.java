@@ -21,6 +21,8 @@ public class TConstants {
     public static final String SIF_FLAG = "tweakin-shear-item-frame";  
     public static final String SBK_FLAG = "tweakin-snowball-knockback";
 
+    public static final String RA_FLAG = "tweakin-reach-around";
+
     public static final String GRIEF_PREVENTION = "GriefPrevention";
     public static final String PAPI = "PlaceholderAPI";
     public static final String VULCAN = "Vulcan";
@@ -58,6 +60,7 @@ public class TConstants {
     public static final NamespacedKey SHULKER_DUPE_KEY = Tweakin.getKey("shulker-dupe-prevent-key");
 
     public static final NamespacedKey SHEARED_CHICKEN_KEY = Tweakin.getKey("sheared-chicken");
+
 
 
 }

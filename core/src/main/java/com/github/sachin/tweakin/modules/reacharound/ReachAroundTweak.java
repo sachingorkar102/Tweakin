@@ -4,6 +4,7 @@ import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.TweakItem;
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -33,6 +34,8 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
 
     private Map<UUID,BukkitTask> currentTasks = new HashMap<>();
 
+    private RAFlag flag;
+
     public static final List<UUID> reachAroundPlacers = new ArrayList<>();
     private int color;
     final NamespacedKey key = new NamespacedKey(getPlugin(), "reacharound");
@@ -45,6 +48,9 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     @Override
     public void onLoad() {
         this.command = new ToggleCommand(this);
+        if(plugin.isWorldGuardEnabled){
+            this.flag = (RAFlag) plugin.getWGFlagManager().getFlag(TConstants.RA_FLAG);
+        }
     }
 
     public List<String> getBlackListWorlds() {
@@ -173,6 +179,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
         if(!item.getType().isBlock()) return;
         Location loc = getPlayerReachAroundTarget(player);
         if(loc != null){
+
             // BlockPlaceEvent event = new BlockPlaceEvent(loc.getBlock(), loc.getBlock().getState(), placedAgainst, itemInHand, thePlayer, canBuild, hand)
             plugin.addPlacedPlayer(player);
             reachAroundPlacers.add(player.getUniqueId());
@@ -206,14 +213,13 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
        
         RayTraceResult rayTraceResult = player.getWorld().rayTraceBlocks(player.getEyeLocation(), player.getEyeLocation().getDirection(), 5);
         if(rayTraceResult == null){
-            Location target = getPlayerVerticalReachAround(player);
-            if(target != null){
-                return target;
+            Location target = null;
+            target = getPlayerVerticalReachAround(player);
+            if(target == null){
+                target = getPlayerHorizonTalReachAround(player);
             }
-            target = getPlayerHorizonTalReachAround(player);
-            if(target != null){
-                return target;
-            }
+            if(target != null && flag != null && !flag.queryFlag(player,target)) return null;
+            return target;
         }
         
         return null;
