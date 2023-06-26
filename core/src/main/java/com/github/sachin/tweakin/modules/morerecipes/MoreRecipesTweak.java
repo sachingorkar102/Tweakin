@@ -197,6 +197,31 @@ public class MoreRecipesTweak extends BaseTweak{
                 addRecipe(recipeKey, shapelessRecipe);
                 registeredRecipes++;
             }
+            else if(type.equalsIgnoreCase("furnace") || type.equalsIgnoreCase("blast") || type.equalsIgnoreCase("smoker")){
+                CookingRecipe<?> cookingRecipe = null;
+                if(type.equalsIgnoreCase("furnace")){
+                    cookingRecipe = new FurnaceRecipe(recipeKey,result,Material.AIR,0F,0);
+                }
+                else if(type.equalsIgnoreCase("blast")){
+                    cookingRecipe = new BlastingRecipe(recipeKey,result,Material.AIR,0F,0);
+                }
+                else if(type.equalsIgnoreCase("smoker")){
+                    cookingRecipe = new SmokingRecipe(recipeKey,result,Material.AIR,0F,0);
+                }
+                if(cookingRecipe != null){
+                    for(String ing : recipe.getStringList("ingredients")){
+                        RecipeChoice choice = TweakItem.getIngredient(ing, recipe.getBoolean("exact",false));
+                        if(choice != null){
+                            cookingRecipe.setInputChoice(choice);
+                            cookingRecipe.setCookingTime(recipe.getInt("cook-time",10));
+                            cookingRecipe.setExperience(recipe.getInt("experience",0));
+
+                        }
+                    }
+                    addRecipe(recipeKey,cookingRecipe);
+                    registeredRecipes++;
+                }
+            }
             
         }
         return registeredRecipes;

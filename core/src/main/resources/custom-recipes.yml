@@ -118,3 +118,11 @@ uncraftable-netherwart:
   type: shapeless
   amount: 9
   ingredients: [NETHER_WART_BLOCK]
+rotten-flesh-to-leather-example-recipe:
+  enabled: false
+  type: furnace
+  result: LEATHER
+  amount: 1
+  ingredients: [ROTTEN_FLESH]
+  cook-time: 200
+  experience: 1
