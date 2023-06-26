@@ -232,10 +232,12 @@ public class TweakManager {
         tweakList.add(new ChickenShearingTweak());
         tweakList.add(new RecyclableWaxTweak());
         if(plugin.isProtocolLibEnabled){
-            if(plugin.isPost1_19_3()){
+            if(!plugin.isPost1_19_3()){
                 tweakList.add(new BroadCastSoundTweak());
             }
-            tweakList.add(new BetterSignEditTweak());
+            if(!plugin.isPost1_20()){
+                tweakList.add(new BetterSignEditTweak());
+            }
             tweakList.add(new ReachAroundTweak());
             tweakList.add(new JumpyBoatsTweak());
         }
