@@ -5,13 +5,16 @@ import java.util.Map;
 import com.github.sachin.tweakin.TweakItem;
 
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.annotations.Config;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Directional;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.Waterlogged;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Fish;
@@ -34,6 +37,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 @Tweak(name = "infinity-water-bucket")
 public class InfinityWaterBucketTweak extends TweakItem implements Listener{
 
+    @Config(key = "cooldown")
+    public int cooldown = 10;
 
     @EventHandler
     public void onDispenseItem(BlockDispenseEvent e){
@@ -81,23 +86,40 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
 
     @EventHandler
     public void onBucketUse(PlayerInteractEvent e){
+
         if(isSimilar(e.getItem()) && e.getAction()==Action.RIGHT_CLICK_BLOCK && e.useItemInHand()!=Result.DENY){
 
             Player player = e.getPlayer();
+
             e.setCancelled(true);
+            e.setUseItemInHand(Result.DENY);
+            if(player.getCooldown(Material.WATER_BUCKET) != 0){
+                return;
+            }
             if(!hasPermission(player, Permissions.INFIBUCKET_USE) || player.getWorld().getEnvironment()==Environment.NETHER) return;
             Block block = e.getClickedBlock().getRelative(e.getBlockFace());
             if(plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,block.getLocation(),Material.WATER_BUCKET)) return;
-            if(!block.isEmpty() && block.getBlockData() instanceof Waterlogged){
+            if(e.getClickedBlock().getBlockData() instanceof Waterlogged){
+                Waterlogged waterlogged = (Waterlogged) e.getClickedBlock().getBlockData();
+                if(!waterlogged.isWaterlogged()){
+                    waterlogged.setWaterlogged(true);
+                    e.getClickedBlock().setBlockData(waterlogged);
+                    player.setCooldown(Material.WATER_BUCKET,cooldown);
+                }
+            }
+            else if(!block.isEmpty() && block.getBlockData() instanceof Waterlogged){
                 // idk, the BlockState#update method was not working so sorted to using nms
                 plugin.getNmsHelper().placeWater(block);
+                player.setCooldown(Material.WATER_BUCKET,cooldown);
             }
             else{
                 block.setType(Material.WATER,true);
+                player.setCooldown(Material.WATER_BUCKET,cooldown);
             }
 
         }
     }
+
 
 
     @EventHandler
@@ -109,13 +131,11 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
         if(e.getEntity() instanceof Fish){
             e.setCancelled(true);
             player.sendMessage(getTweakManager().getMessageManager().getMessage("cant-catch-fish"));
+            return;
         }
-        else if(plugin.getVersion().startsWith("v1_17")){
-            if(e.getEntity().getType().toString().equals("AXOLOTL")){
-                e.setCancelled(true);
-                
-                player.sendMessage(getTweakManager().getMessageManager().getMessage("cant-catch-axolotl"));
-            }
+        if(e.getEntity().getType().toString().equals("AXOLOTL")){
+            e.setCancelled(true);
+            player.sendMessage(getTweakManager().getMessageManager().getMessage("cant-catch-axolotl"));
         }
     }
 

@@ -106,6 +106,7 @@ noteblock-mob-sounds:
   # tweakin.reacharound.horizontal: permission to place horizontally
   # tweakin.reacharound.highlight: permission to show highlight
   # tweakin.reacharound.togglecommand: permission to use /togglereacharound|/treacharound
+# Worldguard Flag: tweakin-reach-around
 reach-around:
   enabled: false
   check-permissions: false
@@ -429,7 +430,7 @@ broadcast-sound-nerf:
 # Right clicking a sign now lets you edit it even after it's been placed.
 # Respects grief plugins
 # Permisssion: tweakin.bettersignedit.use
-# WorldGuard flag: tweakin-better-sign-edit [enabled by default]
+# WorldGuard flag: tweakin-better-sign-edit
 better-sign-edit:
   enabled: false
   check-permissions: false
@@ -494,7 +495,7 @@ animal-flee:
 
 # Item frame containing item in them can be made invisible if right clicked with shears
 # Permission: tweakin.shearitemframe.use
-# Worldguard flag: tweakin-shear-item-frame [enabled by default]
+# Worldguard flag: tweakin-shear-item-frame
 shear-item-frame:
   enabled: false
   check-permissions: false
@@ -502,7 +503,7 @@ shear-item-frame:
 
 
 # Snowballs and eggs will apply more knockback to entity on hit and also deal damage
-# Worldguard flag: tweakin-snowball-knockback [default to true]
+# Worldguard flag: tweakin-snowball-knockback
 snowball-knockback:
   enabled: false
   # multiplier for knockback
@@ -523,6 +524,8 @@ infinity-water-bucket:
   cost: 2
   # weather or not dispensers can use infinity bucket like players
   dispenser-usable: true
+  # cooldown in ticks to use water bucket
+  cooldown: 10
 
 # mobs have a chance to drop there heads on death,
 # each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes in heads.yml to take place)
