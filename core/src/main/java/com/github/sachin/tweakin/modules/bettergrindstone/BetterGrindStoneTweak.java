@@ -71,12 +71,14 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                             if(nbti.hasKey("armored-elytra")) return;
                             ItemStack enchantedBook = new ItemStack(Material.ENCHANTED_BOOK);
                             EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
+                            if(AdvancedEnchantments.isPluginEnabled){
+                                enchantedBook =  AdvancedEnchantments.applyEnchantments(enchantedBook, weapon);
+                                inv.setItem(2,enchantedBook);
+                                return;
+                            }
                             for(Enchantment ench : weapon.getEnchantments().keySet()){
                                 enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
                                 enchantedBook.setItemMeta(enchMeta);
-                            }
-                            if(AdvancedEnchantments.isPluginEnabled){
-                                enchantedBook =  AdvancedEnchantments.applyEnchantments(enchantedBook, weapon);
                             }
                             if(ExcellentEnchantsCompat.isEnabled){
                                 ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);

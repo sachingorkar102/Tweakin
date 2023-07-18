@@ -16,10 +16,11 @@ public class AdvancedEnchantments {
 
     public static ItemStack applyEnchantments(ItemStack book,ItemStack weapon){
         Map<String,Integer> enchants = net.advancedplugins.ae.api.AEAPI.getEnchantmentsOnItem(weapon);
+        ItemStack newBook = book.clone();
         for(String ench : enchants.keySet()){
-            book = net.advancedplugins.ae.api.AEAPI.applyEnchant(ench, enchants.get(ench), book);
+            newBook = net.advancedplugins.ae.api.AEAPI.applyEnchant(ench, enchants.get(ench), book);
         }
-        return book;
+        return newBook;
         
     }
     
