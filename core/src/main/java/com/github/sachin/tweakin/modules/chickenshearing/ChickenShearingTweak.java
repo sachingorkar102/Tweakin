@@ -21,6 +21,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.loot.LootContext;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -59,6 +61,11 @@ public class ChickenShearingTweak extends BaseTweak implements Listener {
                 Directional directional = (Directional) e.getBlock().getBlockData();
                 Block relative = e.getBlock().getRelative(directional.getFacing());
                 ItemStack shears = e.getItem();
+                ItemMeta meta = shears.getItemMeta();
+                Damageable damageable = (Damageable) meta;
+                if(damageable.getDamage()==shears.getType().getMaxDurability()){
+                    return;
+                }
                 for(Entity en : relative.getWorld().getNearbyEntities(relative.getLocation().add(0.5,0.5,0.5),0.5,0.5,0.5, en -> en.getType()== EntityType.CHICKEN && ((Chicken)en).isAdult() && !en.isDead())){
                     relative.getWorld().playSound(en.getLocation(), Sound.ENTITY_SHEEP_SHEAR,1,1);
                     if(!en.getPersistentDataContainer().has(TConstants.SHEARED_CHICKEN_KEY, PersistentDataType.INTEGER)){
@@ -93,6 +100,11 @@ public class ChickenShearingTweak extends BaseTweak implements Listener {
             Player player = e.getPlayer();
             ItemStack shears = player.getInventory().getItem(e.getHand());
             if(shears != null && shears.getType()== Material.SHEARS && chicken.isAdult() && !chicken.isDead() && player.getCooldown(Material.SHEARS) == 0 && hasPermission(player, Permissions.CHICKEN_SHEARING) && !containsWorld(player.getWorld())){
+                ItemMeta meta = shears.getItemMeta();
+                Damageable damageable = (Damageable) meta;
+                if(damageable.getDamage()==shears.getType().getMaxDurability()){
+                    return;
+                }
                 swingHand(e.getHand(),player);
                 if(player.getGameMode() != GameMode.CREATIVE){
                     player.getInventory().setItem(e.getHand(), ItemBuilder.damageItem(1,shears,plugin.RANDOM,player));

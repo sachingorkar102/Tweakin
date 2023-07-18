@@ -254,6 +254,7 @@ public class ItemBuilder {
     public static ItemStack damageItem(int amount, ItemStack item, Random random, Player player){
         ItemMeta meta = item.getItemMeta();
         if(!(meta instanceof Damageable) || amount < 0) return item;
+
         int m = item.getEnchantmentLevel(Enchantment.DURABILITY);
         int k = 0;
         for (int l = 0; m > 0 && l < amount; l++) {
@@ -278,6 +279,11 @@ public class ItemBuilder {
             return item;
 
         Damageable damageable = (Damageable) meta;
+//        if(damageable.getDamage()==item.getType().getMaxDurability()+amount+1){
+//            item.setType(Material.AIR);
+//            player.getWorld().playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK,1,1);
+//            return null;
+//        }
         damageable.setDamage(damageable.getDamage()+amount);
         item.setItemMeta(meta);
         return item;

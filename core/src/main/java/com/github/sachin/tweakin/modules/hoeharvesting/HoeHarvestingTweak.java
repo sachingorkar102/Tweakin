@@ -59,8 +59,14 @@ public class HoeHarvestingTweak extends BaseTweak implements Listener{
             int range = getRange(itemType);
             for (int x = breakedBlock.getBlockX() - range; x <= breakedBlock.getBlockX() + range; x++){
                 for (int z = breakedBlock.getBlockZ() - range; z <= breakedBlock.getBlockZ() + range; z++){
+//                    if(item == null) break;
                     Location loc = new Location(breakedBlock.getWorld(), x, breakedBlock.getBlockY(), z);
                     Material blockType = loc.getBlock().getType();
+                    ItemMeta meta = item.getItemMeta();
+                    Damageable damageable = (Damageable) meta;
+                    if(damageable.getDamage()==item.getType().getMaxDurability()){
+                        break;
+                    }
                     if(matchesHarvestable(blockType)){
                         loc.getBlock().breakNaturally(item);
                         ItemBuilder.damageItem(1, item, plugin.RANDOM, player);
