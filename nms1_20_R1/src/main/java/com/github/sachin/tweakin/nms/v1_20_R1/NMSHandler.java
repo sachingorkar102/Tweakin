@@ -161,8 +161,7 @@ public class NMSHandler extends NMSHelper {
         BlockPos pos = new BlockPos(location.getBlockX(), location.getBlockY(), location.getBlockZ());
         ServerPlayer nmsPlayer = ((CraftPlayer)player).getHandle();
         UseOnContext context = new UseOnContext(nmsPlayer, InteractionHand.MAIN_HAND, new BlockHitResult(new Vec3(0.5F, 1F, 0.5F), Direction.UP, pos, false));
-        InteractionResult res = nmsItem.useOn(context,InteractionHand.MAIN_HAND);
-
+        InteractionResult res = nmsItem.useOn(context);
         if(res==InteractionResult.CONSUME){
             player.swingMainHand();
             BlockPos placedPos = context.getClickedPos().relative(context.getClickedFace());

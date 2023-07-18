@@ -163,9 +163,9 @@
         <dependency>
             <groupId>AdvancedEnchantments</groupId>
             <artifactId>advancedenchantments</artifactId>
-            <version>8.6.4</version>
+            <version>8.7.4</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/AdvancedEnchantmentsAPI-8.6.4.jar</systemPath>
+            <systemPath>${project.basedir}/lib/AdvancedEnchantments-8.7.4.jar</systemPath>
         </dependency>
 
 <!--        EnchantsSquared-->
