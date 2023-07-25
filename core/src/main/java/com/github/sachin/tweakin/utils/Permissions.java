@@ -87,7 +87,7 @@ public class Permissions {
     public static final Permission NETHERCOORDS = get("netherportalcoords");
     public static final Permission PAT_DOG = get("patdog");
     public static final Permission PAT_CAT = get("patcat");
-    public static final Permission POISONPOTATO = get("posionpotato.use");
+    public static final Permission POISONPOTATO = get("poisonpotato.use");
 
     public static final Permission REACHAROUND_PARENT = get("reacharound.*",Arrays.asList("highlight","vertical","horizontal","togglecommand"));
     public static final Permission REACHAROUND_HIGHLIGHT = get("reacharound.highlight");
