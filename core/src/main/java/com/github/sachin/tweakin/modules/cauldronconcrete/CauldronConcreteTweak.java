@@ -16,7 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
 // tweakin.cauldronconcrete.use
-@Tweak(name = "cauldron-concrete")
+@Tweak(name = "cauldron-concrete",clashingTeaksTweak = "Cauldron Concrete")
 public class CauldronConcreteTweak extends BaseTweak implements Listener{
 
     @EventHandler

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Permission: tweakin.silencemobs.silence,tweakin.silencemobs.unsilence
-@Tweak(name = "silence-mobs")
+@Tweak(name = "silence-mobs",clashingTeaksTweak = "Silence Mobs")
 public class SilenceMobsTweak extends BaseTweak implements Listener{
 
     private List<String> silenceNames = new ArrayList<>();

@@ -13,7 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 // Permission: tweakin.villagerdeathmessage.notify
-@Tweak(name = "villager-death-message")
+@Tweak(name = "villager-death-message",clashingTeaksTweak = "Villager Death Messages")
 public class VillagerDeathMessageTweak extends BaseTweak implements Listener{
 
     @EventHandler(priority = EventPriority.LOWEST)

@@ -25,7 +25,7 @@ import java.util.Set;
 
 
 // permission: tweakin.customportal.use
-@Tweak(name = "custom-shaped-portals")
+@Tweak(name = "custom-shaped-portals",clashingTeaksTweak = "Custom Nether Portals")
 public class CustomPortalTweak extends BaseTweak implements Listener {
 
 

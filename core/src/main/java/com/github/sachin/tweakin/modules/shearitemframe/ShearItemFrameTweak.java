@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-@Tweak(name = "shear-item-frame")
+@Tweak(name = "shear-item-frame",clashingTeaksTweak = "Invisible Item Frames")
 public class ShearItemFrameTweak extends BaseTweak implements Listener{
 
     private final NamespacedKey key = Tweakin.getKey("tweakin-frame");

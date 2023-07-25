@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-@Tweak(name = "fast-leaf-decay")
+@Tweak(name = "fast-leaf-decay",clashingTeaksTweak = "Fast Leaf Decay")
 public class FastLeafDecayTweak extends BaseTweak implements Listener {
 
     private int duration;

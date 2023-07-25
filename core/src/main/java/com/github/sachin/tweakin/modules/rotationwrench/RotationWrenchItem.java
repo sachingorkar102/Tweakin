@@ -23,7 +23,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Tweak(name = "rotation-wrench")
+@Tweak(name = "rotation-wrench",clashingTeaksTweak = "Rotation Wrench")
 public class RotationWrenchItem extends TweakItem implements Listener{
 
     @Config(key = "rotatable-materials")

@@ -17,7 +17,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Tweak(name = "confetti-creepers")
+@Tweak(name = "confetti-creepers",clashingTeaksTweak = "Confetti Creepers")
 public class ConfettiCreepers extends BaseTweak implements Listener{
 
     private FireworkEffect.Builder builder;

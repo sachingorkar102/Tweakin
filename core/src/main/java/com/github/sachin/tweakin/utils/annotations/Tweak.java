@@ -10,5 +10,6 @@ import java.lang.annotation.Target;
 public @interface Tweak {
 
     String name();
+    String clashingTeaksTweak() default "";
 
 }

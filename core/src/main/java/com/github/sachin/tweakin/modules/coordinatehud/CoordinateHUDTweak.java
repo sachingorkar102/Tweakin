@@ -29,7 +29,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-@Tweak(name = "coordinate-hud")
+@Tweak(name = "coordinate-hud",clashingTeaksTweak = "Coords HUD")
 public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     final List<Player> enabled = new ArrayList<>();

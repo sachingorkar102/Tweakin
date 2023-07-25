@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Permission: tweakin.autorecipeunlock
-@Tweak(name = "auto-recipe-unlock")
+@Tweak(name = "auto-recipe-unlock",clashingTeaksTweak = "Unlock All Recipes")
 public class AutoRecipeUnlockTweak extends BaseTweak implements Listener{
 
     private List<NamespacedKey> recipes = new ArrayList<>();

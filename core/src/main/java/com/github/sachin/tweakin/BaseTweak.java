@@ -1,7 +1,9 @@
 package com.github.sachin.tweakin;
 
 import co.aikar.commands.BaseCommand;
+import com.github.sachin.tweakin.compat.TeaksTweaksCompat;
 import com.github.sachin.tweakin.manager.TweakManager;
+import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Config;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.*;
@@ -67,6 +69,13 @@ public abstract class BaseTweak {
                 field.set(this,value);
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
+            }
+        }
+        String clashingTT = getClass().getAnnotation(Tweak.class).clashingTeaksTweak();
+        if(this.shouldEnable && !clashingTT.equalsIgnoreCase("") && TeaksTweaksCompat.isEnabled){
+            if(TeaksTweaksCompat.isPackEnabled(clashingTT)){
+                plugin.getServer().getConsoleSender().sendMessage(TConstants.PREFIX+ChatColor.RED+"TeaksTweaks has already enabled the tweak "+clashingTT+", cannot enable "+getName()+" from Tweakin");
+                this.shouldEnable = false;
             }
         }
     }

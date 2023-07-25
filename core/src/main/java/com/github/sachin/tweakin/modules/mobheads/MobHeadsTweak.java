@@ -34,7 +34,7 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 
 // Permission: tweakin.mobheads.drops
-@Tweak(name = "mob-heads")
+@Tweak(name = "mob-heads",clashingTeaksTweak = "More Mob Heads")
 public class MobHeadsTweak extends BaseTweak implements Listener{
 
     public static FileConfiguration headConfig;

@@ -16,6 +16,7 @@ public class TConstants {
 
     public static final List<Material> ANVILS = Arrays.asList(Material.ANVIL,Material.CHIPPED_ANVIL,Material.DAMAGED_ANVIL);
 
+    public static final String PREFIX = "[Tweakin] ";
 
     public static final String BSE_FLAG = "tweakin-better-sign-edit";                                                            
     public static final String SIF_FLAG = "tweakin-shear-item-frame";  
@@ -29,6 +30,8 @@ public class TConstants {
 
     public static final String ITEMSADDER = "ItemsAdder";
     public static final String ECOENCHANTS = "EcoEnchants";
+
+    public static final String TEAKSTWEAKS = "TeaksTweaks";
 
 
 

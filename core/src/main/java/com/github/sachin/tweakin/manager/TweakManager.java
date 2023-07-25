@@ -149,6 +149,7 @@ public class TweakManager {
                     }
                 }
                 if(t.shouldEnable()){
+
                     t.register();
                     if(t instanceof TweakItem){
                         registeredItems.add((TweakItem)t);

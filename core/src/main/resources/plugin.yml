@@ -1,10 +1,10 @@
 name: Tweakin
-version: 6.0.0
+version: 6.0.1
 main: com.github.sachin.tweakin.Tweakin
 api-version: 1.16
 api: []
 authors: [ sachingorkar ]
-softdepend: [ProtocolLib,WorldGuard,ExcellentEnchants,EcoEnchants,Enchantssquared,GriefPrevention,Lands,CrashClaim,Towny,ItemsAdder,CombatLogX]
+softdepend: [ProtocolLib,WorldGuard,ExcellentEnchants,EcoEnchants,Enchantssquared,GriefPrevention,Lands,CrashClaim,Towny,ItemsAdder,CombatLogX,TeaksTweaks]
 description: A modular plugin with the objective of improving the vanilla gameplay experience
 
 

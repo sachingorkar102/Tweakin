@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.UUID;
 
 // Permission: tweakin.armoredelytra.craft
-@Tweak(name = "armored-elytra")
+@Tweak(name = "armored-elytra",clashingTeaksTweak = "Armored Elytra")
 public class ArmoredElytraTweak extends TweakItem implements Listener{
 
     private final String CHEST_KEY = "armored-elytra-chestplate";
