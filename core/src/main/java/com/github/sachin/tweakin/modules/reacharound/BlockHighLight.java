@@ -6,6 +6,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.utility.MinecraftReflection;
 import com.comphenix.protocol.wrappers.MinecraftKey;
+import com.github.sachin.tweakin.Tweakin;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.bukkit.Location;
@@ -22,15 +23,20 @@ public class BlockHighLight {
         packet.writeInt(color);
         writeString(packet, "");
         packet.writeInt(200);
-        sendPayload(pl, "debug/game_test_add_marker", packet);
+        sendPayload(pl, "debug/game_test_add_marker", packet,loc,color);
     }
 
-    private static void sendPayload(Player receiver, String channel, ByteBuf bytes) {
+    private static void sendPayload(Player receiver, String channel, ByteBuf bytes,Location loc,int color) {
         PacketContainer handle = new PacketContainer(PacketType.Play.Server.CUSTOM_PAYLOAD);
-        handle.getMinecraftKeys().write(0, new MinecraftKey(channel));
+        if(Tweakin.getPlugin().isPost1_20_2()){
+            handle = PacketContainer.fromPacket(Tweakin.getPlugin().getNmsHelper().getBlockHighlightPacket(loc,color));
+        }
+        else{
+            handle.getMinecraftKeys().write(0, new MinecraftKey(channel));
+            Object serializer = MinecraftReflection.getPacketDataSerializer(bytes);
+            handle.getModifier().withType(ByteBuf.class).write(0, serializer);
+        }
 
-        Object serializer = MinecraftReflection.getPacketDataSerializer(bytes);
-        handle.getModifier().withType(ByteBuf.class).write(0, serializer);
 
         try {
             ProtocolLibrary.getProtocolManager().sendServerPacket(receiver, handle);

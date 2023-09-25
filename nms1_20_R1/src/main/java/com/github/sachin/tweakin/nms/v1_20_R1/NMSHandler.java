@@ -7,6 +7,7 @@ import com.mojang.authlib.properties.Property;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -60,7 +61,6 @@ public class NMSHandler extends NMSHelper {
 
     public NMSHandler(ItemStack item){
         if(item==null) return;
-
         this.nmsItem = CraftItemStack.asNMSCopy(item);
         this.compound = nmsItem.getOrCreateTag();
     }

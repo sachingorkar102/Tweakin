@@ -39,57 +39,61 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>acf-core_bg.properties</exclude>
-                                        <exclude>acf-core_cs.properties</exclude>
-                                        <exclude>acf-core_de.properties</exclude>
-                                        <exclude>acf-core_es.properties</exclude>
-                                        <exclude>acf-core_fr.properties</exclude>
-                                        <exclude>acf-core_hu.properties</exclude>
-                                        <exclude>acf-core_ja.properties</exclude>
-                                        <exclude>acf-core_ko.properties</exclude>
-                                        <exclude>acf-core_nb.properties</exclude>
-                                        <exclude>acf-core_nl.properties</exclude>
-                                        <exclude>acf-core_nn.properties</exclude>
-                                        <exclude>acf-core_pl.properties</exclude>
-                                        <exclude>acf-core_pt.properties</exclude>
-                                        <exclude>acf-core_ru.properties</exclude>
-                                        <exclude>acf-core_sv.properties</exclude>
-                                        <exclude>acf-core_tr.properties</exclude>
-                                        <exclude>acf-core_zh.properties</exclude>
-                                        <exclude>acf-core_zh_CN.properties</exclude>
-                                        <exclude>acf-core_zh_TW.properties</exclude>
-                                        <exclude>acf-minecraft_bg.properties</exclude>
-                                        <exclude>acf-minecraft_cs.properties</exclude>
-                                        <exclude>acf-minecraft_de.properties</exclude>
-                                        <exclude>acf-minecraft_en.properties</exclude>
-                                        <exclude>acf-minecraft_es.properties</exclude>
-                                        <exclude>acf-minecraft_fr.properties</exclude>
-                                        <exclude>acf-minecraft_hu.properties</exclude>
-                                        <exclude>acf-minecraft_ja.properties</exclude>
-                                        <exclude>acf-minecraft_ko.properties</exclude>
-                                        <exclude>acf-minecraft_nb.properties</exclude>
-                                        <exclude>acf-minecraft_nl.properties</exclude>
-                                        <exclude>acf-minecraft_nn.properties</exclude>
-                                        <exclude>acf-minecraft_pl.properties</exclude>
-                                        <exclude>acf-minecraft_pt.properties</exclude>
-                                        <exclude>acf-minecraft_ru.properties</exclude>
-                                        <exclude>acf-minecraft_sv.properties</exclude>
-                                        <exclude>acf-minecraft_tr.properties</exclude>
-                                        <exclude>acf-minecraft_zh.properties</exclude>
-                                        <exclude>acf-minecraft_zh_CN.properties</exclude>
-                                        <exclude>acf-minecraft_zh_TW.properties</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
+<!--                            <filters>-->
+<!--                                <filter>-->
+<!--                                    <artifact>*:*</artifact>-->
+<!--                                    <excludes>-->
+<!--                                        <exclude>acf-core_bg.properties</exclude>-->
+<!--                                        <exclude>acf-core_cs.properties</exclude>-->
+<!--                                        <exclude>acf-core_de.properties</exclude>-->
+<!--                                        <exclude>acf-core_es.properties</exclude>-->
+<!--                                        <exclude>acf-core_fr.properties</exclude>-->
+<!--                                        <exclude>acf-core_hu.properties</exclude>-->
+<!--                                        <exclude>acf-core_ja.properties</exclude>-->
+<!--                                        <exclude>acf-core_ko.properties</exclude>-->
+<!--                                        <exclude>acf-core_nb.properties</exclude>-->
+<!--                                        <exclude>acf-core_nl.properties</exclude>-->
+<!--                                        <exclude>acf-core_nn.properties</exclude>-->
+<!--                                        <exclude>acf-core_pl.properties</exclude>-->
+<!--                                        <exclude>acf-core_pt.properties</exclude>-->
+<!--                                        <exclude>acf-core_ru.properties</exclude>-->
+<!--                                        <exclude>acf-core_sv.properties</exclude>-->
+<!--                                        <exclude>acf-core_tr.properties</exclude>-->
+<!--                                        <exclude>acf-core_zh.properties</exclude>-->
+<!--                                        <exclude>acf-core_zh_CN.properties</exclude>-->
+<!--                                        <exclude>acf-core_zh_TW.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_bg.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_cs.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_de.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_en.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_es.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_fr.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_hu.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_ja.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_ko.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_nb.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_nl.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_nn.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_pl.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_pt.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_ru.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_sv.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_tr.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_zh.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_zh_CN.properties</exclude>-->
+<!--                                        <exclude>acf-minecraft_zh_TW.properties</exclude>-->
+<!--                                    </excludes>-->
+<!--                                </filter>-->
+<!--                            </filters>-->
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
                                 <relocation>
                                     <pattern>co.aikar.commands</pattern>
                                     <shadedPattern>com.github.sachin.tweakin.acf</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>co.aikar.locales</pattern>
+                                    <shadedPattern>com.github.sachin.tweakin.locales</shadedPattern> <!-- Replace this -->
                                 </relocation>
                                 <relocation>
                                     <pattern>de.jeff_media.morepersistentdatatypes</pattern>
@@ -151,6 +155,12 @@
         <dependency>
             <groupId>com.github.sachin</groupId>
             <artifactId>nms1_20_R1</artifactId>
+            <version>3.8.6</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sachin</groupId>
+            <artifactId>nms1_20_R2</artifactId>
             <version>3.8.6</version>
             <scope>compile</scope>
         </dependency>

@@ -51,6 +51,7 @@ import com.github.sachin.tweakin.modules.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.modules.snowballknockback.SnowBallKnockBackTweak;
 import com.github.sachin.tweakin.modules.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
+import com.github.sachin.tweakin.modules.unconsumablearmortrims.UnconsumableArmorTrimsTweak;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
 import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmraldTweak;
 import com.github.sachin.tweakin.modules.waterextinguish.WaterExtinguishTweak;
@@ -258,6 +259,9 @@ public class TweakManager {
         if(!plugin.isPost1_19_3()){
             tweakList.add(new RightClickArmor());
         }
+//        if(plugin.isPost1_20()){
+//            tweakList.add(new UnconsumableArmorTrimsTweak());
+//        }
     }
 
     public List<BaseTweak> getTweakList() {

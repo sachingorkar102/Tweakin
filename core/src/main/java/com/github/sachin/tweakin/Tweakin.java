@@ -147,7 +147,6 @@ public final class Tweakin extends JavaPlugin {
         
         commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
         commandManager.getCommandCompletions().registerCompletion("tweaklist", c -> tweakManager.getTweakNames());
-        
         List<String> headList = Arrays.asList(Head.values()).stream().map(h -> h.toString()).collect(Collectors.toList());
         commandManager.getCommandCompletions().registerCompletion("tweakinheads",c -> headList);
         commandManager.registerCommand(new CoreCommand(this));
@@ -251,16 +250,17 @@ public final class Tweakin extends JavaPlugin {
     }
 
     public boolean isPost1_17(){
-        return Arrays.asList("v1_17_R1","v1_18_R1","v1_18_R2","v1_19_R1","v1_19_R2","v1_19_R3","v1_20_R1").contains(version);
+        return Arrays.asList("v1_17_R1","v1_18_R1","v1_18_R2","v1_19_R1","v1_19_R2","v1_19_R3","v1_20_R1","v1_20_R2").contains(version);
     }
 
-    public boolean isPost1_18() {return Arrays.asList("v1_18_R1","v1_18_R2","v1_19_R1","v1_19_R2","v1_19_R3","v1_20_R1").contains(version);}
+    public boolean isPost1_18() {return Arrays.asList("v1_18_R1","v1_18_R2","v1_19_R1","v1_19_R2","v1_19_R3","v1_20_R1","v1_20_R2").contains(version);}
 
-    public boolean isPost1_19() {return Arrays.asList("v1_19_R1","v1_19_R2","v1_19_R3","v1_20_R1").contains(version);}
+    public boolean isPost1_19() {return Arrays.asList("v1_19_R1","v1_19_R2","v1_19_R3","v1_20_R1","v1_20_R2").contains(version);}
 
-    public boolean isPost1_19_3() {return Arrays.asList("v1_19_R3","v1_20_R1").contains(version);}
+    public boolean isPost1_19_3() {return Arrays.asList("v1_19_R3","v1_20_R1","v1_20_R2").contains(version);}
 
-    public boolean isPost1_20() {return Arrays.asList("v1_20_R1").contains(version);}
+    public boolean isPost1_20() {return Arrays.asList("v1_20_R1","v1_20_R2").contains(version);}
+    public boolean isPost1_20_2() {return Arrays.asList("v1_20_R2").contains(version);}
 
     public List<Player> getPlacedPlayers() {
         return placedPlayers;
