@@ -66,12 +66,13 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
             Block relative = e.getBlock().getRelative(directional.getFacing());
             boolean growed = applyBoneMeal(relative,e.getItem(),null);
             if(growed){
-                ItemStack item = e.getItem().clone();
+                e.setCancelled(true);
                 Dispenser dispenser = (Dispenser) e.getBlock().getState();
-                int slot = dispenser.getInventory().first(item);
+                int slot = dispenser.getInventory().first(Material.BONE_MEAL);
+                if(slot == -1) return;
+                ItemStack item = dispenser.getInventory().getItem(slot).clone();
                 item.setAmount(item.getAmount()-1);
                 Inventory inv = dispenser.getInventory();
-
                 Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     public void run() {
                         inv.setItem(slot,item);
