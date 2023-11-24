@@ -6,14 +6,19 @@ import com.github.sachin.tweakin.utils.TConstants;
 import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.EulerAngle;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ASGuiHolder implements InventoryHolder{
 
@@ -21,8 +26,6 @@ public class ASGuiHolder implements InventoryHolder{
     public final ArmorStand armorStand;
     public final Inventory inventory;
     public static final Tweakin plugin = Tweakin.getPlugin();
-
-
     public ASGuiHolder(Player player,ArmorStand armorStand){
         this.armorStand= armorStand;
         this.player = player;
@@ -30,6 +33,7 @@ public class ASGuiHolder implements InventoryHolder{
     }
 
     public static void openGui(Player player,ArmorStand as,BetterArmorStandTweak instance){
+        if(plugin.griefCompat != null && !(plugin.griefCompat.canBuild(player,as.getLocation(),Material.ARMOR_STAND) || plugin.griefCompat.canUseArmorStand(player,as))) return;
         if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !instance.hasPermission(player, Permissions.BETTERARMORSTAND_UUIDBYPASS)){
             player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
             return;
@@ -89,12 +93,12 @@ public class ASGuiHolder implements InventoryHolder{
         inventory.setItem(44, GuiItems.POS_Y.setDouble(loc.getY()));
         inventory.setItem(53, GuiItems.POS_Z.setDouble(loc.getZ()));
 
-        inventory.setItem(1, armorStand.getEquipment().getHelmet());
-        inventory.setItem(10, armorStand.getEquipment().getChestplate());
-        inventory.setItem(19, armorStand.getEquipment().getLeggings());
-        inventory.setItem(28, armorStand.getEquipment().getBoots());
-        inventory.setItem(9, armorStand.getEquipment().getItemInMainHand());
-        inventory.setItem(11, armorStand.getEquipment().getItemInOffHand());
+        for(int slot : BetterArmorStandTweak.SLOT_TO_EQUIPMENT_MAP.keySet()){
+            EquipmentSlot equipSlot = BetterArmorStandTweak.SLOT_TO_EQUIPMENT_MAP.get(slot);
+            ItemStack item = armorStand.getEquipment().getItem(equipSlot);
+            inventory.setItem(slot,item);
+        }
+
         if(armorStand.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID)){
             inventory.setItem(17, GuiItems.UUID_LOCKED.setUuidLoc(Bukkit.getOfflinePlayer(armorStand.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY, DataType.UUID)).getName()));
         }
@@ -111,5 +115,6 @@ public class ASGuiHolder implements InventoryHolder{
     public Inventory getInventory() {
         return inventory;
     }
+
     
 }

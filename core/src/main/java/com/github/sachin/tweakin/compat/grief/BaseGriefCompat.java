@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.compat.grief;
 import com.github.sachin.tweakin.Tweakin;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
 public abstract class BaseGriefCompat {
@@ -20,6 +21,8 @@ public abstract class BaseGriefCompat {
 
 
     public abstract boolean canBuild(Player player, Location location, Material type);
+
+    public boolean canUseArmorStand(Player player, ArmorStand as){ return true;}
 
     public String getName() {
         return name;

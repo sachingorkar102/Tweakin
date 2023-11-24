@@ -10,7 +10,6 @@ import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,6 +19,8 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -40,6 +41,13 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
     private final ArmorStandWandItem wandItem;
     private Message messageManager;
     protected final Map<UUID,UUID> cachedAsList = new HashMap<>();
+    public static final Map<Integer,EquipmentSlot> SLOT_TO_EQUIPMENT_MAP = new HashMap<Integer,EquipmentSlot>(){{
+        put(1,EquipmentSlot.HEAD);
+        put(10,EquipmentSlot.CHEST);
+        put(19,EquipmentSlot.LEGS);
+        put(28,EquipmentSlot.FEET);
+        put(9,EquipmentSlot.HAND);
+        put(11,EquipmentSlot.OFF_HAND);}};
 
     public BetterArmorStandTweak() {
         super();
@@ -97,6 +105,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
         if(e.getRightClicked() instanceof ArmorStand){
             ArmorStand as = (ArmorStand) e.getRightClicked();
+            if(plugin.griefCompat != null && !(plugin.griefCompat.canBuild(player,as.getLocation(),Material.ARMOR_STAND) || plugin.griefCompat.canUseArmorStand(player,as))) return;
             ItemStack clickedItem = player.getInventory().getItem(e.getHand());
             if(isItemsAdderArmorStand(as)){
                 return;
@@ -131,12 +140,50 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
                 for(EquipmentSlot slot : EquipmentSlot.values()){
                     ItemStack asItem = as.getEquipment().getItem(slot);
                     ItemStack playerItem = player.getEquipment().getItem(slot);
-                    as.getEquipment().setItem(slot, playerItem);
-                    player.getEquipment().setItem(slot, asItem);
+                    PlayerArmorStandManipulateEvent event = new PlayerArmorStandManipulateEvent(player,as,playerItem,asItem,slot);
+                    plugin.getServer().getPluginManager().callEvent(event);
+                    if(!event.isCancelled()){
+                        as.getEquipment().setItem(slot, playerItem);
+                        player.getEquipment().setItem(slot, asItem);
+                    }
+
                     
                 }
             }
 
+        }
+    }
+
+    @EventHandler
+    public void onInventoryDrag(InventoryDragEvent e){
+        if(!(e.getInventory().getHolder() instanceof ASGuiHolder)) return;
+        ASGuiHolder holder = (ASGuiHolder) e.getInventory().getHolder();
+        ArmorStand as = holder.armorStand;
+        Player player = holder.player;
+        for(int slot : e.getInventorySlots()){
+            if(SLOT_TO_EQUIPMENT_MAP.keySet().contains(slot))
+            {
+                new BukkitRunnable()
+                {
+                    public void run()
+                    {
+                        ItemStack item = e.getNewItems().get(slot);
+                        ItemStack playerItem = e.getOldCursor();
+                        if(item == null){
+                            item = new ItemStack(Material.AIR);
+                        }
+                        PlayerArmorStandManipulateEvent event = new PlayerArmorStandManipulateEvent(player,as,item,playerItem, SLOT_TO_EQUIPMENT_MAP.get(slot));
+                        plugin.getServer().getPluginManager().callEvent(event);
+                        if(!event.isCancelled()){
+                            as.getEquipment().setItem(SLOT_TO_EQUIPMENT_MAP.get(slot),item);
+                        }
+                        else{
+                            e.setCancelled(true);
+                        }
+
+                    };
+                }.runTaskLater(plugin, 1);
+            }
         }
     }
 
@@ -151,35 +198,45 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             Inventory inv = holder.getInventory();
             ArmorStand as = holder.armorStand;
             ItemStack cItem = e.getCurrentItem();
-            if(!Arrays.asList(1,9,10,11,19,28).contains(e.getSlot()) || e.isShiftClick()){
+            Player player = holder.player;
+            int slot = e.getSlot();
+            if(!SLOT_TO_EQUIPMENT_MAP.keySet().contains(slot) || e.isShiftClick()){
                 e.setCancelled(true);
+
             }
+
             if(cItem != null){
                 GuiItems gItem = GuiItems.getGuiItem(cItem);
                 if(gItem != null)
                     gItem.handleClick(e, as,e.getClick(),inv,e.getSlot(),as.getLocation(),0.0,null);
             }
 
-            new BukkitRunnable(){
-                public void run() {
-                    int slot = e.getSlot();
-                    ItemStack item = inv.getItem(slot);
-                    if(slot == 1)
-                        as.getEquipment().setHelmet(item);
-                    else if(slot == 10)
-                        as.getEquipment().setChestplate(item);
-                    else if(slot == 19)
-                        as.getEquipment().setLeggings(item);
-                    else if(slot == 28)
-                        as.getEquipment().setBoots(item);
-                    else if(slot ==9)
-                        as.getEquipment().setItemInMainHand(item);
-                    else if(slot == 11)
-                        as.getEquipment().setItemInOffHand(item);        
-                    
-                };
-            }.runTaskLater(plugin, 1);    
-            
+            if(SLOT_TO_EQUIPMENT_MAP.keySet().contains(slot)){
+                new BukkitRunnable(){
+                    public void run() {
+
+                        ItemStack item = inv.getItem(slot);
+                        ItemStack playerItem = e.getCursor();
+                        if(item == null){
+                            item = new ItemStack(Material.AIR);
+                        }
+                        if(playerItem == null){
+                            playerItem = new ItemStack(Material.AIR);
+                        }
+                        PlayerArmorStandManipulateEvent event = new PlayerArmorStandManipulateEvent(player,as,item,playerItem, SLOT_TO_EQUIPMENT_MAP.get(slot));
+                        plugin.getServer().getPluginManager().callEvent(event);
+                        if(!event.isCancelled()){
+                            as.getEquipment().setItem(SLOT_TO_EQUIPMENT_MAP.get(slot),item);
+
+                        }
+                        else{
+                            e.setCancelled(true);
+                        }
+
+                    };
+                }.runTaskLater(plugin, 1);
+            }
+
         }
 
         if(e.getClickedInventory().getHolder() instanceof PresetPoseGui){
@@ -188,12 +245,17 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         }
     }
 
+
     @EventHandler
     public void onGuiClose(InventoryCloseEvent e){
         if(e.getInventory().getHolder() instanceof ASGuiHolder){
             ASGuiHolder gui = (ASGuiHolder) e.getInventory().getHolder();
             cachedAsList.put(e.getPlayer().getUniqueId(), gui.armorStand.getUniqueId());
+
             gui.armorStand.getPersistentDataContainer().remove(TConstants.ARMORSTAND_EDITED);
+            for(int slot : SLOT_TO_EQUIPMENT_MAP.keySet()){
+                gui.armorStand.getEquipment().setItem(SLOT_TO_EQUIPMENT_MAP.get(slot),gui.inventory.getItem(slot),true);
+            }
             
         }
     }
