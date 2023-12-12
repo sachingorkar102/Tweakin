@@ -1,0 +1,121 @@
+name: Tweakin
+version: 7.0.0
+main: com.github.sachin.tweakin.Tweakin
+api-version: 1.16
+api: []
+authors: [ sachingorkar ]
+softdepend: [ProtocolLib,WorldGuard,ExcellentEnchants,EcoEnchants,Enchantssquared,GriefPrevention,Lands,CrashClaim,Towny,ItemsAdder,CombatLogX,TeaksTweaks,CoreProtect]
+description: A modular plugin with the objective of improving the vanilla gameplay experience
+
+
+
+permissions:
+  tweakin.command.*:
+    default: op
+    children:
+      tweakin.command.reload: true
+      tweakin.command.give: true
+      tweakin.command.toggle: true
+      tweakin.command.givehead: true
+      tweakin.command.list: true
+      tweakin.command.addpose: true
+      tweakin.command.removepose: true
+      tweakin.command.help: true
+#  tweakin.infinitybucket.*:
+#    default: true
+#    children:
+#      tweakin.infinitybucket.craft: true
+#      tweakin.infinitybucket.use: true
+#  tweakin.armorclick:
+#    default: true
+#  tweakin.shulkerboxclick:
+#    default: true
+#  tweakin.enderchestclick:
+#    default: true
+#  tweakin.customportal.use:
+#    default: true
+#  tweakin.reacharound.*:
+#    default: true
+#    children:
+#      tweakin.reacharound.vertical: true
+#      tweakin.reacharound.horizontal: true
+#      tweakin.reacharound.highlight: true
+#      tweakin.reacharound.togglecommand: true
+#  tweakin.betterladder.*:
+#    default: true
+#    children:
+#      tweakin.betterladder.dropdown: true
+#      tweakin.betterladder.quickclimb: true
+#  tweakin.autorecipeunlock:
+#    default: true
+#  tweakin.netherportalcoords:
+#    default: true
+#  tweakin.swingthroughgrass:
+#    default: true
+#  tweakin.coordinatehud:
+#    default: true
+#  tweakin.coordniatehud.compassbypass:
+#    default: op
+#  tweakin.posionpotato.use:
+#    default: true
+#  tweakin.burnvinetip.use:
+#    default: true
+#  tweakin.silencemobs.*:
+#    default: true
+#    children:
+#      tweakin.silencemobs.silence: true
+#      tweakin.silencemobs.unsilence: true
+#  tweakin.rotationwrench.use:
+#    default: true
+#  tweakin.bottledcloud.*:
+#    default: true
+#    children:
+#      tweakin.bottledcloud.pickup: true
+#      tweakin.bottledcloud.use: true
+#  tweakin.trowel.use:
+#    default: true
+#  tweakin.patdog:
+#    default: true
+#  tweakin.patcat:
+#    default: true
+#  tweakin.compasstrack:
+#    default: true
+#  tweakin.slimebucket.*:
+#    default: true
+#    children:
+#      tweakin.slimebucket.detect: true
+#      tweakin.slimebucket.pickup: true
+#  tweakin.bettersignedit.use:
+#    default: true
+#  tweakin.fleemobs.bypass:
+#    default: false
+#  tweakin.shearitemframe.use:
+#    default: true
+#  tweakin.mobheads.drops:
+#    default: true
+#  tweakin.bettergrindstone:
+#    default: true
+#  tweakin.armoredelytra.craft:
+#    default: true
+#  tweakin.villagerdeathmessage.notify:
+#    default: true
+#  tweakin.betterarmorstands.*:
+#    default: true
+#    children:
+#      tweakin.betterarmorstands.armorswap: true
+#      tweakin.betterarmorstands.uuidlockbypass: false
+#      tweakin.betterarmorstands.command: true
+#  tweakin.armorstandwand.use:
+#    default: true
+#  tweakin.shearnametag.use:
+#    default: true
+#  tweakin.lavabuckettrashcan.*:
+#    default: true
+#    children:
+#      tweakin.lavabuckettrashcan.dragdrop: true
+#      tweakin.lavabuckettrashcan.gui: true
+#  tweakin.infinitefirework.use:
+#    default: true
+#
+#
+#

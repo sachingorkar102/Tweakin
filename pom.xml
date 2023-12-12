@@ -6,20 +6,8 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>3.8.6</version>
-    <modules>
-        <module>core</module>
-        <module>dist</module>
-        <module>nms1_19</module>
-        <module>nms1_19_1</module>
-        <module>nms1_18_R2</module>
-        <module>nms1_17_R1</module>
-        <module>nms1_19_R2</module>
-        <module>nms1_19_R3</module>
-        <module>nms1_20_R1</module>
-        <module>nms1_20_R2</module>
-    </modules>
-    <packaging>pom</packaging>
+    <version>7.0.0</version>
+    <packaging>jar</packaging>
 
 
     <name>Tweakin</name>
@@ -38,4 +26,361 @@
 			<url>https://maven.pkg.github.com/sachingorkar102/tweakin</url>
 		</repository>
 	</distributionManagement>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <compilerId>eclipse</compilerId>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.plexus</groupId>
+                        <artifactId>plexus-compiler-eclipse</artifactId>
+                        <version>2.8.8</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <id>shade</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>acf-core_bg.properties</exclude>
+                                        <exclude>acf-core_cs.properties</exclude>
+                                        <exclude>acf-core_de.properties</exclude>
+                                        <exclude>acf-core_es.properties</exclude>
+                                        <exclude>acf-core_fr.properties</exclude>
+                                        <exclude>acf-core_hu.properties</exclude>
+                                        <exclude>acf-core_ja.properties</exclude>
+                                        <exclude>acf-core_ko.properties</exclude>
+                                        <exclude>acf-core_nb.properties</exclude>
+                                        <exclude>acf-core_nl.properties</exclude>
+                                        <exclude>acf-core_nn.properties</exclude>
+                                        <exclude>acf-core_pl.properties</exclude>
+                                        <exclude>acf-core_pt.properties</exclude>
+                                        <exclude>acf-core_ru.properties</exclude>
+                                        <exclude>acf-core_sv.properties</exclude>
+                                        <exclude>acf-core_tr.properties</exclude>
+                                        <exclude>acf-core_zh.properties</exclude>
+                                        <exclude>acf-core_it.properties</exclude>
+                                        <exclude>acf-core_zh_CN.properties</exclude>
+                                        <exclude>acf-core_zh_TW.properties</exclude>
+                                        <exclude>acf-minecraft_bg.properties</exclude>
+                                        <exclude>acf-minecraft_cs.properties</exclude>
+                                        <exclude>acf-minecraft_de.properties</exclude>
+                                        <exclude>acf-minecraft_es.properties</exclude>
+                                        <exclude>acf-minecraft_fr.properties</exclude>
+                                        <exclude>acf-minecraft_hu.properties</exclude>
+                                        <exclude>acf-minecraft_ja.properties</exclude>
+                                        <exclude>acf-minecraft_ko.properties</exclude>
+                                        <exclude>acf-minecraft_nb.properties</exclude>
+                                        <exclude>acf-minecraft_nl.properties</exclude>
+                                        <exclude>acf-minecraft_nn.properties</exclude>
+                                        <exclude>acf-minecraft_pl.properties</exclude>
+                                        <exclude>acf-minecraft_pt.properties</exclude>
+                                        <exclude>acf-minecraft_ru.properties</exclude>
+                                        <exclude>acf-minecraft_sv.properties</exclude>
+                                        <exclude>acf-minecraft_tr.properties</exclude>
+                                        <exclude>acf-minecraft_zh.properties</exclude>
+                                        <exclude>acf-minecraft_zh_CN.properties</exclude>
+                                        <exclude>acf-minecraft_zh_TW.properties</exclude>
+                                        <exclude>acf-minecraft_it.properties</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <relocations>
+                                <relocation>
+                                    <pattern>co.aikar.commands</pattern>
+                                    <shadedPattern>com.github.sachin.tweakin.acf</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>co.aikar.locales</pattern>
+                                    <shadedPattern>com.github.sachin.tweakin.locales</shadedPattern> <!-- Replace this -->
+                                </relocation>
+                                <relocation>
+                                    <pattern>de.jeff_media.morepersistentdatatypes</pattern>
+                                    <shadedPattern>com.github.sachin.tweakin.morepersistentdatatypes</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <repositories>
+        <!--        <repository>-->
+        <!--            <id>spigotmc-repo</id>-->
+        <!--            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>-->
+        <!--        </repository>-->
+        <repository>
+            <id>sk89q-repo</id>
+            <url>https://maven.enginehub.org/repo/</url>
+        </repository>
+        <repository>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>aikar</id>
+            <url>https://repo.aikar.co/content/groups/aikar/</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/repository/public/</url>
+        </repository>
+        <repository>
+            <id>papermc</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>jeff-media-public</id>
+            <url>https://hub.jeff-media.com/nexus/repository/jeff-media-public/</url>
+        </repository>
+
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+
+        <repository>
+            <id>glaremasters repo</id>
+            <url>https://repo.glaremasters.me/repository/towny/</url>
+        </repository>
+
+        <repository>
+            <id>sirblobman-public</id>
+            <url>https://nexus.sirblobman.xyz/repository/public/</url>
+        </repository>
+
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.19-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>co.aikar</groupId>
+            <artifactId>acf-paper</artifactId>
+            <version>0.5.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.jeff_media</groupId>
+            <artifactId>MorePersistentDataTypes</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- WorldGuard -->
+        <dependency>
+            <groupId>com.sk89q.worldguard</groupId>
+            <artifactId>worldguard-bukkit</artifactId>
+            <version>7.0.4-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Protocol lib -->
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.8.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- io.netty -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.65.Final</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--         ExcellentEnchants -->
+        <dependency>
+            <groupId>ExcellentEnchants</groupId>
+            <artifactId>excellentenchants</artifactId>
+            <version>1.17</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ExcellentEnchants.jar</systemPath>
+        </dependency>
+
+        <!--        AdvancedEnchants-->
+        <dependency>
+            <groupId>AdvancedEnchantments</groupId>
+            <artifactId>advancedenchantments</artifactId>
+            <version>8.7.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/AdvancedEnchantments-8.7.4.jar</systemPath>
+        </dependency>
+
+        <!--        EnchantsSquared-->
+        <dependency>
+            <groupId>EnchantsSquared</groupId>
+            <artifactId>enchantssquared</artifactId>
+            <version>1.6.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/EnchantsSquared.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.TechFortress</groupId>
+            <artifactId>GriefPrevention</artifactId>
+            <version>16.18</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--        PAPI-->
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>VulcanAPI</groupId>
+            <artifactId>vulcanapi</artifactId>
+            <version>2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/VulcanAPI2.jar</systemPath>
+        </dependency>
+
+        <!--        ResidenceAPI-->
+        <dependency>
+            <groupId>Residence</groupId>
+            <artifactId>residence</artifactId>
+            <version>2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/Residence5.0.2.0.jar</systemPath>
+        </dependency>
+
+        <!--        CrashClaim-->
+        <dependency>
+            <groupId>CrashClaim</groupId>
+            <artifactId>crashclaim</artifactId>
+            <version>2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/CrashClaim.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>MythicMobs</groupId>
+            <artifactId>mythicmobs</artifactId>
+            <version>2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/MythicMobs-5.1.2.jar</systemPath>
+        </dependency>
+
+        <!--        LandsAPI-->
+        <dependency>
+            <groupId>com.github.angeschossen</groupId>
+            <artifactId>LandsAPI</artifactId>
+            <version>6.37.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--        TownyAPI-->
+        <dependency>
+            <groupId>com.palmergames.bukkit.towny</groupId>
+            <artifactId>towny</artifactId>
+            <version>0.98.2.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--        Itemsadder-->
+        <dependency>
+            <groupId>com.github.LoneDev6</groupId>
+            <artifactId>api-itemsadder</artifactId>
+            <version>3.2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- CombatLogX API -->
+        <dependency>
+            <groupId>com.github.sirblobman.combatlogx</groupId>
+            <artifactId>api</artifactId>
+            <version>11.0.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--        Teaks Tweak-->
+        <dependency>
+            <groupId>TeakTweaks</groupId>
+            <artifactId>teaktweaks</artifactId>
+            <version>1.10.3-beta</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/TeaksTweaks-1.10.3-beta.jar</systemPath>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.github.Auxilor</groupId>
+            <artifactId>EcoEnchants</artifactId>
+            <version>9.0.0-b47</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>com.github.Auxilor</groupId>
+            <artifactId>eco</artifactId>
+            <version>6.35.8</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--        Prilib-->
+        <dependency>
+            <groupId>com.github.sachin.prilib</groupId>
+            <artifactId>dist</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+
+    </dependencies>
 </project>
