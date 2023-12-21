@@ -12,7 +12,7 @@ public class TeaksTweaksCompat {
     }
 
     public static boolean isPackEnabled(String name){
-        me.teakivy.teakstweaks.Main instance = me.teakivy.teakstweaks.Main.getInstance();
+        me.teakivy.teakstweaks.Main instance = Tweakin.getPlugin(me.teakivy.teakstweaks.Main.class);
         return instance.getPacks().contains(name);
     }
 }
