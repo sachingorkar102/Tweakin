@@ -51,6 +51,8 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
 
     @Config(key = "enable-on-first-join") private boolean enableOnFirstJoin = true;
 
+    @Config(key = "have-compass") private boolean haveCompass = false;
+
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
@@ -138,7 +140,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
         @Override
         public void run() {
             CoordinateHUDTweak.this.enabled.forEach(player -> {
-                if(!player.getInventory().contains(Material.COMPASS) && getConfig().getBoolean("have-compass",false) && !hasPermission(player, Permissions.HUD_COMPASSBYPASS)){
+                if((!player.getInventory().contains(Material.COMPASS) && haveCompass) || !hasPermission(player, Permissions.HUD_COMPASSBYPASS)){
                     return;
                 }
                 long time = (player.getWorld().getTime() + 6000) % 24000;
