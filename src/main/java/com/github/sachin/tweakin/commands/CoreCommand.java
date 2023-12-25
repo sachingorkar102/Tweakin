@@ -24,6 +24,7 @@ import org.bukkit.util.RayTraceResult;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Description("core command for tweakin")
 @CommandAlias("tw|tweakin")
@@ -97,7 +98,9 @@ public class CoreCommand extends BaseCommand{
             return;
         }
         plugin.getTweakManager().reload();
-        sender.sendMessage(messageManager.getMessage("reloaded"));
+        int registeredTweaks = plugin.getTweakManager().getTweakList().stream().filter(t -> t.registered).collect(Collectors.toList()).size();
+        sender.sendMessage(messageManager.getMessage("&6Registered &e"+registeredTweaks+" &6tweaks successfully"));
+
     }
 
     //    /tweakin toggle (tweak-name)
@@ -125,6 +128,8 @@ public class CoreCommand extends BaseCommand{
                     sender.sendMessage(messageManager.getMessage("tweak-enabled").replace("%tweak%", args[0]));
                 }
                 plugin.getTweakManager().reload();
+                int registeredTweaks = plugin.getTweakManager().getTweakList().stream().filter(tweak -> tweak.registered).collect(Collectors.toList()).size();
+                sender.sendMessage(messageManager.getMessage("&6Registered &e"+registeredTweaks+" &6tweaks successfully"));
             }
             else{
                 sender.sendMessage(messageManager.getMessage("invalid-tweak"));
