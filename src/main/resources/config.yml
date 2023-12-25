@@ -637,10 +637,12 @@ crafting-table-on-stick:
   enabled: false
   check-permissions: false
   craftable: true
-  # if set to true player will able to use open crafting interface by just using hotkey on crafting table item in inventory
+  # if set to true player will be able to use open crafting interface by just using hotkey on crafting table item in inventory
   works-with-crafting-table: false
   # hotkey used to open the gui
   hotkey: SHIFT_RIGHT
+  # if set to true, player will be able to open crafting interface by shift-right clicking the crafting table on stick/crafting table(if enabled) item when in their main or offhand
+  works-in-world: false
 
 
 # Allows to create randomized firework shows rather than painfully crafting unique firework effect
