@@ -4,7 +4,7 @@ easy-dispenser: false
 easy-repeater: false
 easy-minecarts: false
 compact-recipes: false
-compat-shulker-box-recipe: false
+compact-shulker-box-recipe: false
 easy-stone-tools: false
 more-stonecutter-recipes: false
 rotten-flesh-to-leather: false

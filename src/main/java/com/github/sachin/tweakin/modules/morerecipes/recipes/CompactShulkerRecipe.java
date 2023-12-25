@@ -11,10 +11,10 @@ import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class CompatShulkerRecipe extends BaseRecipe{
+public class CompactShulkerRecipe extends BaseRecipe{
 
-    public CompatShulkerRecipe(MoreRecipesTweak instance) {
-        super("compat-shulker-box-recipe", instance);
+    public CompactShulkerRecipe(MoreRecipesTweak instance) {
+        super("compact-shulker-box-recipe", instance);
     }
 
     @Override

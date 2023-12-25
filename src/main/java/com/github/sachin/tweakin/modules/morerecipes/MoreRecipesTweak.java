@@ -45,7 +45,7 @@ public class MoreRecipesTweak extends BaseTweak{
             baseRecipes.add(new EasyRepeaters(this));
             baseRecipes.add(new EasyMinecarts(this));
             baseRecipes.add(new CompactRecipes(this));
-            baseRecipes.add(new CompatShulkerRecipe(this));
+            baseRecipes.add(new CompactShulkerRecipe(this));
             baseRecipes.add(new EasyStoneTools(this));
             baseRecipes.add(new MoreStoneCutterRecipes(this));
             baseRecipes.add(new RottenFleshToLeather(this));
