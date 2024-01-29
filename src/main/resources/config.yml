@@ -183,6 +183,9 @@ nether-portal-coords:
   # pairs of valid overworld|nether
   # example: [myworld|myworld_nether,survival|survival_nether]
   world-pairs: [world|world_nether]
+  # the ratio between one block in nether to one block in overworld, default to 8, can be changed with datapacks
+  # this is a list connected to world-pairs option above
+  coordinate-scale: [8]
 
 
 # Does what it says, allows player to attack mobs through grass or any other passable block

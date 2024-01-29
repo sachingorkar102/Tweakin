@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.netherportalcoords;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.prilib.nms.NBTItem;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.annotations.Config;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -25,26 +26,17 @@ import java.util.Map;
 @Tweak(name = "nether-portal-coords")
 public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
 
-    private Map<String,String> worldPairs;
+    private List<WorldPair> worldPairs2;
 
-    public Map<String, String> getWorldPairs() {
-        return worldPairs;
-        
-    }
 
 
     @Override
     public void reload() {
         super.reload();
-        this.worldPairs = new HashMap<>();
-        if(getConfig().isList("world-pairs")){
-            for(String pair : getConfig().getStringList("world-pairs")){
-                String[] pairs = pair.split("\\|");
-                worldPairs.put(pairs[0],pairs[1]);
-            }
-        }
-        else{
-            plugin.getLogger().severe("Update your world-pairs to a list instead of a config section in nether-portal-coords tweak");
+        this.worldPairs2 = new ArrayList<>();
+        for(int i =0;i<getConfig().getStringList("world-pairs").size();i++){
+            String[] pairs = getConfig().getStringList("world-pairs").get(i).split("\\|");
+            worldPairs2.add(new WorldPair(pairs[0],pairs[1],getConfig().getIntegerList("coordinate-scale").get(i)));
         }
     }
 
@@ -79,12 +71,15 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
         Block clickedBlock = e.getClickedBlock();
         if(clickedBlock.getType() != Material.NETHER_PORTAL) return;
         String worldName = player.getWorld().getName();
-        for (String overworld : worldPairs.keySet()) {
+        for (WorldPair worldPair : worldPairs2) {
             // world: world_nether
-            if(worldName.equals(overworld)){
-                World world = Bukkit.getWorld(worldPairs.get(overworld));
+            if(worldName.equals(worldPair.overworld)){
+                World world = Bukkit.getWorld(worldPair.nether);
                 if(world != null){
-                    Location newTrackLocation = new Location(world,clickedBlock.getLocation().getBlockX()/8,clickedBlock.getLocation().getBlockY(),clickedBlock.getLocation().getBlockZ()/8);
+                    Location newTrackLocation = new Location(world
+                            ,clickedBlock.getLocation().getBlockX()/worldPair.coordScale
+                            ,clickedBlock.getLocation().getBlockY()
+                            ,clickedBlock.getLocation().getBlockZ()/worldPair.coordScale);
                     meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aNether Portal Syncing Compass"));
                     List<String> lore = new ArrayList<>();
                     lore.add(ChatColor.translateAlternateColorCodes('&', "&6Nether: &e"+newTrackLocation.getBlockX()+","+newTrackLocation.getBlockY()+","+newTrackLocation.getBlockZ()));
@@ -98,10 +93,13 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
                     player.getInventory().setItemInMainHand(item);
                 }
             }
-            else if(worldName.equals(worldPairs.get(overworld))){
-                World world = Bukkit.getWorld(overworld);
+            else if(worldName.equals(worldPair.nether)){
+                World world = Bukkit.getWorld(worldPair.overworld);
                 if(world != null){
-                    Location newTrackLocation = new Location(world,clickedBlock.getLocation().getBlockX()*8,clickedBlock.getLocation().getBlockY(),clickedBlock.getLocation().getBlockZ()*8);
+                    Location newTrackLocation = new Location(world
+                            ,clickedBlock.getLocation().getBlockX()*worldPair.coordScale
+                            ,clickedBlock.getLocation().getBlockY()
+                            ,clickedBlock.getLocation().getBlockZ()*worldPair.coordScale);
                     meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aNether Portal Syncing Compass"));
                     List<String> lore = new ArrayList<>();
                     lore.add(ChatColor.translateAlternateColorCodes('&', "&6OverWorld: &e"+newTrackLocation.getBlockX()+","+newTrackLocation.getBlockY()+","+newTrackLocation.getBlockZ()));
@@ -154,6 +152,18 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
         return null;
     }
 
-    
+
+    private class WorldPair{
+
+        public final String overworld;
+        public final String nether;
+        public final int coordScale;
+
+        private WorldPair(String overworld, String nether, int coordScale) {
+            this.overworld = overworld;
+            this.nether = nether;
+            this.coordScale = coordScale;
+        }
+    }
     
 }
