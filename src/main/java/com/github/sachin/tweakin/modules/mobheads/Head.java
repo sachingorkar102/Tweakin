@@ -42,13 +42,13 @@ public enum Head {
     CHICKEN,
     COD,
     COW,
-    CREEPER("CREEPER",Material.CREEPER_HEAD),
+    CREEPER("CREEPER","CREEPER_HEAD"),
     CHARGED_CREEPER("CREEPER",(cr)-> ((Creeper)cr).isPowered()),
     DOLPHIN,
     DONKEY,
     DROWNED,
     ELDER_GUARDIAN,
-    ENDER_DRAGON("ENDER_DRAGON",Material.DRAGON_HEAD),
+    ENDER_DRAGON("ENDER_DRAGON","DRAGON_HEAD"),
     ENDERMAN,
     ENDERMITE,
     EVOKER,
@@ -123,7 +123,7 @@ public enum Head {
     BLUE_SHEEP("SHEEP",(sheep) -> {Sheep s = (Sheep) sheep; return !s.getName().equals("jeb_") && s.getColor()==DyeColor.BLUE;}),
     SHULKER,
     SILVERFISH,
-    SKELETON("SKELETON",Material.SKELETON_SKULL),
+    SKELETON("SKELETON","SKELETON_SKULL"),
     SKELETON_HORSE,
     SLIME,
     SNOW_GOLEM("SNOWMAN"),
@@ -153,7 +153,7 @@ public enum Head {
     WANDERING_TRADER,
     VINDICATOR,
     WITCH,
-    WITHER_SKELETON("WITHER_SKELETON",Material.WITHER_SKELETON_SKULL),
+    WITHER_SKELETON("WITHER_SKELETON","WITHER_SKELETON_SKULL"),
     NORMAL_WITHER("WITHER"),
     INVULNERABLE_WITHER("WITHER"),
     NORMAL_ARMORED_WITHER("WITHER"),
@@ -162,12 +162,11 @@ public enum Head {
     ANGRY_WOLF("WOLF",(wolf)-> ((Wolf)wolf).isAngry()),
     STRIDER("STRIDER",(strider)-> !((Strider)strider).isShivering()),
     FREEZING_STRIDER("STRIDER",(strider)-> ((Strider)strider).isShivering()),
-    PIGLIN,
     ZOGLIN,
     HOGLIN,
     ZOMBIEFIED_PIGLIN,
     PIGLIN_BRUTE,
-    ZOMBIE("ZOMBIE",Material.ZOMBIE_HEAD),
+    ZOMBIE("ZOMBIE","ZOMBIE_HEAD"),
     ZOMBIE_HORSE,
     ZOMBIE_ARMORER("ZOMBIE_VILLAGER",(vil)->cast(vil, ZombieVillager.class).getVillagerProfession()==Villager.Profession.ARMORER),
     ZOMBIE_BUTCHER("ZOMBIE_VILLAGER",(vil)-> ((ZombieVillager)vil).getVillagerProfession()==Villager.Profession.BUTCHER),
@@ -203,7 +202,10 @@ public enum Head {
     TADPOLE,
     ALLAY,
     CAMEL,
-    SNIFFER
+    SNIFFER,
+
+//    special head after 1.20
+    PIGLIN("PIGLIN","PIGLIN_HEAD")
     ;
 
 
@@ -229,21 +231,20 @@ public enum Head {
 
     }
 
-    public void reload(){
-        this.section = MobHeadsTweak.headConfig.getConfigurationSection(toString().toLowerCase());
-        this.lootingMul = section.getDouble("looting",0.0);
-        this.chance = section.getDouble("chance",0);
-        this.skull = createSkull(section);
-    }
 
-
-    private Head(String entityType,Material mat){
+    private Head(String entityType,String mat){
         this.entityType = entityType;
         this.check = Predicates.alwaysTrue();
         this.section = MobHeadsTweak.headConfig.getConfigurationSection(toString().toLowerCase());
         this.lootingMul = section.getDouble("looting",0.0);
         this.chance = section.getDouble("chance",0);
-        this.skull = new ItemStack(mat);
+        Material material = Material.getMaterial(mat);
+        if(material != null){
+            this.skull = new ItemStack(material);
+        }
+        else{
+            this.skull = createSkull(section);
+        }
     }
 
     private Head(String entityType){
@@ -258,6 +259,14 @@ public enum Head {
     private Head(){
         this.check = Predicates.alwaysTrue();
         this.entityType = toString();
+        this.section = MobHeadsTweak.headConfig.getConfigurationSection(toString().toLowerCase());
+        this.lootingMul = section.getDouble("looting",0.0);
+        this.chance = section.getDouble("chance",0);
+        this.skull = createSkull(section);
+    }
+
+
+    public void reload(){
         this.section = MobHeadsTweak.headConfig.getConfigurationSection(toString().toLowerCase());
         this.lootingMul = section.getDouble("looting",0.0);
         this.chance = section.getDouble("chance",0);
