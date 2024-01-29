@@ -48,11 +48,12 @@ public class TrowelItem extends TweakItem implements Listener{
     @EventHandler
     public void onRightClick(PlayerInteractEvent e){
 
-        if(e.getHand() != EquipmentSlot.HAND) return;
+
+//        if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         Player player = e.getPlayer();
         if(!hasPermission(player, Permissions.TROWEL)) return;
-        if(!hasItem(player, EquipmentSlot.HAND)) return;
+        if(!isSimilar(e.getItem())) return;
         e.setCancelled(true);
         if(players.contains(player)) return;
         Block clickedBlock = e.getClickedBlock();
@@ -60,14 +61,13 @@ public class TrowelItem extends TweakItem implements Listener{
         if(clickedBlock.isPassable()){
             block = clickedBlock;
         }
-        placeBlock(block.getLocation(), player, e.getBlockFace(),false,null);
+        placeBlock(block.getLocation(), player, e.getBlockFace(),e.getItem().clone(),e.getHand(),false,null);
         
     }
 
-    public void placeBlock(Location loc,Player player,BlockFace hitFace,boolean isReacharound,ReachAroundTweak instance){
-        List<ItemStack> hotBar = getHotBarContents(player);
-        ItemStack iteminHand = player.getInventory().getItemInMainHand().clone();
-        UsedItem usedItem = new UsedItem(iteminHand);
+    public void placeBlock(Location loc,Player player,BlockFace hitFace,ItemStack trowel,EquipmentSlot slot,boolean isReacharound,ReachAroundTweak instance){
+        List<ItemStack> hotBar = getHotBarContents(player,slot);
+        UsedItem usedItem = new UsedItem(trowel);
         if(!hotBar.isEmpty()){
             ItemStack item = hotBar.get(new Random().nextInt(hotBar.size()));
             if(isReacharound){
@@ -76,9 +76,9 @@ public class TrowelItem extends TweakItem implements Listener{
                 }
                 
             }
-            player.getInventory().setItemInMainHand(item);
-            boolean placed = getPlugin().getNMSHandler().placeItem(player, loc, player.getInventory().getItemInMainHand(),hitFace,getName(),true);
-            player.getInventory().setItemInMainHand(iteminHand);
+            player.getInventory().setItem(slot,item);
+            boolean placed = getPlugin().getNMSHandler().placeItem(player, loc, player.getInventory().getItem(slot),hitFace,getName(),true);
+            player.getInventory().setItem(slot,trowel);
             players.add(player);
             new BukkitRunnable(){
                 @Override
@@ -88,17 +88,17 @@ public class TrowelItem extends TweakItem implements Listener{
             }.runTaskLater(getPlugin(),4);
             if(placed){
                 if(usedItem.getUses() != -1 && getConfig().getBoolean("take-damage",false) && player.getGameMode() != GameMode.CREATIVE){
-                    if(usedItem.getUses() >= iteminHand.getType().getMaxDurability()){
+                    if(usedItem.getUses() >= trowel.getType().getMaxDurability()){
                         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS, 1f, 1f);
-                        player.getInventory().setItemInMainHand(null);
+                        player.getInventory().setItem(slot,null);
                     }
                     else{
                         usedItem.use();
-                        player.getInventory().setItemInMainHand(usedItem.getItem());
+                        player.getInventory().setItem(slot,usedItem.getItem());
                     }
                 }
                 else{
-                    player.getInventory().setItemInMainHand(iteminHand);
+                    player.getInventory().setItem(slot,trowel);
                 }
                 if(player.getGameMode() != GameMode.CREATIVE){
                     item.setAmount(item.getAmount()-1);
@@ -108,14 +108,14 @@ public class TrowelItem extends TweakItem implements Listener{
         }
     }
 
-    private List<ItemStack> getHotBarContents(Player player){
+    private List<ItemStack> getHotBarContents(Player player,EquipmentSlot slot){
         PlayerInventory inv = player.getInventory();
         List<ItemStack> list = new ArrayList<>();
         for(int i =0;i<9;i++){
             ItemStack item = inv.getItem(i);
 
             if(item != null){
-                if(!item.isSimilar(player.getInventory().getItemInMainHand()) && item.getType().isBlock()){
+                if(!item.isSimilar(player.getInventory().getItem(slot)) && item.getType().isBlock()){
                     list.add(inv.getItem(i));
                 }
             }

@@ -18,6 +18,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.*;
@@ -276,11 +277,17 @@ public class ItemBuilder {
             return item;
 
         Damageable damageable = (Damageable) meta;
-//        if(damageable.getDamage()==item.getType().getMaxDurability()+amount+1){
-//            item.setType(Material.AIR);
-//            player.getWorld().playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK,1,1);
-//            return null;
-//        }
+        if(damageable.getDamage()>=item.getType().getMaxDurability()-1){
+            int slot = player.getInventory().first(item);
+            if(slot != -1){
+                player.getInventory().setItem(slot,null);
+            }
+            else if(player.getInventory().getItem(EquipmentSlot.OFF_HAND).equals(item)){
+                player.getInventory().setItem(EquipmentSlot.OFF_HAND,null);
+            }
+            player.getWorld().playSound(player.getLocation(),Sound.ENTITY_ITEM_BREAK,1,1);
+            return item;
+        }
         damageable.setDamage(damageable.getDamage()+amount);
         item.setItemMeta(meta);
         return item;

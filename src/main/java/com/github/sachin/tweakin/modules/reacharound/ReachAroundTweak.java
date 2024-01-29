@@ -168,7 +168,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
                 if(trowelItem.hasItem(player, EquipmentSlot.HAND)){
                     Location loc = getPlayerReachAroundTarget(player);
                     if(loc != null){
-                        trowelItem.placeBlock(loc, player, BlockFace.UP,true,this);
+                        trowelItem.placeBlock(loc, player, BlockFace.UP,item.clone(),e.getHand(),true,this);
                         plugin.addPlacedPlayer(player);
                         return;
                     }
