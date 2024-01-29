@@ -27,6 +27,7 @@ import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 // Permission: tweakin.bottledcloud.pickup,tweakin.bottledcloud.use
@@ -36,6 +37,8 @@ public class BottledCloudItem extends TweakItem implements Listener{
     private ItemStack cloudItem;
     private NamespacedKey placedBlock;
     public Map<Location,CloudEntity> clouds = new HashMap<>();
+    public List<Location> asLocations = new ArrayList<>();
+    public List<Location> cubeLocations = new ArrayList<>();
     @Config(key = "minimum-height")
     private int miniHeight = 126;
     @Config(key = "maximum-height")
@@ -59,6 +62,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
         Player player = e.getPlayer();
         if(!hasPermission(player, Permissions.BOTTLEDCLOUD_USE)) return;
         if(getBlackListWorlds().contains(player.getWorld().getName())) return;
+
         if(!hasItem(player, EquipmentSlot.HAND)) return;
         if(e.getAction() == Action.RIGHT_CLICK_BLOCK) e.setCancelled(true);
         if(e.getAction() != Action.RIGHT_CLICK_AIR) return;
@@ -71,13 +75,16 @@ public class BottledCloudItem extends TweakItem implements Listener{
         if(positions != null){
 
             Location loc = positions.get(positions.size()-1).toLocation(player.getWorld()).getBlock().getLocation();
+            if(plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,loc,Material.DIRT)) return;
             CustomBlockData data = new CustomBlockData(loc);
             if(loc.getBlock().getType().isAir() && !clouds.containsKey(loc)){
                 if(!data.has(placedBlock, PersistentDataType.INTEGER)){
                     // loc.getBlock().setType(Material.GLASS);
                     CloudEntity entity = new CloudEntity(loc);
-                    item.setAmount(item.getAmount()-1);
-                    player.getInventory().addItem(new ItemStack(Material.GLASS_BOTTLE));
+                    if(player.getGameMode()==GameMode.SURVIVAL||player.getGameMode()==GameMode.ADVENTURE){
+                        item.setAmount(item.getAmount()-1);
+                        player.getInventory().addItem(new ItemStack(Material.GLASS_BOTTLE));
+                    }
                     player.swingMainHand();
                     clouds.put(loc, entity);
                     entity.initTicker();
@@ -150,6 +157,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
             }
             entity.ticker.removeAll();
             clouds.remove(entity.loc);
+//            if(plugin.griefCompat != null && !plugin.griefCompat.canBuild(player,entity.loc,item.getType())) return;
             boolean placed = getPlugin().getNMSHandler().placeItem(player, entity.loc,item,BlockFace.DOWN,getName(),true);
             if(placed && player.getGameMode() != GameMode.CREATIVE && !plugin.isPost1_18()){
                 item.setAmount(item.getAmount()-1);
@@ -158,11 +166,13 @@ public class BottledCloudItem extends TweakItem implements Listener{
 
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST,ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void oncloudEntitySpawnEvent(EntitySpawnEvent e){
         Entity entity = e.getEntity();
-        if(e.isCancelled() && entity.getType()== EntityType.MAGMA_CUBE && entity.getPersistentDataContainer().has(placedBlock,PersistentDataType.INTEGER)){
-            e.setCancelled(false);
+        if(e.isCancelled()){
+            if(asLocations.contains(entity.getLocation()) || cubeLocations.contains(entity.getLocation())){
+                e.setCancelled(false);
+            }
         }
     }
 
@@ -185,12 +195,15 @@ public class BottledCloudItem extends TweakItem implements Listener{
 
         public CloudEntity(Location loc){
             this.loc = loc;
+            asLocations.add(loc.clone().add(0.5, -0.5, 0.5));
             this.armorStand = loc.getWorld().spawn(loc.clone().add(0.5, -0.5, 0.5), ArmorStand.class);
             armorStand.getEquipment().setHelmet(cloudItem);
             armorStand.setGravity(false);
             armorStand.setSmall(true);
             armorStand.setMarker(true);
             armorStand.setInvisible(true);
+            armorStand.getPersistentDataContainer().set(placedBlock,PersistentDataType.INTEGER,1);
+            cubeLocations.add(armorStand.getEyeLocation());
             this.cube = loc.getWorld().spawn(armorStand.getEyeLocation(), MagmaCube.class);
             cube.setSize(2);
             cube.setInvisible(true);
@@ -232,6 +245,8 @@ public class BottledCloudItem extends TweakItem implements Listener{
         public void removeAll(){
             entity.armorStand.remove();
             entity.cube.remove();
+            asLocations.remove(entity.armorStand.getLocation());
+            cubeLocations.remove(entity.cube.getLocation());
             entity.removeTag();
             this.cancel();
         }
