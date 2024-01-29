@@ -137,6 +137,7 @@ public abstract class BaseTweak {
     }
 
 
+
     public boolean matchString(String str,List<String> matcher){
         for(String s : matcher){
             if(s.startsWith("^") && str.startsWith(s.replace("^", ""))){

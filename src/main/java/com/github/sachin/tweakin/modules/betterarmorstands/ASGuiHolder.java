@@ -34,7 +34,9 @@ public class ASGuiHolder implements InventoryHolder{
 
     public static void openGui(Player player,ArmorStand as,BetterArmorStandTweak instance){
         if(plugin.griefCompat != null && !(plugin.griefCompat.canBuild(player,as.getLocation(),Material.ARMOR_STAND) || plugin.griefCompat.canUseArmorStand(player,as))) return;
-        if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !instance.hasPermission(player, Permissions.BETTERARMORSTAND_UUIDBYPASS)){
+        if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID)
+                && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID))
+                && !player.hasPermission(Permissions.BETTERARMORSTAND_UUIDBYPASS)){
             player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
             return;
             

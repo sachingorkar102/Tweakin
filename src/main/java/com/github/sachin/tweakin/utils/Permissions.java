@@ -52,7 +52,7 @@ public class Permissions {
 
     public static final Permission BETTERARMORSTAND_PARENT = get("betterarmorstands.*", Arrays.asList("command","uuidlockbypass","armorswap"));
     public static final Permission BETTERARMORSTAND_COMMAND = get("betterarmorstands.command");
-    public static final Permission BETTERARMORSTAND_UUIDBYPASS = get("betterarmorstands.uuidlockbypass");
+    public static final Permission BETTERARMORSTAND_UUIDBYPASS = get("betterarmorstands.uuidlockbypass",PermissionDefault.OP);
     public static final Permission BETTERARMORSTAND_ARMORSWAP = get("betterarmorstands.armorswap");
 
     public static final Permission ARMORSTANDWAND = get("armorstandwand.use");

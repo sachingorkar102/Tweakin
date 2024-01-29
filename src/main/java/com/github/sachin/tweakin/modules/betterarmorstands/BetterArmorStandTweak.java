@@ -111,8 +111,9 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
                 return;
             }
             // security checks
-            if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !hasPermission(player, Permissions.BETTERARMORSTAND_UUIDBYPASS)){
+            if(as.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID) && !player.getUniqueId().equals(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)) && !player.hasPermission(Permissions.BETTERARMORSTAND_UUIDBYPASS)){
                 player.sendMessage(plugin.getTweakManager().getMessageManager().getMessage("armorstand-locked").replace("%player%", Bukkit.getOfflinePlayer(as.getPersistentDataContainer().get(TConstants.UUID_LOCK_KEY,DataType.UUID)).getName()));
+                e.setCancelled(true);
             }
             else if(as.getPersistentDataContainer().has(TConstants.ARMORSTAND_EDITED, PersistentDataType.INTEGER)){
                 player.sendMessage(messageManager.getMessage("armorstand-edited"));
