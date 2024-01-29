@@ -1,6 +1,7 @@
 package com.github.sachin.tweakin.modules.customportals;
 
 import com.github.sachin.tweakin.BaseTweak;
+import com.github.sachin.tweakin.utils.ItemBuilder;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.*;
@@ -103,7 +104,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
     public void netherPortalLitEvent(PlayerInteractEvent e){
         if(getBlackListWorlds().contains(e.getPlayer().getWorld().getName())) return;
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        if(e.getHand() != EquipmentSlot.HAND) return;
+//        if(e.getHand() != EquipmentSlot.HAND) return;
         if(e.getItem() == null) return;
         if(e.getClickedBlock() == null) return;
         if(e.getItem().getType() != Material.FLINT_AND_STEEL) return;
@@ -127,6 +128,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
         if (checkBlock(block, validPortalMaterials, checked, faces, bounds)) {
             e.setCancelled(true);
             buildPortal(checked, facingEast, world,player);
+            ItemBuilder.damageItem(1,e.getItem(),plugin.RANDOM,player);
             return;
         }
         facingEast = !facingEast;
@@ -136,6 +138,7 @@ public class CustomPortalTweak extends BaseTweak implements Listener {
         if (checkBlock(block, validPortalMaterials, checked, faces, bounds)) {
             e.setCancelled(true);
             buildPortal(checked, facingEast,world,player);
+            ItemBuilder.damageItem(1,e.getItem(),plugin.RANDOM,player);
             return;
         }
     }
