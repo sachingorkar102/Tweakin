@@ -186,6 +186,23 @@ nether-portal-coords:
   # the ratio between one block in nether to one block in overworld, default to 8, can be changed with datapacks
   # this is a list connected to world-pairs option above
   coordinate-scale: [8]
+  # the display name of compass
+  display: "&aNether Portal Syncing Compass"
+  # the lore shown on tracking compass
+  lore:
+    overworld:
+      - "&6OverWorld: &e%x%,%y%,%z%"
+      - "&7Follow the above coordinates in"
+      - "&7overworld to link the portals"
+      - "&6RIGHT-CLICK in air to track"
+      - "&6SHIFT+RIGHT-CLICK to clear"
+    nether:
+      - "&6Nether: &e%x%,%y%,%z%"
+      - "&7Follow the above coordinates in"
+      - "&7nether to link the portals"
+      - "&6RIGHT-CLICK in air to track"
+      - "&6SHIFT+RIGHT-CLICK to clear"
+
 
 
 # Does what it says, allows player to attack mobs through grass or any other passable block

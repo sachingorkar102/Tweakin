@@ -80,13 +80,11 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
                             ,clickedBlock.getLocation().getBlockX()/worldPair.coordScale
                             ,clickedBlock.getLocation().getBlockY()
                             ,clickedBlock.getLocation().getBlockZ()/worldPair.coordScale);
-                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aNether Portal Syncing Compass"));
+                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', getConfig().getString("display","")));
                     List<String> lore = new ArrayList<>();
-                    lore.add(ChatColor.translateAlternateColorCodes('&', "&6Nether: &e"+newTrackLocation.getBlockX()+","+newTrackLocation.getBlockY()+","+newTrackLocation.getBlockZ()));
-                    lore.add(ChatColor.GRAY+"Follow the above coordinates in");
-                    lore.add(ChatColor.GRAY+"nether to link the portals");
-                    lore.add(ChatColor.YELLOW+"RIGHT-CLICK in air to track");
-                    lore.add(ChatColor.YELLOW+"SHIFT+RIGHT-CLICK to clear");
+                    for(String s : getConfig().getStringList("lore.nether")){
+                        lore.add(ChatColor.translateAlternateColorCodes('&',s.replace("%x%",String.valueOf(newTrackLocation.getBlockX())).replace("%y%",String.valueOf(newTrackLocation.getBlockY())).replace("%z%",String.valueOf(newTrackLocation.getBlockZ()))));
+                    }
                     meta.setLore(lore);
                     item.setItemMeta(meta);
                     item = setTracingLocation(newTrackLocation, item);
@@ -100,13 +98,11 @@ public class NetherPortalCoordsTweak extends BaseTweak implements Listener{
                             ,clickedBlock.getLocation().getBlockX()*worldPair.coordScale
                             ,clickedBlock.getLocation().getBlockY()
                             ,clickedBlock.getLocation().getBlockZ()*worldPair.coordScale);
-                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aNether Portal Syncing Compass"));
+                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', getConfig().getString("display","")));
                     List<String> lore = new ArrayList<>();
-                    lore.add(ChatColor.translateAlternateColorCodes('&', "&6OverWorld: &e"+newTrackLocation.getBlockX()+","+newTrackLocation.getBlockY()+","+newTrackLocation.getBlockZ()));
-                    lore.add(ChatColor.GRAY+"Follow the above coordinates in");
-                    lore.add(ChatColor.GRAY+"overworld to link the portals");
-                    lore.add(ChatColor.YELLOW+"RIGHT-CLICK in air to track");
-                    lore.add(ChatColor.YELLOW+"SHIFT+RIGHT-CLICK to clear");
+                    for(String s : getConfig().getStringList("lore.overworld")){
+                        lore.add(ChatColor.translateAlternateColorCodes('&',s.replace("%x%",String.valueOf(newTrackLocation.getBlockX())).replace("%y%",String.valueOf(newTrackLocation.getBlockY())).replace("%z%",String.valueOf(newTrackLocation.getBlockZ()))));
+                    }
                     meta.setLore(lore);
                     item.setItemMeta(meta);
                     item = setTracingLocation(newTrackLocation, item);
