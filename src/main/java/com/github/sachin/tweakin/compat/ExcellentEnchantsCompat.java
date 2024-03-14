@@ -17,7 +17,7 @@ public class ExcellentEnchantsCompat {
     static{
         isEnabled = Tweakin.getPlugin().getServer().getPluginManager().isPluginEnabled("ExcellentEnchants");
         if(isEnabled){
-            
+//            su.nightexpress.excellentenchants.manager.EnchantManager
             try {
                 Class<?> enchantManagerClass = Class.forName("su.nightexpress.excellentenchants.manager.EnchantManager");
                 for(Method m : enchantManagerClass.getDeclaredMethods()){
@@ -37,6 +37,7 @@ public class ExcellentEnchantsCompat {
 
     public static void applyEnchantMents(ItemStack book,ItemStack weapon){
         if(addEnchant != null){
+
             Map<su.nightexpress.excellentenchants.api.enchantment.ExcellentEnchant,Integer> enchs = su.nightexpress.excellentenchants.manager.EnchantManager.getItemCustomEnchants(weapon);
             try {
                 for(su.nightexpress.excellentenchants.api.enchantment.ExcellentEnchant ench : enchs.keySet()){

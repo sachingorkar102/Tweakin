@@ -212,13 +212,21 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                                 }
                             }
                             combinedElytra.setItemMeta(meta);
+                            ItemMeta elytraMeta = combinedElytra.getItemMeta();
+                            if(!elytraMeta.hasDisplayName()){
+                                elytraMeta.setDisplayName(inv.getRenameText());
+                            }
+                            combinedElytra.setItemMeta(elytraMeta);
                             for(Enchantment ench : enchants.keySet()){
-                                combinedElytra.addUnsafeEnchantment(Enchantment.getByKey(ench.getKey()), enchants.get(ench));
+
+                                combinedElytra.addUnsafeEnchantment(ench, enchants.get(ench));
+
                             }
-                            if(ExcellentEnchantsCompat.isEnabled){
-                                ExcellentEnchantsCompat.applyEnchantMents(item1, combinedElytra);
-                                ExcellentEnchantsCompat.applyEnchantMents(item2, combinedElytra);
-                            }
+                            System.out.println(combinedElytra);
+//                            if(ExcellentEnchantsCompat.isEnabled){
+//                                ExcellentEnchantsCompat.applyEnchantMents(item1, combinedElytra);
+//                                ExcellentEnchantsCompat.applyEnchantMents(item2, combinedElytra);
+//                            }
                             if(EnchantsSquaredCompat.isEnabled){
                                 EnchantsSquaredCompat.applyEnchants(item1,combinedElytra);
                                 EnchantsSquaredCompat.applyEnchants(item2,combinedElytra);
@@ -227,11 +235,7 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                             nbti.setString(CHEST_KEY, InventoryUtils.serializeItem(item1));
                             nbti.setString(ELYTRA_KEY, InventoryUtils.serializeItem(item2));
                             combinedElytra = nbti.getItem();
-                            ItemMeta elytraMeta = combinedElytra.getItemMeta();
-                            if(!elytraMeta.hasDisplayName()){
-                                elytraMeta.setDisplayName(inv.getRenameText());
-                            }
-                            combinedElytra.setItemMeta(elytraMeta);
+
                             inv.setRepairCost(getConfig().getInt("cost",10));
                             inv.setItem(2, combinedElytra);
                         }

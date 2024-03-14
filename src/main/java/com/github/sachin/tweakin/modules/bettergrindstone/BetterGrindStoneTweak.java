@@ -63,7 +63,7 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     ItemStack weapon = inv.getItem(0);
                     ItemStack book = inv.getItem(1);
                     ItemStack result = inv.getItem(2);
-                    
+
                     if(weapon != null && book != null && result == null){
                         if(weapon.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.INTEGER) && getConfig().getBoolean("ignore-items-from-enchanting-table")) return;
                         if(book.getType() == Material.BOOK && book.getAmount()==1 && !weapon.getEnchantments().isEmpty() && weapon.getType() != Material.ENCHANTED_BOOK){
@@ -77,12 +77,12 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                                 return;
                             }
                             for(Enchantment ench : weapon.getEnchantments().keySet()){
-                                enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), false);
-                                enchantedBook.setItemMeta(enchMeta);
+                                enchMeta.addStoredEnchant(ench, weapon.getEnchantmentLevel(ench), true);
                             }
-                            if(ExcellentEnchantsCompat.isEnabled){
-                                ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
-                            }
+                            enchantedBook.setItemMeta(enchMeta);
+//                            if(ExcellentEnchantsCompat.isEnabled){
+//                                ExcellentEnchantsCompat.applyEnchantMents(enchantedBook, weapon);
+//                            }
                             if(EnchantsSquaredCompat.isEnabled){
                                 EnchantsSquaredCompat.applyEnchants(enchantedBook,weapon);
                             }
@@ -93,7 +93,7 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     }
                 
                 }
-            }.runTaskLater(plugin, 2);
+            }.runTaskLater(plugin, 5);
 
         }
     }
