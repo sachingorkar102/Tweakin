@@ -93,7 +93,7 @@ public class BetterGrindStoneTweak extends BaseTweak implements Listener{
                     }
                 
                 }
-            }.runTaskLater(plugin, 5);
+            }.runTaskLater(plugin, 2);
 
         }
     }

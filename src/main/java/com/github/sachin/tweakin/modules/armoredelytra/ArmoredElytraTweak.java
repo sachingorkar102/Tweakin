@@ -218,11 +218,8 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                             }
                             combinedElytra.setItemMeta(elytraMeta);
                             for(Enchantment ench : enchants.keySet()){
-
                                 combinedElytra.addUnsafeEnchantment(ench, enchants.get(ench));
-
                             }
-                            System.out.println(combinedElytra);
 //                            if(ExcellentEnchantsCompat.isEnabled){
 //                                ExcellentEnchantsCompat.applyEnchantMents(item1, combinedElytra);
 //                                ExcellentEnchantsCompat.applyEnchantMents(item2, combinedElytra);
