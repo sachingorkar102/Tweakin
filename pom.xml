@@ -6,9 +6,8 @@
 
     <groupId>com.github.sachin</groupId>
     <artifactId>Tweakin</artifactId>
-    <version>7.0.3</version>
+    <version>8.0.0</version>
     <packaging>jar</packaging>
-
 
     <name>Tweakin</name>
 

@@ -2,6 +2,7 @@ package com.github.sachin.tweakin;
 
 import co.aikar.commands.CommandReplacements;
 import co.aikar.commands.PaperCommandManager;
+import com.github.sachin.prilib.McVersion;
 import com.github.sachin.prilib.nms.AbstractNMSHandler;
 import com.github.sachin.tweakin.bstats.Metrics;
 import com.github.sachin.tweakin.bstats.Metrics.AdvancedPie;
@@ -37,9 +38,7 @@ public final class Tweakin extends JavaPlugin {
     public boolean isRunningPaper;
     private WGFlagManager wgFlagManager;
     public boolean isWorldGuardEnabled;
-    private String version;
 
-    private String mcVersion;
     private PaperCommandManager commandManager;
 
     public BaseGriefCompat griefCompat;
@@ -120,8 +119,6 @@ public final class Tweakin extends JavaPlugin {
 
             return;
         }
-        this.mcVersion = prilib.getMcVersion();
-        this.version = prilib.getBukkitVersion();
 
         reloadMiscItems();
         reloadMessageManager();
@@ -229,9 +226,6 @@ public final class Tweakin extends JavaPlugin {
         return this.getServer().getPluginManager().isPluginEnabled(name);
     }
 
-    public String getVersion() {
-        return version;
-    }
 
     private void enabledBstats(){
         if(getConfig().getBoolean("metrics",true)){
@@ -263,16 +257,16 @@ public final class Tweakin extends JavaPlugin {
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,() -> {placedPlayers.remove(player);}, 3);
     }
 
-    public boolean isPost1_17(){return TConstants.POST1_17.contains(version);}
+    public boolean isPost1_17(){return prilib.getMcVersion().isAtLeast(new McVersion(1,17));}
 
-    public boolean isPost1_18() {return TConstants.POST1_18.contains(version);}
+    public boolean isPost1_18() {return prilib.getMcVersion().isAtLeast(new McVersion(1,18));}
 
-    public boolean isPost1_19() {return TConstants.POST1_19.contains(version);}
+    public boolean isPost1_19() {return prilib.getMcVersion().isAtLeast(new McVersion(1,19));}
 
-    public boolean isPost1_19_3() {return TConstants.POST1_19_3.contains(version);}
+    public boolean isPost1_19_3() {return prilib.getMcVersion().isAtLeast(new McVersion(1,19,3));}
 
-    public boolean isPost1_20() {return TConstants.POST1_20.contains(version);}
-    public boolean isPost1_20_2() {return TConstants.POST1_20_2.contains(version);}
+    public boolean isPost1_20() {return prilib.getMcVersion().isAtLeast(new McVersion(1,20));}
+    public boolean isPost1_20_2() {return prilib.getMcVersion().isAtLeast(new McVersion(1,20,2));}
 
     public List<Player> getPlacedPlayers() {
         return placedPlayers;
