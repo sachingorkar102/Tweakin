@@ -122,6 +122,8 @@ public enum Head {
     LIGHT_GRAY_SHEEP("SHEEP",(sheep) -> {Sheep s = (Sheep) sheep; return !s.getName().equals("jeb_") && s.getColor()==DyeColor.LIGHT_GRAY;}),
     BLUE_SHEEP("SHEEP",(sheep) -> {Sheep s = (Sheep) sheep; return !s.getName().equals("jeb_") && s.getColor()==DyeColor.BLUE;}),
     SHULKER,
+
+    TROPICAL_FISH,
     SILVERFISH,
     SKELETON("SKELETON","SKELETON_SKULL"),
     SKELETON_HORSE,
@@ -158,8 +160,6 @@ public enum Head {
     INVULNERABLE_WITHER("WITHER"),
     NORMAL_ARMORED_WITHER("WITHER"),
     INVULNERABLE_ARMORED_WITHER("WITHER"),
-    WOLF("WOLF",(wolf)-> !((Wolf)wolf).isAngry()),
-    ANGRY_WOLF("WOLF",(wolf)-> ((Wolf)wolf).isAngry()),
     STRIDER("STRIDER",(strider)-> !((Strider)strider).isShivering()),
     FREEZING_STRIDER("STRIDER",(strider)-> ((Strider)strider).isShivering()),
     ZOGLIN,
@@ -205,7 +205,32 @@ public enum Head {
     SNIFFER,
 
 //    special head after 1.20
-    PIGLIN("PIGLIN","PIGLIN_HEAD")
+    PIGLIN("PIGLIN","PIGLIN_HEAD"),
+
+//    1.20.5
+
+    ARMADILLO,
+    PALE_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:PALE")),
+    PALE_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:PALE")),
+
+
+//    ASHEN_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:ASHEN")),
+//    ASHEN_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:ASHEN")),
+//    BLACK_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:BLACK")),
+//    BLACK_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:BLACK")),
+//    CHESTNUT_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:CHESTNUT")),
+//    CHESTNUT_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:CHESTNUT")),
+//    RUSTY_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:RUSTY")),
+//    RUSTY_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:RUSTY")),
+//    SNOWY_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SNOWY")),
+//    SNOWY_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SNOWY")),
+//    SPOTTED_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SPOTTED")),
+//    SPOTTED_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SPOTTED")),
+//    STRIPED_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:STRIPED")),
+//    STRIPED_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:STRIPED")),
+//    WOODS_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:WOODS")),
+//    WOODS_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:WOODS")),
+
     ;
 
 
@@ -216,6 +241,8 @@ public enum Head {
     private double lootingMul;
     private ConfigurationSection section;
     private final String initValue = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUv";
+
+    private String wolfVarient;
     
     
     private Predicate<Entity> check;

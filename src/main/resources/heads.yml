@@ -782,18 +782,6 @@ invulnerable_armored_wither:
   texture: ZDM2ODJiMDYyMDNiOWRlNGMyODU0MTA3MWEyNmNkYzM0MGRkMjVkNGMzNzJiNzAyM2VjMmY0MTIwMjFkNjJmNyJ9fX0=    
   chance: 0.2
 
-wolf:
-  texture: YjY0MzlhNDNlNTY4NzAwODgxNWEyZGQxZmY0YTEzNGMxMjIyMWI3ODIzMzY2NzhiOTc5YWQxM2RjZTM5NjY1ZSJ9fX0=
-  chance: 0.02
-  display: "Wolf Head"
-  looting: 0.01
-
-angry_wolf:
-  texture: OGQxYWE3ZTNiOTU2NGIzODQ2ZjFkZWExNGYxYjFjY2JmMzk5YmJiMjNiOTUyZGJkN2VlYzQxODAyYTI4OWM5NiJ9fX0=
-  chance: 0.02
-  looting: 0.01
-  display: "Angry Wolf Head"  
-  
 zoglin:
   texture: NWZhMGFkYTM0MTFmYmE4Yjg4NTgzZDg2NGIyNTI2MDZlOTNkZmRmNjQ3NjkwZDNjZjRjMDE3YjYzYmFiMTJiMCJ9fX0=
   chance: 0.2
@@ -970,8 +958,40 @@ sniffer:
   looting: 1
   display: "Sniffer Head"
 
+armadillo:
+  texture: OTg1MmIzM2JhMjk0ZjU2MDA5MDc1MmQxMTNmZTcyOGNiYzdkZDA0MjAyOWEzOGQ1MzgyZDY1YTIxNDYwNjhiNyJ9fX0=
+  chance: 1
+  looting: 1
+  display: "Armadillo Head"
 
+pale_wolf:
+  texture: YjY0MzlhNDNlNTY4NzAwODgxNWEyZGQxZmY0YTEzNGMxMjIyMWI3ODIzMzY2NzhiOTc5YWQxM2RjZTM5NjY1ZSJ9fX0=
+  chance: 0.02
+  display: "Pale Wolf Head"
+  looting: 0.01
 
+pale_angry_wolf:
+  texture: OGQxYWE3ZTNiOTU2NGIzODQ2ZjFkZWExNGYxYjFjY2JmMzk5YmJiMjNiOTUyZGJkN2VlYzQxODAyYTI4OWM5NiJ9fX0=
+  chance: 0.02
+  looting: 0.01
+  display: "Angry Pale Wolf Head"
+
+#ashen_wolf:
+#ashen_angry_wolf:
+#black_wolf:
+#black_angry_wolf:
+#chestnut_wolf:
+#chestnut_angry_wolf:
+#rusty_wolf:
+#rusty_angry_wolf:
+#snowy_wolf:
+#snowy_angry_wolf:
+#spotted_wolf:
+#spotted_angry_wolf:
+#striped_wolf:
+#striped_angry_wolf:
+#woods_wolf:
+#woods_angry_wolf:
 
 
 
