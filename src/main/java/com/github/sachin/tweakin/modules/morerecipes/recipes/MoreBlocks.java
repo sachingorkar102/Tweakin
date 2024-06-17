@@ -100,7 +100,7 @@ public class MoreBlocks extends BaseRecipe{
         StairRecipe(Material.DARK_PRISMARINE_STAIRS,Material.DARK_PRISMARINE,staircount);
         StairRecipe(Material.RED_SANDSTONE_STAIRS,Material.RED_SANDSTONE,staircount);
         StairRecipe(Material.POLISHED_GRANITE_STAIRS,Material.POLISHED_GRANITE,staircount);
-        StairRecipe(Material.SMOOTH_RED_SANDSTONE_STAIRS,Material.RED_SANDSTONE,staircount);
+        StairRecipe(Material.SMOOTH_RED_SANDSTONE_STAIRS,Material.SMOOTH_RED_SANDSTONE,staircount);
         StairRecipe(Material.MOSSY_COBBLESTONE_STAIRS,Material.MOSSY_COBBLESTONE,staircount);
         StairRecipe(Material.POLISHED_DIORITE_STAIRS,Material.POLISHED_DIORITE,staircount);
         StairRecipe(Material.MOSSY_COBBLESTONE_STAIRS,Material.MOSSY_COBBLESTONE,staircount);
