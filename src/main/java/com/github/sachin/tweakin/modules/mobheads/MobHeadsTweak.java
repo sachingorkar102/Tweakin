@@ -24,6 +24,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.io.File;
@@ -86,10 +87,17 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
 
     @EventHandler
     public void onHeadPlace(BlockPlaceEvent e){
-        NBTItem nbti = plugin.getNMSHandler().newItem(e.getItemInHand());
-        if(nbti.hasKey("mob-head-item")){
+        ItemStack item = e.getItemInHand();
+        NBTItem nbti = plugin.getNMSHandler().newItem(item);
+        if(item.getType()==Material.PLAYER_HEAD){
+            ItemMeta meta = item.getItemMeta();
             CustomBlockData data = new CustomBlockData(e.getBlockPlaced().getLocation());
-            data.set(key, PersistentDataType.STRING, nbti.getString("mob-head-item"));
+            if(nbti.hasKey("mob-head-item")){
+                data.set(key, PersistentDataType.STRING, nbti.getString("mob-head-item"));
+            }
+            if(meta.getPersistentDataContainer().has(key,PersistentDataType.STRING)){
+                data.set(key,PersistentDataType.STRING,meta.getPersistentDataContainer().get(key,PersistentDataType.STRING));
+            }
         }
     }
 

@@ -6,229 +6,284 @@
 # OPTIONALLY remove the "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUv" from the value part
 # chance option allows to change the probability of mob dropping its head (1 being 100%, 0.1 being 10%, 0.5 being 50%, 0 being 0% and so on)
 # looting option is the multiplier that will be added to chance option if the killer(player) has looting enchantment on there weapon, this also takes enchantment level into account
+# note-block-sound option is applicable to 1.20+ versions only.
+# valid sound list can be found on http://www.theredengineer.com/1.9-playsound-list.html.
+# if you wish to have no note block sound for a head, set the value to "none".
 
 bat:
   texture: OGEyOWM5ZWNlNDI4ZmEyMzM5NWFjMjAxOWJmMmQwMjc0NDA1MjlmMjUzM2ZjODIwMWU3YjNkYTBmNjBmMjAwNSJ9fX0= 
   display: "Bat Head"
   chance: 0.10
   looting: 0.02
+  note-block-sound: entity.bat.ambient
 
 bee_plain:
   texture: NTlhYzE2ZjI5NmI0NjFkMDVlYTA3ODVkNDc3MDMzZTUyNzM1OGI0ZjMwYzI2NmFhMDJmMDIwMTU3ZmZjYTczNiJ9fX0=
   display: "Bee Head"
   chance: 0.20
   looting: 0.02
+  note-block-sound: entity.bee.loop
+
 bee_nectar:
   display: "Pollinated Bee Head"
   chance: 0.20
   looting: 0.02
   texture: YjcyN2QwYWIwM2Y1Y2QwMjJmODcwNWQzZjdmMTMzY2E0OTIwZWFlOGUxZTQ3YjUwNzQ0MzNhMTM3ZTY5MWU0ZSJ9fX0=
+  note-block-sound: entity.bee.pollinate
+
 bee_angry:
   display: "Angry Bee Head"
   chance: 0.20
   looting: 0.02
   texture: ZTQwMDIyM2YxZmE1NDc0MWQ0MjFkN2U4MDQ2NDA5ZDVmM2UxNWM3ZjQzNjRiMWI3Mzk5NDAyMDhmM2I2ODZkNCJ9fX0=
+  note-block-sound: entity.bee.loop_aggressive
+
 bee_nectar_angry:
   display: "Angry Pollinated Head"
   chance: 0.20
   looting: 0.02
   texture: ZTZiNzRlMDUyYjc0Mjg4Nzk5YmE2ZDlmMzVjNWQwMjIxY2Y4YjA0MzMxNTQ3ZWMyZjY4ZDczNTk3YWUyYzliIn19fQ==
+  note-block-sound: entity.bee.loop_aggressive
 
 blaze:
   display: "Blaze Head"
   chance: 0.005
   looting: 0.0005
   texture: ZGVlMjNkYzdhMTBjNmE4N2VmOTM3NDU0YzBlOTRlZDQyYzIzYWE2NDFhOTFlZDg0NzBhMzA0MmQwNWM1MmM1MiJ9fX0=
-
+  note-block-sound: entity.blaze.ambient
 
 tabby_cat:
   display: "Tabby Cat Head"
   chance: 0.33
   looting: 0.02
   texture: ZGUyOGQzMGRiM2Y4YzNmZTUwY2E0ZjI2ZjMwNzVlMzZmMDAzYWU4MDI4MTM1YThjZDY5MmYyNGM5YTk4YWUxYiJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 tuxedo_cat:
   display: "Tuxedo Cat Head"
   chance: 0.33
   looting: 0.02
   texture: NGZkMTBjOGU3NWY2NzM5OGM0NzU4N2QyNWZjMTQ2ZjMxMWMwNTNjYzVkMGFlYWI4NzkwYmNlMzZlZTg4ZjVmOCJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 ginger_cat:
   display: "Ginger Cat Head"
   chance: 0.33
   looting: 0.02
   texture: MjExM2RiZDNjNmEwNzhhMTdiNGVkYjc4Y2UwN2Q4MzZjMzhkYWNlNTAyN2Q0YjBhODNmZDYwZTdjYTdhMGZjYiJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 siamese_cat:
   display: "Siamese Cat Head"
   chance: 0.33
   looting: 0.02
   texture: ZDViM2Y4Y2E0YjNhNTU1Y2NiM2QxOTQ0NDk4MDhiNGM5ZDc4MzMyNzE5NzgwMGQ0ZDY1OTc0Y2M2ODVhZjJlYSJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 british_shorthair_cat:
   display: "British Shorthair Cat Head"
   chance: 0.33
   looting: 0.02
   texture: NTM4OWUwZDVkM2U4MWY4NGI1NzBlMjk3ODI0NGIzYTczZTVhMjJiY2RiNjg3NGI0NGVmNWQwZjY2Y2EyNGVlYyJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 calico_cat:
   display: "Calico Cat Head"
   chance: 0.33
   looting: 0.02
   texture: MzQwMDk3MjcxYmI2ODBmZTk4MWU4NTllOGJhOTNmZWEyOGI4MTNiMTA0MmJkMjc3ZWEzMzI5YmVjNDkzZWVmMyJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 persian_cat:
   display: "Persian Cat Head"
   chance: 0.33
   looting: 0.02
   texture: ZmY0MGM3NDYyNjBlZjkxYzk2YjI3MTU5Nzk1ZTg3MTkxYWU3Y2UzZDVmNzY3YmY4Yzc0ZmFhZDk2ODlhZjI1ZCJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 ragdoll_cat:
   display: "Ragdoll Cat Head"
   chance: 0.33
   looting: 0.02
   texture: ZGM3YTQ1ZDI1ODg5ZTNmZGY3Nzk3Y2IyNThlMjZkNGU5NGY1YmMxM2VlZjAwNzk1ZGFmZWYyZTgzZTBhYjUxMSJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 white_cat:
   display: "White Cat Head"
   chance: 0.33
   looting: 0.02
   texture: MjFkMTVhYzk1NThlOThiODlhY2E4OWQzODE5NTAzZjFjNTI1NmMyMTk3ZGQzYzM0ZGY1YWFjNGQ3MmU3ZmJlZCJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 jellie_cat:
   display: "Jellie Cat Head"
   chance: 0.33
   looting: 0.02
   texture: YTBkYjQxMzc2Y2E1N2RmMTBmY2IxNTM5ZTg2NjU0ZWVjZmQzNmQzZmU3NWU4MTc2ODg1ZTkzMTg1ZGYyODBhNSJ9fX0=
+  note-block-sound: entity.cat.ambient
+
 black_cat:
   display: "Black Cat Head"
   chance: 0.33
   looting: 0.02
-  texture: MjJjMWU4MWZmMDNlODJhM2U3MWUwY2Q1ZmJlYzYwN2UxMTM2MTA4OWFhNDdmMjkwZDQ2YzhhMmMwNzQ2MGQ5MiJ9fX0=    
+  texture: MjJjMWU4MWZmMDNlODJhM2U3MWUwY2Q1ZmJlYzYwN2UxMTM2MTA4OWFhNDdmMjkwZDQ2YzhhMmMwNzQ2MGQ5MiJ9fX0=
+  note-block-sound: entity.cat.ambient
 
 cave_spider:
   display: "Cave Spider Head"
   texture: YWY4NDNiYjdhOTg0ZTczNGFiNzZhODhjOWExYTBmNWE0MGJmNzk1MjQ4MDlhODUxMWJmMzJkMDU3NTI2ZjdmMyJ9fX0=
   chance: 0.005
   looting: 0.01
+  note-block-sound: entity.spider.step
 
 chicken:
   display: "Chicken Head"
   texture: NDJhZjZlNTg0N2VlYTA5OWUxYjBhYjhjMjBhOWU1ZjNjNzE5MDE1OGJkYTU0ZTI4MTMzZDliMjcxZWMwY2I0YiJ9fX0=
   chance: 0.01
   looting: 0.001
+  note-block-sound: entity.chicken.ambient
 
 cod:
   display: "Cod Head"
   texture: ZjI0NmUxOWIzMmNmNzg0NTQ5NDQ3ZTA3Yjk2MDcyZTFmNjU2ZDc4ZTkzY2NjYTU2Mzc0ODVlNjc0OTczNDY1MiJ9fX0=
   chance: 0.1
   looting: 0.01
+  note-block-sound: entity.cod.flop
 
 cow:
   display: "Cow Head"
   texture: NjNkNjIxMTAwZmVhNTg4MzkyMmU3OGJiNDQ4MDU2NDQ4Yzk4M2UzZjk3ODQxOTQ4YTJkYTc0N2Q2YjA4YjhhYiJ9fX0=
   chance: 0.01
   looting: 0.001
+  note-block-sound: entity.cow.ambient
 
 charged_creeper:
   display: "Charged Creeper Head"
   texture: MzUxMWU0YTNkNWFkZDZhNTQ0OTlhYmFkMTBkNzk5ZDA2Y2U0NWNiYTllNTIwYWZkMjAwODYwOGE2Mjg4YjdlNyJ9fX0=
   chance: 1
   looting: 0
+  note-block-sound: entity.generic.explode
   
 dolphin:
   display: "Dolphin Head"
   texture: OGU5Njg4Yjk1MGQ4ODBiNTViN2FhMmNmY2Q3NmU1YTBmYTk0YWFjNmQxNmY3OGU4MzNmNzQ0M2VhMjlmZWQzIn19fQ=
   chance: 0.33
-  looting: 0.02  
+  looting: 0.02
+  note-block-sound: entity.dolphin.ambient_water
 
 donkey:
   display: "Donkey Head"
   texture: NGUyNWVlOTI3M2FkNTc5ZDQ0YmY0MDZmNmY2Mjk1NTg2NDgxZWExOThmZDU3MjA3NmNkMGM1ODgyZGE3ZTZjYyJ9fX0=
   chance: 0.2
   looting: 0.09
+  note-block-sound: entity.donkey.ambient
 
 drowned:
   display: "Drowned Head"
   texture: YzNmN2NjZjYxZGJjM2Y5ZmU5YTYzMzNjZGUwYzBlMTQzOTllYjJlZWE3MWQzNGNmMjIzYjNhY2UyMjA1MSJ9fX0=
   chance: 0.05
   looting: 0.02
+  note-block-sound: entity.drowned.ambient
   
 elder_guardian:
   display: "Elder Guardian Head"
   texture: NGEyZDY0ZjRhMDBlOWM4NWY2NzI2MmVkY2FjYjg0NTIzNTgxYWUwZjM3YmRhYjIyZGQ3MDQ1MjRmNjJlMTY5ZiJ9fX0=
   chance: 1
   looting: 0
+  note-block-sound: entity.elder_guardian.flop
   
 ender_dragon:
   display: "Ender Dragon Head"
   chance: 1
   looting: 0
+  note-block-sound: none
 
 zombie:
   display: "Zombie Head"
   chance: 0
   looting: 0
+  note-block-sound: none
 
 creeper:
   display: "Creeper Head"
   chance: 0
   looting: 0
+  note-block-sound: none
 
 skeleton:
   display: "Skeleton Skull"
   chance: 0
   looting: 0
+  note-block-sound: none
 
 wither_skeleton:
   display: "Wither Skeleton Skull"
   chance: 0
-  looting: 0        
+  looting: 0
+  note-block-sound: none
   
 enderman:
   display: "Enderman Head"
   texture: N2E1OWJiMGE3YTMyOTY1YjNkOTBkOGVhZmE4OTlkMTgzNWY0MjQ1MDllYWRkNGU2YjcwOWFkYTUwYjljZiJ9fX0=
   chance: 0.05
-  looting: 0.0001  
+  looting: 0.0001
+  note-block-sound: entity.enderman.scream
 
 endermite:
   display: "Endermite Head"
   texture: OGM2YjY1YzIyYjQ0NjViYTY3OTNiMjE5NWNkNTA4NGNlODNiODhkY2E2ZTU1ZWI5NDg0NTQwYWNkNzM1MmE1MCJ9fX0=
   chance: 0.1
   looting: 0.01
+  note-block-sound: entity.endermite.ambient
 
 evoker:
   display: "Evoker Head"
   texture: MzkwZmJkODhmNjU5ZDM5NjNjNjhjYmJjYjdjNzEyMWQ4MTk1YThiZTY1YmJkMmJmMTI1N2QxZjY5YmNjYzBjNyJ9fX0=
   chance: 0.25
   looting: 0.02
+  note-block-sound: entity.evoker.prepare_attack
 
 red_fox:
   display: "Red Fox Head"
   texture: ZDdlMDA0MzExMWJjNTcwOTA4NTYyNTkxNTU1NzFjNzkwNmU3MDcwNDZkZjA0MWI4YjU3MjcwNGM0NTFmY2Q4MiJ9fX0=
   chance: 0.1
   looting: 0.04
+  note-block-sound: entity.fox.ambient
 
 snow_fox:
   display: "Snow Fox Head"  
   texture: NDE0MzYzNzdlYjRjNGI0ZTM5ZmIwZTFlZDg4OTlmYjYxZWUxODE0YTkxNjliOGQwODcyOWVmMDFkYzg1ZDFiYSJ9fX0=
   chance: 0.2
   looting: 0.04
+  note-block-sound: entity.fox.ambient
 
 ghast:
   display: "Ghast Head"
   texture: YzUzZGUzMWEyZDAwNDFhNmVmNzViZjdhNmM4NDY4NDY0ZGIxYWFhNjIwMWViYjFhNjAxM2VkYjIyNDVjNzYwNyJ9fX0=
   chance: 0.0625
   looting: 0.0125
+  note-block-sound: entity.ghast.warn
   
 glow_squid:
   display: "Glow Squid Head"
   texture: NTczMjdlZTExODEyYjc2NGM3YWRlNzBiMjgyY2NlNGM1OGU2MzViMjAxNTI0NDA4MWQxNDkwNTQzZGE3MjgwZSJ9fX0=  
   chance: 0.05
   looting: 0.01
+  note-block-sound: entity.glow_squid.ambient
 
 goat:
   display: "Goat Head"
   texture: ODc0NzNlMDU1ZGY2ZTdmZDk4NjY0ZTlmZGI2MzY3NWYwODgxMDYzMDVkNzQ0MDI0YTQxYmIzNTg5MThhMTQyYiJ9fX0=  
   chance: 0.01
   looting: 0.001
+  note-block-sound: entity.goat.ambient
 
 screaming_goat:
   display: "Screaming Goat Head"
   texture: YmRhNDg1YWMyMzUxMjQyMDg5MWE1YWUxZThkZTk4OWYwOTFkODQ4ZDE1YTkwNjhkYTQ3MjBkMzE2ZmM0MzMwZiJ9fX0=
   chance: 1
   looting: 0
+  note-block-sound: entity.goat.screaming.prepare_ram
 
 guardian:
   display: "Guardian Head"
@@ -241,237 +296,300 @@ hoglin:
   texture: Y2U4ZWFhNmMxOGZiNmVkZDFkYzJiNTViMTZlMDE1MGEyZmU2ZTI5ZDI0YThkOGQ0ZmJhZDE5ZGYzNTM0NTUwNiJ9fX0=
   chance: 0.03
   looting: 0.02
+  note-block-sound: entity.hoglin.angry
 
 white_horse:
   display: "White Horse Head"
   texture: YzdiYzYxNjA5NzMwZjJjYjAxMDI2OGZhYjA4MjFiZDQ3MzUyNjk5NzUwYTE1MDU5OWYyMWMzZmM0ZTkyNTkxYSJ9fX0=
   chance: 0.27
   looting: 0.01
+  note-block-sound: entity.horse.ambient
+
 creamy_horse:
   display: "Creamy Horse Head"
   texture: NDJhMGQ1NGNjMDcxMjY3ZDZiZmQ1ZjUyM2Y4Yzg5ZGNmZGM1ZTgwNWZhYmJiNzYwMTBjYjNiZWZhNDY1YWE5NCJ9fX0=
   chance: 0.27
   looting: 0.01
+  note-block-sound: entity.horse.ambient
+
 chestnut_horse:
   display: "Chestnut Horse Head"
   texture: NmM4NzIwZDFmNTUyNjkzYjQwYTlhMzNhZmE0MWNlZjA2YWZkMTQyODMzYmVkOWZhNWI4ODdlODhmMDVmNDlmYSJ9fX0=
   chance: 0.27
   looting: 0.01
+  note-block-sound: entity.horse.ambient
+
 brown_horse:
   display: "Brown Horse Head"
   texture: Njc3MTgwMDc3MGNiNGU4MTRhM2Q5MTE4NmZjZDc5NWVjODJlMDYxMDJmZjdjMWVlNGU1YzM4MDEwMmEwYzcwZiJ9fX0= 
   chance: 0.27
   looting: 0.01
+  note-block-sound: entity.horse.ambient
 
 black_horse:
   display: "Black Horse Head"
   texture: NjcyM2ZhNWJlNmFjMjI5MmE3MjIzMGY1ZmQ3YWI2NjM0OTNiZDhmN2U2NDgxNjQyNGRjNWJmMjRmMTMzODkwYyJ9fX0=
   chance: 0.27
   looting: 0.01
+  note-block-sound: entity.horse.ambient
+
 gray_horse:
   display: "Gray Horse Head"
   texture: YzI1OTg2MTAyMTgxMDgzZmIzMTdiYzU3MTJmNzEwNGRhYTVhM2U4ODkyNjRkZmViYjkxNTlmNmUwOGJhYzkwYyJ9fX0=
   chance: 0.27
   looting: 0.01
+  note-block-sound: entity.horse.ambient
+
 dark_brown_horse:
   display: "Drak Brown Horse Head"
   texture: N2YyMzQxYWFhMGM4MmMyMmJiYzIwNzA2M2UzMTkyOTEwOTdjNTM5YWRhZDlhYTkxM2ViODAwMWIxMWFhNTlkYSJ9fX0=
   chance: 0.27
-  looting: 0.01      
+  looting: 0.01
+  note-block-sound: entity.horse.ambient
 
 husk:
   display: "Husk Head"
   texture: NzMzODMxOGJjOTFhMzZjZDVhYjZhYTg4NWM5YTRlZTJiZGFjZGFhNWM2NmIyYTk5ZGZiMGE1NjA5ODNmMjQ4MCJ9fX0=
   chance: 0.06
   looting: 0.01
+  note-block-sound: entity.husk.ambient
 
 illusioner:
   display: "Illusioner Head"
   texture: ZDM4MjcwMWM2N2Q2YzU0YzkwNzU1ODg5MWRjMTc2MjI1MTEyNTE4NzcxZTA2MWM1ZDhiZDkxODQ3OWU2YmRkOCJ9fX0=
   chance: 0.25
   looting: 0.02
+  note-block-sound: entity.illusioner.cast_spell
 
 iron_golem:
   display: "Iron Golem Head"
   texture: ZmU3YzA3MTlmYWJlMTE2ZGNlNjA1MTk5YmNhZGM2OWE1Mzg4NjA4NjRlZjE1NzA2OTgzZmY2NjI4MjJkOWZlMyJ9fX0=
   chance: 0.05
   looting: 0.015
+  note-block-sound: entity.iron_golem.hurt
 
 creamy_llama:
   texture: NGQ2N2ZkNGJmZjI5MzI2OWNiOTA4OTc0ZGNhODNjMzM0ODVlNDM1ZWQ1YThlMWRiZDY1MjFjNjE2ODcxNDAifX19
   display: "Creamy Llama Head"
   chance: 0.24
   looting: 0.02
+  note-block-sound: entity.llama.ambient
+
 white_llama:
   texture: ODAyNzdlNmIzZDlmNzgxOWVmYzdkYTRiNDI3NDVmN2FiOWE2M2JhOGYzNmQ2Yjg0YTdhMjUwYzZkMWEzNThlYiJ9fX0=
   display: "White Llama Head"
   chance: 0.24
-  looting: 0.02  
+  looting: 0.02
+  note-block-sound: entity.llama.ambient
 brown_llama:
   texture: YzJiMWVjZmY3N2ZmZTNiNTAzYzMwYTU0OGViMjNhMWEwOGZhMjZmZDY3Y2RmZjM4OTg1NWQ3NDkyMTM2OCJ9fX0=
   display: "Brown Llama Head"
   chance: 0.24
-  looting: 0.02  
+  looting: 0.02
+  note-block-sound: entity.llama.ambient
+
 gray_llama:
   texture: Y2YyNGU1NmZkOWZmZDcxMzNkYTZkMWYzZTJmNDU1OTUyYjFkYTQ2MjY4NmY3NTNjNTk3ZWU4MjI5OWEifX19\\
   display: "Gray Llama Head"
   chance: 0.24
   looting: 0.02
+  note-block-sound: entity.llama.ambient
 
 creamy_trader_llama:
   texture: ZTg5YTJlYjE3NzA1ZmU3MTU0YWIwNDFlNWM3NmEwOGQ0MTU0NmEzMWJhMjBlYTMwNjBlM2VjOGVkYzEwNDEyYyJ9fX0=
   display: "Creamy Trader Llama Head"
   chance: 0.24
   looting: 0.07
+  note-block-sound: entity.llama.ambient
+
 white_trader_llama:
   chance: 0.24
   looting: 0.07
   display: "White Trader Llama Head"
   texture: NzA4N2E1NTZkNGZmYTk1ZWNkMjg0NGYzNTBkYzQzZTI1NGU1ZDUzNWZhNTk2ZjU0MGQ3ZTc3ZmE2N2RmNDY5NiJ9fX0=
+  note-block-sound: entity.llama.ambient
+
 brown_trader_llama:
   display: "Brown Trader Llama Head"
   texture: ODQyNDc4MGIzYzVjNTM1MWNmNDlmYjViZjQxZmNiMjg5NDkxZGY2YzQzMDY4M2M4NGQ3ODQ2MTg4ZGI0Zjg0ZCJ9fX0=
   chance: 0.24
   looting: 0.07
+  note-block-sound: entity.llama.ambient
+
 gray_trader_llama:  
   texture: YmU0ZDhhMGJjMTVmMjM5OTIxZWZkOGJlMzQ4MGJhNzdhOThlZTdkOWNlMDA3MjhjMGQ3MzNmMGEyZDYxNGQxNiJ9fX0=
   display: "Gray Trader Llama Head"
   chance: 0.24
   looting: 0.07
-  
+  note-block-sound: entity.llama.ambient
 
 magma_cube:
   display: "Magma Cube Head"
   texture: YjgxNzE4ZDQ5ODQ4NDdhNGFkM2VjMDgxYTRlYmZmZDE4Mzc0MzIzOWFlY2FiNjAzMjIxMzhhNzI2MDk4MTJjMyJ9fX0=
   chance: 0.005
   looting: 0.001
+  note-block-sound: entity.magma_cube.squish
 
 red_mooshroom:
   display: "Red Mooshroom Head"
   texture: ZGE4MDYwNmU4MmM2NDJmMTQxNTg3NzMzZTMxODBhZTU3ZjY0NjQ0MmM5ZmZmZDRlNTk5NzQ1N2UzNDMxMWEyOSJ9fX0=
   chance: 0.1
   looting: 0.001
+  note-block-sound: entity.cow.ambient
+
 brown_mooshroom:
   display: "Brown Mooshroom Head"
   texture: N2U2NDY2MzAyYTVhYjQzOThiNGU0NzczNDk4MDhlNWQ5NDAyZWEzYWQ4ZmM0MmUyNDQ2ZTRiZWQwYTVlZDVlIn19fQ==
   chance: 0.1
   looting: 0.001
+  note-block-sound: entity.cow.ambient
 
 mule:
   display: "Mule Head"
   texture: NDFjMjI0YTEwMzFiZTQzNGQyNWFlMTg4NWJmNGZmNDAwYzk4OTRjNjliZmVmNTZhNDkzNTRjNTYyNWMwYzA5YyJ9fX0=
   chance: 0.2
   looting: 0.05
+  note-block-sound: entity.mule.ambient
 
 ocelot:
   display: "Ocelot Head"
   texture: OTE3NWNjNDNlYThhZTIwMTY4YTFmMTcwODEwYjRkYTRkOWI0ZWJkM2M5OTc2ZTlmYzIyZTlmOTk1YzNjYmMzYyJ9fX0=
   chance: 0.2
   looting: 0.02
+  note-block-sound: entity.ocelot.ambient
 
 aggressive_panda:
   texture: ZTU0NmU0MzZkMTY2YjE3ZjA1MjFiZDg1MzhlYTEzY2Q2ZWUzYjVkZjEwMmViMzJlM2U0MjVjYjI4NWQ0NDA2MyJ9fX0=
   display: "Aggressive Panda Head"
   chance: 0.27
   looting: 0.004
+  note-block-sound: entity.panda.aggressive_ambient
+
 lazy_panda:
   texture: NTg3ZjFmNWRiMmUyNGRmNGRhYWVkNDY4NWQ2YWVlNWRlYjdjZGQwMjk2MzBmMDA3OWMxZjhlMWY5NzQxYWNmZCJ9fX0=
   display: "Lazy Panda Head"
   chance: 0.27
   looting: 0.004
+  note-block-sound: entity.panda.ambient
+
 playful_panda:
   texture: OGNhZGQ0YmYzYzRjYWNlOTE2NjgwZTFmZWY5MGI1ZDE2YWQ2NjQzOTUxNzI1NjY4YmE2YjQ5OTZiNjljYTE0MCJ9fX0=
   display: "PlayFul Panda Head"
   chance: 0.27
   looting: 0.004
+  note-block-sound: entity.panda.ambient
+
 worried_panda:
   texture: ZmI4NmZkMWJmOGNiY2UyM2JjMDhmYjkwNjkxNzE3NjExYWRkYzg1YWI4MjNiNzcxNGFlYzk4YTU2NjBlZmYxNSJ9fX0=
   display: "Worried Panda Head"
   chance: 0.27
   looting: 0.004
+  note-block-sound: entity.panda.worried_ambient
+
 brown_panda:
   texture: MWQ1ZjZkNjEyNjcyODY3MWI0NGMxYzc3NWY5OTYxNzQyNGUzMzYxMWI1ZDMxYWQyYWNmZjI4MDRlYjk2ZWIwNiJ9fX0=
   display: "Brown Panda Head"
   chance: 0.27
   looting: 0.004
+  note-block-sound: entity.panda.ambient
+
 weak_panda:
   texture: Y2M1NmEzNTVmYmUwZTJmYmQyOGU4NWM0ZDgxNWZmYTVkMWY5ZDVmODc5OGRiYzI1OWZmODhjNGFkZGIyMDJhZSJ9fX0=
   display: "Weak Panda Head"
   chance: 0.27
   looting: 0.004
+  note-block-sound: entity.panda.sneeze
+
 other_panda:  
   texture: NTlkZjQ3ZTAxNWQ1YzFjNjhkNzJiZTExYmI2NTYzODBmYzZkYjUzM2FhYjM4OTQxYTkxYjFkM2Q1ZTM5NjQ5NyJ9fX0=
   display: "Panda Head"
   chance: 0.27
   looting: 0.004
+  note-block-sound: entity.panda.ambient
 
 red_parrot:
   display: "Red Parrot Head"
   texture: NDBhM2Q0N2Y1NGU3MWE1OGJmOGY1N2M1MjUzZmIyZDIxM2Y0ZjU1YmI3OTM0YTE5MTA0YmZiOTRlZGM3NmVhYSJ9fX0=
   chance: 0.25
   looting: 0.02
+  note-block-sound: entity.parrot.ambient
+
 blue_parrot:
   display: "Blue Parrot Head"
   texture: Yjk0YmQzZmNmNGQ0NjM1NGVkZThmZWY3MzEyNmRiY2FiNTJiMzAxYTFjOGMyM2I2Y2RmYzEyZDYxMmI2MWJlYSJ9fX0=
   chance: 0.25
   looting: 0.02
+  note-block-sound: entity.parrot.ambient
+
 green_parrot:  
   display: "Green Parrot Head"
   texture: NmExZGMzMzExNTIzMmY4MDA4MjVjYWM5ZTNkOWVkMDNmYzE4YWU1NTNjMjViODA1OTUxMzAwMGM1OWUzNTRmZSJ9fX0=
   chance: 0.25
   looting: 0.02
+  note-block-sound: entity.parrot.ambient
+
 cyan_parrot:
   display: "Cyan Parrot Head"
   texture: NzI2OGNlMzdiZTg1MDdlZDY3ZTNkNDBiNjE3ZTJkNzJmNjZmOWQyMGIxMDZlZmIwOGU2YmEwNDFmOWI5ZWYxMCJ9fX0=
   chance: 0.25
-  looting: 0.02  
+  looting: 0.02
+  note-block-sound: entity.parrot.ambient
+
 gray_parrot:  
   display: "Gray Parrot Head"
   texture: NzFiZTcyM2FhMTczOTNkOTlkYWRkYzExOWM5OGIyYzc5YzU0YjM1ZGViZTA1YzcxMzhlZGViOGQwMjU2ZGM0NiJ9fX0=
   chance: 0.25
   looting: 0.02
+  note-block-sound: entity.parrot.ambient
 
 phantom:
   display: "Phantom Head"
   texture: N2U5NTE1M2VjMjMyODRiMjgzZjAwZDE5ZDI5NzU2ZjI0NDMxM2EwNjFiNzBhYzAzYjk3ZDIzNmVlNTdiZDk4MiJ9fX0=
   chance: 0.1
   looting: 0.01
+  note-block-sound: entity.phantom.ambient
 
 pig:
   display: "Pig Head"
   texture: NDFlZTc2ODFhZGYwMDA2N2YwNGJmNDI2MTFjOTc2NDEwNzVhNDRhZTJiMWMwMzgxZDVhYzZiMzI0NjIxMWJmZSJ9fX0=
   chance: 0.01
   looting: 0.001
+  note-block-sound: entity.pig.ambient
 
 piglin:
   display: "Piglin Head"
   texture: ODFhZmQ4NTM5MTE4MmE5ZjlkZTRmY2UyOWVhZjAyNTE0Y2MyZTA0NDgxNTc3ZGE1ZWRlYjU4YjE3ZTc1NzEzNSJ9fX0=
   chance: 0.04
   looting: 0.01
+  note-block-sound: entity.piglin_brute.ambient
 
 pillager:
   display: "Pillager Head"
   texture: YzIyNWYwYjQ5YzUyOTUwNDhhNDA5YzljNjAxY2NhNzlhYThlYjUyYWZmNWUyMDMzZWJiODY1ZjQzNjdlZjQzZSJ9fX0=
   chance: 0.25
   looting: 0.01
+  note-block-sound: entity.pillager.ambient
 
 piglin_brute:
   display: "Piglin Brute"
   texture: M2UzMDBlOTAyNzM0OWM0OTA3NDk3NDM4YmFjMjllM2E0Yzg3YTg0OGM1MGIzNGMyMTI0MjcyN2I1N2Y0ZTFjZiJ9fX0=    
   chance: 0.1
   looting: 0.01
+  note-block-sound: entity.piglin_brute.ambient
 
 polar_bear:
   texture: Y2Q4NzAyOTExZTYxNmMwZDMyZmJlNzc4ZDE5NWYyMWVjY2U5MDI1YmNiZDA5MTUxZTNkOTdhZjMxOTJhYTdlYyJ9fX0=
   display: "Polar Bear Head"
   chance: 0.2
   looting: 0.05
+  note-block-sound: entity.polar_bear.ambient
 
 pufferfish:
   texture:  ZTI3MzNkNWRhNTljODJlYWYzMTBiMzgyYWZmNDBiZDUxM2M0NDM1NGRiYmFiZmUxNGIwNjZhNTU2ODEwYTdmOSJ9fX0=
   display: "Pufferfish Head"
   chance: 0.15
   looting: 0.01
+  note-block-sound: entity.puffer_fish.blow_up
 
 # tea and toast
 toast_rabbit:   
@@ -479,61 +597,77 @@ toast_rabbit:
   display: "Toast Rabbit Head"
   chance: 1
   looting: 0
+  note-block-sound: entity.rabbit.ambient
 
 killer_rabbit:
   texture: NzFkZDc2NzkyOWVmMmZkMmQ0M2U4NmU4NzQ0YzRiMGQ4MTA4NTM0NzEyMDFmMmRmYTE4Zjk2YTY3ZGU1NmUyZiJ9fX0=
   display: "Killer Bunny Head"
   chance: 1
   looting: 0
+  note-block-sound: entity.rabbit.attack
 
 brown_rabbit:
   display: "Brown Rabbit Head"
   texture: Y2ZkNGY4NmNmNzQ3M2ZiYWU5M2IxZTA5MDQ4OWI2NGMwYmUxMjZjN2JiMTZmZmM4OGMwMDI0NDdkNWM3Mjc5NSJ9fX0=
   chance: 0.26
   looting: 0.05
+  note-block-sound: entity.rabbit.ambient
+
 white_rabbit:
   display: "White Rabbit Head"
   texture: OTU0MmQ3MTYwOTg3MTQ4YTVkOGUyMGU0NjliZDliM2MyYTM5NDZjN2ZiNTkyM2Y1NWI5YmVhZTk5MTg1ZiJ9fX0=
   chance: 0.26
   looting: 0.05
+  note-block-sound: entity.rabbit.ambient
+
 black_rabbit:
   display: "Black Rabbit Head"
   texture: YjJiNDI1ZmYyYTIzNmFiMTljYzkzOTcxOTVkYjQwZjhmMTg1YjE5MWM0MGJmNDRiMjZlOTVlYWM5ZmI1ZWZhMyJ9fX0=
   chance: 0.26
   looting: 0.05
+  note-block-sound: entity.rabbit.ambient
+
 black_white_rabbit:
   display: "Black and White Rabbit Head"
   texture: MzVmNzJhMjE5NWViZjQxMTdjNTA1NmNmZTJiNzM1N2VjNWJmODMyZWRlMTg1NmE3NzczZWU0MmEwZDBmYjNmMCJ9fX0=
   chance: 0.26
   looting: 0.05
+  note-block-sound: entity.rabbit.ambient
+
 gold_rabbit:
   display: "Golden Rabbit Head"
   texture: NzY3YjcyMjY1NmZkZWVjMzk5NzRkMzM5NWM1ZTE4YjQ3YzVlMjM3YmNlNWJiY2VkOWI3NTUzYWExNGI1NDU4NyJ9fX0=
   chance: 0.26
   looting: 0.05
+  note-block-sound: entity.rabbit.ambient
+
 salt_pepper_rabbit:
   texture: OTIzODUxOWZmMzk4MTViMTZjNDA2MjgyM2U0MzE2MWZmYWFjOTY4OTRmZTA4OGIwMThlNmEyNGMyNmUxODFlYyJ9fX0=
   display: "Salt Pepper Rabbit Head"
   chance: 0.26
   looting: 0.05
+  note-block-sound: entity.rabbit.ambient
 
 ravager:
   display: "Ravager Head"
   texture: ZWI0ZGIyOTg2MTQwZTI1MWUzMmU3MGVkMDhjOGEwODE3MjAzMTNjZTI1NzYzMmJlMWVmOTRhMDczNzM5NGRiIn19fQ==
   chance: 0.25
   looting: 0.31
+  note-block-sound: entity.ravager.roar
 
 salmon:
   display: "Salmon Head"
   texture: NzkxZDllNjliNzk1ZGE0ZWFhY2ZjZjczNTBkZmU4YWUzNjdmZWQ4MzM1NTY3MDZlMDQwMzM5ZGQ3ZmUwMjQwYSJ9fX0=
   chance: 0.1
   looting: 0.01
+  note-block-sound: entity.salmon.flop
 
 shulker:
   display: "Shulker Head"
   texture: ZmI5ZTZhZjZiODE5ZjNkOTBlNjdjZTJlNzA1OWZiZWYzMWRhMmFhOTUzZDM1ZTM0NTRmMTAyMWZhOTEyZWZkZSJ9fX0=
   chance: 0.05
   looting: 0.01
+  note-block-sound: entity.shulker.ambient
 
 # Sheeeps
 orange_sheep:
@@ -541,266 +675,326 @@ orange_sheep:
   texture: ZjY4NGQwNGZhODBhYTU5ZGExNDUzNWRlYWQzODgzZDA5N2ZiYmE0MDA2MjU2NTlmNTI1OTk2NDgwNmJhNjZmMCJ9fX0= 
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 magenta_sheep:
   display: "Magenta Sheep Head"
   texture: YThlMWYwNWYwZGFjY2E2M2E3MzE4NzRmOTBhNjkzZmZlMjFmZjgzMmUyYjFlMWQwN2I2NWM4NzY0NTI2ZjA4OSJ9fX0=
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 light_blue_sheep:
   texture: ZWJmMjNhZjg3MTljNDM3YjNlZTg0MDE5YmEzYzllNjljYTg1NGQzYThhZmQ1Y2JhNmQ5Njk2YzA1M2I0ODYxNCJ9fX0=
   display: "Light Blue Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 lime_sheep:
   texture: NmJlYWQwMzQyYWU4OWI4ZGZkM2Q3MTFhNjBhZGQ2NWUyYzJiZmVhOGQwYmQyNzRhNzU4N2RlZWQ3YTMxODkyZSJ9fX0=
   display: "Lime Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 purple_sheep:
   texture: MzQ0OWQwODI5MWRhZTQ1YTI0NjczNjE5NjAyZjQzNWI1N2Y0Y2Q0ZTllOThkMmUwZmJlYzRmMTgxNDQ3ODFkMyJ9fX0=
   display: "Purple Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 white_sheep:
   texture: NmRmZTdjYzQ2ZDc0OWIxNTMyNjFjMWRjMTFhYmJmMmEzMTA4ZWExYmEwYjI2NTAyODBlZWQxNTkyZGNmYzc1YiJ9fX0=
   display: "White Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 red_sheep:
   texture: NTQ3OGUwNTcxNThkZTZmNDVlMjU0MWNkMTc3ODhlNjQwY2NiNTk3MjNkZTU5YzI1NGU4MmFiNTcxMWYzZmMyNyJ9fX0=
   display: "Red Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.evoker.prepare_wololo
 green_sheep:
   texture: OWVhODg3ZWFlNGIwNzYzNmU5ZTJmOTA2NjA5YjAwYWI4ZDliODZiNzQ3MjhiODE5ZmY2ZjM3NjU4M2VhMTM5In19fQ==
   display: "Green Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 brown_sheep:
   texture: MzEyOGQwODZiYzgxNjY5ZmMyMjU1YmIyMmNhZGM2NmEwZjVlZDcwODg1ZTg0YzMyZDM3YzFiNDg0ZGIzNTkwMSJ9fX0=
   display: "Brown Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 pink_sheep:
   texture: NjM2M2U4YTkzZDI4N2E4NGU2NDAzMDlhZTgzY2ExZGUwYTBiMjU3NTA1YTIwZWM1NWIzMzQ5ZDQwYTQ0ODU0In19fQ==
   display: "Pink Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 gray_sheep: 
   texture: M2ZhZmVjZjA2MDNiMmRjZDc5ODRkMjUyNTg2MDY5ODk1ZGI5YWE3OGUxODQxYmQ1NTRiMTk1MDhkY2Y5NjdhMSJ9fX0=
   display: "Gray Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 jeb_sheep:
   texture: MjMzMzI2NzY1YTE5MGViZjkwZDU0ODZkNzFmMjBlMjU5N2U0YmVlMmEzOTFmZWNiYmQ4MGRlYmZlMWY4MmQ3OCJ9fX0=
   display: "Rainbow Sheep Head"
   chance: 1
   looting: 0
+  note-block-sound: entity.sheep.shear
 cyan_sheep:
   texture: NWQ0MmZjYmNhZjlkNDhmNzNmZmIwYzNjMzZmMzRiNDY0MzI5NWY2ZGFhNmNjNzRhYjlkMjQyZWQ1YWE1NjM2In19fQ==
   display: "Cyan Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 black_sheep:
   texture: MTMzMzVlODA2NWM3YjVkZmVhNThkM2RmNzQ3NGYzOTZhZjRmYTBhMmJhNTJhM2M5YjdmYmE2ODMxOTI3MWM5MSJ9fX0=
   display: "Black Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 yellow_sheep:
   texture: OTRiMjhmMDM1NzM1OTA2ZjgyZmZjNGRiYTk5YzlmMGI1NTI0MGU0MjZjZDFjNTI1YTlhYTc3MTgwZWVjNDkzNCJ9fX0=
   display: "Yellow Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 light_gray_sheep:
   texture: MWQyZTJlOTNhMTQyYmZkNDNmMjQwZDM3ZGU4ZjliMDk3NmU3NmU2NWIyMjY1MTkwODI1OWU0NmRiNzcwZSJ9fX0=
   display: "Light Gray Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 blue_sheep:  
   texture: NzQwZTI3N2RhNmMzOThiNzQ5YTMyZjlkMDgwZjFjZjRjNGVmM2YxZjIwZGQ5ZTVmNDIyNTA5ZTdmZjU5M2MwIn19fQ==   
   display: "Blue Sheep Head"
   chance: 0.0175
   looting: 0.0025
+  note-block-sound: entity.sheep.ambient
 
 silverfish:
   texture: ZjI1ZTlmYWUzNzE2NjRkZTFhODAwYzg0ZDAyNTEyNGFiYjhmMTUxMTE4MDdjOGJjMWFiOTEyNmFhY2JkNGY5NSJ9fX0=
   display: "SilverFish Head"
   chance: 0.05
   looting: 0.01
+  note-block-sound: entity.silverfish.ambient
 
 slime:
   texture: YzA2NDI0ZWM3YTE5NmIxNWY5YWQ1NzMzYTM2YTZkMWYyZTZhMGQ0MmZmY2UxZTE1MDhmOTBmMzEyYWM0Y2FlZCJ9fX0=
   display: "Slime Head"
   chance: 0.005
   looting: 0.001
+  note-block-sound: entity.slime.squish_small
 
 snow_golem:
   texture: Y2FhM2UxN2VmMWIyOWE0Yjg3ZmE0M2RlZTFkYjEyYzQxZmQzOWFhMzg3ZmExM2FmMmEwNzliNWIzNzhmZGU4YiJ9fX0=
   display: "Snow Golem Head"
   chance: 0.05
   looting: 0.01
+  note-block-sound: entity.snow_golem.hurt
 
 spider:
   texture: NTBjNDEwMDQ1Y2QzNzQ5YzNhOGVkODU2ZGY0MTFmNmMzM2U5YThhNmY5ZTU3ZTUyMTYwOGE4YWQ4ZWQ2ZWIzNyJ9fX0=
   display: "Spider Head"
   chance: 0.005
   looting: 0.001
+  note-block-sound: entity.spider.ambient
   
 squid:
   texture: ODM1MWI3ZDlhNGYzNmNmZTMxZmQ1OWQ4YzkwMGU0MTlhMTM1MTQ0MTA1ZTdhOTgxY2FhNWExNjhkY2ZmMzI1YiJ9fX0=
   display: "Squid Head"
   chance: 0.05
   looting: 0.01
+  note-block-sound: entity.squid.ambient
   
 stray:
   texture: NTkyYjU1OTcwODVlMzVkYjUzZDliZGEwMDhjYWU3MmIyZjAwY2Q3ZDRjZDhkYzY5ZmYxNzRhNTViNjg5ZTZlIn19fQ==
   display: "Stray Head"
   chance: 0.06
   looting: 0.05
+  note-block-sound: entity.stray.ambient
   
 strider:
   texture: OWM0MGZhZDFjMTFkZTllNjQyMmI0MDU0MjZlOWI5NzkwN2YzNWJjZTM0NWUzNzU4NjA0ZDNlN2JlN2RmODg0In19fQ==
   display: "Strider Head"
   chance: 0.1
   looting: 0.05
+  note-block-sound: entity.strider.happy
   
 freezing_strider:
   texture: MjcxMzA4NWE1NzUyN2U0NTQ1OWMzOGZhYTdiYjkxY2FiYjM4MWRmMzFjZjJiZjc5ZDY3YTA3MTU2YjZjMjMwOSJ9fX0=
   display: "Freezing Strider Head"
   chance: 0.1
   looting: 0.05
+  note-block-sound: entity.strider.ambient
 
 tropical_fish:
   texture: MzRhMGM4NGRjM2MwOTBkZjdiYWZjNDM2N2E5ZmM2Yzg1MjBkYTJmNzNlZmZmYjgwZTkzNGQxMTg5ZWFkYWM0MSJ9fX0=
   display: "Tropical Fish Head"
   chance: 0.1
   looting: 0.01
+  note-block-sound: entity.tropical_fish.flop
   
 turtle:
   texture: MzA0OTMxMjAwYWQ0NjBiNjUwYTE5MGU4ZDQxMjI3YzM5OTlmYmViOTMzYjUxY2E0OWZkOWU1OTIwZDFmOGU3ZCJ9fX0=
   chance: 0.1
   looting: 0.01
-  display: "Turtle Head" 
+  display: "Turtle Head"
+  note-block-sound: entity.turtle.ambient_land
 
 vex:
-  texture: OGI4ZTE0ZWQzMTRlYTllYjQ0MTkzMjQxNTllZDA4ZTc3N2JhMTg3NWFkZTI5ODllYWEwZjUzMTBkYTc3MmU1NiJ9fX0=
+  texture: Yjk1MzhmMjgzMGM0ZGVhNjk5NmVkNzQ0Nzg1NTA0ZTMyZTBlMjBkODY2M2VkYWI2YjAyMjJmMmMwMjIwNzdiZCJ9fX0=
   display: "Vex Head"
   looting: 0.01
   chance: 0.1
+  note-block-sound: entity.vex.ambient
+
+vex_2:
+  texture: NGE0ZTUxOGUxNmU0YjVjMTE0YWNiZDljNjFjZDE4MjkyZGE5ZWY2MDU1MGE0ZmNhZTI3ZDM5YWUyOTNlNDc3YSJ9fX0=
+  display: "Vex Head"
+  looting: 0.01
+  chance: 0.1
+  note-block-sound: entity.vex.charge
   
 # Villagers are pain
 armorer_villager:
   texture: MWVmNjI3ZjU2NmFjMGE3ODI4YmFkOTNlOWU0Yjk2NDNkOTlhOTI4YTEzZDVmOTc3YmY0NDFlNDBkYjEzMzZiZiJ9fX0=
   display: "Armorer Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 butcher_villager:
   texture: YTFiYWQ2NDE4NWUwNGJmMWRhZmUzZGE4NDkzM2QwMjU0NWVhNGE2MzIyMWExMGQwZjA3NzU5MTc5MTEyYmRjMiJ9fX0=
   display: "Butcher Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 cartographer_villager:
   texture: ZTNhZWNmYmU4MDFjZjMyYjVkMWIwYjFmNjY4MDA0OTY2NjE1ODY3OGM1M2Y0YTY1MWZjODNlMGRmOWQzNzM4YiJ9fX0=
   display: "Cartographer Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 cleric_villager:
   texture: NWI5ZTU4MmUyZjliODlkNTU2ZTc5YzQ2OTdmNzA2YjFkZDQ5MjllY2FlM2MwN2VlOTBiZjFkNWJlMzE5YmY2ZiJ9fX0=
   display: "Cleric Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 farmer_villager:
   texture: ZDkyNzJkMDNjZGE2MjkwZTRkOTI1YTdlODUwYTc0NWU3MTFmZTU3NjBmNmYwNmY5M2Q5MmI4ZjhjNzM5ZGIwNyJ9fX0=
   display: "Farmer Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 fisherman_villager:
   texture: ZDE4OWZiNGFjZDE1ZDczZmYyYTU4YTg4ZGYwNDY2YWQ5ZjRjMTU0YTIwMDhlNWM2MjY1ZDVjMmYwN2QzOTM3NiJ9fX0= 
   display: "Fisherman Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 fletcher_villager:
   texture: YmY2MTFmMTJlMThjZTQ0YTU3MjM4ZWVmMWNhZTAzY2Q5ZjczMGE3YTQ1ZTBlYzI0OGYxNGNlODRlOWM0ODA1NiJ9fX0=
   display: "Fletcher Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 leatherworker_villager:
   texture: YWUwZTk1OTFlMTFhYWVmNGMyYzUxZDlhYzY5NTE0ZTM0MDQ4NWRlZmNjMmMxMmMzOGNkMTIzODZjMmVjNmI3OCJ9fX0=
   display: "Leatherworker Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 librarian_villager:
   texture: Y2RjYWE1NzRiYWJiNDBlZTBmYTgzZjJmZDVlYTIwY2ZmMzFmZmEyNzJmZTExMzU4OGNlZWU0Njk2ODIxMjhlNyJ9fX0=
   display: "Librarian Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 mason_villager:
   texture: YWUwZTk1OTFlMTFhYWVmNGMyYzUxZDlhYzY5NTE0ZTM0MDQ4NWRlZmNjMmMxMmMzOGNkMTIzODZjMmVjNmI3OCJ9fX0=
   display: "Mason Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 nitwit_villager:
   texture: YWUwZTk1OTFlMTFhYWVmNGMyYzUxZDlhYzY5NTE0ZTM0MDQ4NWRlZmNjMmMxMmMzOGNkMTIzODZjMmVjNmI3OCJ9fX0=
   display: "Nitwit Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 unemployed_villager:
   texture: YWUwZTk1OTFlMTFhYWVmNGMyYzUxZDlhYzY5NTE0ZTM0MDQ4NWRlZmNjMmMxMmMzOGNkMTIzODZjMmVjNmI3OCJ9fX0=
   display: "Jobless Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 shepherd_villager:
   texture: MmFiZjRlOTE1NGFjOTI3MTk0MWM3MzNlYWNjNjJkYzlmYzBhNmRjMWI1ZDY3Yzc4Y2E5OGFmYjVjYjFiZTliMiJ9fX0=
   display: "Shepherd Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 toolsmith_villager:
   texture: YWUwZTk1OTFlMTFhYWVmNGMyYzUxZDlhYzY5NTE0ZTM0MDQ4NWRlZmNjMmMxMmMzOGNkMTIzODZjMmVjNmI3OCJ9fX0=
   display: "Toolsmith Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 weaponsmith_villager:  
   texture: ODQ3NmZmYTQxMGJiZTdmYTcwOTA5OTY1YTEyNWY0YTRlOWE0ZmIxY2UxYjhiM2MzNGJmYjczYWFmZmQ0Y2U0MyJ9fX0=                      
   display: "Weaponsmith Villager Head"
   chance: 1
+  note-block-sound: entity.villager.ambient
 
 vindicator:
   texture: MmRhYmFmZGUyN2VlMTJiMDk4NjUwNDdhZmY2ZjE4M2ZkYjY0ZTA0ZGFlMWMwMGNjYmRlMDRhZDkzZGNjNmM5NSJ9fX0=
   display: "Vindicator Head"
   chance: 0.05
   looting: 0.015
+  note-block-sound: entity.vindicator.ambient
   
 wandering_trader:
   texture: NWYxMzc5YTgyMjkwZDdhYmUxZWZhYWJiYzcwNzEwZmYyZWMwMmRkMzRhZGUzODZiYzAwYzkzMGM0NjFjZjkzMiJ9fX0=
   chance: 1
+  display: "Wandering Trader Head"
+  note-block-sound: entity.wandering_trader.ambient
   
 witch:
   texture: YTUyMGYxMmM2M2M3OTEyMTg2YzRiZTRlMzBjMzNjNWFjYWVjMGRiMGI2YWJkODM2ZDUxN2Q3NGE2MjI3NWQ0YiJ9fX0=
   chance: 0.05
   looting: 0.001
+  display: "Witch Head"
+  note-block-sound: entity.witch.ambient
   
 normal_wither:
   display: "Wither Head"
   texture: ZWRhMTA4MjhmNjNiN2VjZGVmZDc2N2IzMjQ1ZmJkYWExM2MzZWMwYzZiMTM3NzRmMWVlOGQzMDdjMDM0YzM4MyJ9fX0=
   chance: 0.3
+  note-block-sound: entity.wither.ambient
 invulnerable_wither:
   display: "Invulnerable Wither Head"
   texture: MzE5NmViOGQ1OTljNGZlZjUzYTk3MTc2YjcyZmY4ZmM0MWUzMmE2NmExNTlmZDQ1MTkwYTBkYTE1NDU4N2UxMiJ9fX0=
   chance: 0.3
+  note-block-sound: entity.wither.shoot
 normal_armored_wither:
   display: "Armored Wither Head"
   texture: YjM3YzU4MTRhOTJmOGVjMGY2YWU5OTMzYWJlOTU0MmUxNjUxOTA3NjhlNzYwNDc4NTQzYWViZWVkNDAyN2MyNyJ9fX0=
   chance: 0.2
+  note-block-sound: entity.wither.ambient
 invulnerable_armored_wither:
   display: "Invulnerable Armored Wither Head"
   texture: ZDM2ODJiMDYyMDNiOWRlNGMyODU0MTA3MWEyNmNkYzM0MGRkMjVkNGMzNzJiNzAyM2VjMmY0MTIwMjFkNjJmNyJ9fX0=    
   chance: 0.2
+  note-block-sound: entity.wither.shoot
 
 zoglin:
   texture: NWZhMGFkYTM0MTFmYmE4Yjg4NTgzZDg2NGIyNTI2MDZlOTNkZmRmNjQ3NjkwZDNjZjRjMDE3YjYzYmFiMTJiMCJ9fX0=
   chance: 0.2
   looting: 0.05
   display: "Zoglin Head"
+  note-block-sound: entity.zoglin.ambient
   
 skeleton_horse:
   texture: NmUyMjY3MDViZDJhOWU3YmI4ZDZiMGY0ZGFhOTY5YjllMTJkNGFlNWM2NmRhNjkzYmI1ZjRhNGExZTZhYTI5NiJ9fX0=
   chance: 0.2
   looting: 0.05
   display: "Skeleton Horse Head"
-
-
+  note-block-sound: entity.skeleton_horse.ambient
 
 zombie_horse:
   texture: NjYxOGZmYmUxY2ZhMjA1OGZlODBhMDY1ZjcwYzEyOGMyMjVhMWUwYmM5ZGVhZjhiMzhiMDM5NTQ0M2Y0MDkwOSJ9fX0=
   chance: 0.5
   looting: 0.02
   display: "Zombie Horse Head"
+  note-block-sound: entity.zombie_horse.ambient
 
 # zombie villagers are more pain
 zombie_armorer:
@@ -808,190 +1002,316 @@ zombie_armorer:
   display: "Zombie Armorer Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_butcher:
   texture: OWNjZThkNmNlNDEyNGNlYzNlODRhODUyZTcwZjUwMjkzZjI0NGRkYzllZTg1NzhmN2Q2ZDg5MjllMTZiYWQ2OSJ9fX0=
   display: "Zombie Butcher Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_cartographer:
   texture: ZTYwODAwYjAxMDEyZTk2M2U3YzIwYzhiYTE0YjcwYTAyNjRkMTQ2YTg1MGRlZmZiY2E3YmZlNTEyZjRjYjIzZCJ9fX0=
   display: "Zombie Cartographer Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_cleric:
   texture: Mjk1ODU3OGJlMGUxMjE3MjczNGE3ODI0MmRhYjE0OTY0YWJjODVhYjliNTk2MzYxZjdjNWRhZjhmMTRhMGZlYiJ9fX0=
   display: "Zombie Cleric Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_farmer:
   texture: Zjc3ZDQxNWY5YmFhNGZhNGI1ZTA1OGY1YjgxYmY3ZjAwM2IwYTJjOTBhNDgzMWU1M2E3ZGJjMDk4NDFjNTUxMSJ9fX0=
   display: "Zombie Farmer Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_fisherman:
   texture: NjkwNWQ1M2ZlNGZhZWIwYjMxNWE2ODc4YzlhYjgxYjRiZTUyYzMxY2Q0NzhjMDI3ZjBkN2VjZTlmNmRhODkxNCJ9fX0=
   display: "Zombie Fisherman Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_fletcher:
   texture: MmVhMjZhYzBlMjU0OThhZGFkYTRlY2VhNThiYjRlNzZkYTMyZDVjYTJkZTMwN2VmZTVlNDIxOGZiN2M1ZWY4OSJ9fX0=
   display: "Zombie Fletcher Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_leatherworker:
   texture: ZmI1NTJjOTBmMjEyZTg1NWQxMjI1NWQ1Y2Q2MmVkMzhiOWNkN2UzMGU3M2YwZWE3NzlkMTc2NDMzMGU2OTI2NCJ9fX0=
   display: "Zombie Leatherworker Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_librarian:
   texture: NjIyMTFhMWY0MDljY2E0MjQ5YzcwZDIwY2E4MDM5OWZhNDg0NGVhNDE3NDU4YmU5ODhjYzIxZWI0Nzk3Mzc1ZSJ9fX0=
   display: "Zombie Librarian Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_mason:
   texture: ZmI1NTJjOTBmMjEyZTg1NWQxMjI1NWQ1Y2Q2MmVkMzhiOWNkN2UzMGU3M2YwZWE3NzlkMTc2NDMzMGU2OTI2NCJ9fX0=
   display: "Zombie Mason Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_nitwit:
   texture: ZmI1NTJjOTBmMjEyZTg1NWQxMjI1NWQ1Y2Q2MmVkMzhiOWNkN2UzMGU3M2YwZWE3NzlkMTc2NDMzMGU2OTI2NCJ9fX0=
   display: "Zombie Nitwit Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_unemployed:
   texture: ZmI1NTJjOTBmMjEyZTg1NWQxMjI1NWQ1Y2Q2MmVkMzhiOWNkN2UzMGU3M2YwZWE3NzlkMTc2NDMzMGU2OTI2NCJ9fX0=
   display: "Zombie Jobless Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_shepherd:
   texture: NjkxMzkxYmVmM2E0NmVmMjY3ZDNiNzE3MTA4NmJhNGM4ZDE3ZjJhNmIwZjgzZmEyYWMzMGVmZTkxNGI3YzI0OSJ9fX0=
   display: "Zombie Shepherd Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_toolsmith:
   texture: ZmI1NTJjOTBmMjEyZTg1NWQxMjI1NWQ1Y2Q2MmVkMzhiOWNkN2UzMGU3M2YwZWE3NzlkMTc2NDMzMGU2OTI2NCJ9fX0=
   display: "Zombie Toolsmith Head"
   looting: 0.02
   chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 zombie_weaponsmith:  
   texture: NDM3MDg5NGI1Y2MzMDVkODdhYTA4YzNiNGIwODU4N2RiNjhmZjI5ZTdhM2VmMzU0Y2FkNmFiY2E1MGU1NTI4YiJ9fX0=                     
   display: "Zombie Weaponsmith Head"
   looting: 0.02
-  chance: 0.5  
+  chance: 0.5
+  note-block-sound: entity.zombie_villager.ambient
 
 lucy_axolotl:
   texture: NjY3ZTE1ZWFiNzMwNjRiNjY4MGQxZGI5OGJhNDQ1ZWQwOTE0YmEzNWE3OTk5OTdjMGRhMmIwM2ZmYzNhODgyNiJ9fX0=
   display: "Lucy Axolotl Head"
   chance: 0.2
   looting: 0.01
+  note-block-sound: entity.axolotl.idle_air
 blue_axolotl:
   texture: NjhmZDEwYjBmZWY0NTk1OTYwYjFmNjQxOTNiYzhhMTg2NWEyZDJlZDQ4YjJlMmNlMDNkOTk0NTYzMDI3ZGY5NSJ9fX0=
   chance: 1
   display: "Blue Axolotl Head"
+  note-block-sound: entity.axolotl.idle_air
 wild_axolotl:
   texture: NDdjZjAyNzQ5OThiZjVhN2YzOGIzNzAzNmUxNTRmMTEyZmEyZTI4YmFkNDBkNWE3Yzk0NzY1ZmU0ZjUyMjExZSJ9fX0=
   display: "Wild Axolotl Head"
   chance: 0.2
   looting: 0.01
+  note-block-sound: entity.axolotl.idle_air
 gold_axolotl:
   texture: ZTU4NTYwMTE1ZmFhZDExNjE5YjNkNTVkZTc5ZWYyYTA1M2Y0NzhhNjcxOTRiYmU5MjQ3ZWRlYTBiYzk4ZTgzNCJ9fX0=
   chance: 0.2
   looting: 0.01
   display: "Gold Axolotl Head"
+  note-block-sound: entity.axolotl.idle_air
 cyan_axolotl:  
   texture: ODUxMTk2ZDQzOTMwNjU5ZDcxN2UxYjZhMDQ2YTA4ZDEyMjBmY2I0ZTMxYzQ4NTZiYzMzZTc1NTE5ODZlZjFkIn19fQ==
   chance: 0.2
   looting: 0.01      
   display: "Cyan Axolotl Head"
+  note-block-sound: entity.axolotl.idle_air
 
 zombiefied_piglin:
   texture: MmRmMDMxMjhiMDAyYTcwNzA4ZDY4MjVlZDZjZjU0ZGRmNjk0YjM3NjZkNzhkNTY0OTAzMGIxY2I4YjM0YzZmYSJ9fX0=
   chance: 0.05
   looting: 0.001
   display: "Zombiefied Piglin Head"
+  note-block-sound: entity.zombified_piglin.ambient
 
 warden:
   texture: YjJmMzg3OWI3MzcxMjc0ODVlYjM1ZGRlZTc0OGQwNmNmOTE0YjE5M2Q5Nzc1M2FlMzRlOTIyMzA4NDI4MzFmYiJ9fX0=
   chance: 1
   looting: 1
   display: "Warden Head"
+  note-block-sound: entity.warden.ambient
 
 cold_frog:
   texture: NzY4Nzc4OTNlOTIwZmY1ZGZhNGI1ZmJkMTRkYWJlZTJlNjMwOGE2Zjk3YzNhMTliMDhlMjQxYTI5ZWI5YTVjMyJ9fX0=
   chance: 0.2
   looting: 0.01
   display: "Cold Frog Head"
+  note-block-sound: entity.frog.ambient
+
 
 temperate_frog:
   texture: YTUwZDEwNzNkNDFmMTkzNDA1ZDk1YjFkOTQxZjlmZTFhN2ZmMDgwZTM4MTU1ZDdiYjc4MGJiYmQ4ZTg2ZjcwZCJ9fX0=
   chance: 0.2
   looting: 0.01
   display: "Temperate Frog Head"
+  note-block-sound: entity.frog.ambient
 
 warm_frog:
   texture: ZDViMGRhNDM5NzViODNjMzMyMjc4OGRkYTMxNzUwNjMzMzg0M2FlYmU1NTEyNzg3Y2IyZTNkNzY5ZWQyYjM4MiJ9fX0=
   chance: 0.2
   looting: 0.01
   display: "Warm Frog Head"
+  note-block-sound: entity.frog.ambient
 
 tadpole:
   texture: M2RhZjE2NTNiNWY1OWI1ZWM1YTNmNzk2MDljYjQyMzM1NzlmZWYwN2U2OTNiNjE3NDllMDkwMDE0OWVkZjU2MyJ9fX0=
   chance: 0.1
   looting: 0.01
   display: "Tadpole Head"
+  note-block-sound: entity.tadpole.flop
 
 allay:
   texture: Y2MwMzg5MTc3ZGJhYTkyZjBkNWZmZGY4NDg4NjJjN2Y5YjM2ZGYyMjJmYmZkNzM3ZTI2MzlkYzMwNTllMGNmMyJ9fX0=
   chance: 0.2
   looting: 0.01
   display: "Allay Head"
+  note-block-sound: entity.allay.ambient_without_item
 
 camel:
   texture: ZTY3ZDQ1OTczNDAxNjZlMTk3OGE2NjhhMDZiZjU3NTZjMTdiNGNiNWI0MGFiOGZmMjQ0MDkzYjZiOGJjNzVkMyJ9fX0=
   chance: 1
   looting: 1
   display: "Camel Head"
+  note-block-sound: entity.camel.ambient
 
 sniffer:
   texture: Yzg0YTdlN2ZlMTk3YjdlNzQxOWI1MWQ0NmNjMjMzNTUxYjllYzg5OWRlMWFmZTdmNjUzZTRmOGZiMjZhNjg2ZSJ9fX0=
   chance: 1
   looting: 1
   display: "Sniffer Head"
+  note-block-sound: entity.sniffer.scenting
 
 armadillo:
   texture: OTg1MmIzM2JhMjk0ZjU2MDA5MDc1MmQxMTNmZTcyOGNiYzdkZDA0MjAyOWEzOGQ1MzgyZDY1YTIxNDYwNjhiNyJ9fX0=
   chance: 1
   looting: 1
   display: "Armadillo Head"
+  note-block-sound: entity.armadillo.ambient
 
 pale_wolf:
-  texture: YjY0MzlhNDNlNTY4NzAwODgxNWEyZGQxZmY0YTEzNGMxMjIyMWI3ODIzMzY2NzhiOTc5YWQxM2RjZTM5NjY1ZSJ9fX0=
-  chance: 0.02
-  display: "Pale Wolf Head"
+  texture: MWVlMzNjMmRjMDdkNzZiNGYwM2U2NjQyN2EwOGNiYTJlODE3OWQwNzVhZTY0YjljZTE1MGFhNDIwOWM1YWYzOSJ9fX0=
+  chance: 0.2
   looting: 0.01
+  display: "Pale Wolf Head"
+  note-block-sound: entity.wolf.ambient
 
 pale_angry_wolf:
-  texture: OGQxYWE3ZTNiOTU2NGIzODQ2ZjFkZWExNGYxYjFjY2JmMzk5YmJiMjNiOTUyZGJkN2VlYzQxODAyYTI4OWM5NiJ9fX0=
-  chance: 0.02
+  texture: Njg4N2E0Mjc4NzkwMGU2NzE2ZmE0NjJmYmFkOGRlYjU1MjZiOTQzOTg3OTc0MTRmMDNmNjAxM2VmODg1YTFkYiJ9fX0=
+  chance: 0.2
   looting: 0.01
   display: "Angry Pale Wolf Head"
+  note-block-sound: entity.wolf.growl
 
-#ashen_wolf:
-#ashen_angry_wolf:
-#black_wolf:
-#black_angry_wolf:
-#chestnut_wolf:
-#chestnut_angry_wolf:
-#rusty_wolf:
-#rusty_angry_wolf:
-#snowy_wolf:
-#snowy_angry_wolf:
-#spotted_wolf:
-#spotted_angry_wolf:
-#striped_wolf:
-#striped_angry_wolf:
-#woods_wolf:
-#woods_angry_wolf:
+ashen_wolf:
+  texture: NzIzODRjNWNmMTg5NDhiODNhODk1NDhkYmE1YTk5NDVlZGVlZmM1ZTk2NTRjNWQ2ZDM4YWUxMGE1ZDUwMmU3NSJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Ashen Wolf Head"
+  note-block-sound: entity.wolf.ambient
+ashen_angry_wolf:
+  texture: N2NiYzMwNjZkMzFjNDM5MDM1MDM4ZmQ2ODc1ZDVkYmVlYzM5NjhjMWI4MDA2ZmZiZmI1ZjY3NGQ3NmM4OWNkZSJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Angry Ashen Wolf Head"
+  note-block-sound: entity.wolf.growl
+black_wolf:
+  texture: YzVhNjZhNDJiMjVmODIyYTdlMTZhMjE4NzUyOGQxYTJlMjk0YTAxZDlmODUwNjcxYjk0Yzk1NzQyYmI0OTE2ZSJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Black Wolf Head"
+  note-block-sound: entity.wolf.ambient
+black_angry_wolf:
+  texture: YTVlZDQ3ZGVkMjcwOGIxM2Q5MmViNTBmYjY4ZThjMWUxMWIzOWEwY2Q0NWIzOTM3MmVlYWQ4NzJjNDllZWFlYiJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Angry Black Wolf Head"
+  note-block-sound: entity.wolf.growl
+chestnut_wolf:
+  texture: Y2I5YjBkNDg0NDIyMDRmZjZmZDM5ZmEwNzQxNjcxMThlOWMwNjZjZGUzODg4OTc3ZDBmNjAzNmUxZDhhNjllZSJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Chestnut Wolf Head"
+  note-block-sound: entity.wolf.ambient
+chestnut_angry_wolf:
+  texture: Mjg0YjI4ZjIzMmIxNGE1OWI2Y2I3NzU3MzIzOTc0ZWE1MDJiMWJjYjk4NGRlYTMwMDkzZWMyMWVkMmFkZTMxMiJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Angry Chestnut Wolf Head"
+  note-block-sound: entity.wolf.growl
+rusty_wolf:
+  texture: MjM0NTVmNjA0OGE2ODA5OGNkMjc2MzRlMzE0NmM4MWM4MjY5YWVlZmNmMGFmZjkxY2M5NzZlZmEwYmFhMTE0NiJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Rusty Wolf Head"
+  note-block-sound: entity.wolf.ambient
+rusty_angry_wolf:
+  texture: ZDFmMWMzMmU1MjU4ZjNkOGY4ZDE4MWZiMzBkZjYxZTA2OTNlNTVkNTM4YTEzZWVhYmRmNjMwMGYzODA4M2FkYyJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Angry Rusty Wolf Head"
+  note-block-sound: entity.wolf.growl
+snowy_wolf:
+  texture: NGVjYWRhYjUwYWE4ZDQxZmE5YjM2OWEyZjg0Zjk3NDU2YmU3OTAwYjIyMGVjZTNiOTVlOGEwMDk2ODY2MGQ1In19fQ==
+  chance: 0.5
+  looting: 0.1
+  display: "Snowy Wolf Head"
+  note-block-sound: entity.wolf.ambient
+snowy_angry_wolf:
+  texture: NTJiN2MyODZjMjMwODI2YjI5ZTdmZDM3ZjI1NzNiOTAxNWM0MjJiYzM4ZmViMTRkOWEzMTdjNjg1NWFkYTNmNiJ9fX0=
+  chance: 0.5
+  looting: 0.1
+  display: "Angry Snowy Wolf Head"
+  note-block-sound: entity.wolf.growl
+spotted_wolf:
+  texture: NTczYjlhNjQzMWFmMjZiY2IzMTgyNmViNmZkOWY0YjM1Yjk0N2JhNTg4MmM2ZTRhYTkzNTg4NjMzZjdiOGQ5ZCJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Spotty Wolf Head"
+  note-block-sound: entity.wolf.ambient
+spotted_angry_wolf:
+  texture: MTc4NmI3MzkzNDhhYTg1MDJlYTE4NWRmYjE0YmY1YWIwMWUyOWUwODJkMWZlYjg2MTNiM2ZlOTNlMGRlYmQ4ZSJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Angry Spotty Wolf Head"
+  note-block-sound: entity.wolf.growl
+striped_wolf:
+  texture: N2ZjNTJmYjNjZGZjNmFlYjAwZTY3YzFiN2E1OWQ4ZDMyMGRmNDQ2NTZjN2FmNjgyNGIxM2NhNjA3OTJhYTdkNyJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Striped Wolf Head"
+  note-block-sound: entity.wolf.ambient
+striped_angry_wolf:
+  texture: OGQ2MGMyNTQ4OGIwNjcyNzY2OWE2OTE1ZDFkYWRhYTlhN2QyODMxYjQ2MGJlZTMwZTVkYTQwNzg3NDcwNTAwMSJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Angry Striped Wolf Head"
+  note-block-sound: entity.wolf.growl
+woods_wolf:
+  texture: OGQxMmFiMTc2NDdiNjljOTQyMTc2OTU3MmFjNjc0ZGUxOTkxMjRjMjg0YjllZDFmNjVhMjg1YzM4Y2QyYTUwNCJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Woods Wolf Head"
+  note-block-sound: entity.wolf.ambient
+woods_angry_wolf:
+  texture: NTMwNTgzZGJhOGVhNjE0MzA1ZGIwMTBiYWJkYzViYjQ0ZTlhMjAwMzMxMWIzOTlkODk2NWU3NzJkZDAxOTFmYiJ9fX0=
+  chance: 0.2
+  looting: 0.01
+  display: "Angry Woods Wolf Head"
+  note-block-sound: entity.wolf.growl
 
+breeze:
+  texture: YTI3NTcyOGFmN2U2YTI5Yzg4MTI1YjY3NWEzOWQ4OGFlOTkxOWJiNjFmZGMyMDAzMzdmZWQ2YWIwYzQ5ZDY1YyJ9fX0=
+  chance: 0.1
+  looting: 0.1
+  display: "Breeze Head"
+  note-block-sound: entity.breeze.idle_air
+
+bogged:
+  texture: NmMyODZhZTNlYjgyMjBlNGZmZGU5NGI3ZWEyNmVlNmM1ZmM5NTM4MzM0ZDA2ZjA1NTdjYjQxYWFlMzc1ZTUxZiJ9fX0=
+  chance: 0.06
+  looting: 0.05
+  display: "Bogged Head"
+  note-block-sound: entity.bogged.ambient
 
 

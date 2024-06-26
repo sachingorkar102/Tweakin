@@ -237,6 +237,14 @@ public class CoreCommand extends BaseCommand{
             }
             return;
         }
+        if(args[1].equals("WOLVES")){
+            for(Head h : Head.values()){
+                if(h.getEntityType().equalsIgnoreCase("WOLF")){
+                    player.getLocation().getWorld().dropItemNaturally(player.getLocation(),h.getSkull().clone());
+                }
+            }
+            return;
+        }
         if(!oHead.isPresent()){
             sender.sendMessage(messageManager.getMessage("invalid-item"));
             return;

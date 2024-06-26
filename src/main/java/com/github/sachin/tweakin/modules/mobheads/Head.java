@@ -6,6 +6,7 @@ import com.google.common.base.Predicates;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.*;
 import org.bukkit.entity.Fox.Type;
@@ -14,6 +15,7 @@ import org.bukkit.entity.Panda.Gene;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.function.Predicate;
 
@@ -137,6 +139,7 @@ public enum Head {
     GRAY_TRADER_LLAMA("TRADER_LLAMA",(llama)-> ((TraderLlama)llama).getColor()== Color.GRAY),
     TURTLE,
     VEX,
+    VEX_2("VEX"),
     ARMORER_VILLAGER("VILLAGER",(vil)-> ((Villager)vil).getProfession()==Villager.Profession.ARMORER),
     BUTCHER_VILLAGER("VILLAGER",(vil)-> ((Villager)vil).getProfession()==Villager.Profession.BUTCHER),
     CARTOGRAPHER_VILLAGER("VILLAGER",(vil)-> ((Villager)vil).getProfession()==Villager.Profession.CARTOGRAPHER),
@@ -214,23 +217,26 @@ public enum Head {
     PALE_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:PALE")),
 
 
-//    ASHEN_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:ASHEN")),
-//    ASHEN_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:ASHEN")),
-//    BLACK_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:BLACK")),
-//    BLACK_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:BLACK")),
-//    CHESTNUT_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:CHESTNUT")),
-//    CHESTNUT_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:CHESTNUT")),
-//    RUSTY_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:RUSTY")),
-//    RUSTY_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:RUSTY")),
-//    SNOWY_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SNOWY")),
-//    SNOWY_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SNOWY")),
-//    SPOTTED_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SPOTTED")),
-//    SPOTTED_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SPOTTED")),
-//    STRIPED_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:STRIPED")),
-//    STRIPED_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:STRIPED")),
-//    WOODS_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:WOODS")),
-//    WOODS_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:WOODS")),
+    ASHEN_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:ASHEN")),
+    ASHEN_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:ASHEN")),
+    BLACK_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:BLACK")),
+    BLACK_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:BLACK")),
+    CHESTNUT_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:CHESTNUT")),
+    CHESTNUT_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:CHESTNUT")),
+    RUSTY_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:RUSTY")),
+    RUSTY_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:RUSTY")),
+    SNOWY_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SNOWY")),
+    SNOWY_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SNOWY")),
+    SPOTTED_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SPOTTED")),
+    SPOTTED_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:SPOTTED")),
+    STRIPED_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:STRIPED")),
+    STRIPED_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:STRIPED")),
+    WOODS_WOLF("WOLF",(entity) -> !((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:WOODS")),
+    WOODS_ANGRY_WOLF("WOLF",(entity) -> ((Wolf)entity).isAngry() && Tweakin.getPlugin().getPrilib().getNmsHandler().matchWolfVariant(entity,"MINECRAFT:WOODS")),
 
+//    1.21
+    BREEZE,
+    BOGGED
     ;
 
 
@@ -338,13 +344,22 @@ public enum Head {
     private ItemStack createSkull(ConfigurationSection section){
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.YELLOW+ChatColor.translateAlternateColorCodes('&', section.getString("display","")));
-        
-        Tweakin.getPlugin().getNMSHandler().applyHeadTexture((SkullMeta)meta, initValue+section.getString("texture").replace(initValue, ""));
-        item.setItemMeta(meta);
-        NBTItem nbtItem = Tweakin.getPlugin().getNMSHandler().newItem(item);
-        nbtItem.setString("mob-head-item", toString());
-        return nbtItem.getItem();
+        SkullMeta skullMeta = (SkullMeta) meta;
+        Tweakin.getPlugin().getNMSHandler().applyHeadTexture(skullMeta, initValue+section.getString("texture").replace(initValue, ""));
+        if(Tweakin.getPlugin().isPost1_20()){
+            String sound = section.getString("note-block-sound","none");
+            if(!sound.equalsIgnoreCase("none")){
+                skullMeta.setNoteBlockSound(NamespacedKey.minecraft(sound));
+            }
+        }
+        skullMeta.setDisplayName(ChatColor.YELLOW+ChatColor.translateAlternateColorCodes('&', section.getString("display","")));
+        skullMeta.getPersistentDataContainer().set(Tweakin.getKey("mob-head-enum"), PersistentDataType.STRING,toString());
+        item.setItemMeta(skullMeta);
+//        NBTItem nbtItem = Tweakin.getPlugin().getNMSHandler().newItem(item);
+//        nbtItem.setString("mob-head-item", toString());
+
+//        return nbtItem.getItem();
+        return item;
     }
 
     private static <T extends LivingEntity> T cast(Entity en,Class<T> caster){
