@@ -41,6 +41,8 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
     private final ArmorStandWandItem wandItem;
     private Message messageManager;
     protected final Map<UUID,UUID> cachedAsList = new HashMap<>();
+
+    private final List<EquipmentSlot> disabledArmorSlots = new ArrayList<>();
     public static final Map<Integer,EquipmentSlot> SLOT_TO_EQUIPMENT_MAP = new HashMap<Integer,EquipmentSlot>(){{
         put(1,EquipmentSlot.HEAD);
         put(10,EquipmentSlot.CHEST);
@@ -58,6 +60,16 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         this.messageManager = plugin.getTweakManager().getMessageManager();
     }
 
+    @Override
+    public void reload() {
+        super.reload();
+        disabledArmorSlots.clear();
+        for(String s : getConfig().getStringList("disabled-armor-slots")){
+            if(EquipmentSlot.valueOf(s) != null){
+                disabledArmorSlots.add(EquipmentSlot.valueOf(s));
+            }
+        }
+    }
 
     public PoseManager getPoseManager() {
         return poseManager;
@@ -139,6 +151,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             else if(e.getHand()==EquipmentSlot.HAND && player.isSneaking() && getConfig().getBoolean("armor-swap") && hasPermission(player, Permissions.BETTERARMORSTAND_ARMORSWAP)){
                 e.setCancelled(true);
                 for(EquipmentSlot slot : EquipmentSlot.values()){
+                    if(slot.name().equalsIgnoreCase("BODY")) continue;
                     ItemStack asItem = as.getEquipment().getItem(slot);
                     ItemStack playerItem = player.getEquipment().getItem(slot);
                     PlayerArmorStandManipulateEvent event = new PlayerArmorStandManipulateEvent(player,as,playerItem,asItem,slot);
@@ -201,7 +214,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             ItemStack cItem = e.getCurrentItem();
             Player player = holder.player;
             int slot = e.getSlot();
-            if(!SLOT_TO_EQUIPMENT_MAP.keySet().contains(slot) || e.isShiftClick()){
+            if(!SLOT_TO_EQUIPMENT_MAP.keySet().contains(slot) || e.isShiftClick() || disabledArmorSlots.contains(SLOT_TO_EQUIPMENT_MAP.get(slot))){
                 e.setCancelled(true);
 
             }
@@ -213,6 +226,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
             }
 
             if(SLOT_TO_EQUIPMENT_MAP.keySet().contains(slot)){
+                if(getDisabledArmorSlots().contains(SLOT_TO_EQUIPMENT_MAP.get(slot))) return;
                 new BukkitRunnable(){
                     public void run() {
 
@@ -255,6 +269,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
 
             gui.armorStand.getPersistentDataContainer().remove(TConstants.ARMORSTAND_EDITED);
             for(int slot : SLOT_TO_EQUIPMENT_MAP.keySet()){
+                if(getDisabledArmorSlots().contains(SLOT_TO_EQUIPMENT_MAP.get(slot))) continue;
                 gui.armorStand.getEquipment().setItem(SLOT_TO_EQUIPMENT_MAP.get(slot),gui.inventory.getItem(slot),true);
             }
             
@@ -318,5 +333,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         return ItemsAdderCompat.isEnabled && ItemsAdderCompat.isCustomFurniture(as);
     }
 
-    
+    public List<EquipmentSlot> getDisabledArmorSlots() {
+        return disabledArmorSlots;
+    }
 }

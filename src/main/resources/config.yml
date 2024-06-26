@@ -621,6 +621,8 @@ better-armorstands:
   # Aliases for /armorstand command
   # Pro tip: use | to add more then one aliases
   alias: as|armorstand|editarmorstand
+  # valid armor slots are: HAND,HEAD,CHEST,LEGS,FEET,OFF_HAND
+  disabled-armor-slots: []
 
 
 # REQUIRES better-armorstands to be enabled

@@ -46,7 +46,7 @@ public class ASGuiHolder implements InventoryHolder{
             return;
         }
         ASGuiHolder gui = new ASGuiHolder(player,as);
-        gui.setItems();
+        gui.setItems(instance);
         player.openInventory(gui.getInventory());
         as.getPersistentDataContainer().set(TConstants.ARMORSTAND_EDITED, PersistentDataType.INTEGER, 1);
     }
@@ -54,7 +54,7 @@ public class ASGuiHolder implements InventoryHolder{
     
 
 
-    public void setItems(){
+    public void setItems(BetterArmorStandTweak instance){
         for(int i : Arrays.asList(0,2,3,12,13,18,20,21,22,23,24,25,26,27,37)){
             inventory.setItem(i, plugin.getMiscItems().FILLAR_GLASS);
         }
@@ -99,6 +99,9 @@ public class ASGuiHolder implements InventoryHolder{
             EquipmentSlot equipSlot = BetterArmorStandTweak.SLOT_TO_EQUIPMENT_MAP.get(slot);
             ItemStack item = armorStand.getEquipment().getItem(equipSlot);
             inventory.setItem(slot,item);
+            if(instance.getDisabledArmorSlots().contains(BetterArmorStandTweak.SLOT_TO_EQUIPMENT_MAP.get(slot))){
+                inventory.setItem(slot,plugin.getMiscItems().FILLAR_GLASS);
+            }
         }
 
         if(armorStand.getPersistentDataContainer().has(TConstants.UUID_LOCK_KEY, DataType.UUID)){
