@@ -688,7 +688,7 @@ infinite-firework:
   max-effects: 2
 
 # adds some useful recipes
-# to configure each recipe check out more-recipes.yml
+# to configure each recipe check out more-recipes.yml(appears in plugins/Tweakin folder when this tweak is enabled)
 more-recipes:
   enabled: false  
 
@@ -807,3 +807,40 @@ chicken-shearing:
 recyclable-wax:
   enabled: false
   black-list-worlds: []
+
+# adds stone cutter recipes to convert normal blocks into mini block heads
+# check out mini-blocks.yml(appears in plugins/Tweakin folder when this tweak is enabled) to edit the texture,display,output count and ingredient of each block
+mini-blocks:
+  enabled: false
+
+
+# REQUIRES PaperMC or its fork as server software
+# Dropping dirt block in water filled cauldron will instantly turn it into mud block
+# Permissions:
+# tweakin.cauldronmud.use: permission to use this tweak
+cauldron-mud:
+  enabled: false
+  black-list-worlds: []
+  check-permissions: false
+
+# when enabled, it allows to get certain blocks back when broken with or without silk touch (configurable)
+# tweakin.blockalwaysdrops.use: permission to use this tweak
+block-always-drops:
+  enabled: false
+  black-list-worlds: []
+  check-permissions: false
+  # list of blocks that will always drop when broken
+  # each item in list has 2 components first is the block_type and second is true/false i.e, whether the block should drop only when using silk touch enchantment.
+  # for example: ENDER_CHEST|false, means when any ender chest is broken it will drop the ender chest item, even when player is not using a silk touch enchanted item (since the second component is false).
+  blocks: [ENDER_CHEST|false,GLASS$|true,GLASS_PANE$|true,BUDDING_AMETHYST|true]
+
+# when a wandering trader spawns, it will notify the player within 60 blocks of range
+# the announcement message can be edited in messages.yml under wandering-trader-announcement-message key
+# you can use placeholders like %x%,%y%,%z% to accurately specify the wandering trader's coordinates in the announcement message
+# tweakin.wanderingtrader.message: only the players with this permission will receive the announcement message
+wandering-trader-announcement:
+  enabled: false
+  black-list-worlds: []
+  check-permissions: false
+  range: 60
+

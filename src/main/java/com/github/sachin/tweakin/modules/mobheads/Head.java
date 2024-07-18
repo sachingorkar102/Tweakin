@@ -2,6 +2,7 @@ package com.github.sachin.tweakin.modules.mobheads;
 
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.prilib.nms.NBTItem;
+import com.github.sachin.tweakin.utils.TConstants;
 import com.google.common.base.Predicates;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -246,7 +247,7 @@ public enum Head {
     private double chance;
     private double lootingMul;
     private ConfigurationSection section;
-    private final String initValue = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUv";
+
 
     private String wolfVarient;
     
@@ -345,7 +346,7 @@ public enum Head {
         ItemStack item = new ItemStack(Material.PLAYER_HEAD);
         ItemMeta meta = item.getItemMeta();
         SkullMeta skullMeta = (SkullMeta) meta;
-        Tweakin.getPlugin().getNMSHandler().applyHeadTexture(skullMeta, initValue+section.getString("texture").replace(initValue, ""));
+        Tweakin.getPlugin().getNMSHandler().applyHeadTexture(skullMeta, TConstants.INIT_HEAD_TEXTURE_VALUE+section.getString("texture").replace(TConstants.INIT_HEAD_TEXTURE_VALUE, ""));
         if(Tweakin.getPlugin().isPost1_20()){
             String sound = section.getString("note-block-sound","none");
             if(!sound.equalsIgnoreCase("none")){

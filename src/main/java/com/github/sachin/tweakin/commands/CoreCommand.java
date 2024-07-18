@@ -9,6 +9,7 @@ import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.gui.PagedGuiHolder;
 import com.github.sachin.tweakin.modules.betterarmorstands.BetterArmorStandTweak;
 import com.github.sachin.tweakin.modules.betterarmorstands.PresetPose;
+import com.github.sachin.tweakin.modules.miniblocks.MiniBlocksTweak;
 import com.github.sachin.tweakin.modules.mobheads.Head;
 import com.github.sachin.tweakin.utils.annotations.CommandInfo;
 import com.google.common.base.Enums;
@@ -19,6 +20,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.StonecuttingRecipe;
 import org.bukkit.util.RayTraceResult;
 
 import java.lang.reflect.Method;
@@ -212,11 +214,11 @@ public class CoreCommand extends BaseCommand{
     }
 
     // /tw givehead [player] [head] (amount)
-    @Subcommand("givehead")
+    @Subcommand("givemobhead")
     @CommandCompletion("@players @tweakinheads @nothing")
-    @CommandInfo(syntax = "&a/tweakin givehead &7[player] [head] (amount)",perm = "tweakin.command.givehead",description = "gives specified player a mob head")
+    @CommandInfo(syntax = "&a/tweakin givemobhead &7[player] [head] (amount)",perm = "tweakin.command.givemobhead",description = "gives specified player a mob head")
     public void onGiveHeadCommand(CommandSender sender,String[] args){
-        if(!hasPermission(sender,"command.givehead")){
+        if(!hasPermission(sender,"command.givemobhead")){
             sender.sendMessage(messageManager.getMessage("no-permission"));
             return;
         }
@@ -237,14 +239,6 @@ public class CoreCommand extends BaseCommand{
             }
             return;
         }
-        if(args[1].equals("WOLVES")){
-            for(Head h : Head.values()){
-                if(h.getEntityType().equalsIgnoreCase("WOLF")){
-                    player.getLocation().getWorld().dropItemNaturally(player.getLocation(),h.getSkull().clone());
-                }
-            }
-            return;
-        }
         if(!oHead.isPresent()){
             sender.sendMessage(messageManager.getMessage("invalid-item"));
             return;
@@ -257,6 +251,42 @@ public class CoreCommand extends BaseCommand{
         item.setAmount(amount);
         player.getInventory().addItem(item);
         sender.sendMessage(messageManager.getMessage("gave-head").replace("%head%", args[1]).replace("%player%", player.getName()));
+
+    }
+
+    @Subcommand("giveminiblock")
+    @CommandCompletion("@players @tweakinminiblocks @nothing")
+    @CommandInfo(syntax = "&a/tweakin giveminiblock &7[player] [head] (amount)",perm = "tweakin.command.giveminiblock",description = "gives specified player a mini block head")
+    public void ongiveminiBlockCommand(CommandSender sender,String[] args){
+        if(!hasPermission(sender,"command.giveminiblock")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
+        if(!plugin.getTweakManager().getTweakFromName("mini-blocks").registered){
+            sender.sendMessage(messageManager.getMessage("tweak-is-disabled").replace("%tweak%", "mini-blocks"));
+            return;
+        }
+        if(args.length < 2) return;
+        Player player = Bukkit.getPlayer(args[0]);
+        if(player == null){
+            sender.sendMessage(messageManager.getMessage("invalid-player"));
+            return;
+        }
+        MiniBlocksTweak tweak = (MiniBlocksTweak) plugin.getTweakManager().getTweakFromName("mini-blocks");
+        if(tweak.getRecipeMap().containsKey(args[1])){
+            ItemStack head = tweak.getRecipeMap().get(args[1]).getResult().clone();
+            int amount = 1;
+            if(args.length == 3){
+                amount = Integer.parseInt(args[2]);
+            }
+            head.setAmount(amount);
+            player.getLocation().getWorld().dropItemNaturally(player.getLocation(),head);
+            sender.sendMessage(messageManager.getMessage("gave-head").replace("%head%", args[1]).replace("%player%", player.getName()));
+        }
+        else{
+            sender.sendMessage(messageManager.getMessage("invalid-item"));
+        }
+
 
     }
 

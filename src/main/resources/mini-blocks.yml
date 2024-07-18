@@ -1,0 +1,1177 @@
+
+acacia_log:
+  texture: MjY3ZTljNzRhYjc3YzAwOTE1NGE5YzczNzg0NmI1MjUxMDliOGMzMTdhNzE2Y2FlZGVjOTI3MDJhZmQwZGU2NSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: ACACIA_LOG
+  display: Mini Acacia Log
+acacia_planks:
+  texture: YzAxNjk2NmY0ZjNkYWU2NTI0ODYxZTZjYzU2MzE3NDk5MDcwMWJlYWUyNjI3NzEyNzE4YzUxMGYzMzNjNmM4MyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: ACACIA_PLANKS
+  display: Mini Acacia Planks
+amethyst_block:
+  texture: YzEzYjc3ZjVhNzQ2YzFmMDBkZDFjZTdmZTY2OTc2Yzc1Y2VjZjdkODliZGIwMmU4Y2Y5NDM2NjcyYWY1ODk2ZCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: AMETHYST_BLOCK
+  display: Mini Amethyst Block
+ancient_debris:
+  texture: OTcxMTRmNWQzOTAxODhkZjA0NzdjZGY5YWVjZjViYzgxNDE2Y2U1ZTVjNTljZmNhYzU4MWE0M2YzOTAyYzFlIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: ANCIENT_DEBRIS
+  display: Mini Ancient Debris
+andesite:
+  texture: YmM1ZTE2Yzc2MWUwYWFhMmRkNTI4OWU0M2Y1MmNjNDcxNTY3Y2Q4ZjhjOGE0NzVhNGIyOTBhZWU4Y2ZhNDUzOCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: ANDESITE
+  display: Mini Andesite
+azalea_leaves:
+  texture: OGRhNjI1ZGNmYmZiODc1NTZmZTk0NjI3MWQ4YWIwMWFhZjAyYmE2ODFmNTY3MzcyZDA1NjI4NmI3YTAyYmIxZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: AZALEA_LEAVES
+  display: Mini Azalea Leaves
+bamboo_block:
+  texture: YTFmZGFjOGUyMzkzYzcwZjM1ZDk3MWIwZGRkMjY2ZmJmYWY1NjIxNDFjZjE1NjY2NWZlMjMwMmYyMWUzOGI2OSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BAMBOO_BLOCK
+  display: Mini Bamboo Block
+bamboo_planks:
+  texture: MmQwZWYzYTc3NzllMzNiYWMzZjVlYzM5NGIxMTVjZjIyN2NhMjA1ODJlNTZjZjNjYzBjMjNkNzhjMWUyN2U0NCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BAMBOO_PLANKS
+  display: Mini Bamboo Planks
+barrel:
+  texture: ZGVjZDIyYzRiYjYxM2JkN2Y2OWNiMDIzMWExMzBiYjEwMzViNmIwZDQ2ZDY3MmMwN2U4ZTJhMDM1ZmUwMmU3MCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BARREL
+  display: Mini Barrel
+basalt:
+  texture: NzEwNDliZmJhNGY3ZWE5MzA1MWNhMTA5NWExMjNlMjNmYWRiNGFiYjJiZDU3YmVmOGI1Mzc4YTY2OTZiOGM5NCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BASALT
+  display: Mini Basalt
+beehive:
+  texture: OGNlMGQzY2E1YzExMzY3MjRiNzg3ODdlMGE1NDc3NTNkYzhlOTk2OTY1MWU3YzZlZTNkZmU0MmI3OGZiMThjZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BEEHIVE
+  display: Mini Beehive
+bee_nest:
+  texture: ZDZmMjAwMDZlZWI0NTcyZWZlMTljM2YxNjcyMjY5MGY3MzVkYTlmZWE0Y2ZjOTQxZWI0YzNlZDU3NDNmMTkwNiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BEE_NEST
+  display: Mini Bee Nest
+birch_log:
+  texture: NmM0MDExOTliNzgzMzAwY2JkOWNiMWNlYWNmYTVlMjkzZmU3NTc1Nzc2MTg4Y2Q1YWE2Y2E4YmZmYjhlMmY1NyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BIRCH_LOG
+  display: Mini Birch Log
+birch_planks:
+  texture: NmNjODg4NzczZTlkMTFjYzhhYjE0ZmM4OGUwY2ZmOTRjY2IxNmM4OWE1OGZlYzE4MWUyMmYwZmIxOTRiYjlmZCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BIRCH_PLANKS
+  display: Mini Birch Planks
+blackstone:
+  texture: NTkwNzQ1NzVkMDcwMTRlOTI4OTcyMTBmNTI3OTViYThhYzRhNTVhYjU5ZWYzNDhlMTFlOGRhMDMwMTJkNjc0NyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BLACKSTONE
+  display: Mini Blackstone
+black_concrete:
+  texture: NGZjMjM3MmI0NTc1NDJjNjU0ODNhZmExNDQyZTFjMzNhNWZmNzU4ZDM2MmVjZWM0MzQ4Nzk1MTcyODI0ZDg2OSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BLACK_CONCRETE
+  display: Mini Black Concrete
+blast_furnace:
+  texture: NjBmNGQzNjAxYjI0ZDZiMzcxYmI5N2EzZjQyNzc5ODQwYTEyOTQ4N2EzMDRkYWI2MjM0NjlkY2EwMjg3Y2FmNSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BLAST_FURNACE
+  display: Mini Blast Furnace
+blue_concrete:
+  texture: NTdjN2EyOTcxMDNkYjA4NGFmNjI3M2I4Nzk4MDVhZmM4NTc3Y2M4MmM3NTJhYzI2NmNmOGQ3YTZlZWE2MCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BLUE_CONCRETE
+  display: Mini Blue Concrete
+bone_block:
+  texture: Y2Y0YjllZDFiMzRmYzQ3MzJmNjIyYmVkZWMwYzY0Y2UyZjJhNzkwZDdmNjNkNTkyZTU1N2RiNjAyZmY2OWIwYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BONE_BLOCK
+  display: Mini Bone Block
+brain_coral_block:
+  texture: OTU3ZGQ0M2U4ZjFjZDEzNzI2YzBmOTlhYzQwNDcxNTA0N2QxMmViNDJhMjhmZmM2YWU5YmZiM2I3MGQ3NjQwYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BRAIN_CORAL_BLOCK
+  display: Mini Brain Coral
+bricks:
+  texture: NGQ2YWJjY2RmZGI1MjMxZjc0NzEwZDc3OGMyMDg0ZjRjOGU0Y2Q2OTEzYTcwZThhNzIxM2FkYjYzOTE5MjUyNyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BRICKS
+  display: Mini Bricks
+brown_concrete:
+  texture: NjUzODEyMGY2MThmMmNjZDNiYmRjMThjZDU3ODJlNjM4MmFlOWVlNzJkMDVmNWY4NjI3NmFkYTU0ZWY3ZWQifX19
+  count: 8
+  enabled: true
+  ingredient: BROWN_CONCRETE
+  display: Mini Brown Concrete
+bubble_coral_block:
+  texture: MTNmMTgwNWVkY2QzMmI5N2FiMmYxOWEwM2JhYWIxZjhkNGRjNGRiOGVjN2EwMDRiMTRlYjY2NmQwOWZiODdmMiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: BUBBLE_CORAL_BLOCK
+  display: Mini Bubble Coral
+calcite:
+  texture: NDlhYjZlN2IwYzcyNjQ1Y2RiNGEwOWE0Mjk2MDAzZGYyNGM2Y2ZhMWQ4ZDAxMzNiYzhhZTIxMWU5NDg4MDdjMCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CALCITE
+  display: Mini Calcite
+cartography_table:
+  texture: OWNiOTdjNjgyMzZjNjM1MjM2MmYzZWI5MTk0YWI1NDJmMTg3MjBhMzRlOGQwOWRhYTE2OGEwNWVmNjUwMTMwZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CARTOGRAPHY_TABLE
+  display: Mini Cartography Table
+cherry_leaves:
+  texture: Njk4YjM4YWViZTdjNGVkNWM4MTllZTQyM2YzYjQ2YzYwNjg0Y2JkM2VkMGZhNGE5ZmQ1OTNhY2E2M2MwYWM4NSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CHERRY_LEAVES
+  display: Mini Cherry Leaves
+cherry_log:
+  texture: Y2VjNmY4MjVjMDkxMjRiY2NiYjBkY2Q1MjJhOTQzZmYzNmY0N2I2MmVjNzcxM2UwN2JjNTIyODUwZGYxMWI0NSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CHERRY_LOG
+  display: Mini Cherry Log
+cherry_planks:
+  texture: ZGJiMmY1NWZjOTM3MDQ0NTM4NTEwNzg0ZDZlZmM5ZTE4NjQxZDRiODRmNWNhMDdmOTk0YjJjN2Q2MjEyNGY5In19fQ==
+  count: 8
+  enabled: true
+  ingredient: CHERRY_PLANKS
+  display: Mini Cherry Planks
+chest:
+  texture: ZDVjNmRjMmJiZjUxYzM2Y2ZjNzcxNDU4NWE2YTU2ODNlZjJiMTRkNDdkOGZmNzE0NjU0YTg5M2Y1ZGE2MjIifX19
+  count: 8
+  enabled: true
+  ingredient: CHEST
+  display: Mini Chest
+chiseled_bookshelf:
+  texture: NjlmNzE0OWM4Y2ViNzljMDQzNTBhYWMwMzRlZjcyNDUwN2E3M2ZhZjljNjM5OWU3OTc2YThkZTVhMTk3MGRkNCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CHISELED_BOOKSHELF
+  display: Mini Chiseled Bookshelf
+chiseled_nether_bricks:
+  texture: NTMxODBjYjA4MmQ5MTBjNjIwOGQ0M2FjNjE5ZmNiMGI2NTRhYjZmNzBmZDgxYzM1OTkxZmNhMjFhYWI5MDhjMSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CHISELED_NETHER_BRICKS
+  display: Mini Chiseled Nether Bricks
+chiseled_polished_blackstone:
+  texture: YmJlODJmMGZlZDY5NTc4ZDI1ZjE1M2ZmMTVhYTBmNGRkNTdhZDY5ZGI2ZGNkNzdhYThkZmFmZTA1NmI2ZGNiNiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CHISELED_POLISHED_BLACKSTONE
+  display: Mini Chiseled Polished Blackstone
+chiseled_stone_bricks:
+  texture: NTBlYzk0MDZhYzA4NWNkOTU3OGRlYWIzMGNkNzQ2NzA0NmVmYzQyZjU4MjEyZmI4Mjg0MzllZTg4NWYxYmUxMyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CHISELED_STONE_BRICKS
+  display: Mini Chiseled Stone Bricks
+clay:
+  texture: NTkyNGVkYTcyYTA3ZjU2MzI4ZTAzNmYyMzBlNDg4ODE3ZGQ0ZDQ1NjgxOTEzZDJmYzliZjJkMmE1ZjE5NDFhZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CLAY
+  display: Mini Clay
+coal_block:
+  texture: NzY4MjQ4NGNlNmMwYTgxMjE1MDMxZjk2YTcxNDliZWRlOThjOWQyMTVkMTZlYzhkZjAxZGFkZmYzZDA5NWRiNSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: COAL_BLOCK
+  display: Mini Coal Block
+coal_ore:
+  texture: YTVkZTZkYTBjMzNkODAyNjFjNzhhZmJlMjY0Mjc5M2M2YTM4NTJkODdjZjY1ZDVhMjU5Njg1OGMwYjViY2EwNiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: COAL_ORE
+  display: Mini Coal Ore
+cobbled_deepslate:
+  texture: MzAxMDFkMDEzNzk3MTJhYTZiMWE5ODg5ZmE2NmU0ZDA1OTE2MWUyZTM1ZDk1YThlYTQ4MzQ3ZDY4N2QwODYzOCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: COBBLED_DEEPSLATE
+  display: Mini Cobbled Deepslate
+cobblestone:
+  texture: MzNkNTFmNGQwNjA5OGJiMWY0Y2VmZjYxOWM2ZGRjYTk3NmZjNzBlOWY4ODcxZWJlZTRlZWY2NTgwY2Y3NmIwZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: COBBLESTONE
+  display: Mini Cobblestone
+copper_bulb:
+  texture: YWMzMzMxNTkzZWE2OGQwMDFkMDViYTVhYTM5YzI2NjZlODQ2MTZiYTk5YWRjZTUzMmM0MTJmMzE4OGE2ZWU4ZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: COPPER_BULB
+  display: Mini Copper Bulb (Lit)
+copper_ore:
+  texture: YjUwMTliMmMxOTRkNDBkYmFkOWYzOTUwMTU2MGMxZTc5ZjhkNTZiOTg4MzAxNDU0OGFlOTk3NmJiNmQ5ODEwIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: COPPER_ORE
+  display: Mini Copper Ore
+crafter:
+  texture: MTA2ZTIxYmI0YmVjYjBiODkyMmFlODc1MGM0YThmNmY2ZTQ0ZjIyMjQ4OGFjNTg0YzdlMmNjZjc4YmZkNmQ5MiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CRAFTER
+  display: Mini Crafter
+crafting_table:
+  texture: NWU2YWIzZmRjMmJjYjA3YWU3NjkwODAxYWUwMGFjMmZmZjU0MmQ3OTMwODk2MWMyYjU3OTM3MGVjZjY1NmMyOSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CRAFTING_TABLE
+  display: Mini Crafting Table
+crimson_nylium:
+  texture: MThmMGI4ODQ2YmIyMmMyZGU2ODQ5NDgzYWU1MThmYWZiYmU0NDZhNzM1YTNlODgwNmUwMmYxYTQ3ZmMxNGQ3MCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CRIMSON_NYLIUM
+  display: Mini Crimson Nylium
+crimson_planks:
+  texture: ZjlhYWIyZTE3NWE3ZTc3ZTM2NTVmNzY5MmQxYzY1MTczMTZiYTM3ODNiNWQ1ZmM1OWIzNDk1NGZmNmJhNjY1MyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CRIMSON_PLANKS
+  display: Mini Crimson Planks
+crimson_stem:
+  texture: NzRmOWE0ZDhhMDQ1NDRjYjIyOTdiZTE2MDM0MGFlZTlkMjE1MTk0NGY4OGE0NTQzZjdkYzhiZTlhN2IwN2Q1NiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CRIMSON_STEM
+  display: Mini Crimson Stem
+crying_obsidian:
+  texture: YmRmODJiZGM4YTRmN2QwMjZiMGM0ZjE3ZDA2YjhiZjVkYzUyNmEyNTQzODk4NjYyOTFlN2I2YjQ0ZjkwYjBlIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: CRYING_OBSIDIAN
+  display: Mini Crying Obsidian
+cut_copper:
+  texture: NTMxYzU3ODM3YjhjMzdlY2RiM2RkZDlmM2E4ZGMzOTVhNzEyYzI1N2ZhZjE3N2Q3ZmU4ZDNmNDRlZjQ3NTkzMSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CUT_COPPER
+  display: Mini Cut Copper
+cyan_concrete:
+  texture: ZjMzYjUxZmVmMWQ3ZmRmMTkyNzRiYjc2ZmNlZGVjZWM3YTc3ZDAxMGNiMzRmZTAyOWZiNzk0Y2M1OWFiYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: CYAN_CONCRETE
+  display: Mini Cyan Concrete
+dark_oak_log:
+  texture: OGIyZDUzNjA4NjM0OGZkZmMwODExZjljNmY2ZWMxYzBhN2Q2MDUwNzYxZjU5MjFiMmE3YTVkM2EwMDU5ZWMwMCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DARK_OAK_LOG
+  display: Mini Dark Oak Log
+dark_oak_planks:
+  texture: ODljYTc5OGZlM2U0MDIzOTcxYjc4NmE2NGE3MmJkOThhMTVmZjc1YTdmODExN2I1NjAxMDNlMjM0ZGUwNTJhYyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DARK_OAK_PLANKS
+  display: Mini Dark Oak Planks
+dark_prismarine:
+  texture: ODIxNTI0MWEyMGVkZWEwYTY0ZjY4MmYzOGE2OWQxZGNkZmFhOGQ5Y2M2NjhhNzhiM2I3MmMwODhmZDIyOTFkOSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DARK_PRISMARINE
+  display: Mini Dark Prismarine
+deepslate:
+  texture: ZjJkNzE0NGRjZjFlNzg0OTU2ZWUxMmZiMjljNjEzODJlZWEyNzJhNzYyMWI1MDY2MjM5N2JjMDc0NTE1ZDk4MiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE
+  display: Mini Deepslate
+deepslate_coal_ore:
+  texture: YTE5NjBkM2RlZGJjNmRlMTA5N2I3Y2MyZDgzNzcyOGJkOTQzZTdjZmI5MGQxMWM0OTQzNjc5NmZiZDlkZDBjYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE_COAL_ORE
+  display: Mini Deepslate Coal Ore
+deepslate_copper_ore:
+  texture: ZjQ2MWViZmYzZWZiMTk1NzIxYzRjNjQzZjEzNDFkMjg1NzMwMmYwZWYzY2U1MzdkZTA3MjI3ZWU5MzQ3NzYwNyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE_COPPER_ORE
+  display: Mini Deepslate Copper Ore
+deepslate_diamond_ore:
+  texture: YmYxMjFlNTE4YTRmZmFkNzQ5NDAwNzQ2NDJkNmRiOWE0OGRjMmFhOWJlYzJiNjYyNTQ0NjgyZDhlODUxZDJhIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE_DIAMOND_ORE
+  display: Mini Deepslate Diamond Ore
+deepslate_emerald_ore:
+  texture: YTA1NjFjN2E3N2EyOTUyMjg2NTIwZGNhZTA3NjVkNDllZGEyNmRjOWQ0YzQwYmRjNmUwODQ3MzI3NWQ2MDI0MiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE_EMERALD_ORE
+  display: Mini Deepslate Emerald Ore
+deepslate_gold_ore:
+  texture: MTQwYzQwNzM0ZDU1YzIyNWRhMjIwYTMwYzA3NjhjNzAwYmRmYTU2YzE3ZDNhNWViNWZkY2I3NTg2MTliNWUxNyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE_GOLD_ORE
+  display: Mini Deepslate Gold Ore
+deepslate_iron_ore:
+  texture: YzY2NWZmZGZiMjA5YjU4OGYzYTVlYTJkYTZmYzIxZjg0MzQ1ZjQ3ZjMxODQxODk5NjZjZGQwODBhN2RhOWEyOCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE_IRON_ORE
+  display: Mini Deepslate Iron Ore
+deepslate_lapis_ore:
+  texture: YTU1ZWZjOWMzNzlhYzMzYWVjOTA1MWU4OTk5ZTdmNDgzNzE1NTEwYjM3NGYyYmUyY2QzNTc4MjFmZjg0MDYzMyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE_LAPIS_ORE
+  display: Mini Deepslate Lapis Lazuli Ore
+deepslate_redstone_ore:
+  texture: MTBjZGZiZTUzODk5ODk4MWFiMzlkM2Q4OTg0MzBkNTg4NjExZjQ3NmM4ODIwOTA5Njc4YTI5YTA3ZmRmNDAyZCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DEEPSLATE_REDSTONE_ORE
+  display: Mini Deepslate Redstone Ore
+diamond_block:
+  texture: N2IxNWRiNDkzMzI1ZGNjZTI5MDhiZTkzMjMxNjY0MTA1YWRjYmZhOGNjMDM5NTc5NjYzMzgxNWVhMTU2ZmVmYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DIAMOND_BLOCK
+  display: Mini Diamond Block
+diamond_ore:
+  texture: MmZiZjBhYzMxNDFkNWI2MzJjYmNkMzY1OWViODE1MmIyOWQ1ZmEwZDA5ZTRiMDhkYmU4MTNhYzg0MWU0MzQ4YiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DIAMOND_ORE
+  display: Mini Diamond Ore
+diorite:
+  texture: NTVjMWVmMmQ0NDY1NzE1MDZiNTlmOTI5MTAzZDE5NTZmYzMxNTJmZDlkNDAwMjAyNmJjZTViMDI4YzkxN2ZlZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DIORITE
+  display: Mini Diorite
+dirt:
+  texture: MWFiNDNiOGMzZDM0ZjEyNWU1YTNmOGI5MmNkNDNkZmQxNGM2MjQwMmMzMzI5ODQ2MWQ0ZDRkN2NlMmQzYWVhIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: DIRT
+  display: Mini Dirt
+dispenser:
+  texture: NDkzMzBkZGU0Zjk0MjRiNTBmMzZkNjJjODQzZWZlYWNiY2NmNWRhM2I5Y2UwNGFiZjE0ZTE3NWE5YzRmZGZmYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DISPENSER
+  display: Mini Dispenser
+dried_kelp_block:
+  texture: YjgwNWNhZjNkMDJlMzVlNGFhZGMxOWFmMTVlODI3OTAxNzdmMWNkN2I3OWY0ZjViODhkOTQzYWM2YmUyMDNhMSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DRIED_KELP_BLOCK
+  display: Mini Dried Kelp Block
+dripstone_block:
+  texture: YjI1Yjk4NTRkMmU0OGVkZTdhMjY4ZjAwMWY2YTEzMjZjOTdlYTU2MmNjYzA1MmQyOWZkOTE4OTVlNThkZWUzMCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DRIPSTONE_BLOCK
+  display: Mini Dripstone Block
+dropper:
+  texture: ZjNmM2UwM2YwNGU2ZmRmYzAwZDkxZWM4OTQyMmU5NDgzY2FhNjdmYzAyMGZjYWNjOTEwMzQyZGJlOWNjODBiYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: DROPPER
+  display: Mini Dropper
+emerald_block:
+  texture: YWFiOGZhNzY1NTU1MTVlMmRjYmUzODMzNmM2OTE4NDFhOWMyM2Q5OWM4OGY2NWQ5NmY0NDQ3Nzc1YmNjMTZlYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: EMERALD_BLOCK
+  display: Mini Emerald Block
+emerald_ore:
+  texture: YmI0NTQ4MmE4Y2FlNjk0NmViZTUxMTUxNjc3MGQxMDE4MjA0ZmRjNDgyYmY3OTQyYjQxNzUyNjYxMWExYzBiNSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: EMERALD_ORE
+  display: Mini Emerald Ore
+enchanting_table:
+  texture: ZTU2OTYzNzNhMTg3ZTZkMmRkY2RmMWQ2Nzc3NGNiMTFmM2E1MmE5NzY3YTA4NDU4OWIyM2YxOWE3ZjIzYTcxYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: ENCHANTING_TABLE
+  display: Mini Enchanting Table
+ender_chest:
+  texture: YTZjYzQ4NmMyYmUxY2I5ZGZjYjJlNTNkZDlhM2U5YTg4M2JmYWRiMjdjYjk1NmYxODk2ZDYwMmI0MDY3In19fQ==
+  count: 8
+  enabled: true
+  ingredient: ENDER_CHEST
+  display: Mini Ender Chest
+end_stone:
+  texture: ZGI2YjZiMzJlOWZlOGY3Y2I3OTBkNDJlZGYzZGY2OWQ0NzFkYzZiOWI2MTZiMTU3MGVjOGJjMWJmZmExNDMyYyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: END_STONE
+  display: Mini End Stone
+end_stone_bricks:
+  texture: YjBjNzRlMDFiOGIzNTI1NjVjNzFiNGZiMjgxMjEwMDhmNjI4NDAxNzUzMmRjZDkxODAyMzM4ODIxZjdkYjQ4ZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: END_STONE_BRICKS
+  display: Mini End Stone Bricks
+exposed_copper_bulb:
+  texture: Yjk1NTg1ZWIyNDkyYzgzNDNhZWY4NGM5ZGRmOTVjMTVjMDRkNGViYThlMTAzZmM0MTc0NmJkY2U3ZTAyNTI5OSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: EXPOSED_COPPER_BULB
+  display: Mini Exposed Copper Bulb (Lit)
+exposed_cut_copper:
+  texture: MTY0YmQ2ZTc4MWFhMTU1NmNjZGZmMzIyYzE5NmM5Nzk5MWVhOTUyODI4NDhiZTkwOGYxYThkZGNhOTJjYmViMiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: EXPOSED_CUT_COPPER
+  display: Mini Exposed Cut Copper
+fire_coral_block:
+  texture: OWZlOGRlZDNjNzRlYWNkNzg0MTJhOTAzYjkwNGY1NTc3ODUwZDFlMjBkMzQ4NzhmZDc3NTk3YWQxNjMzYmY3NCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: FIRE_CORAL_BLOCK
+  display: Mini Fire Coral
+fletching_table:
+  texture: MTBiNzhlMDk2MTIzNmM4ZGE3N2QyOGZhOWExYzZmMDM5OGViYjI4ZWJmZDdhMTc4M2ViMmI2YzhjNDE2MDM0NiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: FLETCHING_TABLE
+  display: Mini Fletching Table
+flowering_azalea_leaves:
+  texture: NDc5ZDQ3ZjMxMDk0ZTYyNGU5YmQ3ZTIzZTY2ZDQ1ZjQ0ZDAzMzc5MWE1ZmFjNDJhODQ1ODQxYTM4NjI5NDYwMiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: FLOWERING_AZALEA_LEAVES
+  display: Mini Flowering Azalea Leaves
+furnace:
+  texture: MTI5NTc3YjhmNDBkNjE0ZDJhODA5NDYxNWRhMTA2OGNmMTJjYjhmNzgzNDU4MzliZDBmN2VhYTc3YjA2ZTI3ZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: FURNACE
+  display: Mini Furnace
+gilded_blackstone:
+  texture: YmJiZWQyZmM2MzIxZWM0MTA4MzE2ZjE4NjJjYmYyY2Q4MWYzODlmMjU4N2IxZjUzNjAyNTEzYjdhN2NhNTRhIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: GILDED_BLACKSTONE
+  display: Mini Gilded Blackstone
+glowstone:
+  texture: YzQ2ZDM0OTU4Zjg3MDQxYjVlNGFmNjQxMjM4NjAwYTI3N2YwNjRmZjIyZGMxM2Y2YWY5YjZiZTU1NDdkZDc5MCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: GLOWSTONE
+  display: Mini Glowstone
+gold_block:
+  texture: ZmRjZjVmNzhiZjFkOWFkZTEyNmIyYzdmNmI0OTgwZGNmZTg5YjRlNjVjZDUzMmZjNjVhZDhiNzU3MjUzMGM1YiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: GOLD_BLOCK
+  display: Mini Gold Block
+gold_ore:
+  texture: MzY4OTY5NGM5NzlkMWM0YmM0NDMzZjdkMzM0ZGQzNzM3NjQ0NGQxZmM0MzY2MmFkODdjZDM5ODRlOWI5MTNiYyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: GOLD_ORE
+  display: Mini Gold Ore
+granite:
+  texture: OGQ4MzhiMmQwNDg0NzAwMTU1MmU0YmYyZTUzNzMzZWNlNzBmNTU1YzZmNGM2NmYxNzRjYzMxMWYzMDkxYzMyOSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: GRANITE
+  display: Mini Granite
+grass_block:
+  texture: Zjc4NDk5Nzc2ZmYyZGFiNzdhNTkzZGI2MDc3YTZmNzY1NDkzMWU1NWZmNTVlNWRhZDJkMjgwN2JiMGUzNzc2OCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: GRASS_BLOCK
+  display: Mini Grass Block
+gravel:
+  texture: N2U0YThlNTFlMjg5OTA2OGU4MjNjODE4ZGIxYTBkYjk0NDdkMmYxNmY0YTE1NzhlNWQxNDYxZDcxNDc2NWU2MiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: GRAVEL
+  display: Mini Gravel
+gray_concrete:
+  texture: YzA2ZDdiZWZjODJmMjAxZjgzZTE5Mzc2N2U2M2Y4MTAzNzIxNWFmZDQ4M2EzOGQzNjk2NTk4MmNhNmQwIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: GRAY_CONCRETE
+  display: Mini Gray Concrete
+green_concrete:
+  texture: ZGZhYjdkYWViOGYzMzNjNzg4NmE3MGVmMzBjYWY0ZGVjNGE4Y2QxMDQ5M2YyMzgwMmYxNTE2YmRkMjNmY2QifX19
+  count: 8
+  enabled: true
+  ingredient: GREEN_CONCRETE
+  display: Mini Green Concrete
+hay_block:
+  texture: OGI1OTZiNzI4NmVlZjJkZjI3NWMwZmIzZjQ5MTY2NGM2ZWZkMzBjYTdkNDY5N2I5OTg0OWEwYTQ2YmRlM2QyNCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: HAY_BLOCK
+  display: Mini Hay Bale
+honeycomb_block:
+  texture: ODNlZmNmMjMxNGFmZjdmZjVkNmRkOWFjNTRkNDI3N2RkNjA5ODcwNmY5NWYxZjM0ODBmNGVjMTYyZDg3MDU3ZCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: HONEYCOMB_BLOCK
+  display: Mini Honeycomb Block
+honey_block:
+  texture: NThkYTg2NWFhODNiNjAwNDM4MGMxZWRhOGNjZTNkZDEyZWRhMzZkNzFmZDhkNWZlYzliMThmMDE1OWRkY2M3NiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: HONEY_BLOCK
+  display: Mini Honey Block
+horn_coral_block:
+  texture: MzQ5MWI2ZTZhZTk0NTFjNDdlMDliZjFmZjIzZDUwZmZmODdiYTU5MjdhNTFmNDZmZmVkZjkyNmM1Y2JkZTc3ZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: HORN_CORAL_BLOCK
+  display: Mini Horn Coral
+iron_block:
+  texture: ZmFhYjdkNjA4YmZkZGFjNWQ4ZTJjYWYzNzA0OWY2MmY4NDNmZmE5ZjA3NmMyNTJjMWRjMGE0NGVlNDZkMzIwNiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: IRON_BLOCK
+  display: Mini Iron Block
+iron_ore:
+  texture: YWQwNDA5ZmZiMGZmMTBlNTliNzIwY2U0MThhNDQ5NWM5MjI3YzdlNzQ1YTFiNTVmMzZjNzYwODliMDNmZTA0NCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: IRON_ORE
+  display: Mini Iron Ore
+jukebox:
+  texture: ZThmNTY3MzM5ZjQ1NmNkNzk4NzVjNmRmMDM3NDI1MjAyMTIyYzhhNDE2YTRkNGU5ODcyMmNiMDFhYTVmODg5OCJ9fX0
+  count: 8
+  enabled: true
+  ingredient: JUKEBOX
+  display: Mini Jukebox
+jungle_log:
+  texture: NjAwMjlhNTJmOTQ1YjNlYWFjNzJlOWQzZDk5N2MxYTBiNTBlZmY5NTQ0NDE2YWIyYzNjNGU0YmIzOTc3ZjViZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: JUNGLE_LOG
+  display: Mini Jungle Log
+jungle_planks:
+  texture: NjM3OTdmNWFhZTllZTkwNmViNTA2NmU3NDE2N2FjMGI2MGQ4NTc2ZjBkNGIyM2I0MTI0NDdmZDBmMjkwYmMwNyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: JUNGLE_PLANKS
+  display: Mini Jungle Planks
+lapis_block:
+  texture: ODBmOTcyYWU1ZDc4ZjVlMzA1ZGZiZWQ1NmM2NWI0YTNmYmFkZTZiM2E3NzkwYzdlYTUwZjI0NDM2MjZhYWI3OCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: LAPIS_BLOCK
+  display: Mini Lapis Lazuli Block
+lapis_ore:
+  texture: ZmI4ZDkxMzE4NWU1YTM2NWI5NWE4NThkMmU2Yzk5NDE5ODU2NjM5ZDAzNWRjYmY3N2NkNDQwNDU2MGEyNTM4NCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: LAPIS_ORE
+  display: Mini Lapis Lazuli Ore
+light_blue_concrete:
+  texture: ZjQ3N2Y0NDM4OTM2MmM0Yzc2NGM4NDdhOTczOWJjNzhjMzI0NjdlYWI0ZTM4MzBhZTRjOGJlYWMzNDQyZWY5In19fQ==
+  count: 8
+  enabled: true
+  ingredient: LIGHT_BLUE_CONCRETE
+  display: Mini Light Blue Concrete
+light_gray_concrete:
+  texture: NmJhMGM0YTBmZGNlOTIzYTkwNDgzMjhkNjY0MTQ3YzViOTI0NDkxZjRlZTVmZWE3MWYzZTllYzMxNCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: LIGHT_GRAY_CONCRETE
+  display: Mini Light Gray Concrete
+lime_concrete:
+  texture: NGI1OTljNjE4ZTkxNGMyNWEzN2Q2OWY1NDFhMjJiZWJiZjc1MTYxNTI2Mzc1NmYyNTYxZmFiNGNmYTM5ZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: LIME_CONCRETE
+  display: Mini Lime Concrete
+redstone_lamp:
+  texture: ZTAwZTg1ODU1YTY1OTVkODg5ZWYyNDYzOTZlMWQwNmIyYjg0MzFlMTAyZDcxYmViY2I1YzU5NTIzNzFiNzdiMyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: REDSTONE_LAMP
+  display: Mini Unlit Redstone Lamp
+lodestone:
+  texture: YzEzOTUxZmQ4N2M2OGNmOGNhNDdkMThkYWVjYTVhZDNhZDgwNGIyNTE3NmYyYjRlZjQ4YmZjOTY4NmFiODA2NCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: LODESTONE
+  display: Mini Lodestone
+loom:
+  texture: ZmZjMDE0NDhkNjQ3N2UxZjdhM2QyMDdmMjM1MGEwNjZkZmE5NTA5MGQzNDBkNDUxNTUzY2UwNWU3MDBiYjczMSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: LOOM
+  display: Mini Loom
+magenta_concrete:
+  texture: NjVlZjJkODdmN2MxZGVmNzk1MjNlOTU2NzY3YjgyODRjYTM4OWIyNDI5OWY1ZTQ2NWQ0NTc5ODlkNjJkZjgifX19
+  count: 8
+  enabled: true
+  ingredient: MAGENTA_CONCRETE
+  display: Mini Magenta Concrete
+magma_block:
+  texture: YTVkNzEwMjZiODU4OTEyNWQ0Yjk3OWM5NzIxYzkwYjc3NTg0YmQ3YjIwOTQyODJkMGYyZmEzNTMwNjQ0MmFhNSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MAGMA_BLOCK
+  display: Mini Magma
+mangrove_log:
+  texture: MzFmYWY2NjM5ZWMwZGMzMDBkYzYzNDgyOGU3Y2M3YjFkYzU4ODMyZmIzNDI3NjQ4NmZjNTRjZDFhNWEwNGRmYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MANGROVE_LOG
+  display: Mini Mangrove Log
+mangrove_planks:
+  texture: ZTYzYWVjM2IyMDczODI2YjI5MjdhZTY0NmIzNDVmMTk3ZTdlMmYxNjFmMWE3Mzg3NjhjMGRmNGZhZTA2YjBjYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MANGROVE_PLANKS
+  display: Mini Mangrove Planks
+melon:
+  texture: MjgzZjc4NWJmMGEwMDU0NDcwZDc0YWUyZDEyODUyNTI5NTZmZWUwYWJkMjg0YWZhMzcxNTQwNGVlYzY2ZWVlZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MELON
+  display: Mini Melon
+mossy_cobblestone:
+  texture: ZTFiNzcyOTFlMTU3MWZkMjdkZWNhMWM3NzJlZjRmOTE3ZjU5YTlkNTllZjcwMjYxOTBmMTY2NzM1MDdmMmVlNyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MOSSY_COBBLESTONE
+  display: Mini Mossy Cobblestone
+moss_block:
+  texture: Y2NhMWFlYWRhZDkyZmM4YTE4ZGVmMTQ4MmNlZjMwODhmZDdlMzlhMjAyMjA3ODFiNmU2ODUzZmNkMGQ5YjhjYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MOSS_BLOCK
+  display: Mini Moss Block
+mud:
+  texture: NzQ3NmM0YjEzZGIwYzczY2ViYjVjODZlNDVjOWU1MjgyOTUwZDc1Mzk2YTcxYWVlZGQxOGNjNThmNzlhMGU5MCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MUD
+  display: Mini Mud
+mud_bricks:
+  texture: M2I5NDkxYTAwMGNiMWIzYjJmYThhOWFlZTFlZTUyZGM4YTlkZWZmZjQ4OTdlYzRjZTQ4OGNjY2QxZTZiODNjYyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MUD_BRICKS
+  display: Mini Mud Bricks
+mycelium:
+  texture: YTNjMDc3ZWQ2ZDk5NjIyMzBkOWQ4NjcwYmFkODc2YzMzOTQxZmM5Y2ZiMTdlNmVkMGE4MDUyN2M2OTE4NTQ3OCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: MYCELIUM
+  display: Mini Mycelium
+netherite_block:
+  texture: MzAxMWNkMmNmMWUzMmFlMTMxZDhlNTQyNDAzYmVhMDNjNDgyZmEzOTVhNzI3YTM3MDc2OTA0NzYyODQwMjkyZCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: NETHERITE_BLOCK
+  display: Mini Netherite Block
+netherrack:
+  texture: OWZjNDRmN2Y3NmVkMTI0NzJmNzA1ZTk5YmI1ZDc5YTQ0NjUzNGU5ZGMwNmQyMjhiYjYxOTQxYzNmYjg0OTQ3YiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: NETHERRACK
+  display: Mini Netherrack
+nether_bricks:
+  texture: N2NlNDZmZTNlNzU4MjYwZTYwMGE4OWMzM2QxM2UxZjYyN2ZkMDYxZDVlMGRkNzhiYWI4ODk5NTUxZTg0YWEwOCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: NETHER_BRICKS
+  display: Mini Nether Bricks
+nether_gold_ore:
+  texture: MjEzMjc5YTE5YjY1ODI5YWM3NDU5OGE3NjQ3OTgyNTQ5ZjdhMWUxMGIzNTRmMzk1ZTIzYjBlOGMzMGRmMjhlZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: NETHER_GOLD_ORE
+  display: Mini Nether Gold Ore
+nether_quartz_ore:
+  texture: ZGVhYzNhZmJhNjdhNWJhMTZhOTgzMTM3NDJhODJiMmJkODRkOTFhYzMyYTAyZWE4N2YxNWIxNDZjNzkwZTQ4YiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: NETHER_QUARTZ_ORE
+  display: Mini Nether Quartz Ore
+nether_wart_block:
+  texture: YTAwNjIzOTk4YTI4NzA5ZmNmMDUzZmM1Njk2ODcxMTU4NjdlMGM3ZTU5ODlhOTRiNmU0YmY1MWQ4ZWQ3OWI0NiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: NETHER_WART_BLOCK
+  display: Mini Nether Wart Block
+oak_log:
+  texture: MWEzY2ExNzdkMjE2OTMxM2YxNjU5NjQzOWRjZDYwZWJiNDgxM2IzNzhiMTdmZmIxNzUzNTQzNzBkNTEwZmIwZCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: OAK_LOG
+  display: Mini Oak Log
+oak_planks:
+  texture: NzgxOTJhMWFkZDRhMTExMjRhZDFlOWI2M2ZhN2Q5NzViNTUwMGJmZjEyNzQyNGU3NWJmMjliMjlmNmFmYjI2NSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: OAK_PLANKS
+  display: Mini Oak Planks
+observer:
+  texture: YmE5YzkzYTJhMzY0NDU2OTA4NDEwN2I3YjRkODAyNjE0NDk4ODRkOWZiYzM0YWRiZDg4YzYzNDIwNDUyMDJiMyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: OBSERVER
+  display: Mini Observer
+obsidian:
+  texture: ODRjMzA4NTVmODliNDkwYzZmZjIzMmRmM2QzZWM3NDMzYWI2MzYxMGE5YTk1N2M4OGE2Y2Q0MzI3YjA2YTQ5ZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: OBSIDIAN
+  display: Mini Obsidian
+ochre_froglight:
+  texture: YzEzMWUyZGFlNjkyMTg3ZWQzYTYyMTc1ZWU2YmYwOGUzYjg5MWFkMjBkZTk2YmVlMDNkNTQ4M2I0MDBlMmVhOSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: OCHRE_FROGLIGHT
+  display: Mini Ochre Froglight
+orange_concrete:
+  texture: NjNmMTNlMjNlYzIzNDY3YWM1ZTZmNjVhODNmMjY4NmViZWNkOTk4NmRmNWY4Y2JjZDZmYWZjNDJlNjYyYjM4In19fQ==
+  count: 8
+  enabled: true
+  ingredient: ORANGE_CONCRETE
+  display: Mini Orange Concrete
+oxidized_copper_bulb:
+  texture: MmU0NDZlZTMxYTk4MzFlOWUzNzU1YzY0NDQyMGM4N2NhMjFmOGUxMTM5YWMxODFjNGYyZGMxYzk4ZDQ1ZTY5NiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: OXIDIZED_COPPER_BULB
+  display: Mini Oxidized Copper Bulb (Lit)
+oxidized_cut_copper:
+  texture: YjQ1YTk2ZTZlMGJkMGIxZjRkZDY0MjdiNTVjMmE2MGM5MDUzZmUwMGE2ODI5NTc1MWZkY2E3OThlMGVhZGU0MiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: OXIDIZED_CUT_COPPER
+  display: Mini Oxidized Cut Copper
+packed_ice:
+  texture: MzE1NDIyODZkYTAzYWI3ZWVjYzRlNTYyYzNmOGI4YTFjZjc4MWRhMzA4YjA3OWUzYWMzMzE0NTYxYjljMWQ5OSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PACKED_ICE
+  display: Mini Packed Ice
+packed_mud:
+  texture: YTFiODE0ZWZkMzM4ZDM4YzRiYTAwMTJiMWVmNjUxZDI5YWE2MjhkNmRkYzgyMmQxZTFkYTEzZWFlYjFiZjNlYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PACKED_MUD
+  display: Mini Packed Mud
+pearlescent_froglight:
+  texture: ZTVkNzIwM2UzNTlkM2NmYTE1OTU1ZmU2NDAyMDRlMTk3NTZhNGRkMGE3ZGJhNzQ2YTZhMzY2YTM1YzZiY2VlNCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PEARLESCENT_FROGLIGHT
+  display: Mini Pearlescent Froglight
+pink_concrete:
+  texture: MjI3NDlkMzdjM2Y5OGQ0NTdiZjU0MDIyYThiNjEzYTQzNTNlZDhkZDJlMTQ5NDI2ZmM0MmRiM2I3ZCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PINK_CONCRETE
+  display: Mini Pink Concrete
+piston:
+  texture: YjY2OTFkZTlmNTZiMzllNjhlODdmZGFhMTI4YzdjZTcxM2ZkMDA2NGM1Nzg2ODdiNjc5ZWU2YTg0Mzc1MDJlZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PISTON
+  display: Mini Piston
+podzol:
+  texture: OTA0NmI4YzQzMDY0OTA4M2Y4NjRkNDBkZmFjODViZTBkNGRkYWRiZGRlOTE5ZTM2MjZjYzdmNDE3NGY1NGZlYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PODZOL
+  display: Mini Podzol
+polished_andesite:
+  texture: NGM3MzVlMjg5MzE5MWRlYzBmN2UxYzkwNDE3YmY4ZmRmODg5N2U4M2FkMDMzYmFiNGQzNDUzNWI3NTA2NzM2ZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: POLISHED_ANDESITE
+  display: Mini Polished Andesite
+polished_basalt:
+  texture: ZWVkNTYxMDVkMDY3OGFlNDBiNjZjNDQzMTE3ZTgwYTgxY2UyYzgyNTUzMzY2YWRjOGQ0NDc2ZmRjNWYxODFjOSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: POLISHED_BASALT
+  display: Mini Polished Basalt
+polished_blackstone:
+  texture: MWJiY2FhNDExN2UzNTA0NTI1OTNkMjA5MjcxMzM4NWMwYTQxM2NiNjJiYjljNDMyYTk3OWRiYTRlYjJkM2JjMiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: POLISHED_BLACKSTONE
+  display: Mini Polished Blackstone
+polished_blackstone_bricks:
+  texture: Nzk3NzUwYTI4NGZmNDAzOGNiMDM1ZjFkNmRiMDQ5M2ZmNTM5YzhhOTNhZTNjZGE2MTg2ZGYwYmU2MTYyYzMwNCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: POLISHED_BLACKSTONE_BRICKS
+  display: Mini Polished Blackstone Bricks
+polished_deepslate:
+  texture: NjFkMDIyNTY2OTNjYWYwODFlNGM1ZmMzMDQ5MTc5YmZkNTVjMWU3NmFmYWI5ZTExMjZiYmQ3NjQzZWRjZThkYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: POLISHED_DEEPSLATE
+  display: Mini Polished Deepslate
+polished_diorite:
+  texture: NWYyZWNhOTgyNzg2NmJhMTA1NWY1NjYzYmYyMDU0NzMxMDdjNzkwYjcyNGVkYTIxZjVkMTc0ODVmMGZjZWVlYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: POLISHED_DIORITE
+  display: Mini Polished Diorite
+polished_granite:
+  texture: NDY4MTUxZjIxMzc2MGVlYWMwNWZiODYzZmU5ODVjMmMzNzM4OGM5MDVjODMxZDgwNWJjODA1ODkwY2Y4ZTllMyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: POLISHED_GRANITE
+  display: Mini Polished Granite
+polished_tuff:
+  texture: ZWJmOWUzYTNkMjY2OWJmZmZhZjQ0ZTNhNDcyNjgwNzMyY2RmOGUxMmM1M2Q1NDI3MzYxZDBiZjhmMjU5ZWFmNyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: POLISHED_TUFF
+  display: Mini Polished Tuff
+prismarine:
+  texture: ZTg2MjJmMzM3MTU1OGRjNGM3NDMxYzMyZTM1ZTc0YmVhZWE2NjA4MmMzZTRjY2NmNzAwNjIzMWY4ZjIzODNhZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PRISMARINE
+  display: Mini Prismarine
+prismarine_bricks:
+  texture: MWJkYTMyOTNlYzZhMDAzMzJlNjk4NjJjNzJhNGZmN2IxZDRhODBlZTY1YTRlMGU1MTViNTc0MzhiOTYxODcxYSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PRISMARINE_BRICKS
+  display: Mini Prismarine Brick
+pumpkin:
+  texture: YjliZTU1MDUzMTg4OGQ2MzI1NzE3Yjc1M2U2MjUyZTM4MDg2NzM2OWRlMDEyMjVmYTQwMmUxYWVlYzZmYWY3OSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PUMPKIN
+  display: Mini Pumpkin
+purple_concrete:
+  texture: ZjBjMDVkNTYwZDhlMTNmMGNiMjVjMTVjODMxYmM1OTU0NTBjNWU1NGNlMzVmYTU0ZTE3ZTA0OTUyNjdjIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: PURPLE_CONCRETE
+  display: Mini Purple Concrete
+purpur_block:
+  texture: NTc0NWViNTM3YTA3YWNiYmE3ZmFiNTAwOTA1MWM0MmI4MmI3ZTg3N2ViODM2ODkxMzFkNDg3NjExOGYzOTMwMCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: PURPUR_BLOCK
+  display: Mini Purpur Block
+quartz_block:
+  texture: ZTIxMDY0NTlkMjI0N2I0M2M2MjhkY2Y2YzY4Zjc0YmI3MDY2OTQ4YWRhMTFkMzNhODA0OTUzY2I1YzYwZjY3YyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: QUARTZ_BLOCK
+  display: Mini Quartz Block
+raw_copper_block:
+  texture: NDRmNWE3Y2NhMmY0MDk5MzhkMGRiOTJkYTQ3NDk2YjM2MjA0YmI4NTgyY2VkNjVkNWZiOGQzY2Q5MjFjMDhhZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: RAW_COPPER_BLOCK
+  display: Mini Raw Copper Block
+raw_gold_block:
+  texture: OGRhYzc0YzVlOTVkMDdlYmM5MGYxYzE2Y2Q5NTk5ZWJiYzk0YWExMzIxZDljYjliYjE0MzRjMzg0YTdlMjc0ZCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: RAW_GOLD_BLOCK
+  display: Mini Raw Gold Block
+raw_iron_block:
+  texture: YjVmYzA2YjBkY2M1ZGIwN2E4NTNhZmJlM2Q2OWNkNzcwM2UxMGQ3NTg0ZGE3OTlmZDI4MTlhZDU3YWJjNGRmZiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: RAW_IRON_BLOCK
+  display: Mini Raw Iron Block
+redstone_block:
+  texture: ZTRiMjUwYzMwNDZmZGNhYWJlYjJmYzI4MjU2YTBmMjEzYTljYzYwNDhkN2ZjNzQwMDU4ZGYzMzgzMmJjZjE2YSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: REDSTONE_BLOCK
+  display: Mini Redstone Block
+redstone_ore:
+  texture: Nzk4MmI0MWNlMmViOWZlYjM1MTZlZWY3NTMzNjk0YWQ2YWE2YzE4NTA5MDFiYjU5NDkzOTkwOWQ3MzNiZjJkYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: REDSTONE_ORE
+  display: Mini Redstone Ore
+red_concrete:
+  texture: NjE4NTZjN2IzNzhkMzUwMjYyMTQzODQzZDFmOWZiYjIxOTExYTcxOTgzYmE3YjM5YTRkNGJhNWI2NmJlZGM2In19fQ==
+  count: 8
+  enabled: true
+  ingredient: RED_CONCRETE
+  display: Mini Red Concrete
+red_mushroom_block:
+  texture: M2JhMWEzZDg3NmEwN2EzMDBkYWM1MTUwZWI3MGY0ZGE2NDE4NmM2NzcwZDQwOWMxODViYThjYjA5MDJlOGZhYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: RED_MUSHROOM_BLOCK
+  display: Mini Red Mushroom Block
+red_nether_bricks:
+  texture: ZDc3Njk5ZWZkNGI5NzBhMGQxYzY1YWVmYmNiY2U4ZDNiZWJhODhmMWJlYzI5YmZhODY0NTA4OGY2YjI1YmM2MSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: RED_NETHER_BRICKS
+  display: Mini Red Nether Bricks
+red_sand:
+  texture: NDM5MzA5M2U4ZWU2NGVhZTBlNmNmYTUyZjI5ODhkMGQwNzZhNDI1YzQ0YmZhM2Q0MzQ0MGY3OTMxYzU0ZTU2YiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: RED_SAND
+  display: Mini Red Sand
+red_sandstone:
+  texture: YmFmZTdiNjg4ZmU0NTU4YzI0M2VlOTVlMDdjMmVlYzYwNjA2MTI5NzFhMzk1NDJmY2Y3N2ZlMzJhMmZkZWE4YyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: RED_SANDSTONE
+  display: Mini Red Sandstone
+respawn_anchor:
+  texture: MWFjZDQ3MzQ5NjQyNjQxM2VlYmI2NTIzZGVlNGEyZmMxN2MxOTJhYTMwMWQyMzQwNjcyY2FiYTI0OWMzZTRmNCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: RESPAWN_ANCHOR
+  display: Mini Respawn Anchor
+sand:
+  texture: OTE3OGQ4MWRhZjdlMGRmMjk3YmNiNWJiOTAwOWZiNjYzMjAzZjllMjA3MzYxOTRkZjgzYWFjOGVhOTQwODNiMSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SAND
+  display: Mini Sand
+sandstone:
+  texture: MWJhZTQxMTk4NTdiZDgyYzdlZGVjMDM0ODIwYjc3ZDVhODM2MDBjOWRhZGNiYWI4NWE3MDQzMTM1MTU2MDFhYyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SANDSTONE
+  display: Mini Sandstone
+sculk:
+  texture: ODQ2NzJkYjk0MTYwNWZhNjMzYzM1NDgwZDFlOTk2Nzc1ZmFmY2E1ZmM4NGRjMzFlNzUyNDcxNWJlMDUxNmQxOSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SCULK
+  display: Mini Sculk
+sea_lantern:
+  texture: NGY4NTAzZWY3OTEzNWUwZGI0NjE2N2MzMDRhZWM5Zjc4MTQwN2ZmODZiMDkzNDdkN2Y5OGZhMTQ4ZjkzOWIxMCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SEA_LANTERN
+  display: Mini Sea Lantern
+shroomlight:
+  texture: ZTQ2OTk3ZmQ5M2I1ZWJlNzFmYWUwMWQzZjNmOTc2MGMyMjM4N2FmNjBkN2VkNWRiZDE1YmI2Y2U0MDRjODA5YyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SHROOMLIGHT
+  display: Mini Shroomlight
+shulker_box:
+  texture: MzlhYTg4YTA1ZmE1ZjMzYjYzMmU1NWE2NDU1YzE0ZmIwZmEyNzllNjMxNDdmOTc3OGQzOWRmOGY1OGE0NzkyMiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SHULKER_BOX
+  display: Mini Shulker Box
+slime_block:
+  texture: NjNiZmM0ZjAxYTgyMDYwZTgwODdhMzE0YTlmY2I1ZmZjMWVhYzlhYzFkMzA0ZGEzYzhiMGQ2NmFkNzE1YzViMCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SLIME_BLOCK
+  display: Mini Slime Block
+smithing_table:
+  texture: YWUyNzlmMDVkYjgzNjAyMTg1OTU5MGE1YjVmNDM0OWE2MGFkZjAyYmMxZDMwOWRhODQwZDllYmJlZjhmMGUyYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SMITHING_TABLE
+  display: Mini Smithing Table
+smoker:
+  texture: ZTgzMWNlODIyN2JiYzdiNzVjMzY4OTQ2NmNlYzRkYWY1ZGEyZDljNTNiYjgzZDExN2E5YmE4OTBkYWVhZjQwNiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SMOKER
+  display: Mini Smoker
+smooth_stone:
+  texture: YTU2MjQ2OTc1YmU4MTYxNmE1OWJjZTViNGU5MmJiNjE1ZDA3MjhjZmU0MWJlNmNmYjVmZmRjZGU1NzkyY2IwOCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SMOOTH_STONE
+  display: Mini Smooth Stone
+sniffer_egg:
+  texture: OWFjMDY4ZTA3YmFiNmM4MTM3MTIyOTZmZWEyMzZlZTcwM2ExY2Y2YzY3YmE0NjVmOTE1NWNmNWFmMWVkYTc3MCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SNIFFER_EGG
+  display: Mini Sniffer Egg
+snow_block:
+  texture: NjNhOWUxNTM4MjhmNWZlMzJjMWM0ODVhYWUxNWMwYzFmNTE2ZWZlN2Y0NzBmYThjMGMzYjk0MDgxYjU2ZTBhNCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SNOW_BLOCK
+  display: Mini Snow Block
+soul_sand:
+  texture: ZmQyMTVjMDY5MDI2MDIxMGY5ODFjYTliYjgxZTY0MmIxODgyZWEzYzdiZjgxOTMwYmRhZmZmYjFkYWUxZmM5YSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SOUL_SAND
+  display: Mini Soul Sand
+sponge:
+  texture: ZWNkMWNmMWZiNTVkNTA1NTgzMjQ1NWFkZThmYTdiMGE2OGY0NDUzNDIzOTlhMjdkZjE1MTllNjZmMmE3NGFiMCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SPONGE
+  display: Mini Sponge
+spruce_log:
+  texture: ZTczMTM3YzQ3ZWUxODllOWZkZDgxZWRhNDhjMTEyNjk0MGEwZTVkNmQ5Y2E0YzU5ZGQzYjgwY2NkOTI3YWRmOSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: SPRUCE_LOG
+  display: Mini Spruce Log
+spruce_planks:
+  texture: M2VhM2FhZjE5NDQ4MmEzOTc1YTE4ZDFlZWNlMjNjMGIzZWEwZjI1ODcwN2ZhZDc1YzVjYWE3NDUzMjA4OGRiIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: SPRUCE_PLANKS
+  display: Mini Spruce Planks
+sticky_piston:
+  texture: NWE2ZmVlNWI2MWVmYzYzYjliNDRmYzMyMjA2N2ZiNjIwZGQ1ZWE5YTdmYjJmODVhMGFhZGVjODAzOGJjMTM3NCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: STICKY_PISTON
+  display: Mini Sticky Piston
+stone:
+  texture: Y2MwOTMwYTFiZWMyNDg3ZjZhNmNiOTY0ZDczMTNmYjBhYmQwNDU5OWQ3NmZmNjUxOGQ5NzdlODNkNDYxMzg0OCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: STONE
+  display: Mini Stone
+stone_bricks:
+  texture: ZjlhMzEyNjIzZTFhOGFhNzVmZDczZmIyNWNhNjIwOTY0MmJjNWEyYzBlYTMwYjNiZTA2MmVjNGM4YzQzMjNmZSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: STONE_BRICKS
+  display: Mini Stone Bricks
+target:
+  texture: ZDIwZTE3ZWJjYjFiMTgzNzg2ZGRlMjUwNDViODMyYjIzOGY3NWEzNzRhYWNlMGM1YTRmNjllOTQyNWVkODllNyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: TARGET
+  display: Mini Target
+terracotta:
+  texture: ZmRkMWJkYjk0MWJkNjkyOGZhMDFlM2NkY2E2MzdhZjViNjFmYmNiYWZhZTk2MmQ0MTQzMDQ5MTUzYjA3NThhMyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: TERRACOTTA
+  display: Mini Terracotta
+tnt:
+  texture: ZjA4OWY3OWUxZjc0ZTM3MGRjM2U2MWJhYWIyNmVlNzkzNWEyYTM4MTM4MGE0ZjJlOWRlMGY1YjBhNTI2ZTBhOCJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: TNT
+  display: Mini TNT
+tube_coral_block:
+  texture: MzlmYzNjZjU1MDhkNDBjMTQ2OTlkNWJmN2YyNTI3NTllMTk1NmFmOWE2NmQxNWE2YzM4NTQzNzhjNjFmNmQ5YSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: TUBE_CORAL_BLOCK
+  display: Mini Tube Coral
+tuff:
+  texture: YjZkNzQ4M2Q5ZTY5Yjc5Nzg5NTg4NjllMjI2OGU1OTE5NDAxYzY3NTJlM2Y2MmYxYWNmYzNjYTlkYmY0MjllYiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: TUFF
+  display: Mini Tuff
+tuff_bricks:
+  texture: Y2VkOTU2MzRjMWNmYWFmYzBhNDZiOGY1YzE0MjhjMmUxM2JhYTRhNWJkMTgxZDhkZmQxMTk1MDBjZWZiNDc5YiJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: TUFF_BRICKS
+  display: Mini Tuff Bricks
+verdant_froglight:
+  texture: NmIyMGI5MGY3OWZmYWRjZDdmM2NmMTlhNzNjMzcxZmQ0ZThmMjZkNjk4N2RkMjZhYzZjYjc0YWM2MTQ0NzZiMyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: VERDANT_FROGLIGHT
+  display: Mini Verdant Froglight
+warped_nylium:
+  texture: YmUzZTFiZDJhMWJiMmRkNzczYmNmMTExMWMxNDZlMTAwNDMwNmFiOTk1ZDUxMDA5ZTY3ZDNhNWMyMTZmMjJlMSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: WARPED_NYLIUM
+  display: Mini Warped Nylium
+warped_planks:
+  texture: OWQzYzNjZWJlMDZlMGRkZDljYzRhOTBlYzQ1Y2FjZGVjM2QxODU1ZGFmYzliODVhNTIzNDI3MGYwNmZmNzY0MyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: WARPED_PLANKS
+  display: Mini Warped Planks
+warped_stem:
+  texture: YTIyODE3ZWU1MmI3NWRlODEwM2Y1YWYyN2E3NWJiY2ZmODdhNDUzZWNlNTkzNTBmYjQxOTZmYWFiZmI2YjJiYyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: WARPED_STEM
+  display: Mini Warped Stem
+warped_wart_block:
+  texture: M2U3ZTFlMGFkMWZmOGJlM2MxN2Q2MWUxNmQ5NGI2YjJiY2U3ODAyMmQ4OGRlMmFhNmM2NjliYmE1ZjVlYzA0NyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: WARPED_WART_BLOCK
+  display: Mini Warped Wart Block
+weathered_copper_bulb:
+  texture: MTE4ZmQ4ZjI1MGY0MzAxZTcxYjI1ZTY1ODZmY2IyZDg2ZWI0M2ZkNjY4NzZhZjgxNWQ5ZDBkODFkZmM5ZDJkYyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: WEATHERED_COPPER_BULB
+  display: Mini Weathered Copper Bulb (Lit)
+weathered_cut_copper:
+  texture: NWZhOGZjNDM3MThhZTgxZDU4M2M2NGIyOTA0ZmE1ZmMwMzBiMWJkYmVjMmFmNjYwNTA5OWRmMmZkMmYwMGE2MSJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: WEATHERED_CUT_COPPER
+  display: Mini Weathered Cut Copper
+white_concrete:
+  texture: ZDA5MjVjNDhiMDU2NjI4NDhlYzlmMDY4NWY4NThkODg5ZDNkYTExYjA3MTc4OGVhYTM2Y2NkOGYxZjMxZGUifX19
+  count: 8
+  enabled: true
+  ingredient: WHITE_CONCRETE
+  display: Mini White Concrete
+white_wool:
+  texture: ODMxYTg3MDE0OTNjMDQ2MjdiMWYwYzQ5OWY0YWE3MGUyMjg2NzI5ODJlMTRmMTM1Y2NmMmU4ZjYzZDEyYTYxYyJ9fX0=
+  count: 8
+  enabled: true
+  ingredient: WHITE_WOOL
+  display: Mini Wool
+yellow_concrete:
+  texture: ZmNhNWJmZjMyNWVkNzFkOTdhMmRkZmM4M2FjZjA1ZmU3ZmQ5Y2I3Y2JkYjE1ZWJiNGYwNTYyMTkwN2U5ZjJiIn19fQ==
+  count: 8
+  enabled: true
+  ingredient: YELLOW_CONCRETE
+  display: Mini Yellow Concrete

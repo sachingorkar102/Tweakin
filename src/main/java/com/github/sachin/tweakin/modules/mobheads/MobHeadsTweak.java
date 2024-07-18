@@ -6,6 +6,7 @@ import com.github.sachin.prilib.nms.NBTItem;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.Permissions;
+import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import com.google.common.base.Enums;
 import com.google.common.base.Optional;
@@ -46,12 +47,13 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
     @Override
     public void onLoad() {
         super.onLoad();
-        File file = new File(plugin.getDataFolder(),"heads.yml");
+        File file = new File(plugin.getDataFolder(),TConstants.MOB_HEADS_FILE);
         if(!file.exists()){
-            plugin.saveResource("heads.yml", false);
+            plugin.saveResource(TConstants.MOB_HEADS_FILE, false);
         }
+
         try {
-            ConfigUpdater.update(plugin, "heads.yml", file, new ArrayList<>(), false);
+            ConfigUpdater.update(plugin, TConstants.MOB_HEADS_FILE, file, new ArrayList<>(), false);
         } catch (IOException e) {
             e.printStackTrace();
         }

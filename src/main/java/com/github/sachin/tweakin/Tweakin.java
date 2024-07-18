@@ -12,6 +12,7 @@ import com.github.sachin.tweakin.compat.grief.*;
 import com.github.sachin.tweakin.gui.GuiListener;
 import com.github.sachin.tweakin.manager.TweakManager;
 import com.github.sachin.tweakin.modules.lapisintable.LapisData;
+import com.github.sachin.tweakin.modules.miniblocks.MiniBlocksTweak;
 import com.github.sachin.tweakin.modules.mobheads.Head;
 import com.github.sachin.tweakin.modules.morerecipes.MoreRecipesTweak;
 import com.github.sachin.tweakin.utils.MiscItems;
@@ -145,7 +146,7 @@ public final class Tweakin extends JavaPlugin {
                 Permissions.SILENCEMOBS_PARENT,Permissions.SILENCEMOBS_SILENCE,Permissions.SILENCEMOBS_UNSILENCE,Permissions.SLIMEBUCKET_PARENT,
                 Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG,Permissions.ANVIL_REPAIR
                 ,Permissions.WATER_EX,Permissions.BETTER_BONEMEAL,Permissions.JUMPYBOATS,Permissions.CAULDRON_CONCRETE
-                ,Permissions.CHICKEN_SHEARING,Permissions.HOE_HARVESTING);
+                ,Permissions.CHICKEN_SHEARING,Permissions.HOE_HARVESTING,Permissions.CAULDRON_MUD,Permissions.BLOCKS_ALWAYS_DROPS,Permissions.WANDDERING_TRADER_MSG);
 
 
         for(Permission perm : this.permissions){
@@ -160,6 +161,10 @@ public final class Tweakin extends JavaPlugin {
         commandManager.getCommandCompletions().registerCompletion("tweaklist", c -> tweakManager.getTweakNames());
         List<String> headList = Arrays.asList(Head.values()).stream().map(h -> h.toString()).collect(Collectors.toList());
         commandManager.getCommandCompletions().registerCompletion("tweakinheads",c -> headList);
+        if(getTweakManager().getTweakFromName("mini-blocks").registered){
+            MiniBlocksTweak tweak = (MiniBlocksTweak) getTweakManager().getTweakFromName("mini-blocks");
+            commandManager.getCommandCompletions().registerCompletion("tweakinminiblocks",c -> tweak.getRecipeMap().keySet());
+        }
         commandManager.registerCommand(new CoreCommand(this));
         enabledBstats();
         getLogger().info("Tweakin loaded successfully");
@@ -206,6 +211,9 @@ public final class Tweakin extends JavaPlugin {
         if(!getConfig().getBoolean("grief-plugin-support")) return;
         if(isPluginEnabled(TConstants.GRIEF_PREVENTION)){
             this.griefCompat = new GriefPreventionCompat();
+        }
+        else if(isPluginEnabled(TConstants.GRIEFDEFENDER)){
+            this.griefCompat = new GriefDefenderCompat();
         }
         else if(isPluginEnabled(TConstants.LANDS)){
             this.griefCompat = new LandsCompat();

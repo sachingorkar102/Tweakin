@@ -38,6 +38,9 @@ public class Permissions {
         return parentPerm;
     }
 
+    public static final Permission WANDDERING_TRADER_MSG = get("wanderingtrader.message");
+    public static final Permission BLOCKS_ALWAYS_DROPS = get("blockalwaysdrops.use");
+    public static final Permission CAULDRON_MUD = get("cauldronmud.use");
     public static final Permission CHICKEN_SHEARING = get("chickenshearing.use");
 
     public static final Permission CAULDRON_CONCRETE = get("cauldronconcrete.use");

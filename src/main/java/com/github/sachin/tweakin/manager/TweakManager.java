@@ -14,10 +14,12 @@ import com.github.sachin.tweakin.modules.bettergrindstone.BetterGrindStoneTweak;
 import com.github.sachin.tweakin.modules.betterladder.BetterLadderTweak;
 import com.github.sachin.tweakin.modules.betterrecoverycompass.BetterRecoveryCompassTweak;
 import com.github.sachin.tweakin.modules.bettersignedit.BetterSignEditTweak;
+import com.github.sachin.tweakin.modules.blockalwaysdrops.BlockAlwaysDropsTweak;
 import com.github.sachin.tweakin.modules.bossspawnsounds.BroadCastSoundTweak;
 import com.github.sachin.tweakin.modules.bottledcloud.BottledCloudItem;
 import com.github.sachin.tweakin.modules.burnvinetip.BurnVineTipTweak;
 import com.github.sachin.tweakin.modules.cauldronconcrete.CauldronConcreteTweak;
+import com.github.sachin.tweakin.modules.cauldronmud.CauldronMudTweak;
 import com.github.sachin.tweakin.modules.chickenshearing.ChickenShearingTweak;
 import com.github.sachin.tweakin.modules.compassworkeverywhere.CompassEveryWhereTweak;
 import com.github.sachin.tweakin.modules.confetticreepers.ConfettiCreepers;
@@ -33,6 +35,7 @@ import com.github.sachin.tweakin.modules.jumpyboats.JumpyBoatsTweak;
 import com.github.sachin.tweakin.modules.lapisintable.LapisInTableTweak;
 import com.github.sachin.tweakin.modules.lavabucketcan.LavaBucketTrashCan;
 import com.github.sachin.tweakin.modules.lecternpagereset.LecternPageResetTweak;
+import com.github.sachin.tweakin.modules.miniblocks.MiniBlocksTweak;
 import com.github.sachin.tweakin.modules.mobheads.MobHeadsTweak;
 import com.github.sachin.tweakin.modules.morerecipes.MoreRecipesTweak;
 import com.github.sachin.tweakin.modules.netherportalcoords.NetherPortalCoordsTweak;
@@ -53,6 +56,7 @@ import com.github.sachin.tweakin.modules.swingthroughgrass.SwingThroughGrassTwea
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
 import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmraldTweak;
+import com.github.sachin.tweakin.modules.wanderingtraderannouncements.WanderingTraderAnnouncementTweak;
 import com.github.sachin.tweakin.modules.waterextinguish.WaterExtinguishTweak;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 import org.bukkit.Bukkit;
@@ -143,13 +147,13 @@ public class TweakManager {
 
         for (BaseTweak t : tweakList) {
             try {
-                t.reload();
                 if(unregister){
-    
+
                     if(t.registered){
                         t.unregister();
                     }
                 }
+                t.reload();
                 if(t.shouldEnable()){
 
                     t.register();
@@ -227,6 +231,7 @@ public class TweakManager {
         tweakList.add(new CraftTableOnStick());
         tweakList.add(new InfiniteFireworkItem());
         tweakList.add(new MoreRecipesTweak());
+        tweakList.add(new MiniBlocksTweak());
         tweakList.add(new AutoRecipeUnlockTweak());
         tweakList.add(new AnvilRepairTweak());
         tweakList.add(new WaterExtinguishTweak());
@@ -234,6 +239,8 @@ public class TweakManager {
         tweakList.add(new ElytraBombingTweak());
         tweakList.add(new ChickenShearingTweak());
         tweakList.add(new RecyclableWaxTweak());
+        tweakList.add(new BlockAlwaysDropsTweak());
+        tweakList.add(new WanderingTraderAnnouncementTweak());
 
         if(plugin.isProtocolLibEnabled){
             if(!plugin.isPost1_19_3()){
@@ -255,6 +262,9 @@ public class TweakManager {
         if(plugin.isRunningPaper){
             tweakList.add(new CauldronConcreteTweak());
             tweakList.add(new VillagerFollowEmraldTweak());
+            if(plugin.isPost1_19()){
+                tweakList.add(new CauldronMudTweak());
+            }
         }
         else{
             plugin.getLogger().severe("Not running PaperMC as server software, ignoring cauldron concrete and villager follow emerald tweak...");
@@ -264,6 +274,8 @@ public class TweakManager {
         if(plugin.isPost1_19()){
             tweakList.add(new BetterRecoveryCompassTweak());
         }
+
+
         else{
             incompaitableTweaks.add("better-recovery-compass");
         }

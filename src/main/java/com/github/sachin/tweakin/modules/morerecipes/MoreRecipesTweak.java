@@ -114,7 +114,7 @@ public class MoreRecipesTweak extends BaseTweak{
             }
             registerdRecipes = baseRecipe.getRecipes().size() + registerdRecipes;
         }
-        plugin.getLogger().info("Registered " + registerdRecipes + " recipes");
+        plugin.getLogger().info("Registered " + registerdRecipes + " recipes from more-recipes tweak");
         if(enabledModules == baseRecipes.size()){
             plugin.getLogger().info("Recipes go brrrrr..");
         }

@@ -41,6 +41,7 @@ public class TConstants {
     public static final String RESIDENCE = "Residence";
 
     public static final String CRASHCLAIM = "CrashClaim";
+    public static final String GRIEFDEFENDER = "GriefDefender";
 
     public static final String COMBATLOGX = "CombatLogX";
 
@@ -48,6 +49,12 @@ public class TConstants {
     public static final String RECIPE_FILE = "more-recipes.yml";
 
     public static final String CUSTOM_RECIPE_FILE = "custom-recipes.yml";
+    public static final String MOB_HEADS_FILE = "heads.yml";
+    public static final String MINI_BLOCKS_FILE = "mini-blocks.yml";
+
+    public static final String INIT_HEAD_TEXTURE_VALUE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUv";
+
+
 
     
     public static final NamespacedKey UUID_LOCK_KEY = Tweakin.getKey("bas-uuid-lock");
@@ -57,6 +64,8 @@ public class TConstants {
     public static final NamespacedKey COPY_PASTE_KEY = Tweakin.getKey("copy-paste-key");
     public static final NamespacedKey VILLAGER_FOLLOW_KEY = Tweakin.getKey("villager-already-set");
     public static final NamespacedKey INFINITE_FIREWORK_KEY = Tweakin.getKey("infinite-firework-key");
+
+    public static final String WANDERING_TRADER_MSG = "wandering-trader-announcement-message";
 
     public static final NamespacedKey TRANSFER_MOUNT_KEY = Tweakin.getKey("transfer-mount-armorstand-key");
 

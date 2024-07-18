@@ -31,6 +31,7 @@ public class MoreBlocks extends BaseRecipe{
 
         // trapdoors
         for(Material plank : Tag.PLANKS.getValues()){
+
             Material trapdoor = Enums.getIfPresent(Material.class, plank.toString().replace("PLANKS", "TRAPDOOR")).orNull();
             if(trapdoor!=null){
                 NamespacedKey key = Tweakin.getKey(this.name+"-"+trapdoor.toString().toLowerCase());
