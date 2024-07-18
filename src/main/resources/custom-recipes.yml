@@ -126,3 +126,16 @@ rotten-flesh-to-leather-example-recipe:
   ingredients: [ROTTEN_FLESH]
   cook-time: 200
   experience: 1
+copper-powered-rails:
+  enabled: false
+  type: shaped
+  result: POWERED_RAIL
+  amount: 6
+  pattern:
+    - "C C"
+    - "CSC"
+    - "CRC"
+  keys:
+    C: COPPER_INGOT
+    S: STICK
+    R: REDSTONE
