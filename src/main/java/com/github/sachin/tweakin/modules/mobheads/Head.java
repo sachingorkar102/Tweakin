@@ -76,8 +76,9 @@ public enum Head {
     MAGMA_CUBE,
     
     
-    RED_MOOSHROOM("MUSHROOM_COW",(cow)-> ((MushroomCow)cow).getVariant()==MushroomCow.Variant.RED),
-    BROWN_MOOSHROOM("MUSHROOM_COW",(cow)-> ((MushroomCow)cow).getVariant()==MushroomCow.Variant.BROWN),
+    RED_MOOSHROOM("MOOSHROOM",(cow)-> ((MushroomCow)cow).getVariant()==MushroomCow.Variant.RED),
+    BROWN_MOOSHROOM("MOOSHROOM",(cow)-> ((MushroomCow)cow).getVariant()==MushroomCow.Variant.BROWN),
+
     MULE,
     OCELOT,
     AGGRESSIVE_PANDA("PANDA",(panda)-> ((Panda)panda).getMainGene()==Gene.AGGRESSIVE),
@@ -168,7 +169,7 @@ public enum Head {
     FREEZING_STRIDER("STRIDER",(strider)-> ((Strider)strider).isShivering()),
     ZOGLIN,
     HOGLIN,
-    ZOMBIEFIED_PIGLIN,
+    ZOMBIFIED_PIGLIN,
     PIGLIN_BRUTE,
     ZOMBIE("ZOMBIE","ZOMBIE_HEAD"),
     ZOMBIE_HORSE,
@@ -207,6 +208,8 @@ public enum Head {
     ALLAY,
     CAMEL,
     SNIFFER,
+
+    STRAY,
 
 //    special head after 1.20
     PIGLIN("PIGLIN","PIGLIN_HEAD"),
@@ -273,6 +276,7 @@ public enum Head {
         this.lootingMul = section.getDouble("looting",0.0);
         this.chance = section.getDouble("chance",0);
         Material material = Material.getMaterial(mat);
+
         if(material != null){
             this.skull = new ItemStack(material);
         }

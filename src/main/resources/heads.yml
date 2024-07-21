@@ -1118,11 +1118,11 @@ cyan_axolotl:
   display: "Cyan Axolotl Head"
   note-block-sound: entity.axolotl.idle_air
 
-zombiefied_piglin:
+zombified_piglin:
   texture: MmRmMDMxMjhiMDAyYTcwNzA4ZDY4MjVlZDZjZjU0ZGRmNjk0YjM3NjZkNzhkNTY0OTAzMGIxY2I4YjM0YzZmYSJ9fX0=
   chance: 0.05
   looting: 0.001
-  display: "Zombiefied Piglin Head"
+  display: "Zombified Piglin Head"
   note-block-sound: entity.zombified_piglin.ambient
 
 warden:
