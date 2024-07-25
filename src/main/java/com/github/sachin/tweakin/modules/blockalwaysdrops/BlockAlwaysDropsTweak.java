@@ -3,6 +3,7 @@ package com.github.sachin.tweakin.modules.blockalwaysdrops;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import org.bukkit.GameMode;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -35,7 +36,7 @@ public class BlockAlwaysDropsTweak extends BaseTweak implements Listener {
     public void onBlockBreak(BlockBreakEvent e){
         if(e.isCancelled()) return;
         if(containsWorld(e.getPlayer().getWorld())) return;
-        if(!hasPermission(e.getPlayer(), Permissions.BLOCKS_ALWAYS_DROPS)) return;
+        if(!hasPermission(e.getPlayer(), Permissions.BLOCKS_ALWAYS_DROPS) || e.getPlayer().getGameMode() != GameMode.SURVIVAL) return;
         String key = matchMaterial(e.getBlock().getType().toString(),new ArrayList<String>(blockMap.keySet()));
         if(key != null){
             boolean useSilkTouch = blockMap.get(key);
