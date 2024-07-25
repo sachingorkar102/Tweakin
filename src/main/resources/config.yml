@@ -844,3 +844,20 @@ wandering-trader-announcement:
   check-permissions: false
   range: 60
 
+# allows player to start a thunderstorm when a trident with channeling enchantment is thrown in the air above build height.
+# player should be standing at the build height(configurable) to start the storm.
+# tweakin.stormchanneling.use: permission to use this tweak
+storm-channeling:
+  enabled: false
+  black-list-worlds: []
+  check-permissions: false
+  # the amount of durability to be consumed when the trident is successfully used to create a storm.
+  durability-penalty: 100
+  # height range (along the y-axis) within which PLAYER should be present while throwing the trident to successfully create a storm.
+  # the value SHOULD be in range.
+  player-height: 310-320
+  # height range (along the y-axis) within which the TRIDENT should be present when the player has thrown it to successfully create a storm.
+  # the value SHOULD be in range.
+  trident-height: 350-365
+
+

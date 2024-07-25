@@ -52,6 +52,7 @@ import com.github.sachin.tweakin.modules.shearnametag.ShearNameTagTweak;
 import com.github.sachin.tweakin.modules.silencemobs.SilenceMobsTweak;
 import com.github.sachin.tweakin.modules.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.modules.snowballknockback.SnowBallKnockBackTweak;
+import com.github.sachin.tweakin.modules.stormchanneling.StormChannelingTweak;
 import com.github.sachin.tweakin.modules.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
@@ -241,6 +242,7 @@ public class TweakManager {
         tweakList.add(new RecyclableWaxTweak());
         tweakList.add(new BlockAlwaysDropsTweak());
         tweakList.add(new WanderingTraderAnnouncementTweak());
+        tweakList.add(new StormChannelingTweak());
 
         if(plugin.isProtocolLibEnabled){
             if(!plugin.isPost1_19_3()){
