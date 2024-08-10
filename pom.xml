@@ -354,9 +354,9 @@
         <dependency>
             <groupId>TeakTweaks</groupId>
             <artifactId>teaktweaks</artifactId>
-            <version>1.10.3-beta</version>
+            <version>1.11.2-beta</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/TeaksTweaks.-.1.10.6-beta.jar</systemPath>
+            <systemPath>${project.basedir}/lib/TeaksTweaks - 1.11.2-beta.jar</systemPath>
         </dependency>
 
 
