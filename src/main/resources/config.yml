@@ -38,7 +38,7 @@ default-permissions: TRUE
 
 
 # REQUIRES WorldGuard Plugin installed
-# determines the default world guard flag value for tweaks having custom world guard flags, eg. better-sign-edit,shear-item-frame,snowball-knockback
+# determines the default world guard flag value for tweaks having custom world guard flags, e.g. better-sign-edit,shear-item-frame,snowball-knockback
 default-worldguard-flag-value: true
 
 # allow to make checks for build permission via any one of the following grief/protection plugin(if installed)
@@ -113,14 +113,14 @@ reach-around:
   check-permissions: false
   black-list-worlds: []
   # alias for the toggle reacharound command (requires a server restart)
-  # Pro tip: use | to add more then one alias eg. togglereacharound|togglereach
+  # Pro tip: use | to add more then one alias e.g. togglereacharound|togglereach
   alias: togglereacharound
   # if set to true reacharound will be enabled by default when player first joins the server
   enabled-on-first-join: true
   # list of materials that cant be placed with reacharound
   # Pro tip: 
-    # use NAME$ to take those names into account which end with "NAME" eg. "SHULKER_BOX$"
-    # use ^NAME to take those names into acccount which start with "NAME" eg. "^NETHERITE"
+    # use NAME$ to take those names into account which end with "NAME" e.g. "SHULKER_BOX$"
+    # use ^NAME to take those names into acccount which start with "NAME" e.g. "^NETHERITE"
   black-list-materials:
   - SHULKER_BOX$
   # weather or not to show future position of block as transperent highlight
@@ -221,7 +221,7 @@ coordinate-hud:
   enabled: false
   check-permissions: false
   # alias for the toggle reacharound command (requires a server restart)
-  # Pro tip: use | to add more then one alias eg. togglehud|thud
+  # Pro tip: use | to add more then one alias e.g. togglehud|thud
   alias: togglehud|thud
   # weather or not to enable hud when player first joins the server
   enable-on-first-join: true
@@ -307,8 +307,8 @@ rotation-wrench:
   craftable: true
   # list of valid rotatable blocks
   # Pro tip: 
-    # use NAME$ to take those names into account which end with "NAME" eg. "SHULKER_BOX$"
-    # use ^NAME to take those names into acccount which start with "NAME" eg. "^NETHERITE"
+    # use NAME$ to take those names into account which end with "NAME" e.g. "SHULKER_BOX$"
+    # use ^NAME to take those names into acccount which start with "NAME" e.g. "^NETHERITE"
   rotatable-materials:
     - _PISTON$
     - PISTON
@@ -369,7 +369,7 @@ confetti-creepers:
 
 
 # Items can now be right clicked onto a Lava Bucket to destroy them forever.
-# Shulker Boxes and items that are immune to fire (eg. Netherite) can not be destroyed this way.
+# Shulker Boxes and items that are immune to fire (e.g. Netherite) can not be destroyed this way.
 # Items can only be destroyed if the lava bucket is in player's inventory
 # Permissions:
   # tweakin.lavabuckettrashcan.dragdrop: permission for player to use drag and drop(destroy) feature of trash can
@@ -381,8 +381,8 @@ lava-bucket-trash-can:
     - "&eRight Click a item onto bucket to destroy it."
   # List of materials that cant be destroyed with this method,
   # Pro tip: 
-    # use NAME$ to take those names into account which end with "NAME" eg. "SHULKER_BOX$"
-    # use ^NAME to take those names into acccount which start with "NAME" eg. "^NETHERITE"
+    # use NAME$ to take those names into account which end with "NAME" e.g. "SHULKER_BOX$"
+    # use ^NAME to take those names into acccount which start with "NAME" e.g. "^NETHERITE"
   black-list-materials:
     - "SHULKER_BOX$"
     - "^NETHERITE"
@@ -794,7 +794,7 @@ chicken-shearing:
   check-permissions: false
   black-list-worlds: []
   # amount of damage to be done on chicken when sheared
-  # eg. 1-2 means random number picked from 1 to 2
+  # e.g. 1-2 means random number picked from 1 to 2
   damage: 1-2
   # cooldown in ticks for using shears
   cooldown: 10
@@ -832,6 +832,9 @@ block-always-drops:
   # list of blocks that will always drop when broken
   # each item in list has 2 components first is the block_type and second is true/false i.e, whether the block should drop only when using silk touch enchantment.
   # for example: ENDER_CHEST|false, means when any ender chest is broken it will drop the ender chest item, even when player is not using a silk touch enchanted item (since the second component is false).
+  # Pro tip:
+  # use NAME$ to take those names into account which end with "NAME" e.g. "GLASS$"
+  # use ^NAME to take those names into acccount which start with "NAME" e.g. "^NETHERITE"
   blocks: [ENDER_CHEST|false,GLASS$|true,GLASS_PANE$|true,BUDDING_AMETHYST|true]
 
 # when a wandering trader spawns, it will notify the player within 60 blocks of range
@@ -842,6 +845,7 @@ wandering-trader-announcement:
   enabled: false
   black-list-worlds: []
   check-permissions: false
+  # the distance at which player needs to be from the wandering trader to get the announcement message
   range: 60
 
 # allows player to start a thunderstorm when a trident with channeling enchantment is thrown in the air above build height.

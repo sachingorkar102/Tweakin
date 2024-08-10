@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class LapisData implements ConfigurationSerializable{
 
+
     private Location location;
     private int count;
 

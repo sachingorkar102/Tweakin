@@ -139,7 +139,9 @@ public class LapisInTableTweak extends BaseTweak implements Listener{
                 }
             }
         }
-        view.getTopInventory().setItem(1, new ItemStack(Material.LAPIS_LAZULI, count));
+        if(count>0){
+            view.getTopInventory().setItem(1, new ItemStack(Material.LAPIS_LAZULI, count));
+        }
         invMap.put(player, blockLocation);
     }
 
