@@ -746,19 +746,21 @@ water-extinguish:
   # range of effect in blocks
   range: 2
 
-# allows use of bonemeal on cactus, netherwart and surgarcane (lilypad will be added soon)
+# allows use of bonemeal on cactus, netherwart and surgarcane
 # Pemissions:
   # tweakin.betterbonemeal.use: permission to use this tweak
 better-bone-meal:
   enabled: false
   check-permissions: false
   black-list-worlds: []
-  # valid blocks CACTUS, NETHERWART and SUGARCANE
-  growable-blocks: [CACTUS,SUGARCANE,NETHERWART]
+  # valid blocks CACTUS, NETHERWART, SUGARCANE and LILYPAD
+  growable-blocks: [CACTUS,SUGARCANE,NETHERWART,LILYPAD]
   # weather or not dispenser can use bonemeal on such blocks
   dispenser-usable: true
   # the limit at witch you can bone meal blocks
   growth-limit: 5
+  #(when LILYPAD is added to the growable-blocks list), the radius at which the lilypads will grow when the center block is bone mealed.
+  lilypad-bonemeal-radius: 2
 
 # REQUIRES ProtocolLib
 # makes the boat jump like a horse when jump button is pressed

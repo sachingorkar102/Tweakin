@@ -1,14 +1,12 @@
 package com.github.sachin.tweakin.modules.betterbonemeal;
 
-import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.utils.annotations.Config;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
-import io.lumine.mythic.api.mobs.MythicMob;
-import io.lumine.mythic.bukkit.BukkitAdapter;
-import io.lumine.mythic.bukkit.MythicBukkit;
-import io.lumine.mythic.core.mobs.ActiveMob;
+
+import java.util.*;
+
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -27,9 +25,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Tweak(name = "better-bone-meal")
 public class BetterBoneMealTweak extends BaseTweak implements Listener {
@@ -39,6 +35,9 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
 
     @Config(key = "dispenser-usable")
     private boolean dispenserUsable = true;
+
+    @Config(key = "lilypad-bonemeal-radius")
+    private int lilypadBMRadius = 2;
 
     @Config(key = "growth-limit")
     private int growthLimit = 10;
@@ -54,6 +53,7 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
         hasSugarCane = growableBlocks.contains("SUGARCANE");
         hasCactus = growableBlocks.contains("CACTUS");
         hasNetherWart = growableBlocks.contains("NETHERWART");
+        hasLilyPad = growableBlocks.contains("LILYPAD");
 
     }
 
@@ -103,17 +103,6 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
                     player.swingOffHand();
                 }
             }
-//            if(block.getType()==Material.LILY_PAD && hasLilyPad){
-//                List<Block> list = getNearbyBlocks(block);
-//                if(!list.isEmpty()){
-//                    for(int i=0;i<ThreadLocalRandom.current().nextInt(1,3);i++){
-//                        Block target = list.get(ThreadLocalRandom.current().nextInt(list.size()-1));
-//                        target.setType(Material.LILY_PAD);
-//                        playBoneMealEffect(target);
-//                    }
-//                }
-//
-//            }
         }
     }
 
@@ -127,12 +116,12 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
         if(topperBlock != null){
             if(block.getType()==Material.SUGAR_CANE && hasSugarCane){
                 topperBlock.setType(Material.SUGAR_CANE);
-                playBoneMealEffect(block);
+                playBoneMealEffect(block.getLocation().add(0.5,0.5,0.5));
                 return true;
             }
             else if(block.getType()==Material.CACTUS && hasCactus){
                 topperBlock.setType(Material.CACTUS);
-                playBoneMealEffect(block);
+                playBoneMealEffect(block.getLocation().add(0.5,0.5,0.5));
                 return true;
             }
             else if(block.getType()==Material.NETHER_WART && hasNetherWart){
@@ -140,7 +129,19 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
                 if(ageable.getAge()<ageable.getMaximumAge()){
                     ageable.setAge(ageable.getAge()+1);
                     block.setBlockData(ageable);
-                    playBoneMealEffect(block);
+                    playBoneMealEffect(block.getLocation().add(0.5,0.5,0.5));
+                    return true;
+                }
+            }
+            else if(block.getType()==Material.LILY_PAD && hasLilyPad){
+                List<Block> list = getNearbyBlocks(block);
+                if(!list.isEmpty()){
+                    for(Block b : list){
+                        if(plugin.RANDOM.nextBoolean()) continue;
+                        b.setType(Material.LILY_PAD);
+                        playBoneMealEffect(b.getLocation().add(0.5,-0.3,0.5));
+                    }
+                    playBoneMealEffect(block.getLocation().add(0.5,-0.3,0.5));
                     return true;
                 }
             }
@@ -151,15 +152,24 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
 
     private List<Block> getNearbyBlocks(Block block){
         List<Block> blocks = new ArrayList<>();
-        for(int x = block.getX()-3;x <=block.getX()+3;x++){
-            for(int z = block.getZ()-3;z<=block.getZ()+3;z++){
+        for(int x = block.getX()-lilypadBMRadius;x <=block.getX()+lilypadBMRadius;x++){
+            for(int z = block.getZ()-lilypadBMRadius;z<=block.getZ()+lilypadBMRadius;z++){
                 Block target = block.getWorld().getBlockAt(x,block.getY(),z);
                 if(target.getRelative(BlockFace.DOWN).getType()==Material.WATER && (target.getType()==Material.AIR || target.getType()==Material.CAVE_AIR)){
                     blocks.add(target);
                 }
             }
         }
-        return blocks;
+        blocks.sort(Comparator.comparingDouble(b -> b.getLocation().distance(block.getLocation())));
+        List<Block> closestBlocks = new ArrayList<>();
+        int maxSelection = Math.min(2,blocks.size());
+        while (closestBlocks.size() < maxSelection) {
+            Block randomBlock = blocks.get(plugin.RANDOM.nextInt(maxSelection));
+            if (!closestBlocks.contains(randomBlock)) {
+                closestBlocks.add(randomBlock);
+            }
+        }
+        return closestBlocks;
     }
 
 
@@ -174,8 +184,9 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
 
 
 
-    private void playBoneMealEffect(Block block){
-        block.getWorld().playEffect(block.getLocation(),Effect.BONE_MEAL_USE,0);
+    private void playBoneMealEffect(Location location){
+        location.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, location, 12, 0.3, 0.3, 0.3, 0.1);
+        location.getWorld().playSound(location, Sound.ITEM_BONE_MEAL_USE, 1, 1);
     }
 
 
