@@ -6,9 +6,11 @@ import com.github.sachin.tweakin.compat.ItemsAdderCompat;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import com.github.sachin.tweakin.utils.annotations.TweakFile;
 import de.jeff_media.morepersistentdatatypes.DataType;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -29,6 +31,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -37,7 +40,10 @@ import java.util.stream.Collectors;
 public class BetterArmorStandTweak extends BaseTweak implements Listener{
 
     private ArmorStandCommand command;
-    private final PoseManager poseManager;
+    private PoseManager poseManager;
+
+    @TweakFile(fileName = "preset-poses.json")
+    private File posesFile;
     private final ArmorStandWandItem wandItem;
     private Message messageManager;
     protected final Map<UUID,UUID> cachedAsList = new HashMap<>();
@@ -55,7 +61,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
         super();
         this.wandItem = new ArmorStandWandItem(this);
         getTweakManager().addTweak(wandItem);
-        this.poseManager = new PoseManager(this);
+
         this.command = new ArmorStandCommand(this);
         this.messageManager = plugin.getTweakManager().getMessageManager();
     }
@@ -63,6 +69,7 @@ public class BetterArmorStandTweak extends BaseTweak implements Listener{
     @Override
     public void reload() {
         super.reload();
+        this.poseManager = new PoseManager(this,posesFile);
         disabledArmorSlots.clear();
         for(String s : getConfig().getStringList("disabled-armor-slots")){
             if(EquipmentSlot.valueOf(s) != null){

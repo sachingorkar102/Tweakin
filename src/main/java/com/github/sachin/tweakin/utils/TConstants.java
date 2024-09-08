@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,11 +45,11 @@ public class TConstants {
     public static final String COMBATLOGX = "CombatLogX";
 
     public static final String TOWNY = "Towny";
-    public static final String RECIPE_FILE = "more-recipes.yml";
+    public static final String RECIPE_FILE = "more-recipes/more-recipes.yml";
 
-    public static final String CUSTOM_RECIPE_FILE = "custom-recipes.yml";
+    public static final String CUSTOM_RECIPE_FILE = "more-recipes/custom-recipes.yml";
     public static final String MOB_HEADS_FILE = "heads.yml";
-    public static final String MINI_BLOCKS_FILE = "mini-blocks.yml";
+    public static final String MINI_BLOCKS_FILE = "mini-blocks/mini-blocks.yml";
 
     public static final String INIT_HEAD_TEXTURE_VALUE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUv";
 

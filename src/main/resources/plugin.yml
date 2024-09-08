@@ -1,5 +1,5 @@
 name: Tweakin
-version: 8.1.1
+version: 8.1.2
 main: com.github.sachin.tweakin.Tweakin
 api-version: 1.16
 api: []

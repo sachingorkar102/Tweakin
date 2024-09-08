@@ -16,8 +16,7 @@ public class HeadManager {
     private final Map<EntityType,List<Head>> multiHeadMap = new HashMap<>();
 
     public HeadManager(MobHeadsTweak instance){
-        
-        instance.getPlugin().getLogger().info("Generating Head Map, this might take a while...");
+
         int i = 0;
         for(Head h : Head.values()){
             Optional<EntityType> type = Enums.getIfPresent(EntityType.class, h.getEntityType());

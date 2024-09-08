@@ -11,6 +11,7 @@ import com.github.sachin.tweakin.modules.morerecipes.recipes.universaldyeing.Uni
 import com.github.sachin.tweakin.utils.ConfigUpdater;
 import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import com.github.sachin.tweakin.utils.annotations.TweakFile;
 import com.google.common.base.Enums;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -28,7 +29,10 @@ import java.util.concurrent.Callable;
 @Tweak(name = "more-recipes")
 public class MoreRecipesTweak extends BaseTweak{
 
+    @TweakFile(fileName = "more-recipes.yml")
     private FileConfiguration recipeFile;
+
+    @TweakFile(fileName = "custom-recipes.yml",update = false)
     private FileConfiguration customRecipeFile;
     private final List<NamespacedKey> simpleRecipes = new ArrayList<>();
     private List<BaseRecipe> baseRecipes;
@@ -95,8 +99,9 @@ public class MoreRecipesTweak extends BaseTweak{
     @Override
     public void register() {
         super.register();
-        saveRecipeFile();
+//        saveRecipeFile();
         int registerdRecipes = 0;
+
         int enabledModules = 0;
         registerdRecipes += registerSimpleRecipes();
         for(BaseRecipe baseRecipe : getBaseRecipes()){

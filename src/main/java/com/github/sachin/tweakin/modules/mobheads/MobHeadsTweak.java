@@ -8,6 +8,7 @@ import com.github.sachin.tweakin.utils.CustomBlockData;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import com.github.sachin.tweakin.utils.annotations.TweakFile;
 import com.google.common.base.Enums;
 import com.google.common.base.Optional;
 import org.bukkit.Material;
@@ -39,26 +40,16 @@ import java.util.TreeMap;
 @Tweak(name = "mob-heads",clashingTeaksTweak = "More Mob Heads")
 public class MobHeadsTweak extends BaseTweak implements Listener{
 
+    @TweakFile(fileName = "heads.yml")
     public static FileConfiguration headConfig;
     private final NamespacedKey key = Tweakin.getKey("mob-head-enum");
     private HeadManager manager;
 
 
     @Override
-    public void onLoad() {
-        super.onLoad();
-        File file = new File(plugin.getDataFolder(),TConstants.MOB_HEADS_FILE);
-        if(!file.exists()){
-            plugin.saveResource(TConstants.MOB_HEADS_FILE, false);
-        }
-
-        try {
-            ConfigUpdater.update(plugin, TConstants.MOB_HEADS_FILE, file, new ArrayList<>(), false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        headConfig = YamlConfiguration.loadConfiguration(file);
-        this.manager = new HeadManager(this);
+    public void register() {
+        super.register();
+        manager = new HeadManager(this);
     }
 
     @EventHandler

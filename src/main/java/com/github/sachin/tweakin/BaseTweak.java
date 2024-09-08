@@ -3,24 +3,33 @@ package com.github.sachin.tweakin;
 import co.aikar.commands.BaseCommand;
 import com.github.sachin.tweakin.compat.TeaksTweaksCompat;
 import com.github.sachin.tweakin.manager.TweakManager;
+import com.github.sachin.tweakin.utils.ConfigUpdater;
 import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Config;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import com.github.sachin.tweakin.utils.annotations.TweakFile;
 import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.permissions.Permission;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
- * When inheriting BaseTweak, remember to add a @Tweak annotation above your tweak class
+ * When inheriting BaseTweak, remember to add a @Tweak annotation above your class
  */
 public abstract class BaseTweak {
 
@@ -69,6 +78,40 @@ public abstract class BaseTweak {
                 field.set(this,value);
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
+            }
+
+        }
+//            Check for config files for a tweak
+        for(Field field : getClass().getDeclaredFields()){
+            TweakFile fileAnn = field.getDeclaredAnnotation(TweakFile.class);
+            if(fileAnn==null) continue;
+            try {
+                String fileName = fileAnn.fileName();
+                File tweakFolder = new File(plugin.getDataFolder(),getName());
+                File configFile = new File(tweakFolder,fileName);
+                String configFilePath = getName()+"/"+fileName;
+                if(!tweakFolder.exists()) tweakFolder.mkdir();
+                File oldConfig = new File(plugin.getDataFolder(),fileName);
+                if(!configFile.exists()){
+                    plugin.saveResource(configFilePath,true);
+                }
+                if(oldConfig.exists()){
+                    Files.move(oldConfig.toPath(),configFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
+                if(fileAnn.update() && field.getType()==FileConfiguration.class){
+                    ConfigUpdater.update(plugin, configFilePath, configFile, new ArrayList<>(), false);
+                }
+                field.setAccessible(true);
+                Object value = YamlConfiguration.loadConfiguration(configFile);
+                if(field.getType()== FileConfiguration.class){
+                    field.set(this, value);
+                }
+                else if(field.getType()==File.class){
+                    field.set(this,configFile);
+                }
+            }catch (IOException|IllegalAccessException e){
+                e.printStackTrace();
+
             }
         }
         String clashingTT = getClass().getAnnotation(Tweak.class).clashingTeaksTweak();

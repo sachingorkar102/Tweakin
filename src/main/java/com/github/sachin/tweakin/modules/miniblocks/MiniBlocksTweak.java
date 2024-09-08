@@ -2,56 +2,33 @@ package com.github.sachin.tweakin.modules.miniblocks;
 
 import com.github.sachin.prilib.utils.FastItemStack;
 import com.github.sachin.tweakin.BaseTweak;
-import com.github.sachin.tweakin.utils.ConfigUpdater;
 import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import com.github.sachin.tweakin.utils.annotations.TweakFile;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.StonecuttingRecipe;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 @Tweak(name = "mini-blocks")
 public class MiniBlocksTweak extends BaseTweak {
 
-    private FileConfiguration miniblockConfig;
+    @TweakFile(fileName = "mini-blocks.yml")
+    private FileConfiguration miniblockConfig = null;
     private Map<String, StonecuttingRecipe> recipeMap = new HashMap<>();
-
-    @Override
-    public void reload() {
-        super.reload();
-        this.miniblockConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(),TConstants.MINI_BLOCKS_FILE));
-        if(shouldEnable()){
-            registerRecipes();
-        }
-    }
 
     @Override
     public void register() {
         super.register();
-        File file = new File(plugin.getDataFolder(), TConstants.MINI_BLOCKS_FILE);
-        if(!file.exists()){
-            plugin.saveResource(TConstants.MINI_BLOCKS_FILE, false);
-        }
-        try {
-            ConfigUpdater.update(plugin, TConstants.MINI_BLOCKS_FILE, file, new ArrayList<>(), false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.miniblockConfig = YamlConfiguration.loadConfiguration(file);
-//        registerRecipes();
-
-
+        registerRecipes();
     }
+
     @Override
     public void unregister() {
         super.unregister();

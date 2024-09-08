@@ -17,13 +17,14 @@ public class PoseManager {
     
 
     private BetterArmorStandTweak instance;
-    private File file;
+    private final File file;
     private final Gson gson = new Gson();
     private final Map<String,PresetPose> poses=new HashMap<>();
 
-    public PoseManager(BetterArmorStandTweak instance){
+    public PoseManager(BetterArmorStandTweak instance,File posesFile){
         this.instance = instance;
-        loadFile();
+        this.file = posesFile;
+//        loadFile();
         
     }
 
@@ -90,11 +91,11 @@ public class PoseManager {
         return poses;
     }
 
-    private void loadFile(){
-        this.file = new File(instance.getPlugin().getDataFolder(),"preset-poses.json");
-        if(!file.exists()){
-            instance.getPlugin().saveResource("preset-poses.json", false);
-        }
-    }
+//    private void loadFile(){
+//        this.file = new File(instance.getPlugin().getDataFolder(), "better-armorstands/preset-poses.json");
+//        if(!file.exists()){
+//            instance.getPlugin().saveResource("better-armorstands/preset-poses.json", false);
+//        }
+//    }
 
 }
