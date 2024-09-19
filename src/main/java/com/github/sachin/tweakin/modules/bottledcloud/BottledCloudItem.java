@@ -47,8 +47,8 @@ public class BottledCloudItem extends TweakItem implements Listener{
 
 
     @Override
-    public void onLoad() {
-        super.onLoad();
+    public void register() {
+        super.register();
         this.cloudItem = new ItemStack(Material.PLAYER_HEAD);
         this.placedBlock = new NamespacedKey(plugin, "cloud-occupied");
         ItemMeta meta = cloudItem.getItemMeta();

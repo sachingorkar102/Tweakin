@@ -103,7 +103,7 @@ public class ItemBuilder {
             }
             else if((meta instanceof SkullMeta) && options.contains("texture")){
                 SkullMeta skullMeta = (SkullMeta) meta;
-                Tweakin.getPlugin().getNMSHandler().applyHeadTexture(skullMeta, options.getString("texture"));
+//                Tweakin.getPlugin().getNMSHandler().applyHeadTexture(skullMeta, options.getString("texture"));
             }
             if(options.contains("model")){
                 meta.setCustomModelData(options.getInt("model", 0));

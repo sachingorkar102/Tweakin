@@ -760,12 +760,12 @@ better-bone-meal:
   # the limit at witch you can bone meal blocks
   growth-limit: 5
   #(when LILYPAD is added to the growable-blocks list), the radius at which the lilypads will grow when the center block is bone mealed.
-  lilypad-bonemeal-radius: 2
-
+  lilypad-bonemeal-radius:
 # REQUIRES ProtocolLib
 # makes the boat jump like a horse when jump button is pressed
 # Permissions:
   # tweakin.jumpyboats.use: permission to make boats jump
+
 jumpy-boats:
   enabled: false
   check-permissions: false

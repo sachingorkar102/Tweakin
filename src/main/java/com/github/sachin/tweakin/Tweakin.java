@@ -159,9 +159,11 @@ public final class Tweakin extends JavaPlugin {
         
         commandManager.getCommandCompletions().registerCompletion("tweakitems", c -> tweakManager.getRegisteredItemNames());
         commandManager.getCommandCompletions().registerCompletion("tweaklist", c -> tweakManager.getTweakNames());
-        List<String> headList = Arrays.asList(Head.values()).stream().map(h -> h.toString()).collect(Collectors.toList());
-        commandManager.getCommandCompletions().registerCompletion("tweakinheads",c -> headList);
-        if(getTweakManager().getTweakFromName("mini-blocks").registered){
+        if(getTweakManager().getTweakFromName("mob-heads") != null && getTweakManager().getTweakFromName("mob-heads").registered){
+            List<String> headList = Arrays.asList(Head.values()).stream().map(h -> h.toString()).collect(Collectors.toList());
+            commandManager.getCommandCompletions().registerCompletion("tweakinheads",c -> headList);
+        }
+        if(getTweakManager().getTweakFromName("mini-blocks") != null && getTweakManager().getTweakFromName("mini-blocks").registered){
             MiniBlocksTweak tweak = (MiniBlocksTweak) getTweakManager().getTweakFromName("mini-blocks");
             commandManager.getCommandCompletions().registerCompletion("tweakinminiblocks",c -> tweak.getRecipeMap().keySet());
         }

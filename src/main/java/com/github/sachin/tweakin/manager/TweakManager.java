@@ -210,7 +210,6 @@ public class TweakManager {
         tweakList.add(new BurnVineTipTweak());
         tweakList.add(new SilenceMobsTweak());
         tweakList.add(new RotationWrenchItem());
-        tweakList.add(new BottledCloudItem());
         tweakList.add(new TrowelItem());
         tweakList.add(new ConfettiCreepers());
         tweakList.add(new LavaBucketTrashCan());
@@ -222,7 +221,6 @@ public class TweakManager {
         tweakList.add(new ShearItemFrameTweak());
         tweakList.add(new SnowBallKnockBackTweak());
         tweakList.add(new InfinityWaterBucketTweak());
-        tweakList.add(new MobHeadsTweak());
         tweakList.add(new BetterGrindStoneTweak());
         tweakList.add(new ArmoredElytraTweak());
         tweakList.add(new VillagerDeathMessageTweak());
@@ -232,7 +230,6 @@ public class TweakManager {
         tweakList.add(new CraftTableOnStick());
         tweakList.add(new InfiniteFireworkItem());
         tweakList.add(new MoreRecipesTweak());
-        tweakList.add(new MiniBlocksTweak());
         tweakList.add(new AutoRecipeUnlockTweak());
         tweakList.add(new AnvilRepairTweak());
         tweakList.add(new WaterExtinguishTweak());
@@ -243,6 +240,9 @@ public class TweakManager {
         tweakList.add(new BlockAlwaysDropsTweak());
         tweakList.add(new WanderingTraderAnnouncementTweak());
         tweakList.add(new StormChannelingTweak());
+        tweakList.add(new MobHeadsTweak());
+        tweakList.add(new BottledCloudItem());
+        tweakList.add(new MiniBlocksTweak());
 
         if(plugin.isProtocolLibEnabled){
             if(!plugin.isPost1_19_3()){
