@@ -39,30 +39,26 @@ public class ElytraBombingTweak extends BaseTweak implements Listener {
                 && igniterItems.contains(igniter.getType().toString())
                 && player.getCooldown(Material.TNT) == 0){
             ItemStack tnt = null;
-            if(false){
-                ItemStack handItem = player.getInventory().getItemInMainHand();
-                if(handItem.getType()==Material.TNT){
-                    tnt = player.getInventory().getItemInMainHand();
-                }
-            }
-            else{
-                int slot = player.getInventory().first(Material.TNT);
-                if(slot != -1){
-                    tnt = player.getInventory().getItem(slot);
-                }
+            int slot = player.getInventory().first(Material.TNT);
+            if(slot != -1){
+                tnt = player.getInventory().getItem(slot);
             }
             if(tnt == null) return;
             if(player.getGameMode() != GameMode.CREATIVE){
-                tnt.setAmount(tnt.getAmount()-1);
                 if(igniter.getItemMeta() instanceof Damageable){
                     Damageable damageable = (Damageable) igniter.getItemMeta();
-                    damageable.setDamage(damageable.getDamage()-1);
-                    igniter.setItemMeta(damageable);
+                    if(damageable.getDamage()<igniter.getType().getMaxDurability()){
+                        damageable.setDamage(damageable.getDamage()+1);
+                        igniter.setItemMeta(damageable);
+                    }
+                    else{
+                        return;
+                    }
                 }
                 else{
                     igniter.setAmount(igniter.getAmount()-1);
                 }
-
+                tnt.setAmount(tnt.getAmount()-1);
             }
             TNTPrimed tntPrimed = player.getWorld().spawn(player.getLocation(), TNTPrimed.class);
             tntPrimed.setVelocity(new Vector(0,0,0));
