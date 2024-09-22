@@ -227,6 +227,19 @@ public class MoreRecipesTweak extends BaseTweak{
                     registeredRecipes++;
                 }
             }
+            else if(type.equalsIgnoreCase("stonecutter") && recipe.contains("ingredients")){
+                RecipeChoice choice = null;
+                for(String s : recipe.getStringList("ingredients")){
+                    choice = TweakItem.getIngredient(s,recipe.getBoolean("exact",false));
+                    break;
+                }
+                if(choice != null){
+                    StonecuttingRecipe stonecuttingRecipe = new StonecuttingRecipe(recipeKey,result,choice);
+                    addRecipe(recipeKey,stonecuttingRecipe);
+                    registeredRecipes++;
+                }
+
+            }
             
         }
         return registeredRecipes;
