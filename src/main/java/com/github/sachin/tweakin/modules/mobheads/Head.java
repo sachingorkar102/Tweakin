@@ -132,7 +132,7 @@ public enum Head {
     SKELETON("SKELETON","SKELETON_SKULL"),
     SKELETON_HORSE,
     SLIME,
-    SNOW_GOLEM("SNOWMAN"),
+    SNOW_GOLEM("SNOW_GOLEM"),
     SPIDER,
     SQUID,
     CREAMY_TRADER_LLAMA("TRADER_LLAMA",(llama)-> ((TraderLlama)llama).getColor()== Color.CREAMY),
