@@ -102,6 +102,12 @@ infinite-firework:
   options:
     enchanted: true
 
+torch-arrow:
+  id: TIPPED_ARROW
+  display: "&eTorch Arrow"
+  options:
+    color: ORANGE
+
       
 
 plate-enabled:

@@ -89,17 +89,16 @@ public class ItemBuilder {
                     banner.setPatterns(getBannerPatterns(options.getConfigurationSection("patterns")));
                 }
             }
-            else if(meta instanceof LeatherArmorMeta){
-                LeatherArmorMeta leather = (LeatherArmorMeta) meta;
-                String colorStr = options.getString("color");
-                if (colorStr != null) {
-                    leather.setColor(parseColor(colorStr));
+            else if(options.contains("color")){
+                if(meta instanceof LeatherArmorMeta){
+                    LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta) meta;
+                    leatherArmorMeta.setColor(parseColor(options.getString("color")));
                 }
-            }
-            else if ((meta instanceof PotionMeta) && options.contains("color")){
-                PotionMeta potion = (PotionMeta) meta;
-                potion.setColor(Color.fromRGB(options.getInt("color",0)));
-                
+                if(meta instanceof PotionMeta){
+                    PotionMeta potionMeta = (PotionMeta) meta;
+                    potionMeta.setColor(parseColor(options.getString("color")));
+                }
+
             }
             else if((meta instanceof SkullMeta) && options.contains("texture")){
                 SkullMeta skullMeta = (SkullMeta) meta;

@@ -54,6 +54,7 @@ import com.github.sachin.tweakin.modules.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.modules.snowballknockback.SnowBallKnockBackTweak;
 import com.github.sachin.tweakin.modules.stormchanneling.StormChannelingTweak;
 import com.github.sachin.tweakin.modules.swingthroughgrass.SwingThroughGrassTweak;
+import com.github.sachin.tweakin.modules.torcharror.TorchArrowItem;
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
 import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmraldTweak;
@@ -243,7 +244,7 @@ public class TweakManager {
         tweakList.add(new MobHeadsTweak());
         tweakList.add(new BottledCloudItem());
         tweakList.add(new MiniBlocksTweak());
-
+//        tweakList.add(new TorchArrowItem());
         if(plugin.isProtocolLibEnabled){
             if(!plugin.isPost1_19_3()){
                 tweakList.add(new BroadCastSoundTweak());
