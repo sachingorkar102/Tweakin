@@ -4,9 +4,11 @@ import com.destroystokyo.paper.event.entity.EntityAddToWorldEvent;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.utils.TConstants;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
+import org.bukkit.Material;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
 @Tweak(name = "villager-follow-emerald")
@@ -15,14 +17,20 @@ public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
     @EventHandler
     public void onVillagerJoinWorld(EntityAddToWorldEvent e){
         if(!(e.getEntity() instanceof Villager)) return;
-        if(getBlackListWorlds().contains(e.getEntity().getWorld().getName())) return;
         Villager vil = (Villager) e.getEntity();
+        if(plugin.getPrilib().getMcVersion().isAtLeast(1,21,3)){
+            plugin.getNMSHandler().removeTemptGoal(vil);
+            return;
+        }
+        if(getBlackListWorlds().contains(e.getEntity().getWorld().getName())) return;
 
         if(!vil.getPersistentDataContainer().has(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER)){
             plugin.getNMSHandler().spawnVillager(vil,false);
+//            plugin.getNMSHandler().addFollowGoal(vil,new ItemStack[]{new ItemStack(Material.EMERALD_BLOCK)},0.6,null,false,false);
             vil.getPersistentDataContainer().set(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER, 1);
         }
         else{
+//            plugin.getNMSHandler().addFollowGoal(vil,new ItemStack[]{new ItemStack(Material.EMERALD_BLOCK)},0.6,null,false,true);
             plugin.getNMSHandler().spawnVillager(vil,true);
         }
 

@@ -4,6 +4,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.injector.server.InputStreamLookupBuilder;
 import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import org.bukkit.Bukkit;
@@ -19,7 +20,7 @@ import java.util.UUID;
 public class SteerBoatPacketListener extends PacketAdapter {
 
     private final JumpyBoatsTweak instance;
-    private final Map<UUID,Integer> cooldowns = new HashMap<>();
+    private final Map<UUID,Long> cooldowns = new HashMap<>();
 
     public SteerBoatPacketListener(JumpyBoatsTweak instance){
         super(Tweakin.getPlugin(), PacketType.Play.Client.STEER_VEHICLE);
@@ -34,14 +35,24 @@ public class SteerBoatPacketListener extends PacketAdapter {
         UUID uuid = player.getUniqueId();
         if(player.isInsideVehicle() && player.getVehicle() instanceof Boat){
             Boat boat = (Boat) player.getVehicle();
-            boolean isJumping = packet.getBooleans().read(0) && (boat.isOnGround() || boat.isInWater());
-            boolean isUnmount = packet.getBooleans().read(1);
+            boolean isJumping;
+            boolean isUnmount;
+            if(Tweakin.getPlugin().getPrilib().getMcVersion().isAtLeast(1,21,3)){
+                isJumping = Tweakin.getPlugin().getNMSHandler().isPlayerJumping(packet.getModifier().read(0));
+                isUnmount = Tweakin.getPlugin().getNMSHandler().isPlayerHoldingShift(packet.getModifier().read(0));
+            }else{
+                isJumping = packet.getBooleans().read(0) && (boat.isOnGround() || boat.isInWater());
+                isUnmount = packet.getBooleans().read(1);
+            }
             if(isUnmount){
                 cooldowns.remove(uuid);
                 return;
             }
-            int i = cooldowns.getOrDefault(uuid,0);
-            if(i==0){
+            long lastJumped = cooldowns.getOrDefault(uuid,0L);
+            long coolDownTime = instance.getConfig().getInt("cooldown") * 50L;
+            long currentTime = System.currentTimeMillis();
+            long timeLeft = (lastJumped+coolDownTime) - currentTime;
+            if(timeLeft<=0){
                 if(isJumping && !instance.containsWorld(player.getWorld())){
                     new BukkitRunnable(){
                         @Override
@@ -49,13 +60,9 @@ public class SteerBoatPacketListener extends PacketAdapter {
                             boat.setVelocity(boat.getVelocity().clone().add(new Vector(0,instance.getConfig().getDouble("jump-modifier"),0)));
                         }
                     }.runTaskLater(plugin,0);
-                    cooldowns.put(uuid,instance.getConfig().getInt("cooldown"));
+                    cooldowns.put(uuid,currentTime);
 
                 }
-            }
-            else{
-                i--;
-                cooldowns.put(uuid,i);
             }
 
         }
