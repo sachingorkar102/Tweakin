@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
@@ -40,9 +41,12 @@ public class ShulkerBoxPreview extends BaseTweak implements Listener{
         if(e.getView().getTopInventory().getHolder() instanceof ShulkerGui){
             ShulkerGui gui = (ShulkerGui) e.getView().getTopInventory().getHolder();
             gui.update(false);
-
-            if((e.getClick() == ClickType.NUMBER_KEY && gui.getSlot() == e.getHotbarButton()) || getConfig().getBoolean("preview-only") || (e.getCurrentItem() != null && e.getCurrentItem().getType().name().endsWith("SHULKER_BOX"))){
+            if((e.getClick() == ClickType.NUMBER_KEY && gui.getSlot() == e.getHotbarButton()) ||
+                    getConfig().getBoolean("preview-only") ||
+                    (e.getCurrentItem() != null && e.getCurrentItem().getType().name().endsWith("SHULKER_BOX")) ||
+                    (e.getAction()==InventoryAction.HOTBAR_SWAP)){
                 e.setCancelled(true);
+
             }
         }
         if(e.getCurrentItem() != null && e.getClickedInventory() instanceof PlayerInventory && e.getClick().toString().equals(getConfig().getString("hotkey"))){
