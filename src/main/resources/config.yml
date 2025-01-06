@@ -819,14 +819,15 @@ mini-blocks:
 # REQUIRES PaperMC or its fork as server software
 # Dropping dirt block in water filled cauldron will instantly turn it into mud block
 # Permissions:
-# tweakin.cauldronmud.use: permission to use this tweak
+  # tweakin.cauldronmud.use: permission to use this tweak
 cauldron-mud:
   enabled: false
   black-list-worlds: []
   check-permissions: false
 
 # when enabled, it allows to get certain blocks back when broken with or without silk touch (configurable)
-# tweakin.blockalwaysdrops.use: permission to use this tweak
+# Permissions:
+  # tweakin.blockalwaysdrops.use: permission to use this tweak
 block-always-drops:
   enabled: false
   black-list-worlds: []
@@ -842,7 +843,8 @@ block-always-drops:
 # when a wandering trader spawns, it will notify the player within 60 blocks of range
 # the announcement message can be edited in messages.yml under wandering-trader-announcement-message key
 # you can use placeholders like %x%,%y%,%z% to accurately specify the wandering trader's coordinates in the announcement message
-# tweakin.wanderingtrader.message: only the players with this permission will receive the announcement message
+# Permissions:
+  # tweakin.wanderingtrader.message: only the players with this permission will receive the announcement message
 wandering-trader-announcement:
   enabled: false
   black-list-worlds: []
@@ -852,7 +854,8 @@ wandering-trader-announcement:
 
 # allows player to start a thunderstorm when a trident with channeling enchantment is thrown in the air above build height.
 # player should be standing at the build height(configurable) to start the storm.
-# tweakin.stormchanneling.use: permission to use this tweak
+# Permissions:
+  # tweakin.stormchanneling.use: permission to use this tweak
 storm-channeling:
   enabled: false
   black-list-worlds: []
@@ -866,7 +869,14 @@ storm-channeling:
   # the value SHOULD be in range.
   trident-height: 350-365
 
-
+# chickens can be picked up by right clicking on them with empty hand, this gives player a slow falling effect.
+# they can be put down, by right clicking on a block with empty hand.
+# Permissions:
+  # tweakin.grabchicken.use: permission to pickup a chicken
+grab-chicken:
+  enabled: false
+  black-list-worlds: []
+  check-permissions: false
 
 
 
