@@ -101,8 +101,33 @@ public class CoreCommand extends BaseCommand{
         }
         plugin.getTweakManager().reload();
         int registeredTweaks = plugin.getTweakManager().getTweakList().stream().filter(t -> t.registered).collect(Collectors.toList()).size();
-        sender.sendMessage(messageManager.getMessage("&6Registered &e"+registeredTweaks+" &6tweaks successfully"));
+        if(sender instanceof Player){
+            sender.sendMessage(messageManager.getMessage("&6Registered &e"+registeredTweaks+" &6tweaks successfully"));
+        }
 
+    }
+
+    @Subcommand("status")
+    @CommandCompletion("@tweaklist")
+    @CommandInfo(syntax = "&a/tweakin status &7(tweak)",perm = "tweakin.command.status",description = "checks whether a specified tweak is enabled or disabled")
+    public void onCheckStatus(CommandSender sender, String[] args){
+        if(!hasPermission(sender,"command.status")){
+            sender.sendMessage(messageManager.getMessage("no-permission"));
+            return;
+        }
+        if(args.length==1){
+            BaseTweak t = plugin.getTweakManager().getTweakFromName(args[0]);
+            if(t!=null){
+                if(t.shouldEnable()){
+                    sender.sendMessage(messageManager.getMessage("tweak-status-enabled").replace("%tweak%", args[0]));
+                }else{
+                    sender.sendMessage(messageManager.getMessage("tweak-status-disabled").replace("%tweak%", args[0]));
+                }
+            }
+            else{
+                sender.sendMessage(messageManager.getMessage("invalid-tweak"));
+            }
+        }
     }
 
     //    /tweakin toggle (tweak-name)
