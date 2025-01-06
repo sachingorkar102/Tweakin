@@ -146,7 +146,8 @@ public final class Tweakin extends JavaPlugin {
                 Permissions.SILENCEMOBS_PARENT,Permissions.SILENCEMOBS_SILENCE,Permissions.SILENCEMOBS_UNSILENCE,Permissions.SLIMEBUCKET_PARENT,
                 Permissions.SLIMEBUCKET_PICKUP,Permissions.SLIMEBUCKET_DETECT,Permissions.SWINGGRASS,Permissions.TROWEL,Permissions.VIL_DTH_MSG,Permissions.ANVIL_REPAIR
                 ,Permissions.WATER_EX,Permissions.BETTER_BONEMEAL,Permissions.JUMPYBOATS,Permissions.CAULDRON_CONCRETE
-                ,Permissions.CHICKEN_SHEARING,Permissions.HOE_HARVESTING,Permissions.CAULDRON_MUD,Permissions.BLOCKS_ALWAYS_DROPS,Permissions.WANDDERING_TRADER_MSG,Permissions.STORM_CHANELLING);
+                ,Permissions.CHICKEN_SHEARING,Permissions.HOE_HARVESTING,Permissions.CAULDRON_MUD,Permissions.BLOCKS_ALWAYS_DROPS,Permissions.WANDDERING_TRADER_MSG,Permissions.STORM_CHANELLING,
+                Permissions.GRAB_CHICKEN);
 
 
         for(Permission perm : this.permissions){

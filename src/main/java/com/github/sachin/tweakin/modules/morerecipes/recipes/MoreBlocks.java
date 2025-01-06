@@ -24,10 +24,11 @@ public class MoreBlocks extends BaseRecipe{
     @Override
     public void register() {
         ConfigurationSection section = instance.getRecipeFile().getConfigurationSection("more-blocks");
-        int trapdoorcount = section.getInt("trapdoor",2);
-        int barkcount = section.getInt("bark",2);
-        int staircount = section.getInt("stairs",8);
-        int brickcount = section.getInt("bricks",4);
+        if(!section.getBoolean("enabled",false)) return;
+        int trapdoorcount = section.getInt("block-types.trapdoor",2);
+        int barkcount = section.getInt("block-types.bark",2);
+        int staircount = section.getInt("block-types.stairs",8);
+        int brickcount = section.getInt("block-types.bricks",4);
 
         // trapdoors
         for(Material plank : Tag.PLANKS.getValues()){

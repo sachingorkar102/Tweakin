@@ -110,7 +110,7 @@ public class MoreRecipesTweak extends BaseTweak{
                 baseRecipe.register();
                 enabledModules++;
             }
-            else if(recipeFile.getBoolean(baseRecipe.name, true)){
+            else if(recipeFile.getBoolean(baseRecipe.name, false)){
                 baseRecipe.register();
                 enabledModules++;
             }
@@ -205,13 +205,13 @@ public class MoreRecipesTweak extends BaseTweak{
             else if(type.equalsIgnoreCase("furnace") || type.equalsIgnoreCase("blast") || type.equalsIgnoreCase("smoker")){
                 CookingRecipe<?> cookingRecipe = null;
                 if(type.equalsIgnoreCase("furnace")){
-                    cookingRecipe = new FurnaceRecipe(recipeKey,result,Material.AIR,0F,0);
+                    cookingRecipe = new FurnaceRecipe(recipeKey,result,Material.DIRT,0F,0);
                 }
                 else if(type.equalsIgnoreCase("blast")){
-                    cookingRecipe = new BlastingRecipe(recipeKey,result,Material.AIR,0F,0);
+                    cookingRecipe = new BlastingRecipe(recipeKey,result,Material.DIRT,0F,0);
                 }
                 else if(type.equalsIgnoreCase("smoker")){
-                    cookingRecipe = new SmokingRecipe(recipeKey,result,Material.AIR,0F,0);
+                    cookingRecipe = new SmokingRecipe(recipeKey,result,Material.DIRT,0F,0);
                 }
                 if(cookingRecipe != null){
                     for(String ing : recipe.getStringList("ingredients")){

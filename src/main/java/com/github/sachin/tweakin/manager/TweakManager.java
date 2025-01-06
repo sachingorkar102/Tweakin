@@ -28,6 +28,7 @@ import com.github.sachin.tweakin.modules.craftingtableonstick.CraftTableOnStick;
 import com.github.sachin.tweakin.modules.customportals.CustomPortalTweak;
 import com.github.sachin.tweakin.modules.elytrabombing.ElytraBombingTweak;
 import com.github.sachin.tweakin.modules.fastleafdecay.FastLeafDecayTweak;
+import com.github.sachin.tweakin.modules.grabchicken.GrabChickenTweak;
 import com.github.sachin.tweakin.modules.hoeharvesting.HoeHarvestingTweak;
 import com.github.sachin.tweakin.modules.infinitefirework.InfiniteFireworkItem;
 import com.github.sachin.tweakin.modules.infinitybucket.InfinityWaterBucketTweak;
@@ -244,7 +245,7 @@ public class TweakManager {
         tweakList.add(new MobHeadsTweak());
         tweakList.add(new BottledCloudItem());
         tweakList.add(new MiniBlocksTweak());
-//        tweakList.add(new TorchArrowItem());
+        tweakList.add(new GrabChickenTweak());
         if(plugin.isProtocolLibEnabled){
             if(!plugin.isPost1_19_3()){
                 tweakList.add(new BroadCastSoundTweak());

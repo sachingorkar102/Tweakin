@@ -15,10 +15,12 @@ craftable-horse-armor: false
 craftable-coral-blocks-two-by-two: false
 craftable-coral-blocks-three-by-three: false
 more-blocks:
-  trapdoor: 12
-  bark: 4
-  stairs: 8
-  bricks: 4
+  enabled: false
+  block-types:
+    trapdoor: 12
+    bark: 4
+    stairs: 8
+    bricks: 4
 universal-dyeing:
   wool:
     single: false

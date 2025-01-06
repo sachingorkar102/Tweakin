@@ -1317,6 +1317,6 @@ bogged:
 creaking:
   texture: ZmMwNzdjOTc1ZjEzZGJkYWVkYTVmMGQyMDE2ZWIzYWY1MWU0YzI3ZDk3MTRhMTIzYzQxMjg5MDE1MDVjNzg4YyJ9fX0=
   chance: 0.10
-  looting: 0.5
+  looting: 0.05
   display: "Creaking Head"
   note-block-sound: entity.creaking.ambient

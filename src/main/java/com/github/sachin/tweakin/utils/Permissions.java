@@ -38,6 +38,7 @@ public class Permissions {
         return parentPerm;
     }
 
+    public static final Permission GRAB_CHICKEN = get("grabchicken.use");
     public static final Permission STORM_CHANELLING = get("stormchanneling.use");
     public static final Permission WANDDERING_TRADER_MSG = get("wanderingtrader.message");
     public static final Permission BLOCKS_ALWAYS_DROPS = get("blockalwaysdrops.use");
