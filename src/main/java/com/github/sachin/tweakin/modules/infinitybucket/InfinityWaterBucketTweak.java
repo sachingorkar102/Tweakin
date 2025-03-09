@@ -30,6 +30,7 @@ import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.view.AnvilView;
 
 // tweakin.infinitybucket.craft,tweakin.infinitybucket.use
 @Tweak(name = "infinity-water-bucket")
@@ -62,7 +63,7 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
             Player player = (Player) e.getView().getBottomInventory().getHolder();
             if(!hasPermission(player, Permissions.INFIBUCKET_CRAFT)) return;
             AnvilInventory inv = e.getInventory();
-            
+            AnvilView anvilView = e.getView();
             ItemStack slot1 = inv.getItem(0);
             ItemStack slot2 = inv.getItem(1);
             if(slot1 == null || slot2 == null) return;
@@ -70,12 +71,12 @@ public class InfinityWaterBucketTweak extends TweakItem implements Listener{
                 EnchantmentStorageMeta enchMeta = (EnchantmentStorageMeta) slot2.getItemMeta();
     
                 Map<Enchantment,Integer> enchs = enchMeta.getStoredEnchants();
-                if(enchs.containsKey(Enchantment.ARROW_INFINITE) && enchs.get(Enchantment.ARROW_INFINITE)>0){
+                if(enchs.containsKey(Enchantment.INFINITY) && enchs.get(Enchantment.INFINITY)>0){
                     ItemStack result = getItem().clone();
                     ItemMeta meta = result.getItemMeta();
-                    meta.setDisplayName(inv.getRenameText());
+                    meta.setDisplayName(anvilView.getRenameText());
                     result.setItemMeta(meta);
-                    inv.setRepairCost(getConfig().getInt("cost"));
+                    anvilView.setRepairCost(getConfig().getInt("cost"));
                     e.setResult(result);
                 }
             }

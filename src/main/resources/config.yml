@@ -398,16 +398,20 @@ lava-bucket-trash-can:
   # tweakin.slimebucket.pickup: permission to pickup slime when right clicked with empty bucket
   # tweakin.slimebucket.detect: slime will not bounce in bucket if player holding it dosnt have this permission
 slime-in-bucket:
-  enabled: false
+  enabled: true
   check-permissions: false
   black-list-worlds: []
   # the value of y level below the slime in bucket will start detecting slimes
   # default to 256 so slime chunk will be detected at any y level
   max-y-level: 256
-  # Custom Model data that will be used when the item is not in slime chunk
+  # Custom Model data that will be used when the item is not in slime chunk (for older versions before 1.21.4)
   model-undetected: 103
-  # Custom Model data that will be used when the item is in a slime chunk
+  # Custom Model data that will be used when the item is in a slime chunk (for older versions before 1.21.4)
   model-detected: 104
+  # Custom Model Definition that will be used when the item is not in slime chunk (for newer versions after 1.21.4)
+  item-model-undetected: tweakin:slime_in_a_bucket
+  # Custom Model Definition that will be used when the item is in a slime chunk (for newer versions after 1.21.4)
+  item-model-detected: tweakin:slime_in_a_bucket_excited
   # what interval in ticks the runnable should run
   interval-ticks: 20
 

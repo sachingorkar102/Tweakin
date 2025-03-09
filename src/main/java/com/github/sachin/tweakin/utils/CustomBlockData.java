@@ -7,6 +7,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.Set;
@@ -61,6 +62,11 @@ public class CustomBlockData implements PersistentDataContainer{
         return pdc.has(namespacedKey, persistentDataType);
     }
 
+    @Override
+    public boolean has(@NotNull NamespacedKey key) {
+        return false;
+    }
+
 //    @Override
 //    public boolean has(@NotNull NamespacedKey key) {return pdc.has(key);}
 
@@ -93,6 +99,10 @@ public class CustomBlockData implements PersistentDataContainer{
         return pdc.isEmpty();
     }
 
+    @Override
+    public void copyTo(@NotNull PersistentDataContainer other, boolean replace) {
+
+    }
 
 
     @Override

@@ -42,6 +42,7 @@ trowel:
     - HIDE_ATTRIBUTES
   options:
     model: 102
+    item-model: tweakin:trowel
   lore:
     - "&7Right-Click to place random blocks from hotbar"  
 bottled-cloud:
@@ -50,14 +51,16 @@ bottled-cloud:
   lore:
     - "&7Right-Click in air to place cloud"
   options: 
-    model: 101   
+    model: 101
+    item-model: tweakin:bottled_cloud
 rotation-wrench:
   id: STICK
   display: "&aRotation Wrench"
   lore:
     - "&6Right click a block to rotate"
   options:
-    model: 100 
+    model: 100
+    item-model: tweakin:rotation_wrench
 slime-in-bucket:
   id: SLIME_BALL
   display: "&aSlime In A Bucket"
@@ -76,8 +79,7 @@ armored-elytra:
   display: "&eArmored Elytra"
   lore:
     - "&7Benifits of elytra and chestplate at once"
-  options:
-    model: 0  
+    -
 armorstand-wand:
   id: STICK
   display: "&eArmorStand Wand"
@@ -86,7 +88,8 @@ armorstand-wand:
     - "&7Shift+Right Click in air to edit lastly edited armorstand"
     - "&7Right Click in air to edit nearest armorstand"
   options:
-    model: 103  
+    model: 103
+    item-model: tweakin:armorstand_wand
 
 crafting-table-on-stick:
   id: STICK
@@ -94,7 +97,8 @@ crafting-table-on-stick:
   lore:
     - "&7Shift Right Click in inventory to open crafting table"
   options:
-    model: 104  
+    model: 104
+    item-model: tweakin:crafting_table_on_stick
 
 infinite-firework:
   id: FIREWORK_ROCKET

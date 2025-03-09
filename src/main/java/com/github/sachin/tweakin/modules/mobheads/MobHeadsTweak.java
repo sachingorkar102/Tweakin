@@ -134,12 +134,12 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
                         ItemStack item1 = killer.getInventory().getItemInMainHand();
                         ItemStack item2 = killer.getInventory().getItemInOffHand();
                         if(item1 != null){
-                            if(validHead.hasChance(item1.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS))){
+                            if(validHead.hasChance(item1.getEnchantmentLevel(Enchantment.LOOTING))){
                                 e.getDrops().add(validHead.getSkull());
                             }
                         }
                         else if(item2 != null){
-                            if(validHead.hasChance(item2.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS))){
+                            if(validHead.hasChance(item2.getEnchantmentLevel(Enchantment.LOOTING))){
                                 e.getDrops().add(validHead.getSkull());
                             }
                         }

@@ -1,5 +1,5 @@
 name: Tweakin
-version: 8.3.0
+version: 8.3.1
 main: com.github.sachin.tweakin.Tweakin
 api-version: 1.16
 api: []
@@ -17,6 +17,8 @@ permissions:
       tweakin.command.give: true
       tweakin.command.toggle: true
       tweakin.command.givehead: true
+      tweakin.command.giveminiblock: true
+      tweakin.command.status: true
       tweakin.command.list: true
       tweakin.command.addpose: true
       tweakin.command.removepose: true

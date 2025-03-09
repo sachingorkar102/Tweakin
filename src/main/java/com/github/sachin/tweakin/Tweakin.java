@@ -279,6 +279,8 @@ public final class Tweakin extends JavaPlugin {
     public boolean isPost1_20() {return prilib.getMcVersion().isAtLeast(new McVersion(1,20));}
     public boolean isPost1_20_2() {return prilib.getMcVersion().isAtLeast(new McVersion(1,20,2));}
 
+    public boolean isPost1_21_4(){return prilib.getMcVersion().isAtLeast(1,21,4);}
+
     public List<Player> getPlacedPlayers() {
         return placedPlayers;
     }

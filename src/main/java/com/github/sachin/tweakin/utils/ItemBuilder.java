@@ -107,6 +107,11 @@ public class ItemBuilder {
             if(options.contains("model")){
                 meta.setCustomModelData(options.getInt("model", 0));
             }
+            if(options.contains("item-model") && Tweakin.getPlugin().isPost1_21_4()){
+                String model = options.getString("item-model");
+                String[] parts = model.split(":",2);
+                meta.setItemModel(new NamespacedKey(parts[0],parts[1]));
+            }
         }
 
         // enchants
@@ -211,8 +216,8 @@ public class ItemBuilder {
         List<Pattern> list = new ArrayList<>();
         if (patterns != null) {
             for (String pattern : patterns.getKeys(false)) {
-                PatternType type = PatternType.getByIdentifier(pattern);
-                if (type == null) type = Enums.getIfPresent(PatternType.class, pattern.toUpperCase(Locale.ENGLISH)).or(PatternType.BASE);
+                PatternType type = Registry.BANNER_PATTERN.getOrThrow(NamespacedKey.minecraft(pattern.toUpperCase()));
+                if (type == null) type = PatternType.BASE;
                 DyeColor color = Enums.getIfPresent(DyeColor.class, patterns.getString(pattern).toUpperCase(Locale.ENGLISH)).or(DyeColor.WHITE);
                 list.add(new Pattern(color, type));
                 
@@ -252,7 +257,7 @@ public class ItemBuilder {
         ItemMeta meta = item.getItemMeta();
         if(!(meta instanceof Damageable) || amount < 0) return item;
 
-        int m = item.getEnchantmentLevel(Enchantment.DURABILITY);
+        int m = item.getEnchantmentLevel(Enchantment.UNBREAKING);
         int k = 0;
         for (int l = 0; m > 0 && l < amount; l++) {
             if (random.nextInt(m +1) > 0){

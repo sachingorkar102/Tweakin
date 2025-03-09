@@ -21,6 +21,7 @@ import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
@@ -83,7 +84,7 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             this.color = getColor(getConfig().getString("color","255,255,255"), getConfig().getInt("transparency",100));
         }
         this.blackListWorlds = getConfig().getStringList("black-list-worlds");
-        
+
     }
 
     @EventHandler
@@ -108,14 +109,30 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
         if(blackListWorlds.contains(player.getWorld().getName())) return;
-        if(!player.getPersistentDataContainer().has(firstKey, PersistentDataType.INTEGER) && getConfig().getBoolean("enabled-on-first-join",true)){
-            creatPlayerTask(player);
-            player.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
-            player.getPersistentDataContainer().set(firstKey, PersistentDataType.INTEGER, 1);
-        }
-        else if(!getCurrentTasks().containsKey(player.getUniqueId()) && player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
-            creatPlayerTask(e.getPlayer());
-           
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                if(getConfig().getBoolean("enabled-on-first-join",true) && !player.getPersistentDataContainer().has(firstKey, PersistentDataType.INTEGER) && !player.getPersistentDataContainer().has(key,PersistentDataType.INTEGER)){
+                    creatPlayerTask(player);
+                    player.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
+                    player.getPersistentDataContainer().set(firstKey, PersistentDataType.INTEGER, 1);
+                }
+                else if(!getCurrentTasks().containsKey(player.getUniqueId()) && player.getPersistentDataContainer().has(key, PersistentDataType.INTEGER)){
+                    creatPlayerTask(e.getPlayer());
+
+                }
+            }
+        }.runTaskLater(plugin,5);
+
+    }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent e){
+        UUID player = e.getPlayer().getUniqueId();
+        if(getCurrentTasks().containsKey(player)){
+            BukkitTask task = getCurrentTasks().get(player);
+            task.cancel();
+            getCurrentTasks().remove(player);
         }
     }
 
@@ -126,34 +143,29 @@ public class ReachAroundTweak extends BaseTweak implements Listener{
             if(!blackListWorlds.contains(player.getWorld().getName())){
                 creatPlayerTask(e.getPlayer());
             }
-           
+
         }
         else{
             if(blackListWorlds.contains(player.getWorld().getName())){
                 BukkitTask task = getCurrentTasks().remove(player.getUniqueId());
                 task.cancel();
-                
+
             }
         }
     }
-
     public void creatPlayerTask(Player player){
+        if(getCurrentTasks().containsKey(player.getUniqueId())){
+            BukkitTask task = getCurrentTasks().remove(player.getUniqueId());
+            task.cancel();
+        }
+        if(!player.getPersistentDataContainer().has(key,PersistentDataType.INTEGER)) return;
         if(getConfig().getBoolean("show-highlight",true) && hasPermission(player, Permissions.REACHAROUND_HIGHLIGHT)){
             ReachAroundRunnable runnable = new ReachAroundRunnable(this, player);
             BukkitTask task = runnable.runTaskTimer(getPlugin(), 60, 2);
             this.currentTasks.put(player.getUniqueId(), task);
         }
     }
-    @EventHandler
-    public void onLeave(PlayerQuitEvent e){
-        UUID player = e.getPlayer().getUniqueId();
-        if(getCurrentTasks().containsKey(player)){
-            BukkitTask task = getCurrentTasks().get(player);
-            task.cancel();
-            getCurrentTasks().remove(player);
-        }
-    }
-    
+
     @EventHandler
     public void blockPlaceEvent(PlayerInteractEvent e){
         if(e.getHand() != EquipmentSlot.HAND) return;

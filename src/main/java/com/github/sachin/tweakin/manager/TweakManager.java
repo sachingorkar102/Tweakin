@@ -55,7 +55,6 @@ import com.github.sachin.tweakin.modules.slimebucket.SlimeInBucket;
 import com.github.sachin.tweakin.modules.snowballknockback.SnowBallKnockBackTweak;
 import com.github.sachin.tweakin.modules.stormchanneling.StormChannelingTweak;
 import com.github.sachin.tweakin.modules.swingthroughgrass.SwingThroughGrassTweak;
-import com.github.sachin.tweakin.modules.torcharror.TorchArrowItem;
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
 import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmraldTweak;

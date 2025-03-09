@@ -36,7 +36,7 @@ public class PatDogTweak extends BaseTweak implements Listener{
             player.getWorld().playSound(wolf.getLocation(), Sound.ENTITY_WOLF_WHINE, 1F, 0.5F + (float) Math.random() * 0.5F);
             player.swingMainHand();
             time.setPetTime();
-            double maxHealth = wolf.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+            double maxHealth = wolf.getAttribute(Attribute.MAX_HEALTH).getValue();
             if(getConfig().getBoolean("heal") && wolf.getHealth() < maxHealth ){
                 double health = wolf.getHealth()+(new Random().nextBoolean() ? 0.5 : 0.0);
                 if(health <= maxHealth){
@@ -55,7 +55,7 @@ public class PatDogTweak extends BaseTweak implements Listener{
             player.getWorld().playSound(cat.getLocation(), Sound.ENTITY_CAT_PURREOW, 1F, 0.5F + (float) Math.random() * 0.5F);
             player.swingMainHand();
             time.setPetTime();
-            double maxHealth = cat.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+            double maxHealth = cat.getAttribute(Attribute.MAX_HEALTH).getValue();
             if(getConfig().getBoolean("heal") && cat.getHealth() < maxHealth ){
                 double health = cat.getHealth()+(new Random().nextBoolean() ? 0.5 : 0.0);
                 if(health <= maxHealth){

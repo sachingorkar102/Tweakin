@@ -185,7 +185,7 @@ public class BetterBoneMealTweak extends BaseTweak implements Listener {
 
 
     private void playBoneMealEffect(Location location){
-        location.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, location, 12, 0.3, 0.3, 0.3, 0.1);
+        location.getWorld().spawnParticle(Particle.valueOf("HAPPY_VILLAGER"), location, 12, 0.3, 0.3, 0.3, 0.1);
         location.getWorld().playSound(location, Sound.ITEM_BONE_MEAL_USE, 1, 1);
     }
 

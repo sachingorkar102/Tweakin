@@ -22,11 +22,13 @@ public class ToggleCommand extends BaseCommand{
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("no-permission"));
             return;
         }
-        if(instance.getCurrentTasks().containsKey(player.getUniqueId())){
+        if(player.getPersistentDataContainer().has(instance.key,PersistentDataType.INTEGER)){
             player.getPersistentDataContainer().remove(instance.key);
             player.sendMessage(instance.getTweakManager().getMessageManager().getMessage("reacharound-disabled"));
-            BukkitTask task = instance.getCurrentTasks().remove(player.getUniqueId());
-            task.cancel();
+            if(instance.getCurrentTasks().containsKey(player.getUniqueId())){
+                BukkitTask task = instance.getCurrentTasks().remove(player.getUniqueId());
+                task.cancel();
+            }
         }
         else{
             player.getPersistentDataContainer().set(instance.key, PersistentDataType.INTEGER, 1);

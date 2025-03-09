@@ -37,7 +37,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
     final Map<Vehicle,SpeedData> speedDataMap = new HashMap<>();
     final NamespacedKey key = new NamespacedKey(getPlugin(), "coordinatehud");
     final NamespacedKey firstKey = new NamespacedKey(getPlugin(),"coordinatehud-firstJoin");
-    final List<EntityType> validVehicles = Arrays.asList(EntityType.HORSE,EntityType.MINECART,EntityType.BOAT,EntityType.MULE,EntityType.DONKEY,EntityType.STRIDER,EntityType.LLAMA,EntityType.PIG,EntityType.SKELETON_HORSE);
+
     private BaseCommand command;
     private HUDRunnable runnable;
 
@@ -146,6 +146,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                 long time = (player.getWorld().getTime() + 6000) % 24000;
                 long hours = time / 1000;
                 Long extra = (time - (hours * 1000)) * 60 / 1000;
+
                 // String message = String.format(ChatColor.GOLD + "XYZ: "+ ChatColor.RESET + "%d %d %d  " + ChatColor.GOLD + "%2s      %02d:%02d",
                 // player.getLocation().getBlockX(),
                 // player.getLocation().getBlockY(),
@@ -158,7 +159,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                 .replace("%y%", String.valueOf(player.getLocation().getBlockY()))
                 .replace("%z%", String.valueOf(player.getLocation().getBlockZ()))
                 .replace("%direction%", getDirection(player.getLocation().getYaw()))
-                .replace("%time%", hours+":"+extra)
+                .replace("%time%", String.format("%02d",hours)+":"+String.format("%02d",extra))
                 ;
 
                 if(getConfig().getBoolean("placeholderapi-support",false) && PlaceHolderApiCompat.isEnabled){
@@ -169,7 +170,7 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                 if(getConfig().getBoolean("show-speed",true)){
                     if(player.isInsideVehicle()){
                         EntityType vechType = player.getVehicle().getType();
-                        if(validVehicles.contains(vechType)){
+                        if(isValidVehicle(vechType)){
                             Vehicle vh = (Vehicle) player.getVehicle();
                             message = message + ChatColor.GOLD+" Speed: "+ChatColor.RESET+Math.round(getSpeed(vh) * 100.0) / 100.0;
                         }
@@ -186,6 +187,20 @@ public class CoordinateHUDTweak extends BaseTweak implements Listener{
                 }
             });
         }
+    }
+
+    final List<String> validVehicles = Arrays.asList("HORSE","_HORSE","MINECART","_BOAT","MULE","DONKEY","STRIDER","LLAMA","PIG");
+    private boolean isValidVehicle(EntityType vechType) {
+        String entity = vechType.toString();
+        for (String s : validVehicles){
+            if(s.startsWith("_") && entity.endsWith(s)){
+                return true;
+            }
+            if(entity.equalsIgnoreCase(s)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private double getSpeed(Vehicle vh){

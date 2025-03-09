@@ -209,7 +209,7 @@ public class BottledCloudItem extends TweakItem implements Listener{
             cube.setInvisible(true);
             cube.setAI(false);
             cube.setInvulnerable(true);
-            cube.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(200);
+            cube.getAttribute(Attribute.MAX_HEALTH).setBaseValue(200);
             cube.getPersistentDataContainer().set(placedBlock,PersistentDataType.INTEGER,1);
             cube.setSilent(true);
             this.ticker = new CloudTicker(this);

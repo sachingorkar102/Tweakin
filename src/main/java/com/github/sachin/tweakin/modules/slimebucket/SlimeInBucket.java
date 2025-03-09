@@ -2,11 +2,13 @@ package com.github.sachin.tweakin.modules.slimebucket;
 
 import com.github.sachin.prilib.nms.NBTItem;
 import com.github.sachin.tweakin.TweakItem;
+import com.github.sachin.tweakin.Tweakin;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -70,6 +72,11 @@ public class SlimeInBucket extends TweakItem implements Listener{
         super.buildItem();
         ItemMeta meta = this.item.getItemMeta();
         meta.setCustomModelData(getConfig().getInt("model-undetected",103));
+        if(getConfig().contains("item-model-undetected") && plugin.isPost1_21_4()){
+            String itemModel = getConfig().getString("item-model-undetected");
+            String[] parts = itemModel.split(":",2);
+            meta.setItemModel(new NamespacedKey(parts[0],parts[1]));
+        }
         this.item.setItemMeta(meta);
     }
 
@@ -127,18 +134,27 @@ public class SlimeInBucket extends TweakItem implements Listener{
             enabled.forEach(player -> {
                 if(getBlackListWorlds().contains(player.getWorld().getName()) || !hasPermission(player, Permissions.SLIMEBUCKET_DETECT)) return;
                 int model = 0;
+                String itemModel = null;
                 Location loc = player.getLocation();
                 if(loc.getChunk().isSlimeChunk() && getConfig().getInt("max-y-level") > loc.getBlockY()){
+//                    if(getConfig().isString("model-detected")) itemModel = getConfig().getString("model-detected");
                     model = getConfig().getInt("model-detected",104);
+                    itemModel = getConfig().getString("item-model-detected");
                 }
                 else{
+//                    if(getConfig().isString("model-undetected")) itemModel = getConfig().getString("model-undetected");
                     model = getConfig().getInt("model-undetected",103);
+                    itemModel = getConfig().getString("item-model-undetected");
                 }
                 if(hasItem(player, EquipmentSlot.HAND)){
                     
                     ItemStack item = player.getInventory().getItemInMainHand();
                     ItemMeta meta = item.getItemMeta();
                     meta.setCustomModelData(model);
+                    if(itemModel != null && plugin.isPost1_21_4()){
+                        String[] parts = itemModel.split(":",2);
+                        meta.setItemModel(new NamespacedKey(parts[0],parts[1]));
+                    }
                     item.setItemMeta(meta);
                 }
                 if(isSimilar(player.getInventory().getItemInOffHand())){
