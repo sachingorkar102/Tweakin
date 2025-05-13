@@ -12,26 +12,24 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
 @Tweak(name = "villager-follow-emerald")
-public class VillagerFollowEmraldTweak extends BaseTweak implements Listener{
+public class VillagerFollowEmeraldTweak extends BaseTweak implements Listener{
 
     @EventHandler
     public void onVillagerJoinWorld(EntityAddToWorldEvent e){
         if(!(e.getEntity() instanceof Villager)) return;
         Villager vil = (Villager) e.getEntity();
-        if(plugin.getPrilib().getMcVersion().isAtLeast(1,21,3)){
-            plugin.getNMSHandler().removeTemptGoal(vil);
-            return;
-        }
+//        if(plugin.getPrilib().getMcVersion().isAtLeast(1,21,3)){
+//            plugin.getNMSHandler().removeTemptGoal(vil);
+//            return;
+//        }
         if(getBlackListWorlds().contains(e.getEntity().getWorld().getName())) return;
 
         if(!vil.getPersistentDataContainer().has(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER)){
-            plugin.getNMSHandler().spawnVillager(vil,false);
-//            plugin.getNMSHandler().addFollowGoal(vil,new ItemStack[]{new ItemStack(Material.EMERALD_BLOCK)},0.6,null,false,false);
+            plugin.getNMSHandler().addFollowGoal(vil,new ItemStack[]{new ItemStack(Material.EMERALD_BLOCK)},0.6,null,false,false);
             vil.getPersistentDataContainer().set(TConstants.VILLAGER_FOLLOW_KEY, PersistentDataType.INTEGER, 1);
         }
         else{
-//            plugin.getNMSHandler().addFollowGoal(vil,new ItemStack[]{new ItemStack(Material.EMERALD_BLOCK)},0.6,null,false,true);
-            plugin.getNMSHandler().spawnVillager(vil,true);
+            plugin.getNMSHandler().addFollowGoal(vil,new ItemStack[]{new ItemStack(Material.EMERALD_BLOCK)},0.6,null,false,true);
         }
 
     }

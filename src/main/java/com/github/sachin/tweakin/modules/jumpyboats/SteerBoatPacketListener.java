@@ -61,6 +61,7 @@ public class SteerBoatPacketListener extends PacketAdapter {
                         }
                     }.runTaskLater(plugin,0);
                     cooldowns.put(uuid,currentTime);
+                    e.setCancelled(true);
 
                 }
             }
