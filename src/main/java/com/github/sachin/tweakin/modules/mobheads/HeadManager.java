@@ -14,9 +14,12 @@ public class HeadManager {
 
     // private final Map<EntityType,Head> singleHeadMap = new HashMap<>();
     private final Map<EntityType,List<Head>> multiHeadMap = new HashMap<>();
+    private final MobHeadsTweak instance;
 
     public HeadManager(MobHeadsTweak instance){
-
+        this.instance = instance;
+    }
+    public void generateMobHeads(){
         int i = 0;
         for(Head h : Head.values()){
             Optional<EntityType> type = Enums.getIfPresent(EntityType.class, h.getEntityType());
@@ -33,8 +36,12 @@ public class HeadManager {
             }
         }
         instance.getPlugin().getLogger().info("Generated "+i+" mob heads..");
-        
     }
+
+
+
+
+
 
     public Map<EntityType, List<Head>> getMultiHeadMap() {
         return multiHeadMap;

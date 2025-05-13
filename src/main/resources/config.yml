@@ -555,7 +555,8 @@ infinity-water-bucket:
   cooldown: 10
 
 # mobs have a chance to drop there heads on death,
-# each head configuration can be altered in plugins/Tweakin/heads.yml (restart the server for changes in heads.yml to take place)
+# each head configuration can be altered in heads.yml
+# MAY REQUIRE SERVER RESTART AFTER MAKING CHANGES IN THE heads.yml.
 # Permission:
   # tweakin.mobheads.drops: players without this permission will not get mob head drops on killing them(only works if require-player-kill is set to true)
 mob-heads:
@@ -691,8 +692,10 @@ infinite-firework:
   # maximum effect count (higher number might lag client)
   max-effects: 2
 
-# adds some useful recipes
-# to configure each recipe check out more-recipes.yml(appears in plugins/Tweakin folder when this tweak is enabled)
+# Adds some useful recipes
+# to configure each recipe check out more-recipes.yml.
+# you can add your own recipes in custom-recipes.yml.
+# MAY REQUIRE SERVER RESTART AFTER MAKING CHANGES IN THE more-recipes.yml.
 more-recipes:
   enabled: false  
 
@@ -816,6 +819,7 @@ recyclable-wax:
 
 # adds stone cutter recipes to convert normal blocks into mini block heads
 # check out mini-blocks.yml(appears in plugins/Tweakin folder when this tweak is enabled) to edit the texture,display,output count and ingredient of each block
+# MAY REQUIRE SERVER RESTART AFTER MAKING CHANGES IN THE mini-blocks.yml.
 mini-blocks:
   enabled: false
 

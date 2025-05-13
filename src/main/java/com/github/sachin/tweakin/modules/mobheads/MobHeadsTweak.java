@@ -50,6 +50,13 @@ public class MobHeadsTweak extends BaseTweak implements Listener{
     public void register() {
         super.register();
         manager = new HeadManager(this);
+        manager.generateMobHeads();
+    }
+
+    @Override
+    public void unregister() {
+        super.unregister();
+        manager.getMultiHeadMap().clear();
     }
 
     @EventHandler

@@ -57,7 +57,7 @@ import com.github.sachin.tweakin.modules.stormchanneling.StormChannelingTweak;
 import com.github.sachin.tweakin.modules.swingthroughgrass.SwingThroughGrassTweak;
 import com.github.sachin.tweakin.modules.trowel.TrowelItem;
 import com.github.sachin.tweakin.modules.villagerdeathmessage.VillagerDeathMessageTweak;
-import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmraldTweak;
+import com.github.sachin.tweakin.modules.villagerfollowemerald.VillagerFollowEmeraldTweak;
 import com.github.sachin.tweakin.modules.wanderingtraderannouncements.WanderingTraderAnnouncementTweak;
 import com.github.sachin.tweakin.modules.waterextinguish.WaterExtinguishTweak;
 import com.github.sachin.tweakin.utils.ConfigUpdater;
@@ -147,26 +147,24 @@ public class TweakManager {
 
         }
 
-        for (BaseTweak t : tweakList) {
+        for (BaseTweak tweak : tweakList) {
             try {
+                tweak.reload();
                 if(unregister){
-
-                    if(t.registered){
-                        t.unregister();
+                    if(tweak.registered && !tweak.shouldEnable()){
+                        tweak.unregister();
                     }
                 }
-                t.reload();
-                if(t.shouldEnable()){
-
-                    t.register();
-                    if(t instanceof TweakItem){
-                        registeredItems.add((TweakItem)t);
+                if(tweak.shouldEnable()){
+                    if(!tweak.registered) tweak.register();
+                    if(tweak instanceof TweakItem){
+                        registeredItems.add((TweakItem)tweak);
                     }
                     registered++;
                 }
-                guiMap.put(t, t.shouldEnable());
+                guiMap.put(tweak, tweak.shouldEnable());
             } catch (Exception e) {
-                plugin.getLogger().info("Error occured while registering "+t.getName()+" tweak..");
+                plugin.getLogger().info("Error occured while registering "+tweak.getName()+" tweak..");
                 plugin.getLogger().info("Report this error on discord or at spigot page in discussion section.");
                 e.printStackTrace();
                 
@@ -264,7 +262,7 @@ public class TweakManager {
         }
         if(plugin.isRunningPaper){
             tweakList.add(new CauldronConcreteTweak());
-            tweakList.add(new VillagerFollowEmraldTweak());
+            tweakList.add(new VillagerFollowEmeraldTweak());
             if(plugin.isPost1_19()){
                 tweakList.add(new CauldronMudTweak());
             }
