@@ -3,10 +3,7 @@ package com.github.sachin.tweakin.modules.patdogs;
 import com.github.sachin.tweakin.BaseTweak;
 import com.github.sachin.tweakin.utils.Permissions;
 import com.github.sachin.tweakin.utils.annotations.Tweak;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Cat;
 import org.bukkit.entity.Player;
@@ -27,6 +24,13 @@ public class PatDogTweak extends BaseTweak implements Listener{
         if(e.getHand() != EquipmentSlot.HAND) return;
         Player player = e.getPlayer();
         if(player.getInventory().getItemInMainHand().getType() != Material.AIR || !player.isSneaking()) return;
+        Attribute maxHealthAttribute = Registry.ATTRIBUTE.get(NamespacedKey.minecraft("max_health"));
+        if(maxHealthAttribute==null){
+            maxHealthAttribute = Registry.ATTRIBUTE.get(NamespacedKey.minecraft("generic.max_health"));
+        }
+        if(maxHealthAttribute==null) {
+            return;
+        }
         if(e.getRightClicked() instanceof Wolf && hasPermission(player, Permissions.PAT_DOG)){
             Wolf wolf = (Wolf) e.getRightClicked();
             PatTime time = new PatTime(wolf);
@@ -36,7 +40,9 @@ public class PatDogTweak extends BaseTweak implements Listener{
             player.getWorld().playSound(wolf.getLocation(), Sound.ENTITY_WOLF_WHINE, 1F, 0.5F + (float) Math.random() * 0.5F);
             player.swingMainHand();
             time.setPetTime();
-            double maxHealth = wolf.getAttribute(Attribute.MAX_HEALTH).getValue();
+
+
+            double maxHealth = wolf.getAttribute(maxHealthAttribute).getValue();
             if(getConfig().getBoolean("heal") && wolf.getHealth() < maxHealth ){
                 double health = wolf.getHealth()+(new Random().nextBoolean() ? 0.5 : 0.0);
                 if(health <= maxHealth){
@@ -55,7 +61,7 @@ public class PatDogTweak extends BaseTweak implements Listener{
             player.getWorld().playSound(cat.getLocation(), Sound.ENTITY_CAT_PURREOW, 1F, 0.5F + (float) Math.random() * 0.5F);
             player.swingMainHand();
             time.setPetTime();
-            double maxHealth = cat.getAttribute(Attribute.MAX_HEALTH).getValue();
+            double maxHealth = cat.getAttribute(maxHealthAttribute).getValue();
             if(getConfig().getBoolean("heal") && cat.getHealth() < maxHealth ){
                 double health = cat.getHealth()+(new Random().nextBoolean() ? 0.5 : 0.0);
                 if(health <= maxHealth){
