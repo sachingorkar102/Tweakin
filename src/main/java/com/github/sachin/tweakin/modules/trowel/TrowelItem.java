@@ -20,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -48,14 +49,13 @@ public class TrowelItem extends TweakItem implements Listener{
     @EventHandler
     public void onRightClick(PlayerInteractEvent e){
 
-
-//        if(e.getHand() != EquipmentSlot.HAND) return;
-        if(e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         Player player = e.getPlayer();
-        if(!hasPermission(player, Permissions.TROWEL)) return;
-        if(!isSimilar(e.getItem())) return;
+        if(e.getHand() != null && isSimilar(player.getInventory().getItem(e.getHand()))) e.setCancelled(true);
+        if (e.getHand() != EquipmentSlot.HAND || e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (!hasPermission(player, Permissions.TROWEL) ||
+            !isSimilar(e.getItem()) ||
+             players.contains(player)) return;
         e.setCancelled(true);
-        if(players.contains(player)) return;
         Block clickedBlock = e.getClickedBlock();
         Block block = clickedBlock.getRelative(e.getBlockFace());
         if(clickedBlock.isPassable()){
@@ -80,12 +80,6 @@ public class TrowelItem extends TweakItem implements Listener{
             boolean placed = getPlugin().getNMSHandler().placeItem(player, loc, player.getInventory().getItem(slot),hitFace,getName(),true);
             player.getInventory().setItem(slot,trowel);
             players.add(player);
-            new BukkitRunnable(){
-                @Override
-                public void run() {
-                    players.remove(player);
-                }
-            }.runTaskLater(getPlugin(),4);
             if(placed){
                 if(usedItem.getUses() != -1 && getConfig().getBoolean("take-damage",false) && player.getGameMode() != GameMode.CREATIVE){
                     if(usedItem.getUses() >= trowel.getType().getMaxDurability()){
@@ -104,7 +98,13 @@ public class TrowelItem extends TweakItem implements Listener{
                     item.setAmount(item.getAmount()-1);
                 }
             }
-            
+            new BukkitRunnable(){
+                @Override
+                public void run() {
+                    players.remove(player);
+                }
+            }.runTaskLater(getPlugin(),4);
+
         }
     }
 
