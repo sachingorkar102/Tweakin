@@ -175,21 +175,21 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
 
                             }
                             if(chestPlateMeta.hasAttributeModifiers()){
-                                if(chestPlateMeta.getAttributeModifiers(Attribute.ARMOR) != null){
+                                if(chestPlateMeta.getAttributeModifiers(getArmor()) != null){
                                     armor=0;
-                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(Attribute.ARMOR)){
+                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(getArmor())){
                                         armor = (int) modifier.getAmount();
                                     }
                                 }
-                                if(chestPlateMeta.getAttributeModifiers(Attribute.ARMOR_TOUGHNESS) != null){
+                                if(chestPlateMeta.getAttributeModifiers(getArmorThoughness()) != null){
                                     toughness=0;
-                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(Attribute.ARMOR_TOUGHNESS)){
+                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(getArmorThoughness())){
                                         toughness = (int) modifier.getAmount();
                                     }
                                 }
-                                if(chestPlateMeta.getAttributeModifiers(Attribute.KNOCKBACK_RESISTANCE) != null){
+                                if(chestPlateMeta.getAttributeModifiers(getKnockBackResistance()) != null){
                                     knockbackres=0;
-                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(Attribute.KNOCKBACK_RESISTANCE)){
+                                    for(AttributeModifier modifier : chestPlateMeta.getAttributeModifiers(getKnockBackResistance())){
                                         knockbackres = (int) modifier.getAmount();
                                     }
                                 }
@@ -197,18 +197,18 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                             if(armor != 0){
                                 AttributeModifier mod = new AttributeModifier(Tweakin.getKey("armor"),armor,Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST);
 //                                AttributeModifier mod = new AttributeModifier(Tweakin.getKey("gen"), "generic.armor", armor, Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-                                meta.addAttributeModifier(Attribute.ARMOR, mod);
+                                meta.addAttributeModifier(getArmor(), mod);
 
                             }
                             if(toughness != 0){
                                 AttributeModifier mod = new AttributeModifier(Tweakin.getKey("armor_toughness"),toughness,Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST);
 //                                AttributeModifier mod = new AttributeModifier(UUID.randomUUID(), "generic.armor_toughness", toughness, Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-                                meta.addAttributeModifier(Attribute.ARMOR_TOUGHNESS, mod);
+                                meta.addAttributeModifier(getArmorThoughness(), mod);
                             }
                             if(knockbackres != 0){
                                 AttributeModifier mod = new AttributeModifier(Tweakin.getKey("knockback_resistance"),knockbackres,Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST);
 //                                AttributeModifier mod = new AttributeModifier(UUID.randomUUID(), "generic.knockback_resistance", knockbackres, Operation.ADD_NUMBER, EquipmentSlot.CHEST);
-                                meta.addAttributeModifier(Attribute.KNOCKBACK_RESISTANCE, mod);
+                                meta.addAttributeModifier(getKnockBackResistance(), mod);
                             }
                             for(Enchantment ench : item1.getEnchantments().keySet()){
                                 enchants.put(ench, item1.getEnchantments().get(ench));
@@ -252,7 +252,33 @@ public class ArmoredElytraTweak extends TweakItem implements Listener{
                     
                 }
             }.runTaskLater(plugin, 2);
+
         }
+
+    }
+
+    private Attribute getArmor(){
+        Attribute attribute = Registry.ATTRIBUTE.get(NamespacedKey.minecraft("armor"));
+        if(attribute==null){
+            attribute = Registry.ATTRIBUTE.get(NamespacedKey.minecraft("generic.armor"));
+        }
+        return attribute;
+    }
+
+    private Attribute getArmorThoughness(){
+        Attribute attribute = Registry.ATTRIBUTE.get(NamespacedKey.minecraft("armor_toughness"));
+        if(attribute==null){
+            attribute = Registry.ATTRIBUTE.get(NamespacedKey.minecraft("generic.armor_toughness"));
+        }
+        return attribute;
+    }
+
+    private Attribute getKnockBackResistance(){
+        Attribute attribute = Registry.ATTRIBUTE.get(NamespacedKey.minecraft("knockback_resistance"));
+        if(attribute==null){
+            attribute = Registry.ATTRIBUTE.get(NamespacedKey.minecraft("generic.knockback_resistance"));
+        }
+        return attribute;
     }
 
 
