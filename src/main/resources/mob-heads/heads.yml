@@ -1320,3 +1320,10 @@ creaking:
   looting: 0.05
   display: "Creaking Head"
   note-block-sound: entity.creaking.ambient
+
+happy_ghast:
+  texture: YmRjNzAzMzFiZmUzMGE0OTUxMGU0NzIyNDNlMGYwNjQ5MGE0ZjViYWEzYWU3NTg3ZjA2NDMxNTZiNTQ0ODM5ZSJ9fX0=
+  chance: 1.00
+  looting: 1.00
+  display: "Happy Ghast Head"
+  note-block-sound: entity.happy_ghast.ambient

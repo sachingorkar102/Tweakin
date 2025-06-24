@@ -241,7 +241,9 @@ public enum Head {
 //    1.21
     BREEZE,
     BOGGED,
-    CREAKING
+    CREAKING,
+//    1.21.6
+    HAPPY_GHAST
     ;
 
 
